@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryan & Sophia — The Wedding Invitation</title>
+    
+    <!-- SEO Meta Descriptions -->
+    <meta name="description" content="You are cordially invited to celebrate the wedding of Ryan and Sophia. Discover event details, countdown, gallery, and submit RSVP online.">
+    <meta name="keywords" content="Ryan and Sophia Wedding, Minimalist Wedding Invitation, High Fashion Wedding, RSVP Online">
+    
+    <!-- Google Fonts: Editorial Serif (Prata) & Modern Sans (Space Grotesk) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+
+    <!-- ==================== WELCOME / COVER SCREEN ==================== -->
+    <div id="welcome-screen" class="welcome-overlay">
+        <div class="welcome-inner">
+            <span class="editorial-subtitle">THE WEDDING INVITATION</span>
+            <h1 class="welcome-title">RYAN & SOPHIA</h1>
+            <span class="welcome-date-label">10 . 10 . 2026</span>
+            <button id="btn-view-invite" class="btn-minimal-invert">
+                VIEW INVITATION
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+    <div id="main-content" class="content-hidden">
+
+        <!-- ==================== STICKY HEADER ==================== -->
+        <header id="main-header">
+            <div class="header-container">
+                <a href="#welcome-screen" class="logo-branding">R & S</a>
+                <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="#couple" class="nav-link">Couple</a></li>
+                        <li><a href="#events" class="nav-link">Events</a></li>
+                        <li><a href="#venue" class="nav-link">Venue</a></li>
+                        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ==================== FLOATING WIDGETS ==================== -->
+        <button id="back-to-top" class="back-to-top-btn" aria-label="Back to Top">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+
+        <!-- ==================== SECTION 1: COUPLE ==================== -->
+        <section id="couple" class="section-padding couple-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">THE UNION</span>
+                    <h2 class="section-title">RYAN & SOPHIA</h2>
+                    <p class="section-intro">Two paths crossing, creating a single modern narrative of love and partnership.</p>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="couple-grid">
+                    <!-- Groom Biography Card -->
+                    <div class="couple-card reveal reveal-left">
+                        <div class="editorial-img-container">
+                            <img src="images/groom.png" alt="Ryan - The Groom" loading="lazy">
+                        </div>
+                        <div class="couple-details">
+                            <h3 class="couple-name">Ryan Alexander</h3>
+                            <span class="couple-role">THE GROOM</span>
+                            <p class="couple-bio">
+                                Architect and modernist designer. Ryan believes that elegance lies in simplicity, clean lines, and intentionality. He is thrilled to embark on this next design of life hand-in-hand with Sophia.
+                            </p>
+                            <div class="parents-meta">
+                                <span>Son of</span>
+                                <strong>Robert & Margaret Alexander</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bride Biography Card -->
+                    <div class="couple-card reveal reveal-right">
+                        <div class="editorial-img-container">
+                            <img src="images/bride.png" alt="Sophia - The Bride" loading="lazy">
+                        </div>
+                        <div class="couple-details">
+                            <h3 class="couple-name">Sophia Elizabeth</h3>
+                            <span class="couple-role">THE BRIDE</span>
+                            <p class="couple-bio">
+                                Creative director and photographer. Sophia captures beauty in raw moments and minimalist perspectives. She looks forward to framing a beautiful, shared future alongside Ryan.
+                            </p>
+                            <div class="parents-meta">
+                                <span>Daughter of</span>
+                                <strong>David & Evelyn Harrison</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: EVENT DETAILS ==================== -->
+        <section id="events" class="section-padding events-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">THE CELEBRATION</span>
+                    <h2 class="section-title">EVENT SCHEDULE</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Card 1: Ceremony -->
+                    <div class="event-card reveal">
+                        <div class="event-header">
+                            <span class="event-num">01</span>
+                            <h3>THE CEREMONY</h3>
+                        </div>
+                        <div class="event-body">
+                            <div class="meta-row">
+                                <span class="meta-label">DATE</span>
+                                <span class="meta-value">Saturday, October 10, 2026</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">TIME</span>
+                                <span class="meta-value">04:30 PM (Vows exchange at 5:00 PM)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">VENUE</span>
+                                <span class="meta-value">The Glass Pavilion, 12 Park Avenue, NY</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">DRESS CODE</span>
+                                <span class="meta-value">Black Tie / Formal Monochrome</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Reception -->
+                    <div class="event-card reveal">
+                        <div class="event-header">
+                            <span class="event-num">02</span>
+                            <h3>THE RECEPTION</h3>
+                        </div>
+                        <div class="event-body">
+                            <div class="meta-row">
+                                <span class="meta-label">DATE</span>
+                                <span class="meta-value">Saturday, October 10, 2026</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">TIME</span>
+                                <span class="meta-value">07:00 PM onwards (Dinner & Dance)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">VENUE</span>
+                                <span class="meta-value">The Concrete Hall, 12 Park Avenue, NY</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">DRESS CODE</span>
+                                <span class="meta-value">Black Tie / Formal Monochrome</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: COUNTDOWN TIMER ==================== -->
+        <section class="section-padding countdown-section">
+            <div class="container">
+                <div class="countdown-wrapper reveal">
+                    <span class="countdown-title">TIME UNTIL THE UNION</span>
+                    <div id="countdown-timer" class="countdown-grid-minimal">
+                        <div class="countdown-box">
+                            <span id="days" class="time-digit">00</span>
+                            <span class="time-label">DAYS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="hours" class="time-digit">00</span>
+                            <span class="time-label">HOURS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="minutes" class="time-digit">00</span>
+                            <span class="time-label">MINS</span>
+                        </div>
+                        <div class="countdown-box">
+                            <span id="seconds" class="time-digit">00</span>
+                            <span class="time-label">SECS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: VENUE MAP ==================== -->
+        <section id="venue" class="section-padding venue-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">THE LOCATION</span>
+                    <h2 class="section-title">THE VENUE</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="venue-grid reveal">
+                    <div class="venue-card-details">
+                        <h3>THE GLASS PAVILION & HALL</h3>
+                        <p class="venue-address">12 Park Avenue, Crescent Heights, New York, NY 10016</p>
+                        <p class="venue-directions-text">
+                            Situated in the heart of Manhattan, the venue offers indoor valet parking. Entry gates open 45 minutes prior to the vows ceremony.
+                        </p>
+                        <div class="venue-buttons">
+                            <a href="https://maps.google.com/?q=12+Park+Avenue+New+York" 
+                               target="_blank" rel="noopener noreferrer" class="btn-minimal-invert">
+                                GET DIRECTIONS <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                            <button id="btn-copy-address" class="btn-minimal-outline">
+                                COPY ADDRESS <i class="fa-solid fa-copy"></i>
+                            </button>
+                        </div>
+                        <div id="copy-toast" class="toast-hidden">Address copied to clipboard.</div>
+                    </div>
+
+                    <div class="venue-map-wrapper">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540455486!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1684340000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="380" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Wedding Location Map">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: GALLERY ==================== -->
+        <section id="gallery" class="section-padding gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">MOMENTS</span>
+                    <h2 class="section-title">THE GALLERY</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="gallery-minimal-grid">
+                    <!-- Photo 1 -->
+                    <div class="gallery-item reveal" data-index="0">
+                        <img src="images/gallery1.png" alt="Minimalist platinum rings" loading="lazy">
+                        <div class="img-overlay">
+                            <span class="img-caption">THE PROMISE</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 2 -->
+                    <div class="gallery-item reveal" data-index="1">
+                        <img src="images/gallery2.png" alt="Modern concrete architecture" loading="lazy">
+                        <div class="img-overlay">
+                            <span class="img-caption">THE STRUCTURE</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 3 -->
+                    <div class="gallery-item reveal" data-index="2">
+                        <img src="images/gallery3.png" alt="Minimalist black and white envelopes" loading="lazy">
+                        <div class="img-overlay">
+                            <span class="img-caption">THE DESIGN</span>
+                        </div>
+                    </div>
+
+                    <!-- Photo 4 -->
+                    <div class="gallery-item reveal" data-index="3">
+                        <img src="images/gallery4.png" alt="Close up of intertwined hands" loading="lazy">
+                        <div class="img-overlay">
+                            <span class="img-caption">THE TOUCH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: RSVP ==================== -->
+        <section id="rsvp" class="section-padding rsvp-section">
+            <div class="container">
+                <div class="rsvp-container reveal">
+                    <div class="rsvp-title-block">
+                        <span class="editorial-label">CONFIRMATION</span>
+                        <h2>ATTENDANCE</h2>
+                        <p>Please submit your response before August 15, 2026.</p>
+                        <div class="thin-divider"></div>
+                    </div>
+
+                    <form id="rsvp-form" class="minimal-rsvp-form">
+                        <div class="form-grid">
+                            <div class="input-block">
+                                <input type="text" id="guest-name" name="name" placeholder=" " required>
+                                <label for="guest-name">FULL NAME</label>
+                                <span class="input-focus-line"></span>
+                                <span class="error-msg" id="name-error">Please enter your name.</span>
+                            </div>
+                            <div class="input-block">
+                                <input type="tel" id="guest-phone" name="phone" placeholder=" " required>
+                                <label for="guest-phone">PHONE NUMBER</label>
+                                <span class="input-focus-line"></span>
+                                <span class="error-msg" id="phone-error">Please enter a valid phone number.</span>
+                            </div>
+                        </div>
+
+                        <div class="radio-input-block">
+                            <span class="radio-section-label">ATTENDANCE</span>
+                            <div class="radio-group">
+                                <label class="radio-btn-container">
+                                    <input type="radio" name="attendance" value="attending" checked required>
+                                    <span class="checkmark"></span>
+                                    <span class="lbl-text">ACCEPT WITH PLEASURE</span>
+                                </label>
+                                <label class="radio-btn-container">
+                                    <input type="radio" name="attendance" value="declined" required>
+                                    <span class="checkmark"></span>
+                                    <span class="lbl-text">DECLINE WITH REGRET</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="guests-count-wrapper" class="input-block">
+                            <select id="guests-count" name="guests">
+                                <option value="1">1 GUEST</option>
+                                <option value="2">2 GUESTS</option>
+                                <option value="3">3 GUESTS</option>
+                                <option value="4">4 GUESTS</option>
+                            </select>
+                            <label for="guests-count">TOTAL ATTENDEES</label>
+                            <span class="input-focus-line"></span>
+                        </div>
+
+                        <button type="submit" id="btn-submit" class="btn-minimal-invert btn-block">
+                            SUBMIT RSVP
+                        </button>
+                    </form>
+
+                    <!-- Success State -->
+                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
+                        <div class="success-card-minimal">
+                            <div class="check-icon-box">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3>RESPONSE RECEIVED</h3>
+                            <p id="success-message">Thank you. Your RSVP details have been recorded.</p>
+                            <button id="btn-close-success" class="btn-minimal-outline btn-small">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 7: CONTACTS ==================== -->
+        <section id="contacts" class="section-padding contacts-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">INFORMATION</span>
+                    <h2 class="section-title">CONTACT DETAILS</h2>
+                    <div class="thin-divider"></div>
+                </div>
+
+                <div class="contacts-grid">
+                    <!-- Groom Coordinator -->
+                    <div class="contact-card reveal">
+                        <span class="contact-title">GROOM'S REPRESENTATIVE</span>
+                        <h3 class="contact-name">Arthur Alexander</h3>
+                        <div class="contact-actions">
+                            <a href="tel:+1234567890" class="btn-minimal-outline"><i class="fa-solid fa-phone"></i> CALL</a>
+                            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="btn-minimal-outline"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+                        </div>
+                    </div>
+
+                    <!-- Bride Coordinator -->
+                    <div class="contact-card reveal">
+                        <span class="contact-title">BRIDE'S REPRESENTATIVE</span>
+                        <h3 class="contact-name">Victoria Harrison</h3>
+                        <div class="contact-actions">
+                            <a href="tel:+0987654321" class="btn-minimal-outline"><i class="fa-solid fa-phone"></i> CALL</a>
+                            <a href="https://wa.me/0987654321" target="_blank" rel="noopener noreferrer" class="btn-minimal-outline"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer>
+            <div class="footer-container">
+                <h2 class="footer-monogram">R + S</h2>
+                <p class="footer-announcement">RYAN & SOPHIA ARE GETTING MARRIED</p>
+                <div class="thin-divider dark"></div>
+                <p class="copyright-text">&copy; 2026 RYAN & SOPHIA. ALL RIGHTS RESERVED.</p>
+            </div>
+        </footer>
+
+    </div> <!-- /#main-content -->
+
+    <!-- ==================== IMAGE LIGHTBOX MODAL ==================== -->
+    <div id="lightbox-modal" class="lightbox-overlay modal-hidden" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+        
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous Image">
+            <i class="fa-solid fa-arrow-left-long"></i>
+        </button>
+        
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Expanded Gallery Media">
+            <div id="lightbox-caption" class="lightbox-caption">CAPTION</div>
+        </div>
+        
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next Image">
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </button>
+    </div>
+
+    <!-- Main JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>

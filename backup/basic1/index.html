@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding of Zayn & Aara - Modern Islamic Wedding Invitation</title>
+    
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="You are cordially invited to celebrate the union of Zayn and Aara. Explore the wedding details, events timeline, gallery, and RSVP online.">
+    <meta name="keywords" content="Zayn and Aara Wedding, Wedding Invitation, Islamic Wedding, Nikah, Walima, RSVP, Online Invitation">
+    
+    <!-- Google Fonts: Elegant Serif (Cinzel), Calligraphy (Great Vibes), Sans-serif (Montserrat) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+
+    <!-- ==================== ELEGANT LOADING / COVER SCREEN ==================== -->
+    <div id="loading-screen" class="loading-overlay">
+        <div class="loading-content">
+            <!-- Decorative Floral Top -->
+            <div class="floral-deco-top">
+                <i class="fa-solid fa-leaf floral-leaf-left"></i>
+                <i class="fa-solid fa-seedling floral-center"></i>
+                <i class="fa-solid fa-leaf floral-leaf-right"></i>
+            </div>
+            
+            <div class="arabic-bismillah" aria-label="Bismillah Calligraphy">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+            </div>
+            <div class="loading-sub">In the Name of Allah, the Most Gracious, the Most Merciful</div>
+            
+            <div class="monogram-wrapper">
+                <div class="monogram-circle"></div>
+                <div class="monogram-letters">Z&A</div>
+            </div>
+            
+            <h2 class="couple-title-cover">Zayn & Aara</h2>
+            <p class="invite-text">We request the honor of your presence at our wedding celebration.</p>
+            
+            <button id="btn-open-invite" class="btn-gold-pulse">
+                <i class="fa-solid fa-envelope-open-text"></i> Open Invitation
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Music Audio Element -->
+    <!-- Soft Instrumental / Piano Track (Royalty-free placeholder) -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+    <!-- Kept hidden or blurred initially, will fade-in when cover is opened -->
+    <div id="main-content" class="content-hidden">
+
+        <!-- ==================== FLOATING CONTROLS ==================== -->
+        <!-- Music Toggle -->
+        <button id="music-toggle" class="floating-btn music-btn" aria-label="Toggle Background Music">
+            <div class="music-icon-wrapper">
+                <i id="music-icon" class="fa-solid fa-compact-disc"></i>
+                <div class="music-waves">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </button>
+
+        <!-- WhatsApp Floating Action -->
+        <a href="https://wa.me/1234567890?text=Salam!%20I%20have%20a%20question%20regarding%20Zayn%20and%20Aara's%20wedding." 
+           class="floating-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <!-- ==================== STICKY HEADER ==================== -->
+        <header id="main-header">
+            <div class="header-container">
+                <a href="#hero" class="brand-monogram">Z&A</a>
+                <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="#hero" class="nav-link active">Home</a></li>
+                        <li><a href="#couple" class="nav-link">Couple</a></li>
+                        <li><a href="#events" class="nav-link">Events</a></li>
+                        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ==================== HERO SECTION ==================== -->
+        <section id="hero" class="hero-section">
+            <div class="hero-bg-overlay"></div>
+            <div class="hero-content">
+                <span class="wedding-announcement">The Wedding Celebration of</span>
+                <h1 class="couple-names">Zayn & Aara</h1>
+                <div class="floral-divider">
+                    <span class="line"></span>
+                    <i class="fa-solid fa-heart"></i>
+                    <span class="line"></span>
+                </div>
+                <p class="wedding-date-str">Friday, September 4, 2026</p>
+                <p class="islamic-date">11 Rabi' al-Awwal 1448 AH</p>
+                
+                <!-- Countdown Timer -->
+                <div id="countdown-timer" class="countdown-container">
+                    <div class="countdown-item">
+                        <span id="days" class="time-num">00</span>
+                        <span class="time-lbl">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="time-num">00</span>
+                        <span class="time-lbl">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="time-num">00</span>
+                        <span class="time-lbl">Mins</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="time-num">00</span>
+                        <span class="time-lbl">Secs</span>
+                    </div>
+                </div>
+                
+                <a href="#rsvp" class="btn-primary-gold">RSVP Now</a>
+            </div>
+            
+            <div class="scroll-down-hint">
+                <span>Scroll Down</span>
+                <i class="fa-solid fa-chevron-down animate-bounce"></i>
+            </div>
+        </section>
+
+        <!-- ==================== COUPLE SECTION ==================== -->
+        <section id="couple" class="section-padding couple-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="sub-title">Introducing</span>
+                    <h2 class="section-title">The Bride & Groom</h2>
+                    <div class="section-divider"></div>
+                    <blockquote class="quran-quote">
+                        "And of His signs is that He created for you from yourselves mates that you may find tranquility in them; and He placed between you affection and mercy."
+                        <span class="quote-source">— Surah Ar-Rum [30:21]</span>
+                    </blockquote>
+                </div>
+
+                <div class="couple-grid">
+                    <!-- Groom Card -->
+                    <div class="couple-card groom-card reveal reveal-left">
+                        <div class="couple-img-wrapper">
+                            <img src="images/groom.png" alt="Zayn - The Groom" loading="lazy">
+                            <div class="gold-ring-frame"></div>
+                        </div>
+                        <h3 class="member-name">Zayn Malik</h3>
+                        <p class="member-role">Groom</p>
+                        <p class="member-bio">
+                            A software architect who finds beauty in order and structure. Zayn is excited to embark on this beautiful, lifelong journey of love, companionship, and shared dreams with Aara.
+                        </p>
+                        <div class="parent-info">
+                            <span>Son of</span>
+                            <strong>Mr. & Mrs. Tariq Malik</strong>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Separator -->
+                    <div class="couple-ampersand reveal">
+                        <span>&</span>
+                    </div>
+
+                    <!-- Bride Card -->
+                    <div class="couple-card bride-card reveal reveal-right">
+                        <div class="couple-img-wrapper">
+                            <img src="images/bride.png" alt="Aara - The Bride" loading="lazy">
+                            <div class="gold-ring-frame"></div>
+                        </div>
+                        <h3 class="member-name">Aara Siddiqui</h3>
+                        <p class="member-role">Bride</p>
+                        <p class="member-bio">
+                            An interior designer with a passion for art and nature. Aara looks forward to bringing her creative warmth and colors into her new life with Zayn, centered on faith and love.
+                        </p>
+                        <div class="parent-info">
+                            <span>Daughter of</span>
+                            <strong>Mr. & Mrs. Farhan Siddiqui</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== EVENTS SECTION ==================== -->
+        <section id="events" class="section-padding events-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="sub-title">Save The Dates</span>
+                    <h2 class="section-title">Wedding Schedule</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Event 1: Nikah -->
+                    <div class="event-card reveal">
+                        <div class="event-card-inner">
+                            <div class="event-icon">
+                                <i class="fa-solid fa-feather-pointed"></i>
+                            </div>
+                            <h3 class="event-name">The Nikah</h3>
+                            <div class="event-time-line">
+                                <p><i class="fa-regular fa-calendar-days"></i> Friday, Sept 4, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> 02:00 PM - 04:30 PM</p>
+                            </div>
+                            <div class="event-venue">
+                                <strong>Masjid Al-Haram Grand Hall</strong>
+                                <p>123 Sacred Pathway, Crescent Heights, NY</p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#venue" class="btn-outline-gold"><i class="fa-solid fa-location-dot"></i> View Venue</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: Reception (Baraat) -->
+                    <div class="event-card reveal highlight">
+                        <div class="event-card-inner">
+                            <div class="event-icon">
+                                <i class="fa-solid fa-chess-king"></i>
+                            </div>
+                            <div class="badge-gold">Main Event</div>
+                            <h3 class="event-name">The Reception</h3>
+                            <div class="event-time-line">
+                                <p><i class="fa-regular fa-calendar-days"></i> Saturday, Sept 5, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> 07:00 PM - 10:30 PM</p>
+                            </div>
+                            <div class="event-venue">
+                                <strong>The Palace Ballroom</strong>
+                                <p>789 Golden Gate Blvd, Astoria Garden, NY</p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#venue" class="btn-outline-gold"><i class="fa-solid fa-location-dot"></i> View Venue</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3: Walima -->
+                    <div class="event-card reveal">
+                        <div class="event-card-inner">
+                            <div class="event-icon">
+                                <i class="fa-solid fa-handshake-angle"></i>
+                            </div>
+                            <h3 class="event-name">The Walima</h3>
+                            <div class="event-time-line">
+                                <p><i class="fa-regular fa-calendar-days"></i> Sunday, Sept 6, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> 01:00 PM - 04:00 PM</p>
+                            </div>
+                            <div class="event-venue">
+                                <strong>Royal Botanical Pavilion</strong>
+                                <p>456 Ivy Green Lane, Meadows Meadow, NY</p>
+                            </div>
+                            <div class="event-actions">
+                                <a href="#venue" class="btn-outline-gold"><i class="fa-solid fa-location-dot"></i> View Venue</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== VENUE SECTION ==================== -->
+        <section id="venue" class="section-padding venue-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="sub-title">Location Details</span>
+                    <h2 class="section-title">How To Get There</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="venue-container reveal">
+                    <div class="venue-info">
+                        <div class="venue-info-box">
+                            <h4><i class="fa-solid fa-map-location-dot"></i> Primary Venue Address</h4>
+                            <p><strong>The Palace Ballroom</strong></p>
+                            <p>789 Golden Gate Blvd, Astoria Garden, New York, NY 11102</p>
+                            <p>Valet parking is available at the entrance for all invited guests.</p>
+                            <div class="venue-btn-group">
+                                <a href="https://maps.google.com/?q=The+Palace+Ballroom+New+York" 
+                                   target="_blank" rel="noopener noreferrer" class="btn-primary-gold">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Navigate
+                                </a>
+                                <button id="btn-copy-address" class="btn-outline-gold">
+                                    <i class="fa-solid fa-copy"></i> Copy Address
+                                </button>
+                            </div>
+                            <div id="copy-success-toast" class="toast-hidden">Address copied to clipboard!</div>
+                        </div>
+                    </div>
+
+                    <div class="map-embed-wrapper">
+                        <!-- Standard styled Google Maps Embed iframe -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540455486!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1684340000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Wedding Venue Map">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GALLERY SECTION ==================== -->
+        <section id="gallery" class="section-padding gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="sub-title">Moments Shared</span>
+                    <h2 class="section-title">Photo Gallery</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- Gallery Item 1 -->
+                    <div class="gallery-item reveal" data-index="0">
+                        <div class="gallery-item-inner">
+                            <img src="images/gallery1.png" alt="Wedding Rings on Rose Bed" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                                <span>The Promise</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div class="gallery-item reveal" data-index="1">
+                        <div class="gallery-item-inner">
+                            <img src="images/gallery2.png" alt="Luxury Islamic Wedding Stage Design" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                                <span>The Sanctuary</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div class="gallery-item reveal" data-index="2">
+                        <div class="gallery-item-inner">
+                            <img src="images/gallery3.png" alt="Gold Foiled Bismillah Invitation" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                                <span>The Invitation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gallery Item 4 -->
+                    <div class="gallery-item reveal" data-index="3">
+                        <div class="gallery-item-inner">
+                            <img src="images/gallery4.png" alt="Bridal Mehndi Henna Hands" loading="lazy">
+                            <div class="gallery-overlay">
+                                <div class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                                <span>The Tradition</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== RSVP SECTION ==================== -->
+        <section id="rsvp" class="section-padding rsvp-section">
+            <div class="container">
+                <div class="rsvp-wrapper reveal">
+                    <div class="rsvp-header">
+                        <span class="sub-title">Honored Guest</span>
+                        <h2>Join Our Celebration</h2>
+                        <p>Kindly respond by August 15, 2026, so we can ensure everything is perfectly prepared for you.</p>
+                        <div class="section-divider"></div>
+                    </div>
+
+                    <form id="rsvp-form" class="rsvp-form-element">
+                        <div class="form-row-2">
+                            <div class="input-group">
+                                <label for="guest-name">Full Name</label>
+                                <div class="input-with-icon">
+                                    <i class="fa-regular fa-user"></i>
+                                    <input type="text" id="guest-name" name="name" placeholder="E.g. Tariq Siddiqui" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="guest-phone">Phone Number</label>
+                                <div class="input-with-icon">
+                                    <i class="fa-solid fa-phone-flip"></i>
+                                    <input type="tel" id="guest-phone" name="phone" placeholder="E.g. +1 (555) 019-2834" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Will You Attend?</label>
+                            <div class="rsvp-radio-options">
+                                <label class="radio-label">
+                                    <input type="radio" name="attendance" value="attending" checked required>
+                                    <span class="custom-radio"></span>
+                                    <span class="radio-text"><i class="fa-regular fa-circle-check text-green"></i> Joyfully Accept</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="attendance" value="declined" required>
+                                    <span class="custom-radio"></span>
+                                    <span class="radio-text"><i class="fa-regular fa-circle-xmark text-red"></i> Regretfully Decline</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Only visible/active when guest is attending -->
+                        <div id="guests-count-container" class="input-group">
+                            <label for="guests-count">Number of Additional Guests</label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-users"></i>
+                                <select id="guests-count" name="guests">
+                                    <option value="0">Just Me (1)</option>
+                                    <option value="1">Plus 1 Guest (2)</option>
+                                    <option value="2">Plus 2 Guests (3)</option>
+                                    <option value="3">Plus 3 Guests (4)</option>
+                                    <option value="4">Plus 4 Guests (5)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="guest-msg">Wishes / Message for the Couple (Optional)</label>
+                            <textarea id="guest-msg" name="message" rows="4" placeholder="Write your heartfelt wishes here..."></textarea>
+                        </div>
+
+                        <button type="submit" id="btn-submit-rsvp" class="btn-submit-gold">
+                            <span>Send RSVP</span> <i class="fa-regular fa-paper-plane"></i>
+                        </button>
+                    </form>
+
+                    <!-- Success State Modal Overlay (hidden by default) -->
+                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
+                        <div class="success-card">
+                            <div class="success-check-icon">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <h3>Thank You!</h3>
+                            <p id="success-msg-text">Your RSVP response has been received. We look forward to celebrating with you!</p>
+                            <button id="btn-close-success" class="btn-primary-gold">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CONTACTS SECTION ==================== -->
+        <section id="contacts" class="section-padding contacts-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="sub-title">Need Help?</span>
+                    <h2 class="section-title">Contact Persons</h2>
+                    <div class="section-divider"></div>
+                    <p class="contacts-intro">For any inquiries, directions, or support regarding the event, please feel free to reach out to our family coordinators.</p>
+                </div>
+
+                <div class="contacts-grid">
+                    <!-- Contact Groom Side -->
+                    <div class="contact-card reveal reveal-left">
+                        <h4>Groom's Family Representative</h4>
+                        <span class="contact-name">Adnan Malik</span>
+                        <span class="contact-relation">Brother of the Groom</span>
+                        <div class="contact-methods">
+                            <a href="tel:+1234567890" class="contact-link"><i class="fa-solid fa-phone"></i> +1 (234) 567-890</a>
+                            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="contact-link wa"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Bride Side -->
+                    <div class="contact-card reveal reveal-right">
+                        <h4>Bride's Family Representative</h4>
+                        <span class="contact-name">Yasmin Siddiqui</span>
+                        <span class="contact-relation">Sister of the Bride</span>
+                        <div class="contact-methods">
+                            <a href="tel:+0987654321" class="contact-link"><i class="fa-solid fa-phone"></i> +1 (098) 765-432</a>
+                            <a href="https://wa.me/0987654321" target="_blank" rel="noopener noreferrer" class="contact-link wa"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer>
+            <div class="footer-container">
+                <div class="footer-monogram">Z&A</div>
+                <h3 class="footer-couple-names">Zayn & Aara</h3>
+                <p class="footer-blessing">May Allah bless our union and fill our home with love, joy, and peace.</p>
+                <div class="floral-divider mini">
+                    <span class="line"></span>
+                    <i class="fa-solid fa-leaf"></i>
+                    <span class="line"></span>
+                </div>
+                <p class="copyright-text">&copy; 2026 Zayn & Aara. Created with Love. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div> <!-- /#main-content -->
+
+    <!-- ==================== LIGHTBOX GALLERY MODAL ==================== -->
+    <div id="lightbox-modal" class="lightbox-overlay modal-hidden" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+        
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous Image">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Zoomed wedding photo">
+            <div id="lightbox-caption" class="lightbox-caption">Caption</div>
+        </div>
+        
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next Image">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

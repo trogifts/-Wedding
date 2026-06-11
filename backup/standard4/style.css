@@ -1,0 +1,1941 @@
+/* ==========================================================================
+   CELESTIAL NIGHT SKY & STARS DESIGN SYSTEM & RESET
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap');
+
+:root {
+    /* Mysterious Night Sky Palette */
+    --color-midnight-blue: #0A0E1A;   /* Pure Cosmos Dark */
+    --color-navy: #0F172A;            /* Deep Space Blue */
+    --color-indigo: #1E1B4B;          /* Stellar Indigo */
+    --color-lavender: #D8B4FE;        /* Nebula Purple Tint */
+    --color-silver: #E2E8F0;          /* Moonlight Silver */
+    --color-gold: #F59E0B;            /* Warm Star Gold */
+    --color-gold-dark: #D97706;       /* Deep Gold / Brass */
+    --color-gold-light: #FDE68A;      /* Bright Star Glow */
+    --color-text-white: #FDFDFD;
+    
+    --color-text-main: #E2E8F0;       /* Silver text */
+    --color-text-muted: #94A3B8;      /* Stardust grey */
+    --color-text-gold: #F59E0B;       /* Golden highlight */
+    
+    /* Typography Fonts */
+    --font-serif-decorative: 'Cinzel Decorative', Georgia, serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-cursive: 'Great Vibes', cursive, sans-serif;
+    --font-sans: 'Montserrat', sans-serif;
+    
+    /* Layout & Styling Tokens */
+    --container-width: 860px;
+    --shadow-glow: 0 0 15px rgba(245, 158, 11, 0.35);
+    --shadow-moon: 0 0 25px rgba(226, 232, 240, 0.4);
+    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    --border-radius-sm: 4px;
+    --border-radius-md: 12px;
+    --border-radius-lg: 20px;
+    
+    --transition-smooth: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    --transition-fast: all 0.3s ease;
+}
+
+/* Base resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--color-midnight-blue);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Starfield twinkles */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    background: radial-gradient(circle at 50% 50%, #0F172A 0%, #0A0E1A 100%);
+    overflow: hidden;
+}
+
+/* Scroll progress bar */
+.scroll-progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 10000;
+    background: transparent;
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--color-gold), var(--color-lavender), var(--color-silver), var(--color-gold-light));
+}
+
+/* ==========================================================================
+   GLOBAL STYLE LAYOUT PARTS
+   ========================================================================== */
+h1, h2, h3, h4 {
+    color: var(--color-text-white);
+    font-family: var(--font-serif);
+    font-weight: 400;
+}
+
+p {
+    font-weight: 300;
+    color: var(--color-text-muted);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section-padding {
+    padding: 80px 0;
+    position: relative;
+}
+
+/* Celestial Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-header .sub-title {
+    font-family: var(--font-cursive);
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    color: var(--color-text-gold);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.section-header .section-title {
+    font-family: var(--font-serif-decorative);
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-text-white);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.celestial-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-gold);
+}
+
+.celestial-separator .constellation-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.celestial-separator i {
+    font-size: 0.7rem;
+    animation: starPulse 2.5s infinite;
+}
+
+/* ==========================================================================
+   1. COSMIC INVITATION OPENING OVERLAY (COVER)
+   ========================================================================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #020617; /* Deep space black */
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+    transition: opacity 1.5s cubic-bezier(0.77, 0, 0.175, 1), transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.loading-overlay.fade-out {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+}
+
+/* Stars layer dedicated to cover */
+.cover-starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star-point {
+    position: absolute;
+    width: 1.5px;
+    height: 1.5px;
+    background-color: #FFF;
+    border-radius: 50%;
+    animation: starTwinkle 2s infinite alternate;
+}
+
+.cover-card-box {
+    width: 90%;
+    max-width: 440px;
+    padding: 50px 24px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1.5px solid rgba(245, 158, 11, 0.25);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 20px rgba(245, 158, 11, 0.08);
+    position: relative;
+    backdrop-filter: blur(15px);
+    z-index: 2;
+}
+
+/* Floating moon behind cover card */
+.cover-crescent-moon {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    border-radius: 50%;
+    box-shadow: 15px 15px 0 0 var(--color-silver);
+    filter: drop-shadow(0 0 10px rgba(226, 232, 240, 0.5));
+    animation: floatingMoon 4s ease-in-out infinite alternate;
+}
+
+.cover-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.cover-lettering {
+    font-family: var(--font-cursive);
+    font-size: 2rem;
+    color: var(--color-text-gold);
+    margin-bottom: -5px;
+}
+
+.cover-names {
+    font-family: var(--font-serif-decorative);
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    color: var(--color-text-white);
+    line-height: 1.3;
+    letter-spacing: 2px;
+}
+
+.cover-subtitle {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-text-muted);
+    margin: 5px 0;
+}
+
+/* Personalized greeting welcoming */
+.cover-personalized-box {
+    border: 1px dashed rgba(245, 158, 11, 0.4);
+    background-color: rgba(30, 27, 75, 0.4);
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin: 15px 0;
+    width: 100%;
+    text-align: center;
+}
+
+.cover-dear-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.cover-guest-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-text-gold);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cover-greeting-phrase {
+    font-size: 0.85rem;
+    color: var(--color-text-main);
+    line-height: 1.5;
+}
+
+.btn-open-cosmic {
+    min-height: 48px;
+    padding: 12px 36px;
+    background-color: transparent;
+    border: 1.5px solid var(--color-gold);
+    color: var(--color-text-white);
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+    transition: var(--transition-fast);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-open-cosmic:hover {
+    background-color: var(--color-gold);
+    color: var(--color-midnight-blue);
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   2. STICKY HEADER & CONTROLLER FLOATING WIDGETS
+   ========================================================================== */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(65px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+    background-color: transparent;
+    z-index: 1000;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+.header-container {
+    height: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-monogram {
+    font-family: var(--font-serif-decorative);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    pointer-events: auto;
+    text-shadow: 0 0 10px rgba(255,255,255,0.3);
+    transition: var(--transition-fast);
+}
+
+.brand-monogram:hover {
+    color: var(--color-text-gold);
+}
+
+/* Floating control buttons */
+.floating-widgets-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+}
+
+.floating-widget-btn {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--color-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    outline: none;
+    font-size: 1rem;
+    color: var(--color-text-white);
+}
+
+.floating-widget-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(245,158,11,0.4);
+}
+
+.music-toggle-btn.playing {
+    color: var(--color-text-gold);
+    animation: rotateMusic 5s linear infinite;
+}
+
+.music-toggle-btn.muted i::after {
+    content: '/';
+    position: absolute;
+    color: var(--color-text-muted);
+    font-weight: 700;
+}
+
+.floating-whatsapp-btn {
+    color: #25D366;
+    border-color: rgba(37, 211, 102, 0.5);
+}
+
+.floating-whatsapp-btn:hover {
+    box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Main content reveal toggles */
+.content-hidden {
+    display: none;
+}
+
+#main-content {
+    opacity: 0;
+    transition: opacity 1.2s ease-in;
+}
+
+#main-content.fade-in {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   3. HERO WELCOME SECTION
+   ========================================================================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 24px 80px;
+    position: relative;
+}
+
+.hero-content {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.hero-cosmic-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-text-gold);
+    margin-bottom: 10px;
+}
+
+.hero-names {
+    font-family: var(--font-serif-decorative);
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    color: var(--color-text-white);
+    line-height: 1.3;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+.hero-welcome-phrase {
+    font-family: var(--font-cursive);
+    font-size: clamp(2rem, 6vw, 2.5rem);
+    color: var(--color-text-gold);
+    margin: 15px 0 25px;
+}
+
+.hero-details-box {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--border-radius-md);
+    padding: 20px 30px;
+    backdrop-filter: blur(8px);
+    margin-bottom: 30px;
+}
+
+.hero-date-text {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    color: var(--color-text-white);
+}
+
+.hero-lunar-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   4. COUPLE PORTRAITS (Moon frame contours)
+   ========================================================================== */
+.profiles-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.couple-profile-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: var(--transition-smooth);
+}
+
+.couple-profile-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(245, 158, 11, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245,158,11,0.05);
+}
+
+/* Crescent moon framing mask */
+.lunar-frame-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.lunar-bg-glow {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    transition: var(--transition-smooth);
+}
+
+.couple-profile-card:hover .lunar-bg-glow {
+    background: radial-gradient(circle, rgba(226, 232, 240, 0.45) 0%, transparent 70%);
+}
+
+.lunar-photo-mask {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    /* Crescent moon clip shape: overlaps two circles */
+    clip-path: path("M 100,0 A 100,100 0 1,1 0,100 A 100,100 0 1,0 100,0 Z");
+    background-color: var(--color-navy);
+}
+
+.lunar-photo-mask img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Adjust positioning of portrait to fit within crescent curve */
+    transform: translateX(10px);
+    transition: var(--transition-smooth);
+}
+
+.couple-profile-card:hover .lunar-photo-mask img {
+    transform: scale(1.05) translateX(12px);
+}
+
+.profile-role-tag {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--color-text-gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.profile-name-text {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    color: var(--color-text-white);
+    margin-bottom: 12px;
+}
+
+.profile-bio-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    max-width: 320px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.family-box-card {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 15px;
+    width: 100%;
+}
+
+.family-member-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.family-member-names {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--color-text-white);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   5. CONSTELLATION Story TIMELINE
+   ========================================================================== */
+.constellation-timeline-wrapper {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    padding-left: 24px;
+    border-left: 1px dashed rgba(226, 232, 240, 0.2);
+}
+
+.timeline-constellation-node {
+    position: relative;
+    margin-bottom: 55px;
+    padding-left: 30px;
+}
+
+/* Twinkling Star Timeline coordinate point */
+.timeline-constellation-node::before {
+    content: '\f005'; /* FontAwesome star */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: -33px;
+    top: 4px;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: var(--transition-fast);
+    z-index: 2;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+.timeline-card {
+    background-color: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 24px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+}
+
+/* Timeline scroll glow interactive activation */
+.timeline-constellation-node.active::before {
+    color: var(--color-gold-light);
+    transform: scale(1.3);
+    text-shadow: 0 0 10px var(--color-gold);
+}
+
+.timeline-constellation-node.active .timeline-card {
+    border-color: rgba(245, 158, 11, 0.3);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245,158,11,0.05);
+}
+
+.timeline-date-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.timeline-title-text {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-text-white);
+    margin-bottom: 10px;
+}
+
+.timeline-desc-text {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   6. WEDDING EVENTS SCHEDULE (Star Map style)
+   ========================================================================== */
+.events-schedule-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event-map-card {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition-smooth);
+}
+
+.event-map-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(245, 158, 11, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.05);
+}
+
+/* Top starmap card gold border separator */
+.event-starmap-header {
+    height: 6px;
+    background: linear-gradient(90deg, var(--color-indigo) 0%, var(--color-gold) 50%, var(--color-indigo) 100%);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.event-card-content {
+    padding: 35px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.event-card-title {
+    font-family: var(--font-serif-decorative);
+    font-size: 1.35rem;
+    color: var(--color-text-white);
+    letter-spacing: 2px;
+}
+
+.event-details-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.event-info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.event-info-row i {
+    color: var(--color-text-gold);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+    text-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+}
+
+.event-info-row .row-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+    font-weight: 500;
+}
+
+.event-info-row .row-value {
+    font-size: 0.92rem;
+    color: var(--color-text-white);
+}
+
+/* ==========================================================================
+   7. COUNTDOWN TIMER
+   ========================================================================== */
+.countdown-box-wrapper {
+    background-color: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 40px 15px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+}
+
+.countdown-timer-title {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(245,158,11,0.2);
+}
+
+.countdown-flex-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.countdown-unit-box {
+    flex: 1;
+    max-width: 70px;
+    background-color: rgba(10, 14, 26, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding: 12px 5px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.countdown-numeric-value {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 2px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+.countdown-label-value {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   8. VENUE MAPS & DIRECTIONS
+   ========================================================================== */
+.venue-widget-box {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.map-iframe-container {
+    width: 100%;
+    height: 220px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1.5px solid rgba(245, 158, 11, 0.15);
+}
+
+.map-iframe-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    filter: invert(90%) hue-rotate(180deg); /* Dark-themed Google Maps! */
+}
+
+.venue-address-text {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.btn-directions-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 24px;
+    background-color: transparent;
+    border: 1.5px solid var(--color-gold);
+    color: var(--color-text-gold);
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 22px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+    transition: var(--transition-fast);
+}
+
+.btn-directions-link:hover {
+    background-color: var(--color-gold);
+    color: var(--color-midnight-blue);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   9. CELESTIAL STARMAPPING GALLERY
+   ========================================================================== */
+.polaroid-gallery-wrapper {
+    position: relative;
+    max-width: 380px;
+    height: 440px;
+    margin: 30px auto;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-card-gallery {
+    position: absolute;
+    width: 290px;
+    background-color: rgba(15, 23, 42, 0.9);
+    border: 1.5px solid rgba(245, 158, 11, 0.25);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    padding: 14px 14px 28px;
+    border-radius: 6px;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.8s ease, z-index 0s;
+    cursor: grab;
+    user-select: none;
+    transform-origin: center bottom;
+    backdrop-filter: blur(10px);
+}
+
+.star-card-gallery:active {
+    cursor: grabbing;
+}
+
+.gallery-img-frame {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 16px;
+}
+
+.gallery-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.gallery-caption-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-text-white);
+    text-align: center;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(255,255,255,0.2);
+}
+
+/* Polaroid Swipe Indicators and manual nav buttons */
+.gallery-nav-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.gallery-nav-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--color-gold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-text-gold);
+    outline: none;
+    transition: var(--transition-fast);
+}
+
+.gallery-nav-arrow:hover {
+    background-color: var(--color-gold);
+    color: var(--color-midnight-blue);
+    box-shadow: 0 0 15px rgba(245,158,11,0.3);
+}
+
+/* Stacking classes */
+.star-card-gallery.active-stack {
+    z-index: 3;
+    transform: rotate(0deg) translate3d(0, 0, 0);
+    opacity: 1;
+}
+
+.star-card-gallery.stack-2 {
+    z-index: 2;
+    transform: rotate(-3deg) translate3d(-10px, -8px, -20px);
+    opacity: 0.85;
+}
+
+.star-card-gallery.stack-3 {
+    z-index: 1;
+    transform: rotate(4deg) translate3d(12px, -14px, -40px);
+    opacity: 0.7;
+}
+
+.star-card-gallery.swipe-left {
+    transform: translate3d(-150%, 50px, 0) rotate(-20deg) !important;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+.star-card-gallery.swipe-right {
+    transform: translate3d(150%, 50px, 0) rotate(20deg) !important;
+    opacity: 0 !important;
+    pointer-events: none;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 14, 26, 0.98);
+    z-index: 100000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox-content-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lightbox-img-card {
+    background-color: rgba(15, 23, 42, 0.95);
+    border: 1.5px solid var(--color-gold);
+    padding: 12px 12px 24px;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+    width: 100%;
+}
+
+.lightbox-img {
+    width: 100%;
+    height: auto;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.lightbox-caption {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-text-white);
+    text-align: center;
+    margin-top: 15px;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: -45px;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #FFF;
+    font-size: 2rem;
+    cursor: pointer;
+    outline: none;
+}
+
+/* ==========================================================================
+   10. SPECIAL INTERACTIVE FEATURE 1: Make a wish moon / Shooting star triggers
+   ========================================================================== */
+.lunar-blessing-box {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 35px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.interactive-moon-svg-container {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    position: relative;
+    margin: 15px 0;
+    transition: var(--transition-fast);
+}
+
+.interactive-moon-svg-container:hover {
+    transform: scale(1.05);
+}
+
+.moon-glow-path {
+    fill: #F1F5F9;
+    filter: drop-shadow(0 0 8px rgba(226, 232, 240, 0.8));
+    transition: var(--transition-smooth);
+}
+
+.moon-shadow-path {
+    fill: #0F172A;
+}
+
+.interactive-moon-svg-container.glow-intense .moon-glow-path {
+    fill: var(--color-gold-light);
+    filter: drop-shadow(0 0 25px var(--color-gold));
+}
+
+.blessings-moon-bubble {
+    display: none;
+    background-color: rgba(30, 27, 75, 0.95);
+    border: 1px solid var(--color-gold);
+    color: var(--color-text-white);
+    padding: 16px 20px;
+    border-radius: var(--border-radius-md);
+    margin-top: 15px;
+    max-width: 480px;
+    box-shadow: var(--shadow-glow);
+    animation: fadeInUp 0.8s ease;
+}
+
+.blessings-moon-bubble h4 {
+    font-family: var(--font-cursive);
+    font-size: 2.2rem;
+    color: var(--color-text-gold);
+    margin-bottom: 5px;
+}
+
+.blessings-moon-bubble p {
+    font-size: 0.9rem;
+    color: var(--color-text-main);
+}
+
+/* Shooting star hunting container */
+#shooting-star-canvas-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+/* Shooting star elements */
+.triggered-shooting-star {
+    position: absolute;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, #FFF, transparent);
+    transform-origin: left center;
+    pointer-events: none;
+    animation: shootStarAction 1s linear forwards;
+}
+
+/* Splat/Star Toast notification quote */
+.star-wish-toast {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    background-color: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--color-gold);
+    color: var(--color-text-white);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    box-shadow: var(--shadow-glow);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 999999;
+}
+
+.star-wish-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   11. SPECIAL INTERACTIVE FEATURE 2: CONSTELLATION CREATOR GAME
+   ========================================================================== */
+.constellation-game-box {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+
+.game-canvas-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    height: 320px;
+    background-color: rgba(10, 14, 26, 0.8);
+    border: 1.5px dashed rgba(245, 158, 11, 0.3);
+    border-radius: 8px;
+    margin: 20px 0;
+    overflow: hidden;
+    touch-action: none; /* Prevent browser scrolling on drag */
+}
+
+.constellation-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.constellation-quote-bubble {
+    display: none;
+    background-color: rgba(30, 27, 75, 0.95);
+    border: 1.5px solid var(--color-gold);
+    color: var(--color-text-white);
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 290px;
+    box-shadow: var(--shadow-glow);
+    animation: bounceReveal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-top: 15px;
+}
+
+.constellation-quote-bubble i {
+    color: var(--color-text-gold);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.constellation-quote-text {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   12. RSVP FORM SECTION
+   ========================================================================== */
+.rsvp-widget-box {
+    background-color: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 40px 24px;
+    backdrop-filter: blur(10px);
+}
+
+.rsvp-form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.rsvp-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: left;
+}
+
+.rsvp-input-group label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--color-text-gold);
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.rsvp-input-group input[type="text"],
+.rsvp-input-group input[type="tel"],
+.rsvp-input-group select {
+    min-height: 48px;
+    padding: 10px 16px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    background-color: rgba(10, 14, 26, 0.7);
+    color: var(--color-text-white);
+    font-family: var(--font-sans);
+    font-size: 1rem; /* iOS zoom prevention */
+    border-radius: 4px;
+    transition: var(--transition-fast);
+    outline: none;
+}
+
+.rsvp-input-group input[type="text"]:focus,
+.rsvp-input-group input[type="tel"]:focus,
+.rsvp-input-group select:focus {
+    border-color: var(--color-gold);
+    background-color: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.rsvp-radio-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.rsvp-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+.rsvp-radio-label input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-gold);
+}
+
+.btn-rsvp-submit {
+    min-height: 48px;
+    background: linear-gradient(135deg, var(--color-indigo), var(--color-navy));
+    color: var(--color-text-white);
+    border: 1.5px solid var(--color-gold);
+    font-family: var(--font-serif);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);
+    transition: var(--transition-fast);
+    margin-top: 15px;
+    outline: none;
+}
+
+.btn-rsvp-submit:hover {
+    background: var(--color-gold);
+    color: var(--color-midnight-blue);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Success modal popup */
+.rsvp-success-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(10, 14, 26, 0.8);
+    z-index: 100000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.rsvp-success-modal {
+    background-color: rgba(15, 23, 42, 0.95);
+    border: 1.5px solid var(--color-gold);
+    padding: 40px 30px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+}
+
+.rsvp-success-icon {
+    font-size: 3rem;
+    color: var(--color-gold-light);
+    margin-bottom: 20px;
+    animation: bounceReveal 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 0 10px var(--color-gold);
+}
+
+.rsvp-success-modal h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--color-text-white);
+    margin-bottom: 10px;
+}
+
+.btn-success-close {
+    margin-top: 25px;
+    min-height: 44px;
+    padding: 10px 30px;
+    background-color: transparent;
+    border: 1.5px solid var(--color-gold);
+    color: var(--color-text-gold);
+    text-transform: uppercase;
+    font-family: var(--font-serif);
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: var(--transition-fast);
+}
+
+.btn-success-close:hover {
+    background-color: var(--color-gold);
+    color: var(--color-midnight-blue);
+}
+
+/* ==========================================================================
+   13. GUEST WISHES & MEMORY LANTERN RELEASE
+   ========================================================================== */
+.blessings-wall-box {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.wishes-input-form {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 24px;
+    border-radius: var(--border-radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.wishes-input-form textarea {
+    min-height: 90px;
+    padding: 12px 16px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    background-color: rgba(10, 14, 26, 0.7);
+    color: var(--color-text-white);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+}
+
+.wishes-input-form textarea:focus {
+    border-color: var(--color-gold);
+    background-color: rgba(15, 23, 42, 0.9);
+}
+
+.wishes-sender-row {
+    display: flex;
+    gap: 12px;
+}
+
+.wishes-sender-row input {
+    flex: 1;
+    min-height: 48px;
+    padding: 10px 16px;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    background-color: rgba(10, 14, 26, 0.7);
+    color: var(--color-text-white);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+}
+
+.wishes-sender-row input:focus {
+    border-color: var(--color-gold);
+    background-color: rgba(15, 23, 42, 0.9);
+}
+
+.btn-wish-submit {
+    padding: 10px 24px;
+    min-height: 48px;
+    margin-top: 0;
+}
+
+/* Star Wishes Backdrop and boards */
+.wishes-display-board {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    background-color: rgba(10, 14, 26, 0.95);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+}
+
+.wishes-sky-label {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--color-text-muted);
+    z-index: 5;
+    pointer-events: none;
+    text-align: center;
+}
+
+/* Glowing Star Wish items inside wall */
+.wish-star-node {
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    transition: var(--transition-fast);
+}
+
+.wish-star-node i {
+    color: var(--color-gold-light);
+    font-size: 1.1rem;
+    filter: drop-shadow(0 0 5px var(--color-gold));
+    animation: starTwinkle 2.5s infinite alternate;
+}
+
+.wish-star-node:hover i {
+    transform: scale(1.3);
+    color: #FFF;
+    filter: drop-shadow(0 0 10px #FFF);
+}
+
+/* Tooltip wish text */
+.wish-star-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(15, 23, 42, 0.95);
+    border: 1px solid var(--color-gold);
+    color: var(--color-text-white);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: normal;
+    width: 220px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    text-align: center;
+    z-index: 10;
+    pointer-events: none;
+    animation: fadeInUp 0.4s ease;
+}
+
+.wish-star-node:hover .wish-star-tooltip {
+    display: block;
+}
+
+.wish-tooltip-sender {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--color-text-gold);
+    margin-top: 6px;
+    font-size: 0.75rem;
+}
+
+/* Release Lantern widgets forms */
+.lantern-release-container {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    padding: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+}
+
+/* Floating lantern absolute elements */
+.floating-memory-lantern {
+    position: fixed;
+    width: 45px;
+    height: 60px;
+    z-index: 998;
+    pointer-events: none;
+    animation: floatLanternUp 18s linear forwards;
+}
+
+.lantern-body-glow {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(245, 158, 11, 0.95) 20%, rgba(220, 38, 38, 0.8) 80%);
+    border-radius: 12px 12px 30% 30% / 15% 15% 50% 50%;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.8);
+    position: relative;
+    animation: wobbleLantern 3s ease-in-out infinite alternate;
+}
+
+.lantern-body-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #EF4444;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #F59E0B;
+}
+
+/* ==========================================================================
+   14. FAMILY CONTACT ACTIONS
+   ========================================================================== */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.contact-card-box {
+    background-color: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 24px;
+    text-align: center;
+}
+
+.contact-card-name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-text-white);
+    margin-bottom: 4px;
+}
+
+.contact-card-relation {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    color: var(--color-text-gold);
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.contact-action-flex {
+    display: flex;
+    gap: 12px;
+}
+
+.contact-action-btn {
+    flex: 1;
+    min-height: 44px;
+    border-radius: 22px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.contact-action-btn.call {
+    background-color: transparent;
+    border: 1px solid var(--color-gold);
+    color: var(--color-text-gold);
+}
+
+.contact-action-btn.call:hover {
+    background-color: var(--color-gold);
+    color: var(--color-midnight-blue);
+    box-shadow: 0 0 12px rgba(245,158,11,0.3);
+}
+
+.contact-action-btn.chat {
+    background-color: #25D366;
+    border: 1px solid #25D366;
+    color: #FFF;
+}
+
+.contact-action-btn.chat:hover {
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* ==========================================================================
+   15. FOOTER
+   ========================================================================== */
+.footer-section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: rgba(10, 14, 26, 0.5);
+    border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.footer-monogram {
+    font-family: var(--font-serif-decorative);
+    font-size: 2.2rem;
+    color: var(--color-text-gold);
+    margin-bottom: 10px;
+}
+
+.footer-names {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: var(--color-text-white);
+    margin-bottom: 15px;
+}
+
+.footer-thank-you {
+    font-family: var(--font-cursive);
+    font-size: 2.4rem;
+    color: var(--color-text-gold);
+    margin-bottom: 20px;
+}
+
+.footer-copyright {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    letter-spacing: 1.5px;
+}
+
+/* ==========================================================================
+   16. SYSTEM ANIMATIONS KEYFRAMES
+   ========================================================================== */
+@keyframes starTwinkle {
+    0% { opacity: 0.35; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes starPulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.25); opacity: 1; text-shadow: 0 0 8px var(--color-gold); }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes floatingMoon {
+    0% { transform: translateX(-50%) translateY(0); }
+    100% { transform: translateX(-50%) translateY(-6px); }
+}
+
+@keyframes rotateMusic {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceReveal {
+    0% { transform: scale(0); }
+    70% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* Release Lantern Rising */
+@keyframes floatLanternUp {
+    0% {
+        transform: translate3d(var(--start-x), 105vh, 0) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    90% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate3d(var(--end-x), -10vh, 0) scale(1.1);
+        opacity: 0;
+    }
+}
+
+@keyframes wobbleLantern {
+    0% { transform: rotate(-4deg); }
+    100% { transform: rotate(4deg); }
+}
+
+/* Shooting star trigger flight */
+@keyframes shootStarAction {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(var(--angle)) scaleX(0);
+        opacity: 1;
+    }
+    20% {
+        transform: translate3d(50px, 30px, 0) rotate(var(--angle)) scaleX(1);
+    }
+    100% {
+        transform: translate3d(300px, 180px, 0) rotate(var(--angle)) scaleX(0.2);
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   16. CLICKABLE CELESTIAL SHOOTING STAR HUNT
+   ========================================================================== */
+.hunting-shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 30px; /* larger touch target area for mobile */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    pointer-events: auto; /* override overlay none */
+    transform-origin: left center;
+    z-index: 100000;
+    animation: huntStarAction var(--duration, 2.5s) linear forwards;
+}
+
+.hunting-shooting-star::before {
+    content: '';
+    width: 65px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-gold-light) 0%, rgba(253, 230, 138, 0.4) 60%, transparent 100%);
+    box-shadow: 0 0 10px var(--color-gold);
+}
+
+.hunting-shooting-star::after {
+    content: '⭐';
+    font-size: 0.95rem;
+    color: var(--color-gold-light);
+    filter: drop-shadow(0 0 5px var(--color-gold)) drop-shadow(0 0 10px var(--color-gold-light));
+    margin-left: -8px;
+    margin-top: -4px;
+    animation: starPulse 0.4s infinite alternate;
+}
+
+.star-burst-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-gold-light);
+    border-radius: 50%;
+    pointer-events: none;
+    box-shadow: 0 0 8px var(--color-gold);
+    z-index: 100001;
+    animation: particleBurstAnim 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes huntStarAction {
+    0% {
+        transform: translate3d(var(--start-x), var(--start-y), 0) rotate(var(--angle)) scale(0.65);
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(var(--end-x), var(--end-y), 0) rotate(var(--angle)) scale(0.65);
+        opacity: 0;
+    }
+}
+
+@keyframes particleBurstAnim {
+    0% {
+        transform: translate(0, 0) scale(1.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--mx), var(--my)) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   17. MOBILE-FIRST RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+/* Mobile Baseline (default layout, 320px-480px width) uses stacked columns */
+
+/* Tablet & Smaller Desktop Upgrades */
+@media screen and (min-width: 769px) {
+    .profiles-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+    }
+    
+    .couple-profile-card {
+        flex: 1;
+    }
+    
+    .wishes-display-board {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        height: 480px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+}
+
+/* Large Desktop Upgrades */
+@media screen and (min-width: 1025px) {
+    .section-padding {
+        padding: 100px 0;
+    }
+    
+    .events-schedule-grid {
+        flex-direction: row;
+        gap: 24px;
+    }
+    
+    .event-map-card {
+        flex: 1;
+    }
+}

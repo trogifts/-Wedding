@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Wedding Invitation - Zayn & Aara. Join us under a magical night sky to celebrate our love.">
+    <title>Wedding of Zayn & Aara - Celestial Night Sky Wedding Invitation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Twinkling Starry Backdrop -->
+    <div class="stars-bg" id="stars-bg"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Shooting Star Overlay (For Interactive Star Wishes) -->
+    <div id="shooting-star-canvas-overlay"></div>
+
+    <!-- Star Wish Toast Notifications -->
+    <div class="star-wish-toast" id="star-wish-toast">"Thank you for sending your blessings."</div>
+
+    <!-- ==========================================================================
+       1. COSMIC INVITATION OPENING OVERLAY (COVER)
+       ========================================================================== -->
+    <div class="loading-overlay" id="loading-overlay">
+        <!-- Twinkling starfield for cover -->
+        <div class="cover-starfield" id="cover-starfield"></div>
+        
+        <div class="cover-card-box">
+            <!-- Glowing crescent moon -->
+            <div class="cover-crescent-moon"></div>
+            
+            <div class="cover-content">
+                <span class="cover-lettering">The Cosmic Invitation</span>
+                
+                <!-- Couple names with constellations connection overlay -->
+                <div class="cover-names" id="cover-names">
+                    Zayn & Aara
+                </div>
+                
+                <span class="cover-subtitle">Are Getting Married</span>
+                
+                <!-- Personalized Guest Welcome Box -->
+                <div class="cover-personalized-box" id="personalized-welcome">
+                    <span class="cover-dear-tag">Dear Guest</span>
+                    <div class="cover-guest-name" id="guest-name-display">Honored Guest</div>
+                    <p class="cover-greeting-phrase" id="guest-welcome-text">
+                        Destiny has written your name among our stars. Join us as we celebrate our love under the moonlit sky.
+                    </p>
+                </div>
+                
+                <!-- Open button -->
+                <button class="btn-open-cosmic" id="btn-open-cosmic" aria-label="Open Cosmic Invitation">
+                    Open Invitation
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       2. STICKY HEADER
+       ========================================================================== -->
+    <header id="main-header" class="content-hidden">
+        <div class="header-container">
+            <a href="#" class="brand-monogram">Z&A</a>
+        </div>
+    </header>
+
+    <!-- FLOATING ACTIONS WIDGETS -->
+    <div class="floating-widgets-wrapper content-hidden" id="floating-widgets">
+        <!-- Music Toggle -->
+        <button class="floating-widget-btn music-toggle-btn muted" id="music-toggle-btn" aria-label="Toggle Background Music">
+            <i class="fa-solid fa-volume-xmark"></i>
+        </button>
+        <!-- Quick WhatsApp -->
+        <a href="https://wa.me/919876543210" target="_blank" class="floating-widget-btn floating-whatsapp-btn" id="floating-whatsapp" aria-label="WhatsApp Us">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ==========================================================================
+       MAIN SCROLLABLE CONTENT (Hidden until cover is opened)
+       ========================================================================== -->
+    <main id="main-content" class="content-hidden">
+
+        <!-- ==========================================================================
+           3. HERO SECTION
+           ========================================================================== -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <span class="hero-cosmic-tag">The Celestial Celebration</span>
+                <h1 class="hero-names">Zayn & Aara</h1>
+                <div class="celestial-separator">
+                    <div class="constellation-line"></div>
+                    <i class="fa-solid fa-star"></i>
+                    <div class="constellation-line"></div>
+                </div>
+                <div class="hero-welcome-phrase" id="hero-welcome-phrase">Join Us Under The Stars</div>
+                
+                <div class="hero-details-box">
+                    <div class="hero-date-text">December 12, 2026</div>
+                    <div class="hero-lunar-date">Under the Glow of a Crescent Moon</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           4. COUPLE INTRODUCTION
+           ========================================================================== -->
+        <section class="section-padding" id="couple-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Written in the Stars</span>
+                    <h2 class="section-title">The Bride & Groom</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-moon"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="profiles-wrapper">
+                    <!-- Groom Card -->
+                    <div class="couple-profile-card">
+                        <div class="lunar-frame-container">
+                            <div class="lunar-bg-glow"></div>
+                            <div class="lunar-photo-mask">
+                                <img src="images/groom.png" alt="Zayn Malik - Groom" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400';">
+                            </div>
+                        </div>
+                        <span class="profile-role-tag">The Groom</span>
+                        <h3 class="profile-name-text">Zayn Malik</h3>
+                        <p class="profile-bio-text">
+                            A stargazing architect who loves mapping constellations and designing dreams. He found his true north in Aara.
+                        </p>
+                        <div class="family-box-card">
+                            <span class="family-member-label">Parents of Groom</span>
+                            <span class="family-member-names">Mr. Bilal & Mrs. Amina Malik</span>
+                        </div>
+                    </div>
+
+                    <!-- Bride Card -->
+                    <div class="couple-profile-card">
+                        <div class="lunar-frame-container">
+                            <div class="lunar-bg-glow"></div>
+                            <div class="lunar-photo-mask">
+                                <img src="images/bride.png" alt="Aara Ibrahim - Bride" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400';">
+                            </div>
+                        </div>
+                        <span class="profile-role-tag">The Bride</span>
+                        <h3 class="profile-name-text">Aara Ibrahim</h3>
+                        <p class="profile-bio-text">
+                            A romantic astrophysicist who spends her nights looking at nebulas. She believes that their souls were bound in stardust.
+                        </p>
+                        <div class="family-box-card">
+                            <span class="family-member-label">Parents of Bride</span>
+                            <span class="family-member-names">Mr. Tariq & Mrs. Yasmin Ibrahim</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           5. OUR LOVE STORY TIMELINE
+           ========================================================================== -->
+        <section class="section-padding" id="story-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Our Celestial Journey</span>
+                    <h2 class="section-title">The Love Timeline</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-star-and-crescent"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="constellation-timeline-wrapper">
+                    <!-- Node 1 -->
+                    <div class="timeline-constellation-node" id="story-node-1">
+                        <div class="timeline-card">
+                            <span class="timeline-date-tag">September 14, 2024</span>
+                            <h3 class="timeline-title-text">First Alignment</h3>
+                            <p class="timeline-desc-text">
+                                We met at a stargazing camping retreat in the mountains. Amidst telescope alignments and cool mountain breezes, our orbits crossed.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Node 2 -->
+                    <div class="timeline-constellation-node" id="story-node-2">
+                        <div class="timeline-card">
+                            <span class="timeline-date-tag">November 20, 2024</span>
+                            <h3 class="timeline-title-text">The First Date</h3>
+                            <p class="timeline-desc-text">
+                                Over warm hot chocolate and endless conversations about universe theories, we spent hours talking under the city’s moonlit skyline.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Node 3 -->
+                    <div class="timeline-constellation-node" id="story-node-3">
+                        <div class="timeline-card">
+                            <span class="timeline-date-tag">August 12, 2025</span>
+                            <h3 class="timeline-title-text">The Perseids Proposal</h3>
+                            <p class="timeline-desc-text">
+                                Under a peak Perseid meteor shower, Zayn pointed to a shooting star, got down on one knee, and asked Aara to share her cosmos with him.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Node 4 -->
+                    <div class="timeline-constellation-node" id="story-node-4">
+                        <div class="timeline-card">
+                            <span class="timeline-date-tag">December 12, 2026</span>
+                            <h3 class="timeline-title-text">The Wedding Day</h3>
+                            <p class="timeline-desc-text">
+                                Today, we seal our love forever. Written in the constellations and witnessed by those we hold dearest.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           6. WEDDING EVENTS SCHEDULE (Star Map style)
+           ========================================================================== -->
+        <section class="section-padding" id="events-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Celestial Registry</span>
+                    <h2 class="section-title">The Star Map Schedule</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-compass"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="events-schedule-grid">
+                    <!-- Event 1: Mehendi -->
+                    <div class="event-map-card">
+                        <div class="event-starmap-header"></div>
+                        <div class="event-card-content">
+                            <h3 class="event-card-title">Mehendi Ceremony</h3>
+                            <div class="event-details-list">
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                    <span class="row-label">Date</span>
+                                    <span class="row-value">Friday, December 11, 2026</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span class="row-label">Time</span>
+                                    <span class="row-value">06:30 PM IST</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-hotel"></i>
+                                    <span class="row-label">Location</span>
+                                    <span class="row-value">Starry Canopy Gardens, Lawn B</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2: Nikkah -->
+                    <div class="event-map-card">
+                        <div class="event-starmap-header"></div>
+                        <div class="event-card-content">
+                            <h3 class="event-card-title">Nikkah Ceremony</h3>
+                            <div class="event-details-list">
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                    <span class="row-label">Date</span>
+                                    <span class="row-value">Saturday, December 12, 2026</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span class="row-label">Time</span>
+                                    <span class="row-value">04:30 PM IST</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-hotel"></i>
+                                    <span class="row-label">Location</span>
+                                    <span class="row-value">Grand Starlight Palace, Hall A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3: Reception -->
+                    <div class="event-map-card">
+                        <div class="event-starmap-header"></div>
+                        <div class="event-card-content">
+                            <h3 class="event-card-title">Grand Reception</h3>
+                            <div class="event-details-list">
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-calendar-day"></i>
+                                    <span class="row-label">Date</span>
+                                    <span class="row-value">Sunday, December 13, 2026</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span class="row-label">Time</span>
+                                    <span class="row-value">07:00 PM IST</span>
+                                </div>
+                                <div class="event-info-row">
+                                    <i class="fa-solid fa-hotel"></i>
+                                    <span class="row-label">Location</span>
+                                    <span class="row-value">Celestial Gardens Resort, Main Lawn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           7. COUNTDOWN TIMER
+           ========================================================================== -->
+        <section class="section-padding" id="countdown-section">
+            <div class="container">
+                <div class="countdown-box-wrapper">
+                    <h3 class="countdown-timer-title">Counting Down to Our Universe</h3>
+                    <div class="countdown-flex-grid" id="countdown-timer">
+                        <div class="countdown-unit-box">
+                            <span class="countdown-numeric-value" id="days">00</span>
+                            <span class="countdown-label-value">Days</span>
+                        </div>
+                        <div class="countdown-unit-box">
+                            <span class="countdown-numeric-value" id="hours">00</span>
+                            <span class="countdown-label-value">Hours</span>
+                        </div>
+                        <div class="countdown-unit-box">
+                            <span class="countdown-numeric-value" id="minutes">00</span>
+                            <span class="countdown-label-value">Mins</span>
+                        </div>
+                        <div class="countdown-unit-box">
+                            <span class="countdown-numeric-value" id="seconds">00</span>
+                            <span class="countdown-label-value">Secs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           8. VENUE DIRECTIONS
+           ========================================================================== -->
+        <section class="section-padding" id="venue-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">The Celebration Grounds</span>
+                    <h2 class="section-title">The Wedding Venue</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="venue-widget-box">
+                    <div class="map-iframe-container">
+                        <!-- Custom styled inverted Dark Google Map -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7989975765037!2d72.88283401538356!3d19.07361298708816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8702c2e0b57%3A0xe5f5d8ab5c4b8b6f!2sHotel%20Sahara%20Star!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Venue Map">
+                        </iframe>
+                    </div>
+                    <p class="venue-address-text">
+                        <strong>Hotel Sahara Star - Grand Ballroom</strong><br>
+                        Opposite Domestic Airport, Nehru Road, Vile Parle East, Mumbai, Maharashtra 400099
+                    </p>
+                    <a href="https://goo.gl/maps/W5H5P2WSt97J2" target="_blank" class="btn-directions-link">
+                        <i class="fa-solid fa-location-arrow"></i> Navigate to Venue
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           9. CELESTIAL STARMAPPING GALLERY
+           ========================================================================== */ -->
+        <section class="section-padding" id="gallery-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Capturing Starlight</span>
+                    <h2 class="section-title">Celestial Gallery</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-images"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <!-- Swipeable Stack of Gallery cards -->
+                <div class="polaroid-gallery-wrapper" id="polaroid-gallery">
+                    <!-- Card 1 -->
+                    <div class="star-card-gallery active-stack" data-index="0">
+                        <div class="gallery-img-frame">
+                            <img src="images/gallery1.png" alt="Stargazing Proposal" onerror="this.src='https://images.unsplash.com/photo-1472552947054-a6976ddde122?auto=format&fit=crop&q=80&w=400';">
+                        </div>
+                        <h4 class="gallery-caption-title">Under the Milky Way</h4>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="star-card-gallery stack-2" data-index="1">
+                        <div class="gallery-img-frame">
+                            <img src="images/gallery2.png" alt="Love in the Stars" onerror="this.src='https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80&w=400';">
+                        </div>
+                        <h4 class="gallery-caption-title">Starlight Vows</h4>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="star-card-gallery stack-3" data-index="2">
+                        <div class="gallery-img-frame">
+                            <img src="images/gallery3.png" alt="Cosmic Connection" onerror="this.src='https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80&w=400';">
+                        </div>
+                        <h4 class="gallery-caption-title">Infinite Galaxies</h4>
+                    </div>
+                </div>
+
+                <!-- Navigation arrows -->
+                <div class="gallery-nav-controls">
+                    <button class="gallery-nav-arrow" id="gallery-prev" aria-label="Previous Image">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="gallery-nav-arrow" id="gallery-next" aria-label="Next Image">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Lightbox Modal -->
+        <div class="lightbox-modal" id="lightbox-modal">
+            <div class="lightbox-content-wrapper">
+                <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+                <div class="lightbox-img-card">
+                    <img class="lightbox-img" id="lightbox-img" src="" alt="Zoomed view">
+                    <h4 class="lightbox-caption" id="lightbox-caption"></h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+           10. SPECIAL INTERACTIVE FEATURES (BLESSINGS MOON & WISHING STARS)
+           ========================================================================== -->
+        <section class="section-padding" id="interactive-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Interact with the Cosmos</span>
+                    <h2 class="section-title">Celestial Blessings</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="lunar-blessing-box">
+                    <h3>Tap the Blessing Moon</h3>
+                    <p>Tap the glowing crescent moon to receive a blessing from the universe.</p>
+                    
+                    <div class="interactive-moon-svg-container" id="blessing-moon-widget">
+                        <!-- Crescent moon SVG -->
+                        <svg class="moon-svg" viewBox="0 0 100 100" width="100%" height="100%">
+                            <!-- Moon Path -->
+                            <path class="moon-glow-path" d="M 50 10 A 40 40 0 1 0 90 50 A 32 32 0 1 1 50 10 Z" />
+                        </svg>
+                    </div>
+
+                    <!-- Hidden blessing toast bubble -->
+                    <div class="blessings-moon-bubble" id="blessings-moon-bubble">
+                        <h4 id="moon-blessing-heading">May Love Shine Bright</h4>
+                        <p id="moon-blessing-quote">"True love is not just stargazing together, but traveling standard orbits of life as one."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           11. INTERACTIVE CONSTELLATION CREATOR GAME
+           ========================================================================== -->
+        <section class="section-padding" id="game-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Connect the Stars</span>
+                    <h2 class="section-title">Constellation Creator</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-draw-polygon"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="constellation-game-box">
+                    <h3>Draw Our Love Constellation</h3>
+                    <p>Swipe or drag to connect the glowing star nodes sequentially. Connect all 5 stars to reveal a love quote!</p>
+                    
+                    <div class="game-canvas-wrapper">
+                        <canvas class="constellation-canvas" id="constellation-canvas" width="320" height="320"></canvas>
+                    </div>
+
+                    <!-- Hidden Quote bubble -->
+                    <div class="constellation-quote-bubble" id="constellation-quote-bubble">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <p class="constellation-quote-text" id="constellation-quote-text">
+                            "In all the universes, throughout all the timelines, our paths were destined to meet."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           12. RSVP FORM SECTION
+           ========================================================================== -->
+        <section class="section-padding" id="rsvp-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Honored Guest RSVP</span>
+                    <h2 class="section-title">Confirm Attendance</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-pen-fancy"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="rsvp-widget-box">
+                    <form class="rsvp-form-grid" id="rsvp-form" novalidate>
+                        <!-- Name input -->
+                        <div class="rsvp-input-group">
+                            <label for="rsvp-name">Full Name</label>
+                            <input type="text" id="rsvp-name" placeholder="E.g. Shamil" required autocomplete="name">
+                        </div>
+
+                        <!-- Phone number -->
+                        <div class="rsvp-input-group">
+                            <label for="rsvp-phone">Phone Number</label>
+                            <input type="tel" id="rsvp-phone" placeholder="E.g. +91 98765 43210" required autocomplete="tel">
+                        </div>
+
+                        <!-- Attendees -->
+                        <div class="rsvp-input-group">
+                            <label for="rsvp-guests">Number of Guests</label>
+                            <select id="rsvp-guests" required>
+                                <option value="" disabled selected>Select headcount</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5+ People</option>
+                            </select>
+                        </div>
+
+                        <!-- Attendance confirmation -->
+                        <div class="rsvp-input-group">
+                            <label>Will you attend?</label>
+                            <div class="rsvp-radio-options">
+                                <label class="rsvp-radio-label">
+                                    <input type="radio" name="rsvp-status" value="attending" checked required>
+                                    Joyfully Attending
+                                </label>
+                                <label class="rsvp-radio-label">
+                                    <input type="radio" name="rsvp-status" value="declined" required>
+                                    Regretfully Declining
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn-rsvp-submit">Send RSVP Under the Stars</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Success overlay -->
+        <div class="rsvp-success-overlay" id="rsvp-success-overlay">
+            <div class="rsvp-success-modal">
+                <i class="fa-solid fa-circle-check rsvp-success-icon"></i>
+                <h3 id="rsvp-success-title">RSVP Registered!</h3>
+                <p id="rsvp-success-message">Thank you. Your presence has been plotted on our star map. We look forward to celebrating with you!</p>
+                <button class="btn-success-close" id="rsvp-success-close">Close</button>
+            </div>
+        </div>
+
+        <!-- ==========================================================================
+           13. GUEST WISHES BOARD & MEMORY LANTERN
+           ========================================================================== -->
+        <section class="section-padding" id="wishes-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Galaxy of Blessings</span>
+                    <h2 class="section-title">Wishes Sky Board</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-starfield"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="blessings-wall-box">
+                    <!-- Stars Display board -->
+                    <div class="wishes-display-board" id="wishes-display-board">
+                        <span class="wishes-sky-label">WISHES SKYBOARD - HOVER OR TAP A STAR TO READ A BLESSING</span>
+                        <!-- Javascript will dynamically add wish-star-nodes here -->
+                    </div>
+
+                    <!-- Wishes form input -->
+                    <form class="wishes-input-form" id="wishes-form">
+                        <h3>Send your wishes to the stars</h3>
+                        <textarea id="wish-message" placeholder="Write your blessings and love for Zayn & Aara here..." required maxlength="200"></textarea>
+                        <div class="wishes-sender-row">
+                            <input type="text" id="wish-sender" placeholder="Your Name" required maxlength="30" autocomplete="name">
+                            <button type="submit" class="btn-rsvp-submit btn-wish-submit">Send to Sky</button>
+                        </div>
+                    </form>
+
+                    <!-- Memory Lantern Release -->
+                    <div class="lantern-release-container">
+                        <h3>Release a Virtual Memory Lantern</h3>
+                        <p>Write a blessing or a wish below, and watch a virtual lantern rise into the night sky, carrying your love to the stars.</p>
+                        
+                        <form class="wishes-input-form" id="lantern-form" style="background:transparent; border:none; padding:0; width:100%;">
+                            <textarea id="lantern-message" placeholder="Type your secret blessing here..." required maxlength="150"></textarea>
+                            <div class="wishes-sender-row">
+                                <input type="text" id="lantern-sender" placeholder="Your Name" required maxlength="30">
+                                <button type="submit" class="btn-rsvp-submit btn-wish-submit" id="btn-release-lantern">Release Lantern</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           14. FAMILY CONTACT ACTIONS
+           ========================================================================== -->
+        <section class="section-padding" id="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="sub-title">Reach Our Orbit</span>
+                    <h2 class="section-title">Contact & Help</h2>
+                    <div class="celestial-separator">
+                        <div class="constellation-line"></div>
+                        <i class="fa-solid fa-phone-volume"></i>
+                        <div class="constellation-line"></div>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Groom Side contact -->
+                    <div class="contact-card-box scroll-reveal">
+                        <h3 class="contact-card-name">Amina Malik</h3>
+                        <span class="contact-card-relation">Groom's Family Representative</span>
+                        <div class="contact-action-flex">
+                            <a href="tel:+919876543210" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
+                            <a href="https://wa.me/919876543210" target="_blank" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <!-- Bride Side contact -->
+                    <div class="contact-card-box scroll-reveal">
+                        <h3 class="contact-card-name">Yasmin Ibrahim</h3>
+                        <span class="contact-card-relation">Bride's Family Representative</span>
+                        <div class="contact-action-flex">
+                            <a href="tel:+919123456789" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
+                            <a href="https://wa.me/919123456789" target="_blank" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           15. FOOTER
+           ========================================================================== -->
+        <footer class="footer-section">
+            <div class="container">
+                <div class="footer-monogram">Z&A</div>
+                <h2 class="footer-names">Zayn & Aara</h2>
+                <div class="footer-thank-you">Thank You For Sharing Our Universe</div>
+                <div class="footer-copyright">
+                    © 2026 Zayn & Aara. Created under a starry sky.
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- JavaScript code -->
+    <script src="script.js"></script>
+</body>
+</html>

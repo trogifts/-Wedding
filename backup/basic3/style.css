@@ -1,0 +1,2109 @@
+/* ==========================================================================
+   VINTAGE DESIGN VARIABLES, TYPOGRAPHY & RESET
+   ========================================================================== */
+:root {
+    /* Color Palette */
+    --color-bg-paper: #FAF3E0;        /* Aged Parchment Cream */
+    --color-bg-sand: #EADDC9;         /* Warm Vintage Sand */
+    --color-bg-navy: #14283B;         /* Deep Passport Navy Blue */
+    --color-bg-card: #FAF9F6;         /* Off-white Ticket Board */
+    
+    --color-text-dark: #3E2723;       /* Espresso Brown */
+    --color-text-muted: #6D4C41;      /* Cocoa Muted Brown */
+    --color-text-navy: #1D3557;       /* Airline Navy Blue */
+    --color-text-gold: #B8860B;       /* Antique Golden Brown */
+    --color-gold-foil: #D4AF37;       /* Metallic Embossing Gold */
+    
+    --color-stamp-red: #A93226;       /* Faded Crimson Stamp Ink */
+    --color-stamp-blue: #2471A3;      /* Faded Navy Stamp Ink */
+    --color-stamp-green: #229954;     /* Faded Olive Stamp Ink */
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-mono: 'Courier Prime', Courier, monospace;
+    --font-sans: 'Space Grotesk', sans-serif;
+    
+    /* Layout Constants */
+    --container-width: 960px;
+    --transition-paper: all 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+    --transition-stamp: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --shadow-vintage: 0 8px 25px rgba(62, 39, 35, 0.08);
+    --shadow-passport: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Reset Layouts */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--color-bg-paper);
+    color: var(--color-text-dark);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Texture overlay for vintage feel */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: radial-gradient(circle, transparent 70%, rgba(62, 39, 35, 0.06) 100%),
+                      url("data:image/svg+xml;utf8,<svg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' result='noise'/><feColorMatrix type='matrix' values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.03 0'/></filter><rect width='100' height='100' filter='url(%23noise)' fill='none'/></svg>");
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & GLOBAL LAYOUTS
+   ========================================================================== */
+h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    color: var(--color-text-dark);
+}
+
+p {
+    font-weight: 400;
+    color: var(--color-text-muted);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.section-padding {
+    padding: 70px 0;
+}
+
+/* Itinerary Style Section Header */
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-header .editorial-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--color-text-gold);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.section-header .section-title {
+    font-size: clamp(1.5rem, 5vw, 2.3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-navy);
+}
+
+.vintage-divider {
+    width: 180px;
+    height: 1px;
+    background: repeating-linear-gradient(90deg, var(--color-text-gold), var(--color-text-gold) 4px, transparent 4px, transparent 8px);
+    margin: 15px auto 0;
+}
+
+/* Vintage Buttons (Touch Friendly) */
+.btn-passport-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 13px 32px;
+    background-color: var(--color-gold-foil);
+    color: var(--color-bg-navy);
+    border: 1px solid var(--color-gold-foil);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+    transition: var(--transition-paper);
+}
+
+.btn-passport-gold:hover {
+    background-color: transparent;
+    color: var(--color-gold-foil);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-passport-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 11px 26px;
+    background-color: transparent;
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-text-dark);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition-paper);
+}
+
+.btn-passport-outline:hover {
+    background-color: var(--color-text-dark);
+    color: var(--color-bg-paper);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   PASSPORT COVER (SPLIT WELCOME OVERLAY)
+   ========================================================================== */
+.passport-cover-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Sliding left and right split covers */
+.passport-left-panel,
+.passport-right-panel {
+    position: absolute;
+    width: 50.5vw;
+    height: 100%;
+    background-color: var(--color-bg-navy);
+    background-image: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.4) 100%);
+    top: 0;
+    z-index: 1;
+    transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.passport-left-panel {
+    left: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.passport-right-panel {
+    right: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.passport-cover-overlay.fade-out .passport-left-panel {
+    transform: translateX(-100%);
+}
+
+.passport-cover-overlay.fade-out .passport-right-panel {
+    transform: translateX(100%);
+}
+
+/* Actual passport cover book mockup (Mobile default) */
+.passport-cover-card {
+    position: relative;
+    width: 320px;
+    height: 480px;
+    background-color: var(--color-bg-navy);
+    background-image: url("data:image/svg+xml;utf8,<svg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'><path d='M60 0l60 60-60 60L0 60z' fill='%23ffffff' fill-opacity='0.01'/></svg>"); /* Leather pattern mock */
+    border: 3px double var(--color-gold-foil);
+    box-shadow: var(--shadow-passport);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    z-index: 10;
+    text-align: center;
+    color: var(--color-gold-foil);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.passport-cover-overlay.fade-out .passport-cover-card {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.passport-header-emboss {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.emboss-country {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+}
+
+.emboss-gold-line {
+    width: 60px;
+    height: 1px;
+    background-color: var(--color-gold-foil);
+    margin-top: 10px;
+}
+
+.passport-crest-gold {
+    width: 100px;
+    height: 100px;
+    margin: 30px 0;
+}
+
+.crest-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.passport-title-emboss {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    letter-spacing: 8px;
+    font-weight: 700;
+    color: var(--color-gold-foil);
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+.passport-sub-emboss {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    max-width: 250px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.passport-date-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    margin-bottom: 35px;
+}
+
+/* ==========================================================================
+   MAIN WEBPAGE TRANSITIONS
+   ========================================================================== */
+#main-content {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+#main-content.fade-in {
+    opacity: 1;
+}
+
+.content-hidden {
+    display: none;
+}
+
+/* ==========================================================================
+   STICKY NAV HEADER & FLOATING CONTROLS (Mobile Baseline)
+   ========================================================================== */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(70px + env(safe-area-inset-top));
+    padding-top: env(safe-area-inset-top);
+    background-color: transparent;
+    border-bottom: none;
+    z-index: 90;
+    transition: var(--transition-paper);
+    pointer-events: none;
+}
+
+#main-header.scrolled {
+    box-shadow: none;
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+.header-container {
+    height: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-log {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-navy);
+    pointer-events: auto;
+    transform: translateY(12px) !important;
+}
+
+.mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--color-text-navy);
+    z-index: 100;
+    pointer-events: auto;
+}
+
+#nav-menu {
+    display: block;
+    position: fixed;
+    top: calc(70px + env(safe-area-inset-top));
+    left: 0;
+    width: 100%;
+    background-color: var(--color-bg-paper);
+    border-bottom: 1px solid var(--color-text-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    z-index: 95;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#nav-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#nav-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+#nav-menu .nav-link {
+    display: block;
+    padding: 15px 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+}
+
+#nav-menu .nav-link:hover,
+#nav-menu .nav-link.active {
+    color: var(--color-text-navy);
+}
+
+/* Floating Compass scroll to top widget */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--color-bg-paper);
+    border: 1px solid var(--color-text-gold);
+    color: var(--color-text-gold);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(62,39,35,0.1);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99;
+    transition: var(--transition-paper);
+}
+
+.back-to-top-btn.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.back-to-top-btn:hover {
+    background-color: var(--color-text-navy);
+    color: var(--color-bg-paper);
+    border-color: var(--color-text-navy);
+    transform: rotate(360deg); /* Compass spinning trigger */
+}
+
+/* ==========================================================================
+   SECTION 1: BOARDING PASS TICKET CARD (Mobile Baseline)
+   ========================================================================== */
+.boarding-pass-section {
+    background-color: var(--color-bg-paper);
+    margin-top: 70px;
+}
+
+.boarding-pass-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-text-gold);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Boarding pass envelope stamp overlays */
+.boarding-pass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: var(--color-text-navy);
+}
+
+.pass-main-stub {
+    padding: 30px 20px 20px 20px;
+}
+
+.pass-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px dashed var(--color-border-light);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.airline-brand {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-navy);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticket-class {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-gold);
+}
+
+/* Airport Route row */
+.pass-flight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.airport-code h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    font-weight: 700;
+    color: var(--color-text-dark);
+    line-height: 1;
+}
+
+.airport-code span {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+    color: var(--color-text-muted);
+}
+
+.flight-route-icon {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 10px;
+}
+
+.flight-route-icon i {
+    font-size: 1.25rem;
+    color: var(--color-text-navy);
+    transform: rotate(90deg);
+}
+
+.route-line {
+    position: absolute;
+    width: 80%;
+    height: 1px;
+    background-color: var(--color-text-gold);
+    top: 10px;
+    z-index: -1;
+}
+
+.flight-no {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-gold);
+    margin-top: 5px;
+}
+
+/* Boarding pass details grid */
+.pass-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.detail-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-cell .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-text-light);
+    margin-bottom: 4px;
+}
+
+.detail-cell .val {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    text-transform: uppercase;
+}
+
+.text-gold {
+    color: var(--color-text-gold) !important;
+}
+
+/* Perforated divider line */
+.pass-perforated-divider {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin: -12px 0;
+    padding: 0;
+}
+
+.tear-circle {
+    width: 12px;
+    height: 24px;
+    background-color: var(--color-bg-paper);
+    border: 1px solid var(--color-text-gold);
+    z-index: 10;
+}
+
+.tear-circle.top {
+    border-radius: 0 12px 12px 0;
+    border-left: none;
+    margin-top: 0;
+    margin-left: -1px;
+}
+
+.tear-circle.bottom {
+    border-radius: 12px 0 0 12px;
+    border-right: none;
+    margin-bottom: 0;
+    margin-right: -1px;
+}
+
+.dashed-line {
+    width: 100%;
+    height: 1px;
+    border-left: none;
+    border-top: 1.5px dashed var(--color-text-gold);
+}
+
+/* Side stub (tear-off passenger receipt) */
+.pass-side-stub {
+    background-color: rgba(234, 221, 201, 0.25);
+    border-left: none;
+    border-top: 1px dashed rgba(197, 168, 128, 0.2);
+    padding: 20px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stub-header {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-text-gold);
+    border-bottom: 1.5px dashed var(--color-border-light);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.stub-flight-info h4 {
+    font-size: 1.15rem;
+}
+
+.stub-flight-info .stub-route {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.stub-passenger-meta .lbl {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    color: var(--color-text-light);
+    display: block;
+}
+
+.stub-passenger-meta .val {
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: block;
+}
+
+.stub-passenger-meta .val.mini {
+    font-size: 0.7rem;
+}
+
+.stub-barcode-box {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.barcode-svg {
+    width: 100%;
+    height: 30px;
+}
+
+.barcode-number {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   SECTION 2: TRAVEL DESTINATION TIMELINE (STORY) (Mobile Baseline)
+   ========================================================================== */
+.story-section {
+    background-color: var(--color-bg-sand);
+}
+
+.destination-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    margin-top: 50px;
+}
+
+.destination-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.postcard-img-box {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.postcard-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.65) contrast(1.1) brightness(0.9); /* Vintage photo filter */
+    transition: var(--transition-paper);
+}
+
+.destination-card:hover .postcard-img-box img {
+    transform: scale(1.04);
+    filter: sepia(0.3) contrast(1.1);
+}
+
+.postcard-content {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.destination-tag {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--color-text-gold);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.postcard-content h3 {
+    font-size: 1.5rem;
+    color: var(--color-text-navy);
+    margin-bottom: 5px;
+}
+
+.destination-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.postcard-content p {
+    font-size: 0.85rem;
+    line-height: 1.8;
+}
+
+/* Scroll Faded stamp overlays */
+.stamp-overlay {
+    position: absolute;
+    z-index: 15;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: scale(0.6) rotate(15deg);
+    transition: var(--transition-stamp);
+}
+
+/* Revealed active class applied by IntersectionObserver */
+.revealed .stamp-overlay {
+    opacity: 0.75;
+    transform: scale(1) rotate(-15deg);
+}
+
+.stamp-london {
+    top: 25px;
+    right: 30px;
+    border: 3px double var(--color-stamp-red);
+    color: var(--color-stamp-red);
+}
+
+.stamp-paris {
+    top: 25px;
+    right: 30px;
+    border: 3px double var(--color-stamp-blue);
+    color: var(--color-stamp-blue);
+}
+
+/* ==========================================================================
+   SECTION 3: BRIDE & GROOM CREW CARDS (Mobile Baseline)
+   ========================================================================== */
+.couple-section {
+    background-color: var(--color-bg-paper);
+}
+
+.couple-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.crew-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    padding: 35px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.stamp-oval-navy {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    border: 1px solid var(--color-stamp-blue);
+    color: var(--color-stamp-blue);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50%;
+    transform: rotate(-8deg);
+    opacity: 0.8;
+}
+
+.crew-img-box {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--color-bg-paper);
+    box-shadow: 0 6px 15px rgba(62, 39, 35, 0.1);
+    margin-bottom: 25px;
+}
+
+.crew-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.4);
+}
+
+.crew-name {
+    font-size: 1.5rem;
+    color: var(--color-text-navy);
+    margin-bottom: 4px;
+}
+
+.crew-role {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--color-text-gold);
+    display: block;
+    margin-bottom: 20px;
+}
+
+.crew-bio {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.parents-notes {
+    border-top: 1px dashed rgba(197, 168, 128, 0.3);
+    padding-top: 15px;
+    width: 100%;
+    font-size: 0.75rem;
+}
+
+.parents-notes span {
+    font-family: var(--font-mono);
+    color: var(--color-text-light);
+    display: block;
+    margin-bottom: 3px;
+}
+
+.parents-notes strong {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+}
+
+/* ==========================================================================
+   SECTION 4: ITINERARY STOPS & EVENTS (Mobile Baseline)
+   ========================================================================== */
+.events-section {
+    background-color: var(--color-bg-sand);
+}
+
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.itinerary-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-paper);
+}
+
+.itinerary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(62, 39, 35, 0.12);
+}
+
+.itinerary-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(234, 221, 201, 0.3);
+    border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+    padding: 15px 25px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-text-gold);
+}
+
+.itinerary-header i {
+    font-size: 0.95rem;
+}
+
+.itinerary-card.highlight {
+    border-color: var(--color-text-navy);
+}
+
+.itinerary-card.highlight .itinerary-header {
+    background-color: rgba(20, 40, 59, 0.05);
+    color: var(--color-text-navy);
+    border-bottom-color: rgba(20, 40, 59, 0.15);
+}
+
+.itinerary-body {
+    padding: 30px 25px;
+}
+
+.itinerary-body h3 {
+    font-size: 1.25rem;
+    color: var(--color-text-navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.itinerary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.itinerary-details p {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.itinerary-details p i {
+    color: var(--color-text-gold);
+    font-size: 0.9rem;
+    width: 15px;
+}
+
+.itinerary-card.highlight .itinerary-details p i {
+    color: var(--color-text-navy);
+}
+
+.itinerary-footer {
+    border-top: 1px dashed rgba(197, 168, 128, 0.2);
+    padding: 15px 25px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+}
+
+/* ==========================================================================
+   SECTION 5: DEPARTURE COUNTDOWN (Mobile Baseline)
+   ========================================================================== */
+.countdown-section {
+    background-color: var(--color-bg-navy);
+    color: var(--color-gold-foil);
+    border-top: 2px solid var(--color-gold-foil);
+    border-bottom: 2px solid var(--color-gold-foil);
+    text-align: center;
+}
+
+.countdown-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 40px;
+}
+
+.countdown-itinerary-board {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.board-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-digit {
+    background-color: #0b1621;
+    border: 1px solid var(--color-gold-foil);
+    font-family: var(--font-mono);
+    font-size: clamp(1.8rem, 6vw, 2.2rem);
+    font-weight: 700;
+    padding: 8px 12px;
+    border-radius: 4px;
+    line-height: 1;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.board-label {
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.board-colon {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gold-foil);
+    margin-top: -20px;
+    display: none; /* remove separator dots in mobile */
+}
+
+/* ==========================================================================
+   SECTION 6: DESTINATION VENUE MAP (Mobile Baseline)
+   ========================================================================== */
+.venue-section {
+    background-color: var(--color-bg-paper);
+}
+
+.venue-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-top: 50px;
+}
+
+.destination-itinerary-box {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.itinerary-stamp {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    border: 2px solid var(--color-stamp-green);
+    color: var(--color-stamp-green);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+    transform: rotate(6deg);
+    opacity: 0.75;
+}
+
+.destination-itinerary-box h3 {
+    font-size: 1.5rem;
+    color: var(--color-text-navy);
+    margin-bottom: 12px;
+}
+
+.venue-addr {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    color: var(--color-text-gold);
+}
+
+.venue-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.venue-actions-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.venue-actions-row a,
+.venue-actions-row button {
+    flex: 1;
+    min-width: 130px;
+    min-height: 44px;
+}
+
+.toast-hidden {
+    position: absolute;
+    bottom: -30px;
+    left: 25px;
+    background-color: var(--color-bg-navy);
+    color: var(--color-gold-foil);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-paper);
+}
+
+.toast-visible {
+    bottom: -15px;
+    opacity: 1;
+}
+
+.map-embed-card {
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    overflow: hidden;
+}
+
+.map-embed-card iframe {
+    height: 100% !important;
+    min-height: 320px;
+}
+
+/* ==========================================================================
+   SECTION 7: PHOTO GALLERY POLAROIDS (Mobile Baseline)
+   ========================================================================== */
+.gallery-section {
+    background-color: var(--color-bg-sand);
+}
+
+.polaroid-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.polaroid-item {
+    background-color: #FFFFFF;
+    border: 1px solid rgba(62, 39, 35, 0.15);
+    box-shadow: 0 10px 25px rgba(62, 39, 35, 0.08);
+    padding: 10px 10px 25px 10px;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: rotate(var(--rot-factor, 0deg));
+}
+
+.polaroid-item:nth-child(even) { --rot-factor: 2deg; }
+.polaroid-item:nth-child(odd) { --rot-factor: -2deg; }
+
+.polaroid-item:hover {
+    transform: scale(1.03) translateY(-8px) rotate(0deg);
+    box-shadow: 0 15px 35px rgba(62, 39, 35, 0.15);
+    z-index: 5;
+}
+
+.polaroid-img-wrapper {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background-color: var(--color-bg-sand);
+    border: 1px solid rgba(62, 39, 35, 0.05);
+    margin-bottom: 15px;
+}
+
+.polaroid-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.4) contrast(1.05);
+    transition: filter 0.6s ease;
+}
+
+.polaroid-item:hover .polaroid-img-wrapper img {
+    filter: sepia(0.1) contrast(1.05);
+}
+
+.polaroid-label-text {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    display: block;
+    text-align: center;
+}
+
+/* ==========================================================================
+   SECTION 8: RSVP CUSTOM STAMP FORM (Mobile Baseline & Touch targets & iOS Autofix)
+   ========================================================================== */
+.rsvp-section {
+    background-color: var(--color-bg-paper);
+}
+
+.rsvp-card-passport {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    padding: 35px 20px;
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.passport-page-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+    border-bottom: 1px dashed rgba(197, 168, 128, 0.3);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.rsvp-stamp-content {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.rsvp-stamp-content h2 {
+    font-size: 1.6rem;
+    color: var(--color-text-navy);
+}
+
+.rsvp-stamp-content p {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    margin-top: 5px;
+}
+
+.stamp-form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+.stamp-input-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.stamp-input-group label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-gold);
+    margin-bottom: 8px;
+}
+
+.stamp-form-element input[type="text"],
+.stamp-form-element input[type="tel"],
+.stamp-form-element select {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1.5px solid var(--color-text-gold);
+    background-color: transparent;
+    font-family: var(--font-mono);
+    font-size: 16px; /* iOS Safari zoom fix */
+    color: var(--color-text-dark);
+    outline: none;
+    transition: var(--transition-paper);
+    min-height: 44px;
+}
+
+.stamp-form-element select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23B8860B' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.stamp-border-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: var(--color-text-navy);
+    transition: var(--transition-paper);
+}
+
+.stamp-form-element input:focus ~ .stamp-border-line,
+.stamp-form-element select:focus ~ .stamp-border-line {
+    width: 100%;
+}
+
+.error-msg {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: var(--color-stamp-red);
+    margin-top: 5px;
+    display: none;
+}
+
+.stamp-input-group.error input {
+    border-bottom-color: var(--color-stamp-red);
+}
+
+.stamp-input-group.error .error-msg {
+    display: block;
+}
+
+.stamp-radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.radio-section-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-light);
+}
+
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stamp-radio-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding-left: 28px;
+    height: 20px;
+    min-height: 44px; /* Touch target */
+}
+
+.stamp-radio-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-stamp-box {
+    position: absolute;
+    top: 13px; /* centered on touch targets */
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 1px solid var(--color-text-gold);
+    border-radius: 2px;
+}
+
+.custom-stamp-box::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-text-navy);
+    border-radius: 1px;
+    transition: transform 0.2s ease;
+}
+
+.stamp-radio-container input:checked ~ .custom-stamp-box::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.stamp-radio-text {
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-stamp-press {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-bg-navy);
+    color: var(--color-gold-foil);
+    border: 1px solid var(--color-bg-navy);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: var(--transition-paper);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+}
+
+.btn-stamp-press:hover {
+    background-color: transparent;
+    color: var(--color-text-navy);
+}
+
+/* Stamp Success Seal Overlay */
+.rsvp-success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(20, 40, 59, 0.4);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: var(--transition-paper);
+}
+
+.success-stamp-seal {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    padding: 40px 30px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-vintage);
+    position: relative;
+    overflow: hidden;
+    animation: zoomIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+
+.visa-approved-stamp {
+    width: 120px;
+    margin: 0 auto 20px;
+    border: 3px double var(--color-stamp-green);
+    color: var(--color-stamp-green);
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 6px 15px;
+    border-radius: 4px;
+    transform: rotate(-10deg);
+    opacity: 0.85;
+}
+
+.success-stamp-seal h3 {
+    font-size: 1.3rem;
+    color: var(--color-text-navy);
+    margin-bottom: 12px;
+}
+
+.success-stamp-seal p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.btn-small {
+    padding: 10px 24px;
+    font-size: 0.7rem;
+    min-height: 44px;
+}
+
+/* ==========================================================================
+   SECTION 9: EMERGENCY CONSULAR DETAILS (Mobile Baseline)
+   ========================================================================== */
+.contacts-section {
+    background-color: var(--color-bg-sand);
+}
+
+.contacts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.consular-card {
+    width: 100%;
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-text-gold);
+    box-shadow: var(--shadow-vintage);
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    transition: var(--transition-paper);
+}
+
+.consular-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(62,39,35,0.1);
+}
+
+.consular-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--color-text-gold);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.consular-name {
+    font-size: 1.4rem;
+    color: var(--color-text-navy);
+    margin-bottom: 4px;
+}
+
+.consular-relation {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 25px;
+}
+
+.consular-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.consular-actions .btn-passport-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+footer {
+    background-color: var(--color-bg-navy);
+    color: var(--color-bg-paper);
+    padding: 60px 20px 40px;
+    text-align: center;
+    border-top: 2px solid var(--color-gold-foil);
+}
+
+.footer-container {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.passport-seal-footer {
+    width: 70px;
+    height: 70px;
+    border: 1.5px solid var(--color-gold-foil);
+    border-radius: 50%;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-gold-foil);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+footer h3 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-gold-foil);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.copyright-text {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: rgba(250, 243, 224, 0.4);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   IMAGE LIGHTBOX MODAL
+   ========================================================================== */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(20, 20, 20, 0.95);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: var(--transition-paper);
+}
+
+.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+    display: none !important;
+}
+
+.lightbox-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--color-bg-paper);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition-paper);
+    z-index: 10002;
+}
+
+.lightbox-close-btn:hover {
+    transform: rotate(90deg);
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-bg-paper);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition-paper);
+    z-index: 10001;
+}
+
+.lightbox-nav-btn:hover {
+    transform: scale(1.1);
+}
+
+.lightbox-nav-btn.prev { left: 5px; }
+.lightbox-nav-btn.next { right: 5px; }
+
+.lightbox-content-wrapper {
+    max-width: 90%;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 12px 35px 12px;
+}
+
+.lightbox-content-wrapper img {
+    max-width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    border: 1px solid rgba(62, 39, 35, 0.05);
+}
+
+.lightbox-caption {
+    margin-top: 15px;
+    color: var(--color-text-muted);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   SCROLL REVEAL TRIGGERS
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+}
+
+.revealed {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* ==========================================================================
+   KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes rotateGoldCircle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseLogo {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+@keyframes pulseButtonGlow {
+    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* ==========================================================================
+   MEDIA Breakpoints (Mobile-first scales)
+   ========================================================================== */
+
+/* Very narrow smartphones */
+@media screen and (max-width: 380px) {
+    .board-digit {
+        font-size: 1.8rem;
+    }
+    
+    .countdown-itinerary-board {
+        gap: 10px;
+    }
+    
+    .polaroid-gallery-grid {
+        grid-template-columns: 1fr; /* stack polaroid images single file */
+    }
+}
+
+/* Upgraded media queries (min-width): Tablets and Larger */
+@media screen and (min-width: 769px) {
+    .section-padding {
+        padding: 95px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 60px;
+    }
+    
+    /* Header menu resets to horizontal */
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    
+    #nav-menu {
+        display: block !important;
+        position: static;
+        width: auto;
+        background-color: transparent;
+        border-bottom: none;
+        box-shadow: none;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    #nav-menu ul {
+        flex-direction: row;
+        gap: 30px;
+        padding: 0;
+        text-align: left;
+    }
+    
+    #nav-menu .nav-link {
+        padding: 8px 0;
+        font-size: 0.75rem;
+        position: relative;
+    }
+    
+    #nav-menu .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background-color: var(--color-text-navy);
+        transition: var(--transition-paper);
+    }
+    
+    #nav-menu .nav-link.active::after,
+    #nav-menu .nav-link:hover::after {
+        width: 100%;
+    }
+    
+    /* Passport Cover card scale up to desktop size */
+    .passport-cover-card {
+        width: 380px;
+        height: 540px;
+        padding: 40px 30px;
+    }
+    
+    .passport-crest-gold {
+        width: 120px;
+        height: 120px;
+        margin: 45px 0;
+    }
+    
+    /* Boarding Pass layout reset to horizontal */
+    .boarding-pass-card {
+        flex-direction: row;
+        border-bottom: none;
+    }
+    
+    .boarding-pass-card::before {
+        width: 6px;
+        height: 100%;
+    }
+    
+    .pass-main-stub {
+        flex: 1.3;
+        padding: 35px 40px;
+    }
+    
+    .pass-details-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px 30px;
+    }
+    
+    /* Perforated Divider vertical reset */
+    .pass-perforated-divider {
+        width: 25px;
+        height: auto;
+        flex-direction: column;
+        margin: 0 -12px;
+    }
+    
+    .tear-circle {
+        width: 24px;
+        height: 12px;
+    }
+    
+    .tear-circle.top {
+        border-radius: 0 0 12px 12px;
+        border-top: none;
+        margin-top: -1px;
+        margin-left: 0;
+    }
+    
+    .tear-circle.bottom {
+        border-radius: 12px 12px 0 0;
+        border-bottom: none;
+        margin-bottom: -1px;
+        margin-right: 0;
+    }
+    
+    .dashed-line {
+        width: 1px;
+        height: 100%;
+        border-left: 1.5px dashed var(--color-text-gold);
+        border-top: none;
+    }
+    
+    .pass-side-stub {
+        flex: 0.7;
+        border-left: 1px solid rgba(197, 168, 128, 0.2);
+        border-top: none;
+        padding: 35px 30px;
+    }
+    
+    /* Postcard destinations row */
+    .destination-card {
+        flex-direction: row;
+    }
+    
+    .postcard-img-box {
+        flex: 1;
+        height: 300px;
+        border-right: 1px solid var(--color-border-light);
+        border-bottom: none;
+    }
+    
+    .postcard-content {
+        flex: 1.2;
+        padding: 40px;
+    }
+    
+    /* Crew card grid row */
+    .couple-grid {
+        flex-direction: row;
+        gap: 35px;
+    }
+    
+    .crew-card {
+        flex: 1;
+        padding: 40px;
+    }
+    
+    /* Itinerary cards layout */
+    .itinerary-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    /* Countdown itinerary digit board elements */
+    .board-digit {
+        font-size: 2.2rem;
+    }
+    
+    .board-colon {
+        display: block;
+    }
+    
+    /* Polaroid gallery columns 4 */
+    .polaroid-gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    /* RSVP page layout scale up */
+    .rsvp-card-passport {
+        padding: 50px;
+    }
+    
+    .form-row-2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .radio-options {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .custom-stamp-box {
+        top: 0;
+    }
+    
+    .stamp-radio-container {
+        padding-left: 28px;
+        height: 20px;
+    }
+    
+    /* Contacts side-by-side row */
+    .contacts-grid {
+        flex-direction: row;
+        gap: 30px;
+    }
+    
+    .consular-card {
+        flex: 1;
+        padding: 35px 30px;
+    }
+    
+    .consular-actions {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .consular-actions .btn-passport-outline {
+        flex: 1;
+    }
+    
+    /* Lightbox modal resets */
+    .lightbox-close-btn {
+        top: 25px;
+        right: 25px;
+        font-size: 3rem;
+    }
+    
+    .lightbox-nav-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .lightbox-nav-btn.prev { left: 25px; }
+    .lightbox-nav-btn.next { right: 25px; }
+    
+    .lightbox-content-wrapper {
+        max-width: 85%;
+        padding: 0;
+    }
+}
+
+/* Tablet / Laptop thresholds */
+@media screen and (max-width: 960px) and (min-width: 769px) {
+    .itinerary-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .venue-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+    
+    .destination-itinerary-box {
+        padding: 30px;
+    }
+    
+    .map-embed-card iframe {
+        height: 320px !important;
+    }
+}
+
+@media screen and (min-width: 961px) {
+    .venue-grid {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 40px;
+    }
+    
+    .map-embed-card iframe {
+        min-height: 360px;
+    }
+}

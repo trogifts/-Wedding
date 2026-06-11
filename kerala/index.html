@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anjali & Madhav — A Kerala Celebration</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Celebrate the wedding of Anjali & Madhav along the serene backwaters of Kochi, Kerala.">
+  
+  <!-- Google Fonts: Editorial & Minimalist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Audio Control -->
+  <div class="audio-control" id="audioToggle" aria-label="Toggle Music" role="button" tabindex="0">
+    <i class="fas fa-play"></i>
+  </div>
+  <audio id="bgMusic" loop src="https://archive.org/download/Pt.HariprasadChaurasia-RaagJogRaagHansdhwaniThumriMishraPilu/Pt.%20Hariprasad%20Chaurasia%20-%20Raag%20Hansdhwani.mp3"></audio>
+
+  <!-- SECTION 1: FULL SCREEN COCONUT PALM LEAVES CURTAIN OVERLAY -->
+  <div id="coconut-overlay">
+    <!-- Left Leaf Curtain -->
+    <div class="leaf-left">
+      <svg class="overlay-palm-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
+        <g fill="none" stroke="#d4af37" stroke-width="2">
+          <!-- Main stem -->
+          <path d="M0,200 Q40,120 100,50" />
+          <!-- Sprouting palm leaves -->
+          <path d="M20,160 Q60,150 90,140" />
+          <path d="M40,130 Q80,115 100,100" />
+          <path d="M60,100 Q90,80 105,60" />
+          <path d="M80,70 Q100,45 105,25" />
+          <!-- Accent shading leaves -->
+          <path d="M10,180 Q50,175 80,170" stroke="#1f4e2b" stroke-width="1.5" />
+          <path d="M30,145 Q70,135 95,125" stroke="#1f4e2b" stroke-width="1.5" />
+          <path d="M50,115 Q80,100 100,85" stroke="#1f4e2b" stroke-width="1.5" />
+        </g>
+      </svg>
+    </div>
+    
+    <!-- Right Leaf Curtain -->
+    <div class="leaf-right">
+      <svg class="overlay-palm-svg" viewBox="0 0 100 200" preserveAspectRatio="none">
+        <g fill="none" stroke="#d4af37" stroke-width="2">
+          <!-- Main stem -->
+          <path d="M100,200 Q60,120 0,50" />
+          <!-- Sprouting palm leaves -->
+          <path d="M80,160 Q40,150 10,140" />
+          <path d="M60,130 Q20,115 0,100" />
+          <path d="M40,100 Q10,80 -5,60" />
+          <path d="M20,70 Q0,45 -5,25" />
+          <!-- Accent shading leaves -->
+          <path d="M90,180 Q50,175 20,170" stroke="#1f4e2b" stroke-width="1.5" />
+          <path d="M70,145 Q30,135 5,125" stroke="#1f4e2b" stroke-width="1.5" />
+          <path d="M50,115 Q20,100 0,85" stroke="#1f4e2b" stroke-width="1.5" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- Entrance Overlay Text -->
+    <div class="overlay-text">
+      <span class="reveal-subtitle">A Secular Kerala Union</span>
+      <h1 class="reveal-title gold-gradient-text">Anjali &amp; Madhav</h1>
+      <div class="scroll-prompt">
+        <span>Scroll down to part the palm leaves</span>
+        <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: FIXED HERO COVER (Revealed behind the parting leaves) -->
+  <section class="hero-cover">
+    <div class="hero-inner">
+      <span class="hero-subtitle">Welcome to the Wedding of</span>
+      <h2 class="hero-title gold-gradient-text">Anjali &amp; Madhav</h2>
+      
+      <!-- Arched Photo Frame containing traditional couple image -->
+      <div class="photo-frame-container">
+        <div class="portrait-arch-frame">
+          <img src="couple.png" alt="Anjali &amp; Madhav in traditional Kerala garments" class="couple-photo">
+          <div class="frame-shadow-overlay"></div>
+        </div>
+        <!-- Decorative Gold Rings/Accents behind/around the photo -->
+        <div class="decorative-ring"></div>
+      </div>
+      
+      <p class="hero-date">January 18, 2027 &bull; Kochi, Kerala</p>
+      <div class="bounce-indicator">
+        <i class="fas fa-arrow-down"></i>
+        <span>Keep Scrolling</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: SCROLLABLE MAIN CONTENT (Flows up over the hero cover) -->
+  <div id="scroll-wrapper">
+    
+    <!-- Parallax spacer to let the hero reveal complete -->
+    <div class="scroll-spacer"></div>
+
+    <!-- Content Cardboard Box (Scrolls over the fixed hero) -->
+    <div class="main-cardboard">
+      
+      <!-- COUNTDOWN SECTION -->
+      <section class="journal-section countdown-box">
+        <h3 class="box-tag">Auspicious Countdown</h3>
+        <h4 class="box-heading gold-gradient-text">Days of Anticipation</h4>
+        <div class="countdown-row">
+          <div class="countdown-block">
+            <span id="days">00</span>
+            <label>Days</label>
+          </div>
+          <div class="countdown-sep"></div>
+          <div class="countdown-block">
+            <span id="hours">00</span>
+            <label>Hours</label>
+          </div>
+          <div class="countdown-sep"></div>
+          <div class="countdown-block">
+            <span id="minutes">00</span>
+            <label>Minutes</label>
+          </div>
+          <div class="countdown-sep"></div>
+          <div class="countdown-block">
+            <span id="seconds">00</span>
+            <label>Seconds</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ITINERARY & VENUE -->
+      <section class="journal-section">
+        <span class="section-tag">Destination &amp; Timing</span>
+        <h2 class="journal-section-title">The Gathering</h2>
+        
+        <div class="venue-card">
+          <div class="card-outline"></div>
+          <h3>Bhaskareeyam Lake View</h3>
+          <p class="location-text">Elamakkara, Kochi, Kerala, India</p>
+          <p class="date-text">Monday, January 18, 2027</p>
+          <button class="btn-outline" id="btnSaveDate">Add to Calendar</button>
+        </div>
+
+        <h3 class="itinerary-title">Itinerary of the Day</h3>
+        <div class="cruise-timeline">
+          
+          <div class="timeline-stop">
+            <div class="stop-marker"></div>
+            <div class="stop-time">10:00 AM</div>
+            <div class="stop-info">
+              <h4>The Garlands &amp; Vows</h4>
+              <p>A secular ceremony celebrating companionship, featuring the exchange of fresh jasmine garlands and personal vows with family and friends.</p>
+            </div>
+          </div>
+
+          <div class="timeline-stop">
+            <div class="stop-marker"></div>
+            <div class="stop-time">12:30 PM</div>
+            <div class="stop-info">
+              <h4>The Traditional Feast</h4>
+              <p>An extensive lunch showcasing Kerala's culinary spectrum. Guests can choose between the traditional vegetarian Sadhya served on banana leaves or a coastal seafood &amp; fusion buffet.</p>
+            </div>
+          </div>
+
+          <div class="timeline-stop">
+            <div class="stop-marker"></div>
+            <div class="stop-time">6:00 PM</div>
+            <div class="stop-info">
+              <h4>The Sunset Lawn Social</h4>
+              <p>Winding down with tea, local live instrumental fusion, and catching the sunset over the waterside gardens.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="dress-guidelines">
+          <h4>Attire Suggestions</h4>
+          <p>We invite you to dress in light, comfortable festive wear. Traditional Kerala handloom ivory/cream, gold accents, or soft pastel shades are highly welcome.</p>
+        </div>
+      </section>
+
+      <!-- REGISTRY -->
+      <section class="journal-section">
+        <span class="section-tag">Support Our Journey</span>
+        <h2 class="journal-section-title">Gift Registry</h2>
+        <p class="section-intro">Your presence is our absolute gift. If you wish to contribute to our future milestones, we have set up the following local funds:</p>
+
+        <div class="registry-cards-layout">
+          <div class="r-card">
+            <div class="r-icon"><i class="fas fa-ship"></i></div>
+            <div class="r-info">
+              <h3>Backwater Honeymoon</h3>
+              <p>Contributing to a sunset houseboat cruise and stay along the tranquil lakes of Alleppey.</p>
+              <button class="btn-solid registry-btn" data-fund="Backwater Honeymoon Fund">Contribute</button>
+            </div>
+          </div>
+
+          <div class="r-card">
+            <div class="r-icon"><i class="fas fa-leaf"></i></div>
+            <div class="r-info">
+              <h3>Wayanad Grove Farm</h3>
+              <p>Supporting our long-term plan to plant cardamom and organic coconut palms in the hills.</p>
+              <button class="btn-solid registry-btn" data-fund="Wayanad Organic Farm Fund">Contribute</button>
+            </div>
+          </div>
+
+          <div class="r-card">
+            <div class="r-icon"><i class="fas fa-scroll"></i></div>
+            <div class="r-info">
+              <h3>Weaving Cooperatives</h3>
+              <p>All contributions here will go directly to traditional handloom weaver guilds preserving regional arts.</p>
+              <button class="btn-solid registry-btn" data-fund="Weaving Cooperatives Support">Contribute</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section class="journal-section">
+        <span class="section-tag">Important Details</span>
+        <h2 class="journal-section-title">Common Questions</h2>
+
+        <div class="faq-deck">
+          <div class="faq-card">
+            <button class="faq-question">
+              <span>What is a traditional Sadhya?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Sadhya is a multi-course vegetarian banquet traditionally served on a fresh banana leaf. It includes over 20 unique curries, pickles, rice, and sweet payasams. We will also have a coastal seafood buffet for guests wanting other local delicacies.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button class="faq-question">
+              <span>Where should I fly into?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Cochin International Airport (COK) is the closest airport (about 45 minutes from the venue). Taxis and ride-shares are readily available at the terminal.</p>
+            </div>
+          </div>
+
+          <div class="faq-card">
+            <button class="faq-question">
+              <span>When should I submit my RSVP?</span>
+              <i class="fas fa-plus"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We kindly request all responses by December 15th, 2026, to ensure our banquet and caterers are perfectly prepared.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RSVP FORM -->
+      <section class="journal-section rsvp-box-section" id="rsvp">
+        <span class="section-tag">Confirm Attendance</span>
+        <h2 class="journal-section-title">R.S.V.P.</h2>
+        <p class="rsvp-closing-date">Please reply by December 15th, 2026</p>
+
+        <form id="rsvpForm" class="journal-form">
+          <div class="form-row">
+            <div class="floating-input">
+              <input type="text" id="guestName" placeholder=" " required>
+              <label for="guestName">Name</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="floating-input">
+              <input type="email" id="guestEmail" placeholder=" " required>
+              <label for="guestEmail">Email Address</label>
+            </div>
+          </div>
+
+          <div class="form-row option-switches">
+            <label class="switch-container">
+              <input type="radio" name="attendance" value="yes" checked>
+              <span class="switch-btn">Accepts</span>
+            </label>
+            <label class="switch-container">
+              <input type="radio" name="attendance" value="no">
+              <span class="switch-btn">Declines</span>
+            </label>
+          </div>
+
+          <div class="form-row select-row" id="mealGroup">
+            <div class="floating-select">
+              <select id="mealPreference">
+                <option value="sadhya">Traditional Vegetarian Sadhya (Banana Leaf)</option>
+                <option value="coastal">Coastal Kerala Seafood &amp; Fusion Buffet</option>
+                <option value="standard">Global Fusion Buffet</option>
+              </select>
+              <label>Dining Preference</label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-solid submit-btn">Submit RSVP</button>
+        </form>
+
+        <div class="rsvp-finished" id="rsvpSuccess" style="display: none;">
+          <h3 class="gold-gradient-text">Response Received</h3>
+          <p id="successMessage"></p>
+          <button class="btn-text" id="btnEditRsvp">Update Response</button>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="journal-footer">
+        <p>Anjali &amp; Madhav — Kochi, 2027</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

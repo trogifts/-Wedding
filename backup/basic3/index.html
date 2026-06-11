@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrimonial Passport — Zayn & Aara</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Boarding Pass & Matrimonial Passport Invitation to the wedding of Zayn and Aara. Explore itinerary, destinations, and RSVP online.">
+    <meta name="keywords" content="Zayn & Aara, Travel Passport Wedding, Boarding Pass Invitation, RSVP Boarding Pass">
+    
+    <!-- Google Fonts: Editorial Serif (Playfair Display), Typewriter Monospace (Courier Prime), Modern Sans (Space Grotesk) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Travel Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+
+    <!-- ==================== VINTAGE PASSPORT COVER (WELCOME OVERLAY) ==================== -->
+    <div id="welcome-screen" class="passport-cover-overlay">
+        <!-- Split-screen passport panels -->
+        <div class="passport-left-panel"></div>
+        
+        <div class="passport-cover-card">
+            <div class="passport-header-emboss">
+                <span class="emboss-country">UNITED KINGDOM OF MATRIMONY</span>
+                <div class="emboss-gold-line"></div>
+            </div>
+            
+            <div class="passport-crest-gold" aria-label="Wedding Crest Stamp">
+                <!-- Inline SVG Gold Seal -->
+                <svg viewBox="0 0 100 100" class="crest-svg">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#D4AF37" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-dasharray="3 3"/>
+                    <path d="M50 20 L30 50 L50 80 L70 50 Z" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                    <text x="50" y="56" font-family="'Playfair Display', serif" font-size="20" fill="#D4AF37" text-anchor="middle" font-weight="bold">Z&A</text>
+                    <path d="M38 32 C38 32 45 28 50 32 C55 28 62 32 62 32" fill="none" stroke="#D4AF37" stroke-width="1"/>
+                </svg>
+            </div>
+            
+            <h1 class="passport-title-emboss">PASSPORT</h1>
+            <p class="passport-sub-emboss">MATRIMONIAL JOURNEY OF ZAYN & AARA</p>
+            <span class="passport-date-label">DEPARTURE: 04 . 09 . 2026</span>
+            
+            <button id="btn-begin-journey" class="btn-passport-gold">
+                BEGIN JOURNEY <i class="fa-solid fa-plane-departure"></i>
+            </button>
+        </div>
+        
+        <div class="passport-right-panel"></div>
+    </div>
+
+    <!-- ==================== MAIN BOARDING PAGE WRAPPER ==================== -->
+    <div id="main-content" class="content-hidden">
+
+        <!-- ==================== STICKY HEADER ==================== -->
+        <header id="main-header">
+            <div class="header-container">
+                <a href="#welcome-screen" class="brand-log">Z&A</a>
+                <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-compass"></i>
+                </button>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="#boarding-pass" class="nav-link">Ticket</a></li>
+                        <li><a href="#story" class="nav-link">Itinerary</a></li>
+                        <li><a href="#couple" class="nav-link">Crew</a></li>
+                        <li><a href="#events" class="nav-link">Stops</a></li>
+                        <li><a href="#gallery" class="nav-link">Polaroids</a></li>
+                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Floating back to top button -->
+        <button id="back-to-top" class="back-to-top-btn" aria-label="Scroll to Top">
+            <i class="fa-solid fa-arrow-up-long"></i>
+        </button>
+
+        <!-- ==================== SECTION 1: BOARDING PASS TICKET ==================== -->
+        <section id="boarding-pass" class="section-padding boarding-pass-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">BOARDING INVITATION</span>
+                    <h2 class="section-title">YOUR BOARDING PASS</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <!-- Boarding Pass Mockup Card -->
+                <div class="boarding-pass-card reveal">
+                    <!-- Perforated Tear Edge Left Section -->
+                    <div class="pass-main-stub">
+                        <div class="pass-header">
+                            <span class="airline-brand"><i class="fa-solid fa-plane"></i> MATRIMONIAL AIR</span>
+                            <span class="ticket-class">FIRST CLASS INVITATION</span>
+                        </div>
+                        
+                        <div class="pass-body">
+                            <div class="pass-flight-row">
+                                <div class="airport-code">
+                                    <h3>LDN</h3>
+                                    <span>LONDON</span>
+                                </div>
+                                <div class="flight-route-icon">
+                                    <i class="fa-solid fa-plane-arrival"></i>
+                                    <span class="route-line"></span>
+                                    <span class="flight-no">FLIGHT WED2026</span>
+                                </div>
+                                <div class="airport-code text-right">
+                                    <h3>NYC</h3>
+                                    <span>NEW YORK</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pass-details-grid">
+                                <div class="detail-cell">
+                                    <span class="lbl">PASSENGER NAME</span>
+                                    <span class="val" id="ticket-passenger-name">HONORED GUEST</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="lbl">GATE</span>
+                                    <span class="val text-gold">LOVE GATE 04</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="lbl">BOARDING TIME</span>
+                                    <span class="val">01:30 PM</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="lbl">SEAT ASSIGNMENT</span>
+                                    <span class="val">BEST SEATS RESERVED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perforated Tear Line Separator -->
+                    <div class="pass-perforated-divider">
+                        <span class="tear-circle top"></span>
+                        <span class="dashed-line"></span>
+                        <span class="tear-circle bottom"></span>
+                    </div>
+
+                    <!-- Perforated Tear Edge Right Stub (Passenger receipt) -->
+                    <div class="pass-side-stub">
+                        <div class="stub-header">
+                            <span>PASSENGER RECEIPT</span>
+                        </div>
+                        
+                        <div class="stub-body">
+                            <div class="stub-flight-info">
+                                <strong>WED2026</strong>
+                                <span class="stub-route">LDN &rarr; NYC</span>
+                            </div>
+                            <div class="stub-passenger-meta">
+                                <span class="lbl">DATE</span>
+                                <span class="val">SEPT 4, 2026</span>
+                                <span class="lbl" style="margin-top: 8px;">VENUE</span>
+                                <span class="val mini">THE PALACE BALLROOM</span>
+                            </div>
+                            <!-- Mock Barcode System in inline SVG -->
+                            <div class="stub-barcode-box">
+                                <svg class="barcode-svg" viewBox="0 0 100 35" aria-label="Mock Ticket Barcode">
+                                    <rect width="100" height="35" fill="none"/>
+                                    <path d="M5 0h2v35h-2zm4 0h1v35h-1zm3 0h3v35H12zm6 0h2v35h-2zm3 0h1v35h-1zm3 0h4v35h-4zm6 0h1v35h-1zm3 0h2v35h-2zm4 0h1v35h-1zm3 0h3v35h-3zm6 0h1v35h-1zm3 0h4v35h-4zm6 0h2v35h-2zm4 0h1v35h-1zm3 0h3v35h-3zm5 0h2v35h-2zm4 0h1v35h-1zm3 0h3v35h-3z" fill="#3E2723"/>
+                                </svg>
+                                <span class="barcode-number">04092026-LOVE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 2: JOURNEY TIMELINE (COUPLE STORY) ==================== -->
+        <section id="story" class="section-padding story-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">THE TRAVEL DIARY</span>
+                    <h2 class="section-title">JOURNEY DESTINATIONS</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="destination-timeline">
+                    <!-- Destination 1: London Origin -->
+                    <div class="destination-card reveal reveal-left">
+                        <div class="stamp-overlay stamp-london reveal-stamp">LONDON APPROVED</div>
+                        <div class="postcard-img-box">
+                            <img src="images/story1.png" alt="Big Ben Postcard London" loading="lazy">
+                        </div>
+                        <div class="postcard-content">
+                            <span class="destination-tag">STATION 01: ORIGIN</span>
+                            <h3>LONDON DEPARTURE</h3>
+                            <span class="destination-date">March 14, 2024</span>
+                            <p>
+                                The flight coordinates crossed in a cozy café adjacent to Kew Gardens. A spilt teapot led to a discussion regarding structural geometry and traditional calligraphy. By the end of the afternoon, Zayn & Aara had designed a blueprint for a shared lifelong journey.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Destination 2: Paris Transit -->
+                    <div class="destination-card reveal reveal-right">
+                        <div class="stamp-overlay stamp-paris reveal-stamp">PARIS ARRESTED</div>
+                        <div class="postcard-img-box">
+                            <img src="images/story2.png" alt="Eiffel Tower Postcard Paris" loading="lazy">
+                        </div>
+                        <div class="postcard-content">
+                            <span class="destination-tag">STATION 02: TRANSIT</span>
+                            <h3>PARIS LAYOVER</h3>
+                            <span class="destination-date">January 20, 2026</span>
+                            <p>
+                                A mid-winter transit in Paris, under the backdrop of glowing iron pillars and warm twilight. Zayn proposed, asking Aara to stand alongside him as co-pilot for the rest of their days. She accepted with absolute pleasure, stamping their passports with promises.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 3: BRIDE & GROOM PROFILES ==================== -->
+        <section id="couple" class="section-padding couple-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">THE CREW</span>
+                    <h2 class="section-title">THE TRAVEL PARTNERS</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="couple-grid">
+                    <!-- Groom Biography Card -->
+                    <div class="crew-card reveal reveal-left">
+                        <div class="stamp-oval-navy">PILOT IN COMMAND</div>
+                        <div class="crew-img-box">
+                            <img src="images/groom.png" alt="Zayn - The Groom" loading="lazy">
+                        </div>
+                        <h3 class="crew-name">Zayn Malik</h3>
+                        <span class="crew-role">PILOT / GROOM</span>
+                        <p class="crew-bio">
+                            Zayn manages architectural layout systems. He is prepared to navigate a course centered on faith, understanding, and shared travel adventures alongside his co-pilot, Aara.
+                        </p>
+                        <div class="parents-notes">
+                            <span>Family Sponsor</span>
+                            <strong>Son of Tariq & Hira Malik</strong>
+                        </div>
+                    </div>
+
+                    <!-- Bride Biography Card -->
+                    <div class="crew-card reveal reveal-right">
+                        <div class="stamp-oval-navy">CO-PILOT APPROVED</div>
+                        <div class="crew-img-box">
+                            <img src="images/bride.png" alt="Aara - The Bride" loading="lazy">
+                        </div>
+                        <h3 class="crew-name">Aara Siddiqui</h3>
+                        <span class="crew-role">CO-PILOT / BRIDE</span>
+                        <p class="crew-bio">
+                            Aara designs interior settings and captures scenery. She looks forward to filling their logbooks with creative colors, warm textures, and beautiful custom coordinates.
+                        </p>
+                        <div class="parents-notes">
+                            <span>Family Sponsor</span>
+                            <strong>Daughter of Farhan & Naila Siddiqui</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 4: EVENT SCHEDULE ==================== -->
+        <section id="events" class="section-padding events-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">JOURNEY ITINERARY</span>
+                    <h2 class="section-title">FLIGHT STOPS & EVENTS</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="itinerary-grid">
+                    <!-- Stop 1: Nikah -->
+                    <div class="itinerary-card reveal">
+                        <div class="itinerary-header">
+                            <i class="fa-solid fa-passport"></i>
+                            <span>STOP 01: NIKAH</span>
+                        </div>
+                        <div class="itinerary-body">
+                            <h3>THE MARRIAGE CONTRACT</h3>
+                            <div class="itinerary-details">
+                                <p><i class="fa-regular fa-calendar"></i> Friday, Sept 4, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> Departure: 02:00 PM</p>
+                                <p><i class="fa-solid fa-location-arrow"></i> Masjid Al-Haram Grand Hall</p>
+                                <p><i class="fa-solid fa-user-shield"></i> Dress: Traditional Pure White</p>
+                            </div>
+                        </div>
+                        <div class="itinerary-footer">
+                            <span>BOARDING STATUS: CONFIRMED</span>
+                        </div>
+                    </div>
+
+                    <!-- Stop 2: Reception -->
+                    <div class="itinerary-card reveal highlight">
+                        <div class="itinerary-header">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span>STOP 02: RECEPTION</span>
+                        </div>
+                        <div class="itinerary-body">
+                            <h3>GRAND RECEPTION BANQUET</h3>
+                            <div class="itinerary-details">
+                                <p><i class="fa-regular fa-calendar"></i> Saturday, Sept 5, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> Departure: 07:00 PM</p>
+                                <p><i class="fa-solid fa-location-arrow"></i> The Palace Ballroom, NY</p>
+                                <p><i class="fa-solid fa-user-shield"></i> Dress: Black Tie / Evening Wear</p>
+                            </div>
+                        </div>
+                        <div class="itinerary-footer">
+                            <span>BOARDING STATUS: IMPORTANT</span>
+                        </div>
+                    </div>
+
+                    <!-- Stop 3: Walima -->
+                    <div class="itinerary-card reveal">
+                        <div class="itinerary-header">
+                            <i class="fa-solid fa-circle-nodes"></i>
+                            <span>STOP 03: WALIMA</span>
+                        </div>
+                        <div class="itinerary-body">
+                            <h3>THE WALIMA FEAST</h3>
+                            <div class="itinerary-details">
+                                <p><i class="fa-regular fa-calendar"></i> Sunday, Sept 6, 2026</p>
+                                <p><i class="fa-regular fa-clock"></i> Departure: 01:00 PM</p>
+                                <p><i class="fa-solid fa-location-arrow"></i> Royal Botanical Pavilion</p>
+                                <p><i class="fa-solid fa-user-shield"></i> Dress: Elegant Smart / Pastels</p>
+                            </div>
+                        </div>
+                        <div class="itinerary-footer">
+                            <span>BOARDING STATUS: CONFIRMED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 5: DEPARTURE COUNTDOWN ==================== -->
+        <section class="section-padding countdown-section">
+            <div class="container">
+                <div class="countdown-wrapper reveal">
+                    <span class="countdown-label"><i class="fa-solid fa-hourglass-half"></i> DEPARTURE TO WEDDING DAY</span>
+                    
+                    <div id="countdown-timer" class="countdown-itinerary-board">
+                        <div class="board-item">
+                            <span id="days" class="board-digit">00</span>
+                            <span class="board-label">DAYS</span>
+                        </div>
+                        <span class="board-colon">:</span>
+                        <div class="board-item">
+                            <span id="hours" class="board-digit">00</span>
+                            <span class="board-label">HOURS</span>
+                        </div>
+                        <span class="board-colon">:</span>
+                        <div class="board-item">
+                            <span id="minutes" class="board-digit">00</span>
+                            <span class="board-label">MINUTES</span>
+                        </div>
+                        <span class="board-colon">:</span>
+                        <div class="board-item">
+                            <span id="seconds" class="board-digit">00</span>
+                            <span class="board-label">SECONDS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 6: DESTINATION VENUE MAP ==================== -->
+        <section id="venue" class="section-padding venue-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">COORDINATES</span>
+                    <h2 class="section-title">THE DESTINATION</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="venue-grid reveal">
+                    <div class="destination-itinerary-box">
+                        <div class="itinerary-stamp">NEW YORK ARRIVED</div>
+                        <h3>THE PALACE BALLROOM</h3>
+                        <p class="venue-addr">789 Golden Gate Blvd, Astoria Garden, New York, NY 11102</p>
+                        <p class="venue-desc">
+                            All incoming guests must proceed directly to check-in counters. Valet parking stamps are validated at entry gates.
+                        </p>
+                        <div class="venue-actions-row">
+                            <a href="https://maps.google.com/?q=The+Palace+Ballroom+New+York" 
+                               target="_blank" rel="noopener noreferrer" class="btn-passport-gold">
+                                OPEN NAV MAP <i class="fa-solid fa-map-pin"></i>
+                            </a>
+                            <button id="btn-copy-address" class="btn-passport-outline">
+                                COPY ADDRESS <i class="fa-solid fa-paste"></i>
+                            </button>
+                        </div>
+                        <div id="copy-toast" class="toast-hidden">Coordinates Copied.</div>
+                    </div>
+
+                    <div class="map-embed-card">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540455486!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1684340000000!5m2!1sen!2sus" 
+                            width="100%" 
+                            height="360" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Wedding Destination Map">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 7: PHOTO GALLERY POLAROIDS ==================== -->
+        <section id="gallery" class="section-padding gallery-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">TRAVEL SNAPSHOTS</span>
+                    <h2 class="section-title">THE PHOTO JOURNAL</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="polaroid-gallery-grid">
+                    <!-- Polaroid 1 -->
+                    <div class="polaroid-item reveal" data-index="0">
+                        <div class="polaroid-img-wrapper">
+                            <img src="images/gallery1.png" alt="Rings on leather suitcase" loading="lazy">
+                        </div>
+                        <span class="polaroid-label-text">The Rings. London, 2026.</span>
+                    </div>
+
+                    <!-- Polaroid 2 -->
+                    <div class="polaroid-item reveal" data-index="1">
+                        <div class="polaroid-img-wrapper">
+                            <img src="images/gallery2.png" alt="Hanging lanterns details" loading="lazy">
+                        </div>
+                        <span class="polaroid-label-text">The Lights. Paris, 2026.</span>
+                    </div>
+
+                    <!-- Polaroid 3 -->
+                    <div class="polaroid-item reveal" data-index="2">
+                        <div class="polaroid-img-wrapper">
+                            <img src="images/gallery3.png" alt="Zayn & Aara calligraphy card" loading="lazy">
+                        </div>
+                        <span class="polaroid-label-text">The Passport. New York, 2026.</span>
+                    </div>
+
+                    <!-- Polaroid 4 -->
+                    <div class="polaroid-item reveal" data-index="3">
+                        <div class="polaroid-img-wrapper">
+                            <img src="images/gallery4.png" alt="Henna hands detail" loading="lazy">
+                        </div>
+                        <span class="polaroid-label-text">The Tradition. London, 2026.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 8: RSVP CUSTOM STAMP FORM ==================== -->
+        <section id="rsvp" class="section-padding rsvp-section">
+            <div class="container">
+                <div class="rsvp-card-passport reveal">
+                    <!-- Passport border overlay pattern -->
+                    <div class="passport-page-header">
+                        <span>MATRIMONIAL PASSPORT VISAS</span>
+                        <span>PAGE 04</span>
+                    </div>
+                    
+                    <div class="rsvp-stamp-content">
+                        <h2>VISA APPLICATION (RSVP)</h2>
+                        <p>Fill out the coordinates below to stamp your visa approval.</p>
+                        <div class="vintage-divider"></div>
+                    </div>
+
+                    <form id="rsvp-form" class="stamp-form-element">
+                        <div class="form-row-2">
+                            <div class="stamp-input-group">
+                                <label for="guest-name">PASSPORT NAME</label>
+                                <input type="text" id="guest-name" name="name" placeholder="E.g. Ayesha Rahman" required>
+                                <span class="stamp-border-line"></span>
+                                <span class="error-msg" id="name-error">Passenger name is required.</span>
+                            </div>
+                            <div class="stamp-input-group">
+                                <label for="guest-phone">TELEPHONE NUMBER</label>
+                                <input type="tel" id="guest-phone" name="phone" placeholder="E.g. +1 555-0100" required>
+                                <span class="stamp-border-line"></span>
+                                <span class="error-msg" id="phone-error">Valid contact number is required.</span>
+                            </div>
+                        </div>
+
+                        <div class="stamp-radio-group">
+                            <span class="radio-section-label">ATTENDANCE BOARDING DECLARATION</span>
+                            <div class="radio-options">
+                                <label class="stamp-radio-container">
+                                    <input type="radio" name="attendance" value="attending" checked required>
+                                    <span class="custom-stamp-box"></span>
+                                    <span class="stamp-radio-text">BOARDING APPROVED (I WILL ATTEND)</span>
+                                </label>
+                                <label class="stamp-radio-container">
+                                    <input type="radio" name="attendance" value="declined" required>
+                                    <span class="custom-stamp-box"></span>
+                                    <span class="stamp-radio-text">FLIGHT CANCELLED (I CANNOT ATTEND)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="guests-select-wrapper" class="stamp-input-group">
+                            <label for="guests-count">ADDITIONAL PASSENGERS (GUESTS)</label>
+                            <select id="guests-count" name="guests">
+                                <option value="0">Passenger Only (1)</option>
+                                <option value="1">Plus 1 Guest (2)</option>
+                                <option value="2">Plus 2 Guests (3)</option>
+                                <option value="3">Plus 3 Guests (4)</option>
+                                <option value="4">Plus 4 Guests (5)</option>
+                            </select>
+                            <span class="stamp-border-line"></span>
+                        </div>
+
+                        <button type="submit" id="btn-submit" class="btn-stamp-press">
+                            PRESS STAMP ENTRY <i class="fa-solid fa-stamp"></i>
+                        </button>
+                    </form>
+
+                    <!-- Stamp-styled success receipt -->
+                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
+                        <div class="success-stamp-seal">
+                            <div class="visa-approved-stamp">VISA APPROVED</div>
+                            <h3>PASSPORT REGISTERED</h3>
+                            <p id="success-message">Your travel coordinates have been verified. Welcome aboard!</p>
+                            <button id="btn-close-success" class="btn-passport-outline btn-small">DISMISS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 9: EMERGENCY CONSULAR DETAILS ==================== -->
+        <section id="contacts" class="section-padding contacts-section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="editorial-label">SUPPORT STATIONS</span>
+                    <h2 class="section-title">CONSULAR DIRECTORY</h2>
+                    <div class="vintage-divider"></div>
+                </div>
+
+                <div class="contacts-grid">
+                    <!-- Groom Consular -->
+                    <div class="consular-card reveal">
+                        <span class="consular-title">GROOM SIDE COORDINATION</span>
+                        <h3 class="consular-name">Adnan Malik</h3>
+                        <span class="consular-relation">Consular Attaché / Brother</span>
+                        <div class="consular-actions">
+                            <a href="tel:+1234567890" class="btn-passport-outline"><i class="fa-solid fa-phone"></i> CALL STATION</a>
+                            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="btn-passport-outline wa"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+                        </div>
+                    </div>
+
+                    <!-- Bride Consular -->
+                    <div class="consular-card reveal">
+                        <span class="consular-title">BRIDE SIDE COORDINATION</span>
+                        <h3 class="consular-name">Yasmin Siddiqui</h3>
+                        <span class="consular-relation">Consular Attaché / Sister</span>
+                        <div class="consular-actions">
+                            <a href="tel:+0987654321" class="btn-passport-outline"><i class="fa-solid fa-phone"></i> CALL STATION</a>
+                            <a href="https://wa.me/0987654321" target="_blank" rel="noopener noreferrer" class="btn-passport-outline wa"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FOOTER ==================== -->
+        <footer>
+            <div class="footer-container">
+                <div class="passport-seal-footer">Z&A</div>
+                <h3>ZAYN & AARA ARE READY FOR DEPARTURE</h3>
+                <div class="vintage-divider"></div>
+                <p class="copyright-text">&copy; 2026 Zayn & Aara. Created with Love. All Rights Reserved.</p>
+            </div>
+        </footer>
+
+    </div> <!-- /#main-content -->
+
+    <!-- ==================== IMAGE LIGHTBOX MODAL ==================== -->
+    <div id="lightbox-modal" class="lightbox-overlay modal-hidden" aria-hidden="true" role="dialog">
+        <button id="lightbox-close" class="lightbox-close-btn" aria-label="Close Lightbox">&times;</button>
+        
+        <button id="lightbox-prev" class="lightbox-nav-btn prev" aria-label="Previous Image">
+            <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        
+        <div class="lightbox-content-wrapper">
+            <img id="lightbox-img" src="" alt="Expanded polaroid snapshot">
+            <div id="lightbox-caption" class="lightbox-caption">Typewriter caption</div>
+        </div>
+        
+        <button id="lightbox-next" class="lightbox-nav-btn next" aria-label="Next Image">
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Main JS script -->
+    <script src="script.js"></script>
+</body>
+</html>

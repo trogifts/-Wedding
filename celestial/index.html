@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aria & Ethan — Wedding Invitation</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="You are cordially invited to celebrate the wedding of Aria & Ethan.">
+  
+  <!-- Google Fonts: Editorial & Minimalist -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Three.js CDN & GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Minimalist Audio Control -->
+  <div class="audio-control" id="audioToggle" aria-label="Toggle Music" role="button" tabindex="0">
+    <i class="fas fa-play"></i>
+  </div>
+  <audio id="bgMusic" loop src="https://www.piano-midi.de/mp3/deb_clai.mp3"></audio>
+
+  <!-- SECTION 1: 3D ENVELOPE UNBOXING EXPERIENCE -->
+  <div id="unboxing-container">
+    <div id="canvas3d"></div>
+    <div class="unboxing-ui" id="unboxingUi">
+      <p class="instruction">Tap the wax seal to open</p>
+      <div class="pulse-indicator"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: THE MAIN EDITORIAL CONTENT (Hidden initially) -->
+  <main id="main-content" class="content-hidden">
+    
+    <header class="editorial-header">
+      <p class="pre-title">You are cordially invited to celebrate</p>
+      <h1 class="main-title gold-gradient-text">Aria & Ethan</h1>
+      <p class="date-title">November 28, 2026</p>
+      <div class="vertical-line"></div>
+    </header>
+
+    <!-- COUNTDOWN TIMER SECTION -->
+    <section class="countdown-section fade-up">
+      <h2 class="section-heading small-heading gold-gradient-text">The Countdown</h2>
+      <div class="countdown-container">
+        <div class="countdown-item">
+          <span class="countdown-value" id="days">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-item-divider"></div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="hours">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-item-divider"></div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="minutes">00</span>
+          <span class="countdown-label">Mins</span>
+        </div>
+        <div class="countdown-item-divider"></div>
+        <div class="countdown-item">
+          <span class="countdown-value" id="seconds">00</span>
+          <span class="countdown-label">Secs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Gallery (The Couple) -->
+    <section class="gallery-section fade-up">
+      <div class="gallery-container">
+        <div class="portrait-box left-offset">
+          <div class="img-frame">
+            <img src="bride.png" alt="Aria">
+            <div class="frame-overlay"></div>
+          </div>
+          <h2 class="name">Aria</h2>
+          <span class="role-caption">The Bride</span>
+        </div>
+        <div class="portrait-box right-offset">
+          <div class="img-frame">
+            <img src="groom.png" alt="Ethan">
+            <div class="frame-overlay"></div>
+          </div>
+          <h2 class="name">Ethan</h2>
+          <span class="role-caption">The Groom</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Details & Itinerary -->
+    <section class="itinerary-section fade-up">
+      <h2 class="section-heading gold-gradient-text">The Celebration</h2>
+      
+      <div class="details-card">
+        <div class="gold-crest">✦ A & E ✦</div>
+        <h3>Grand Palace Garden</h3>
+        <p>100 Luxury Estates Dr, San Francisco, CA</p>
+        <button class="btn-outline" id="btnSaveDate">Save to Calendar</button>
+      </div>
+
+      <div class="schedule">
+        <div class="schedule-item">
+          <div class="time">4:00 PM</div>
+          <div class="event">
+            <h4>The Ceremony</h4>
+            <p>Exchange of vows in the glass conservatory.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">5:30 PM</div>
+          <div class="event">
+            <h4>Cocktail Hour</h4>
+            <p>Drinks and hors d'oeuvres on the sunset terrace.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <div class="time">7:00 PM</div>
+          <div class="event">
+            <h4>The Reception</h4>
+            <p>Dinner, speeches, and dancing in the grand hall.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dress-code">
+        <p class="label">Dress Code</p>
+        <p class="value">Black Tie Optional</p>
+      </div>
+    </section>
+
+    <!-- REGISTRY & HONEYMOON FUND -->
+    <section class="registry-section fade-up">
+      <h2 class="section-heading gold-gradient-text">Gift Registry</h2>
+      <p class="registry-sub">Your presence is our greatest gift, but if you wish to honor us with a contribution, we have set up the funds below.</p>
+      
+      <div class="registry-grid">
+        <div class="registry-card">
+          <div class="card-icon"><i class="fas fa-plane-departure"></i></div>
+          <h3>Honeymoon Fund</h3>
+          <p>Help us fund our dream getaway to the coast of Amalfi, Italy, for romantic dinners and sightseeing.</p>
+          <button class="btn-outline registry-btn" data-fund="Honeymoon Fund">Contribute</button>
+        </div>
+        <div class="registry-card">
+          <div class="card-icon"><i class="fas fa-home"></i></div>
+          <h3>New Home Fund</h3>
+          <p>Contributions toward nesting and furnishing our new space together as newlyweds.</p>
+          <button class="btn-outline registry-btn" data-fund="New Home Fund">Contribute</button>
+        </div>
+        <div class="registry-card">
+          <div class="card-icon"><i class="fas fa-utensils"></i></div>
+          <h3>Date Nights</h3>
+          <p>Help us keep the spark alive with cooking classes, theater tickets, and cozy weekend dining.</p>
+          <button class="btn-outline registry-btn" data-fund="Date Nights">Contribute</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Q&A (FAQS) -->
+    <section class="faq-section fade-up">
+      <h2 class="section-heading gold-gradient-text">Q & A</h2>
+      
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What should I wear?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>The dress code is Black Tie Optional. Gentlemen may wear a tuxedo or dark formal suit. Ladies may wear a floor-length gown or elegant cocktail dress.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I bring a plus one?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Due to capacity limits at our venue, we are only able to accommodate the guests named on your invitation envelope. Thank you for understanding.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is parking available at the venue?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, complimentary valet parking is available for all guests at the main entrance of the Grand Palace Garden conservatory starting at 3:30 PM.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Are children invited?</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We love your little ones, but our wedding celebration will be an adults-only event to allow everyone to relax and celebrate freely.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The RSVP -->
+    <section class="rsvp-section fade-up" id="rsvp">
+      <h2 class="section-heading gold-gradient-text">R.S.V.P.</h2>
+      <p class="rsvp-sub">Kindly reply by October 1st, 2026</p>
+      
+      <form id="rsvpForm" class="editorial-form">
+        <div class="form-row">
+          <div class="input-wrap">
+            <input type="text" id="guestName" placeholder=" " required>
+            <label for="guestName">Full Name</label>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="input-wrap">
+            <input type="email" id="guestEmail" placeholder=" " required>
+            <label for="guestEmail">Email</label>
+          </div>
+        </div>
+        
+        <div class="form-row radio-row">
+          <label class="radio-container">
+            <input type="radio" name="attendance" value="yes" checked>
+            <span class="checkmark"></span>
+            Joyfully Accepts
+          </label>
+          <label class="radio-container">
+            <input type="radio" name="attendance" value="no">
+            <span class="checkmark"></span>
+            Regretfully Declines
+          </label>
+        </div>
+        
+        <div class="form-row" id="mealGroup">
+          <div class="input-wrap select-wrap">
+            <select id="mealPreference">
+              <option value="beef">Filet Mignon</option>
+              <option value="fish">Seared Sea Bass</option>
+              <option value="veg">Truffle Risotto (Vegetarian)</option>
+            </select>
+            <label>Entrée Selection</label>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn-solid" id="submitRsvp">Submit Reply</button>
+      </form>
+
+      <div class="rsvp-success" id="rsvpSuccess" style="display: none;">
+        <h3 class="gold-gradient-text">Thank You</h3>
+        <p id="successMessage"></p>
+        <button class="btn-text" id="btnEditRsvp">Edit Reply</button>
+      </div>
+    </section>
+
+    <footer class="editorial-footer">
+      <p>A & E</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
