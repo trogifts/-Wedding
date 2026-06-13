@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aria & Ethan — Wedding Invitation</title>
+  <title id="metaTitle">Wedding Invitation</title>
   
   <!-- SEO Meta Tags -->
   <meta name="description" content="You are cordially invited to celebrate the wedding of Aria & Ethan.">
@@ -35,7 +35,7 @@
   <div id="unboxing-container">
     <div id="canvas3d"></div>
     <div class="unboxing-ui" id="unboxingUi">
-      <p class="instruction">Tap the wax seal to open</p>
+      <p class="instruction" id="waxSealInstruction">Tap the wax seal to open</p>
       <div class="pulse-indicator"></div>
     </div>
   </div>
@@ -44,34 +44,34 @@
   <main id="main-content" class="content-hidden">
     
     <header class="editorial-header">
-      <p class="pre-title">You are cordially invited to celebrate</p>
-      <h1 class="main-title gold-gradient-text">Aria & Ethan</h1>
-      <p class="date-title">November 28, 2026</p>
+      <p class="pre-title" id="preTitle">You are cordially invited to celebrate</p>
+      <h1 class="main-title gold-gradient-text" id="mainTitle">Aria & Ethan</h1>
+      <p class="date-title" id="dateTitle">November 28, 2026</p>
       <div class="vertical-line"></div>
     </header>
 
     <!-- COUNTDOWN TIMER SECTION -->
     <section class="countdown-section fade-up">
-      <h2 class="section-heading small-heading gold-gradient-text">The Countdown</h2>
+      <h2 class="section-heading small-heading gold-gradient-text" id="countdownHeading">The Countdown</h2>
       <div class="countdown-container">
         <div class="countdown-item">
           <span class="countdown-value" id="days">00</span>
-          <span class="countdown-label">Days</span>
+          <span class="countdown-label" id="daysLabel">Days</span>
         </div>
         <div class="countdown-item-divider"></div>
         <div class="countdown-item">
           <span class="countdown-value" id="hours">00</span>
-          <span class="countdown-label">Hours</span>
+          <span class="countdown-label" id="hoursLabel">Hours</span>
         </div>
         <div class="countdown-item-divider"></div>
         <div class="countdown-item">
           <span class="countdown-value" id="minutes">00</span>
-          <span class="countdown-label">Mins</span>
+          <span class="countdown-label" id="minutesLabel">Mins</span>
         </div>
         <div class="countdown-item-divider"></div>
         <div class="countdown-item">
           <span class="countdown-value" id="seconds">00</span>
-          <span class="countdown-label">Secs</span>
+          <span class="countdown-label" id="secondsLabel">Secs</span>
         </div>
       </div>
     </section>
@@ -81,120 +81,59 @@
       <div class="gallery-container">
         <div class="portrait-box left-offset">
           <div class="img-frame">
-            <img src="bride.png" alt="Aria">
+            <img src="bride.png" alt="Bride">
             <div class="frame-overlay"></div>
           </div>
-          <h2 class="name">Aria</h2>
-          <span class="role-caption">The Bride</span>
+          <h2 class="name" id="brideName">Aria</h2>
+          <span class="role-caption" id="brideRole">The Bride</span>
         </div>
         <div class="portrait-box right-offset">
           <div class="img-frame">
-            <img src="groom.png" alt="Ethan">
+            <img src="groom.png" alt="Groom">
             <div class="frame-overlay"></div>
           </div>
-          <h2 class="name">Ethan</h2>
-          <span class="role-caption">The Groom</span>
+          <h2 class="name" id="groomName">Ethan</h2>
+          <span class="role-caption" id="groomRole">The Groom</span>
         </div>
       </div>
     </section>
 
     <!-- The Details & Itinerary -->
     <section class="itinerary-section fade-up">
-      <h2 class="section-heading gold-gradient-text">The Celebration</h2>
+      <h2 class="section-heading gold-gradient-text" id="itineraryHeading">The Celebration</h2>
       
       <div class="details-card">
-        <div class="gold-crest">✦ A & E ✦</div>
-        <h3>Grand Palace Garden</h3>
-        <p>100 Luxury Estates Dr, San Francisco, CA</p>
+        <div class="gold-crest" id="goldCrest">✦ A & E ✦</div>
+        <h3 id="venueName">Grand Palace Garden</h3>
+        <p id="venueAddress">100 Luxury Estates Dr, San Francisco, CA</p>
         <button class="btn-outline" id="btnSaveDate">Save to Calendar</button>
       </div>
 
-      <div class="schedule">
-        <div class="schedule-item">
-          <div class="time">4:00 PM</div>
-          <div class="event">
-            <h4>The Ceremony</h4>
-            <p>Exchange of vows in the glass conservatory.</p>
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="time">5:30 PM</div>
-          <div class="event">
-            <h4>Cocktail Hour</h4>
-            <p>Drinks and hors d'oeuvres on the sunset terrace.</p>
-          </div>
-        </div>
-        <div class="schedule-item">
-          <div class="time">7:00 PM</div>
-          <div class="event">
-            <h4>The Reception</h4>
-            <p>Dinner, speeches, and dancing in the grand hall.</p>
-          </div>
-        </div>
+      <div class="schedule" id="schedule">
+        <!-- Populated dynamically from data.js -->
       </div>
       
       <div class="dress-code">
-        <p class="label">Dress Code</p>
-        <p class="value">Black Tie Optional</p>
+        <p class="label" id="dressCodeLabel">Dress Code</p>
+        <p class="value" id="dressCodeValue">Black Tie Optional</p>
       </div>
     </section>
-
-
 
     <!-- Q&A (FAQS) -->
     <section class="faq-section fade-up">
-      <h2 class="section-heading gold-gradient-text">Q & A</h2>
+      <h2 class="section-heading gold-gradient-text" id="faqHeading">Q & A</h2>
       
-      <div class="faq-accordion">
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>What should I wear?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>The dress code is Black Tie Optional. Gentlemen may wear a tuxedo or dark formal suit. Ladies may wear a floor-length gown or elegant cocktail dress.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Can I bring a plus one?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Due to capacity limits at our venue, we are only able to accommodate the guests named on your invitation envelope. Thank you for understanding.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Is parking available at the venue?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Yes, complimentary valet parking is available for all guests at the main entrance of the Grand Palace Garden conservatory starting at 3:30 PM.</p>
-          </div>
-        </div>
-        
-        <div class="faq-item">
-          <button class="faq-question">
-            <span>Are children invited?</span>
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <div class="faq-answer">
-            <p>We love your little ones, but our wedding celebration will be an adults-only event to allow everyone to relax and celebrate freely.</p>
-          </div>
-        </div>
+      <div class="faq-accordion" id="faqAccordion">
+        <!-- Populated dynamically from data.js -->
       </div>
     </section>
 
-
-
-    <footer class="editorial-footer">
+    <footer class="editorial-footer" id="footerText">
       <p>A & E</p>
     </footer>
   </main>
 
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
