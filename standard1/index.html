@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding of Zayn & Aara - Premium Luxury Invitation</title>
+    <title id="metaTitle">The Wedding Invitation</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="You are cordially invited to the luxury wedding celebration of Zayn and Aara. Explore details, timelines, couple story, gallery, and RSVP online.">
-    <meta name="keywords" content="Zayn & Aara, Wedding invitation, luxury Islamic wedding, Nikah, Walima, RSVP registry, guestbook wishes">
+    <meta name="description" content="You are cordially invited to the luxury wedding celebration.">
+    <meta name="keywords" content="Wedding invitation, luxury Islamic wedding, Nikah, Walima">
     
     <!-- Google Fonts: Elegant Decorative (Cinzel Decorative), Classical Serif (Cinzel), Handwriting Calligraphy (Great Vibes), Clean Sans (Montserrat) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,18 +42,18 @@
             <div class="arabic-bismillah" aria-label="Bismillah Calligraphy">
                 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
             </div>
-            <div class="loading-sub">In the Name of Allah, the Most Gracious, the Most Merciful</div>
+            <div class="loading-sub" id="arabicBismillahSub">In the Name of Allah, the Most Gracious, the Most Merciful</div>
             
             <div class="monogram-wrapper">
                 <div class="monogram-circle"></div>
-                <div class="monogram-letters">Z&A</div>
+                <div class="monogram-letters" id="coverMonogram">Z&A</div>
             </div>
             
-            <h2 class="couple-title-cover">Zayn & Aara</h2>
-            <p class="invite-text">We request the honor of your presence to witness the sacred union of our hearts.</p>
+            <h2 class="couple-title-cover" id="coverCoupleTitle">Zayn & Aara</h2>
+            <p class="invite-text" id="coverInviteText">We request the honor of your presence to witness the sacred union of our hearts.</p>
             
             <button id="btn-open-invite" class="btn-gold-pulse">
-                <i class="fa-solid fa-envelope-open-text"></i> Open Invitation
+                <i class="fa-solid fa-envelope-open-text"></i> <span id="openInviteText">Open Invitation</span>
             </button>
         </div>
     </div>
@@ -85,8 +85,7 @@
             </button>
 
             <!-- WhatsApp Floating Coordination -->
-            <a href="https://wa.me/1234567890?text=Assalamu%20Alaikum!%20I%20have%20an%20inquiry%20regarding%20Zayn%20and%20Aara's%20wedding%20celebration." 
-               class="floating-widget whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+            <a href="#" id="whatsappFloatingLink" class="floating-widget whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>
@@ -94,17 +93,17 @@
         <!-- ==================== STICKY DESKTOP HEADER ==================== -->
         <header id="main-header">
             <div class="header-container">
-                <a href="#hero" class="brand-monogram">Z&A</a>
+                <a href="#hero" class="brand-monogram" id="headerLogo">Z&A</a>
                 <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <nav id="nav-menu">
                     <ul>
-                        <li><a href="#hero" class="nav-link active">Home</a></li>
-                        <li><a href="#story" class="nav-link">Our Story</a></li>
-                        <li><a href="#couple" class="nav-link">Couple</a></li>
-                        <li><a href="#events" class="nav-link">Events</a></li>
-                        <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                        <li><a href="#hero" class="nav-link active" id="navLinkHome">Home</a></li>
+                        <li><a href="#story" class="nav-link" id="navLinkStory">Our Story</a></li>
+                        <li><a href="#couple" class="nav-link" id="navLinkCouple">Couple</a></li>
+                        <li><a href="#events" class="nav-link" id="navLinkEvents">Events</a></li>
+                        <li><a href="#gallery" class="nav-link" id="navLinkGallery">Gallery</a></li>
                     </ul>
                 </nav>
             </div>
@@ -113,10 +112,10 @@
         <!-- ==================== FLOATING MOBILE NAVIGATION DOCK ==================== -->
         <nav id="mobile-dock-menu">
             <ul>
-                <li><a href="#hero" class="dock-link active"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
-                <li><a href="#story" class="dock-link"><i class="fa-solid fa-book-open"></i><span>Story</span></a></li>
-                <li><a href="#events" class="dock-link"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a></li>
-                <li><a href="#gallery" class="dock-link"><i class="fa-solid fa-images"></i><span>Gallery</span></a></li>
+                <li><a href="#hero" class="dock-link active" id="dockLinkHome"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                <li><a href="#story" class="dock-link" id="dockLinkStory"><i class="fa-solid fa-book-open"></i><span>Story</span></a></li>
+                <li><a href="#events" class="dock-link" id="dockLinkEvents"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a></li>
+                <li><a href="#gallery" class="dock-link" id="dockLinkGallery"><i class="fa-solid fa-images"></i><span>Gallery</span></a></li>
             </ul>
         </nav>
 
@@ -124,42 +123,42 @@
         <section id="hero" class="hero-section">
             <div class="hero-bg-overlay"></div>
             <div class="hero-content">
-                <span class="wedding-announcement">The Wedding Celebration of</span>
-                <h1 class="couple-names">Zayn & Aara</h1>
+                <span class="wedding-announcement" id="heroAnnouncement">The Wedding Celebration of</span>
+                <h1 class="couple-names" id="heroCoupleNames">Zayn & Aara</h1>
                 <div class="floral-divider">
                     <span class="line"></span>
                     <i class="fa-solid fa-heart"></i>
                     <span class="line"></span>
                 </div>
-                <p class="wedding-date-str">Friday, September 4, 2026</p>
-                <p class="islamic-date">11 Rabi' al-Awwal 1448 AH</p>
-                <p class="hero-venue-summary">The Palace Ballroom, New York</p>
+                <p class="wedding-date-str" id="heroDateStr">Friday, September 4, 2026</p>
+                <p class="islamic-date" id="heroIslamicDate">11 Rabi' al-Awwal 1448 AH</p>
+                <p class="hero-venue-summary" id="heroVenueSummary">The Palace Ballroom, New York</p>
                 
                 <!-- Countdown Timer -->
                 <div id="countdown-timer" class="countdown-container">
                     <div class="countdown-item">
                         <span id="days" class="time-num">00</span>
-                        <span class="time-lbl">Days</span>
+                        <span class="time-lbl" id="daysLabel">Days</span>
                     </div>
                     <div class="countdown-item">
                         <span id="hours" class="time-num">00</span>
-                        <span class="time-lbl">Hours</span>
+                        <span class="time-lbl" id="hoursLabel">Hours</span>
                     </div>
                     <div class="countdown-item">
                         <span id="minutes" class="time-num">00</span>
-                        <span class="time-lbl">Mins</span>
+                        <span class="time-lbl" id="minutesLabel">Mins</span>
                     </div>
                     <div class="countdown-item">
                         <span id="seconds" class="time-num">00</span>
-                        <span class="time-lbl">Secs</span>
+                        <span class="time-lbl" id="secondsLabel">Secs</span>
                     </div>
                 </div>
                 
-                <a href="#rsvp" class="btn-primary-gold">RSVP Now</a>
+                <a href="#events" class="btn-primary-gold" id="heroBtnLabel">View Schedule</a>
             </div>
             
             <div class="scroll-down-hint">
-                <span>Scroll Down</span>
+                <span id="scrollDownLabel">Scroll Down</span>
                 <i class="fa-solid fa-chevron-down animate-bounce"></i>
             </div>
         </section>
@@ -168,41 +167,13 @@
         <section id="story" class="section-padding story-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Our Journey</span>
-                    <h2 class="section-title">How We Met</h2>
+                    <span class="sub-title" id="storySubTitle">Our Journey</span>
+                    <h2 class="section-title" id="storyTitle">How We Met</h2>
                     <div class="section-divider"></div>
                 </div>
 
-                <div class="story-timeline">
-                    <!-- Milestone 1: First Meeting -->
-                    <div class="timeline-item reveal reveal-left">
-                        <div class="timeline-img">
-                            <img src="images/story1.png" alt="First Meeting Cafe Cafe" loading="lazy">
-                        </div>
-                        <div class="timeline-badge"><i class="fa-solid fa-comments"></i></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">March 14, 2024</span>
-                            <h3>First Conversation</h3>
-                            <p>
-                                It started with a chance encounter in a quiet botanical cafe. Zayn was absorbed in a design schematic, while Aara was sketching architectural column contours. A spilt cup of tea and a shared laugh paved the way for a hours-long talk about geometry, nature, and calligraphy.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Milestone 2: Engagement -->
-                    <div class="timeline-item reveal reveal-right">
-                        <div class="timeline-img">
-                            <img src="images/story2.png" alt="Engagement Proposal Rings" loading="lazy">
-                        </div>
-                        <div class="timeline-badge"><i class="fa-solid fa-heart-circle-check"></i></div>
-                        <div class="timeline-content glass-card">
-                            <span class="timeline-date">January 20, 2026</span>
-                            <h3>The Engagement Proposal</h3>
-                            <p>
-                                Surrounded by glowing lights, red flowers, and their closest family members, Zayn asked for Aara's hand in marriage. With blessings from both sides, they exchanged rings, promising to start a sacred journey of faith, compassion, and shared aspirations.
-                            </p>
-                        </div>
-                    </div>
+                <div class="story-timeline" id="storyTimeline">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -211,12 +182,12 @@
         <section id="couple" class="section-padding couple-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Introducing</span>
-                    <h2 class="section-title">The Bride & Groom</h2>
+                    <span class="sub-title" id="coupleSubTitle">Introducing</span>
+                    <h2 class="section-title" id="coupleTitle">The Bride & Groom</h2>
                     <div class="section-divider"></div>
-                    <blockquote class="quran-quote">
+                    <blockquote class="quran-quote" id="quranQuote">
                         "And He placed between you affection and mercy."
-                        <span class="quote-source">— Surah Ar-Rum [30:21]</span>
+                        <span class="quote-source" id="quranQuoteSource">— Surah Ar-Rum [30:21]</span>
                     </blockquote>
                 </div>
 
@@ -224,21 +195,21 @@
                     <!-- Groom Bio -->
                     <div class="couple-card groom-card reveal reveal-left">
                         <div class="couple-img-wrapper">
-                            <img src="images/groom.png" alt="Zayn - The Groom" loading="lazy">
+                            <img src="images/groom.png" alt="Groom" loading="lazy">
                             <div class="gold-ring-frame"></div>
                         </div>
-                        <h3 class="member-name">Zayn Malik</h3>
-                        <p class="member-role">Groom</p>
-                        <p class="member-bio">
+                        <h3 class="member-name" id="groomName">Zayn Malik</h3>
+                        <p class="member-role" id="groomRole">Groom</p>
+                        <p class="member-bio" id="groomBio">
                             A software architect who finds beauty in mathematical patterns. Zayn is excited to share a lifetime of learning, mutual respect, and faith with Aara.
                         </p>
                         <div class="parent-info">
-                            <span>Son of</span>
-                            <strong>Mr. & Mrs. Tariq Malik</strong>
+                            <span id="groomParentsLabel">Son of</span>
+                            <strong id="groomParents">Mr. & Mrs. Tariq Malik</strong>
                         </div>
                         <div class="couple-socials">
-                            <a href="#" aria-label="Groom Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" aria-label="Groom Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" id="groomInstagramLink" aria-label="Groom Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" id="groomTwitterLink" aria-label="Groom Twitter"><i class="fa-brands fa-twitter"></i></a>
                         </div>
                     </div>
 
@@ -250,21 +221,21 @@
                     <!-- Bride Bio -->
                     <div class="couple-card bride-card reveal reveal-right">
                         <div class="couple-img-wrapper">
-                            <img src="images/bride.png" alt="Aara - The Bride" loading="lazy">
+                            <img src="images/bride.png" alt="Bride" loading="lazy">
                             <div class="gold-ring-frame"></div>
                         </div>
-                        <h3 class="member-name">Aara Siddiqui</h3>
-                        <p class="member-role">Bride</p>
-                        <p class="member-bio">
+                        <h3 class="member-name" id="brideName">Aara Siddiqui</h3>
+                        <p class="member-role" id="brideRole">Bride</p>
+                        <p class="member-bio" id="brideBio">
                             An interior designer who weaves colors and light to build warm spaces. Aara looks forward to bringing her artwork and creative energy into their new home.
                         </p>
                         <div class="parent-info">
-                            <span>Daughter of</span>
-                            <strong>Mr. & Mrs. Farhan Siddiqui</strong>
+                            <span id="brideParentsLabel">Daughter of</span>
+                            <strong id="brideParents">Mr. & Mrs. Farhan Siddiqui</strong>
                         </div>
                         <div class="couple-socials">
-                            <a href="#" aria-label="Bride Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" aria-label="Bride Pinterest"><i class="fa-brands fa-pinterest"></i></a>
+                            <a href="#" id="brideInstagramLink" aria-label="Bride Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" id="bridePinterestLink" aria-label="Bride Pinterest"><i class="fa-brands fa-pinterest"></i></a>
                         </div>
                     </div>
                 </div>
@@ -275,100 +246,13 @@
         <section id="events" class="section-padding events-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Save The Dates</span>
-                    <h2 class="section-title">Wedding Schedule</h2>
+                    <span class="sub-title" id="eventsSubTitle">Save The Dates</span>
+                    <h2 class="section-title" id="eventsTitle">Wedding Schedule</h2>
                     <div class="section-divider"></div>
                 </div>
 
-                <div class="events-timeline-vertical">
-                    <!-- Event 1: Mehendi -->
-                    <div class="event-timeline-item reveal">
-                        <div class="event-timeline-marker">
-                            <div class="marker-circle"><i class="fa-solid fa-spa"></i></div>
-                        </div>
-                        <div class="event-timeline-card glass-card">
-                            <h3 class="event-name">1. Mehendi Ceremony</h3>
-                            <div class="event-time-line">
-                                <p><i class="fa-regular fa-calendar-days"></i> Thursday, Sept 3, 2026</p>
-                                <p><i class="fa-regular fa-clock"></i> 06:00 PM - 09:30 PM</p>
-                            </div>
-                            <div class="event-venue-details">
-                                <p><strong>Royal Orchid Banquet</strong></p>
-                                <p>Dress Code: Traditional Yellow / Green Floral</p>
-                            </div>
-                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zayn+%26+Aara+Mehendi&dates=20260903T220000Z/20260904T013000Z&details=Mehendi+Ceremony&location=Royal+Orchid+Banquet+New+York" 
-                               target="_blank" rel="noopener noreferrer" class="btn-outline-gold calendar-btn">
-                                <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Event 2: Nikah -->
-                    <div class="event-timeline-item reveal">
-                        <div class="event-timeline-marker">
-                            <div class="marker-circle"><i class="fa-solid fa-file-signature"></i></div>
-                        </div>
-                        <div class="event-timeline-card glass-card">
-                            <h3 class="event-name">2. The Nikah Ceremony</h3>
-                            <div class="event-time-line">
-                                <p><i class="fa-regular fa-calendar-days"></i> Friday, Sept 4, 2026</p>
-                                <p><i class="fa-regular fa-clock"></i> 02:00 PM - 04:30 PM</p>
-                            </div>
-                            <div class="event-venue-details">
-                                <p><strong>Masjid Al-Haram Grand Hall</strong></p>
-                                <p>Dress Code: Elegant White / Ivory traditional attire</p>
-                            </div>
-                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zayn+%26+Aara+Nikah&dates=20260904T180000Z/20260904T203000Z&details=Nikah+Ceremony&location=Masjid+Al-Haram+New+York" 
-                               target="_blank" rel="noopener noreferrer" class="btn-outline-gold calendar-btn">
-                                <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Event 3: Reception -->
-                    <div class="event-timeline-item reveal highlight">
-                        <div class="event-timeline-marker">
-                            <div class="marker-circle"><i class="fa-solid fa-chess-king"></i></div>
-                        </div>
-                        <div class="event-timeline-card glass-card">
-                            <div class="badge-gold">Main Banquet</div>
-                            <h3 class="event-name">3. The Reception</h3>
-                            <div class="event-time-line">
-                                <p><i class="fa-regular fa-calendar-days"></i> Saturday, Sept 5, 2026</p>
-                                <p><i class="fa-regular fa-clock"></i> 07:00 PM - 10:30 PM</p>
-                            </div>
-                            <div class="event-venue-details">
-                                <p><strong>The Palace Ballroom</strong></p>
-                                <p>Dress Code: Formal Suits & Elegant Evening Gowns</p>
-                            </div>
-                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zayn+%26+Aara+Reception&dates=20260905T230000Z/20260906T023000Z&details=Grand+Wedding+Reception&location=The+Palace+Ballroom+New+York" 
-                               target="_blank" rel="noopener noreferrer" class="btn-outline-gold calendar-btn">
-                                <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Event 4: Walima -->
-                    <div class="event-timeline-item reveal">
-                        <div class="event-timeline-marker">
-                            <div class="marker-circle"><i class="fa-solid fa-handshake-angle"></i></div>
-                        </div>
-                        <div class="event-timeline-card glass-card">
-                            <h3 class="event-name">4. The Walima Feast</h3>
-                            <div class="event-time-line">
-                                <p><i class="fa-regular fa-calendar-days"></i> Sunday, Sept 6, 2026</p>
-                                <p><i class="fa-regular fa-clock"></i> 01:00 PM - 04:00 PM</p>
-                            </div>
-                            <div class="event-venue-details">
-                                <p><strong>Royal Botanical Pavilion</strong></p>
-                                <p>Dress Code: Smart Casual Elegant / Pastel Shades</p>
-                            </div>
-                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Zayn+%26+Aara+Walima&dates=20260906T170000Z/20260906T200000Z&details=Walima+Feast&location=Royal+Botanical+Pavilion+New+York" 
-                               target="_blank" rel="noopener noreferrer" class="btn-outline-gold calendar-btn">
-                                <i class="fa-regular fa-calendar-plus"></i> Add to Calendar
-                            </a>
-                        </div>
-                    </div>
+                <div class="events-timeline-vertical" id="eventsTimeline">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -377,65 +261,13 @@
         <section id="gallery" class="section-padding gallery-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Moments Shared</span>
-                    <h2 class="section-title">Photo Gallery</h2>
+                    <span class="sub-title" id="gallerySubTitle">Moments Shared</span>
+                    <h2 class="section-title" id="galleryTitle">Photo Gallery</h2>
                     <div class="section-divider"></div>
                 </div>
 
-                <div class="gallery-masonry-wrapper reveal">
-                    <!-- Gallery Item 1 -->
-                    <div class="gallery-item-masonry" data-index="0">
-                        <img src="images/gallery1.png" alt="Gold Wedding Rings on Rose Bed" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Promise</span>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Item 2 -->
-                    <div class="gallery-item-masonry" data-index="1">
-                        <img src="images/gallery2.png" alt="Luxury Islamic Wedding Stage Arches" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Stage</span>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Item 3 -->
-                    <div class="gallery-item-masonry" data-index="2">
-                        <img src="images/gallery3.png" alt="Gold Foiled Bismillah Invitation Calligraphy" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Invitation</span>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Item 4 -->
-                    <div class="gallery-item-masonry" data-index="3">
-                        <img src="images/gallery4.png" alt="Intricate Bridal Henna Designs on Hands" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Henna</span>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Item 5 -->
-                    <div class="gallery-item-masonry" data-index="4">
-                        <img src="images/gallery5.png" alt="Wedding Banquet Table Runner Decor" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Feast Setup</span>
-                        </div>
-                    </div>
-
-                    <!-- Gallery Item 6 -->
-                    <div class="gallery-item-masonry" data-index="5">
-                        <img src="images/gallery6.png" alt="Traditional Islamic Gold Lanterns" loading="lazy">
-                        <div class="gallery-hover-effect">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
-                            <span>The Light</span>
-                        </div>
-                    </div>
+                <div class="gallery-masonry-wrapper reveal" id="galleryGrid">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -444,15 +276,15 @@
         <section id="wedding-video" class="section-padding video-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Cinematic Teaser</span>
-                    <h2 class="section-title">Pre-Wedding Video</h2>
+                    <span class="sub-title" id="videoSubTitle">Cinematic Teaser</span>
+                    <h2 class="section-title" id="videoTitle">Pre-Wedding Video</h2>
                     <div class="section-divider"></div>
                 </div>
 
                 <div class="video-player-wrapper reveal glass-card">
                     <!-- Standard video node with customized play controls -->
                     <video id="teaser-video" poster="images/video_thumb.png" preload="none">
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-beautiful-bride-in-her-wedding-dress-41584-large.mp4" type="video/mp4">
+                        <source src="" type="video/mp4" id="videoSource">
                         Your browser does not support the video tag.
                     </video>
                     
@@ -477,8 +309,8 @@
         <section id="family" class="section-padding family-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">With Blessings Of</span>
-                    <h2 class="section-title">The Families</h2>
+                    <span class="sub-title" id="familySubTitle">With Blessings Of</span>
+                    <h2 class="section-title" id="familyTitle">The Families</h2>
                     <div class="section-divider"></div>
                 </div>
 
@@ -486,19 +318,19 @@
                     <!-- Groom Parents -->
                     <div class="family-card reveal reveal-left glass-card">
                         <div class="family-icon"><i class="fa-solid fa-house-chimney-window"></i></div>
-                        <h3>Groom's Family</h3>
-                        <p class="family-parent-heading">Parents of the Groom</p>
-                        <p class="parent-names">Mr. Tariq Malik<br>& Mrs. Hira Malik</p>
-                        <p class="family-blessing-text">"Praise be to Allah who has united our families and blessed our son Zayn with a beautiful soul partner."</p>
+                        <h3 id="groomFamilyTitle">Groom's Family</h3>
+                        <p class="family-parent-heading" id="groomFamilyHeading">Parents of the Groom</p>
+                        <p class="parent-names" id="groomFamilyNames">Mr. Tariq Malik<br>& Mrs. Hira Malik</p>
+                        <p class="family-blessing-text" id="groomFamilyBlessing">"Praise be to Allah who has united our families and blessed our son Zayn with a beautiful soul partner."</p>
                     </div>
 
                     <!-- Bride Parents -->
                     <div class="family-card reveal reveal-right glass-card">
                         <div class="family-icon"><i class="fa-solid fa-house-chimney-user"></i></div>
-                        <h3>Bride's Family</h3>
-                        <p class="family-parent-heading">Parents of the Bride</p>
-                        <p class="parent-names">Mr. Farhan Siddiqui<br>& Mrs. Naila Siddiqui</p>
-                        <p class="family-blessing-text">"We welcome Zayn into our hearts and pray that Allah guides our children Aara and Zayn with eternal light."</p>
+                        <h3 id="brideFamilyTitle">Bride's Family</h3>
+                        <p class="family-parent-heading" id="brideFamilyHeading">Parents of the Bride</p>
+                        <p class="parent-names" id="brideFamilyNames">Mr. Farhan Siddiqui<br>& Mrs. Naila Siddiqui</p>
+                        <p class="family-blessing-text" id="brideFamilyBlessing">"We welcome Zayn into our hearts and pray that Allah guides our children Aara and Zayn with eternal light."</p>
                     </div>
                 </div>
             </div>
@@ -508,78 +340,48 @@
         <section id="venue" class="section-padding venue-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Location Details</span>
-                    <h2 class="section-title">How To Get There</h2>
+                    <span class="sub-title" id="venueSubTitle">Location Details</span>
+                    <h2 class="section-title" id="venueTitle">How To Get There</h2>
                     <div class="section-divider"></div>
                 </div>
 
                 <div class="venue-container reveal">
                     <div class="venue-info">
                         <div class="venue-info-box glass-card">
-                            <h4><i class="fa-solid fa-map-location-dot"></i> Primary Venue Address</h4>
-                            <p><strong>The Palace Ballroom</strong></p>
-                            <p>789 Golden Gate Blvd, Astoria Garden, New York, NY 11102</p>
-                            <p>Valet parking services are available at the ballroom entrance gate.</p>
+                            <h4 id="venueCardHeading"><i class="fa-solid fa-map-location-dot"></i> Primary Venue Address</h4>
+                            <p><strong><span id="venueName">The Palace Ballroom</span></strong></p>
+                            <p id="venueAddress">789 Golden Gate Blvd, Astoria Garden, New York, NY 11102</p>
+                            <p id="venueNote">Valet parking services are available at the ballroom entrance gate.</p>
                             <div class="venue-btn-group">
-                                <a href="https://maps.google.com/?q=The+Palace+Ballroom+New+York" 
-                                   target="_blank" rel="noopener noreferrer" class="btn-primary-gold">
-                                    <i class="fa-solid fa-diamond-turn-right"></i> Navigate
+                                <a href="#" id="btnNavigate" target="_blank" rel="noopener noreferrer" class="btn-primary-gold">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> <span id="btnNavigateText">Navigate</span>
                                 </a>
                                 <button id="btn-copy-address" class="btn-outline-gold">
-                                    <i class="fa-solid fa-copy"></i> Copy Address
+                                    <i class="fa-solid fa-copy"></i> <span id="btnCopyAddressText">Copy Address</span>
                                 </button>
                             </div>
                             <div id="copy-success-toast" class="toast-hidden">Address copied to clipboard!</div>
                         </div>
                     </div>
 
-                    <div class="map-embed-wrapper">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540455486!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1684340000000!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="350" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Wedding Venue Map Location">
-                        </iframe>
+                    <div class="map-embed-wrapper" id="mapEmbedWrapper">
+                        <!-- Populated dynamically from data.js -->
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <!-- ==================== SECTION 12: CONTACT CHANNELS ==================== -->
         <section id="contacts" class="section-padding contacts-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="sub-title">Need Help?</span>
-                    <h2 class="section-title">Contact Persons</h2>
+                    <span class="sub-title" id="contactsSubTitle">Need Help?</span>
+                    <h2 class="section-title" id="contactsTitle">Contact Persons</h2>
                     <div class="section-divider"></div>
                 </div>
 
-                <div class="contacts-grid">
-                    <!-- Groom Side Coordinator -->
-                    <div class="contact-card reveal reveal-left glass-card">
-                        <h4>Groom's Side Representative</h4>
-                        <span class="contact-name">Adnan Malik</span>
-                        <span class="contact-relation">Brother of the Groom</span>
-                        <div class="contact-methods">
-                            <a href="tel:+1234567890" class="contact-link"><i class="fa-solid fa-phone"></i> Call +1 (234) 567-890</a>
-                            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="contact-link wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat</a>
-                        </div>
-                    </div>
-
-                    <!-- Bride Side Coordinator -->
-                    <div class="contact-card reveal reveal-right glass-card">
-                        <h4>Bride's Side Representative</h4>
-                        <span class="contact-name">Yasmin Siddiqui</span>
-                        <span class="contact-relation">Sister of the Bride</span>
-                        <div class="contact-methods">
-                            <a href="tel:+0987654321" class="contact-link"><i class="fa-solid fa-phone"></i> Call +1 (098) 765-432</a>
-                            <a href="https://wa.me/0987654321" target="_blank" rel="noopener noreferrer" class="contact-link wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Chat</a>
-                        </div>
-                    </div>
+                <div class="contacts-grid" id="contactsGrid">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -587,15 +389,15 @@
         <!-- ==================== FOOTER ==================== -->
         <footer>
             <div class="footer-container">
-                <div class="footer-monogram">Z&A</div>
-                <h3 class="footer-couple-names">Zayn & Aara</h3>
-                <p class="footer-blessing">May Allah bless our union and fill our home with love, joy, and peace.</p>
+                <div class="footer-monogram" id="footerMonogram">Z&A</div>
+                <h3 class="footer-couple-names" id="footerCoupleNames">Zayn & Aara</h3>
+                <p class="footer-blessing" id="footerBlessing">May Allah bless our union and fill our home with love, joy, and peace.</p>
                 <div class="floral-divider mini">
                     <span class="line"></span>
                     <i class="fa-solid fa-leaf"></i>
                     <span class="line"></span>
                 </div>
-                <p class="copyright-text">&copy; 2026 Zayn & Aara. Created with Love. All Rights Reserved.</p>
+                <p class="copyright-text" id="footerCopyright">&copy; 2026 Zayn & Aara. Created with Love. All Rights Reserved.</p>
             </div>
         </footer>
 
@@ -620,6 +422,7 @@
     </div>
 
     <!-- Main JavaScript Link -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
