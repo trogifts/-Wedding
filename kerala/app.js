@@ -4,6 +4,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log("DOM Loaded - Rendering data & initializing modules...");
+  
+  // Pre-process dates and times to keep it simple for the user
+  processWeddingData();
+  
   renderData();
   initAudio();
   initCoconutReveal();
@@ -14,6 +18,55 @@ document.addEventListener('DOMContentLoaded', () => {
   initSaveDate();
   setupScrollAnimations();
 });
+
+/* ==========================================
+   DATE & TIME PRE-PROCESSOR
+   ========================================== */
+function processWeddingData() {
+  const data = window.weddingData;
+  if (!data || !data.event) return;
+
+  const dateVal = data.event.date || "2027-01-20";
+  const timeVal = data.event.time || "10:00 AM";
+
+  // 1. Helper to convert 12h time ("10:00 AM") to 24h format ("10:00:00")
+  function parseTime24h(t) {
+    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+    if (!match) return "10:00:00";
+    let hr = parseInt(match[1]);
+    const min = match[2];
+    const ampm = match[3].toUpperCase();
+    if (ampm === "PM" && hr < 12) hr += 12;
+    if (ampm === "AM" && hr === 12) hr = 0;
+    return `${String(hr).padStart(2, '0')}:${min}:00`;
+  }
+
+  // 2. Helper to format date to human readable form
+  function formatLocalDate(dStr) {
+    const dateObj = new Date(dStr + "T00:00:00");
+    if (isNaN(dateObj)) return "Monday, January 20, 2027";
+    return dateObj.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  const time24h = parseTime24h(timeVal);
+
+  // Auto-fill calculated fields for countdown and calendar invites
+  data.event.dateTimeString = `${dateVal}T${time24h}`;
+  data.event.dateFormatted = formatLocalDate(dateVal);
+
+  const dateCompact = dateVal.replace(/-/g, '');
+  const timeCompactStart = time24h.replace(/:/g, '');
+  data.event.calendarStart = `${dateCompact}T${timeCompactStart}`;
+
+  const startHr = parseInt(time24h.split(':')[0]);
+  const endHr = Math.min(startHr + 8, 23);
+  data.event.calendarEnd = `${dateCompact}T${String(endHr).padStart(2, '0')}0000`;
+}
 
 /* ==========================================
    0. DYNAMIC DATA RENDERING
@@ -240,7 +293,7 @@ function initCoconutReveal() {
    3. COUNTDOWN TIMER
    ========================================== */
 function initCountdown() {
-  const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "2027-01-18T10:00:00";
+  const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "2027-01-20T10:00:00";
   
   let targetDate = new Date(dateStr).getTime();
   
@@ -250,9 +303,9 @@ function initCountdown() {
     targetDate = new Date(cleaned).getTime();
   }
   
-  // Hard fallback to Jan 18, 2027
+  // Hard fallback to Jan 20, 2027
   if (isNaN(targetDate)) {
-    targetDate = new Date(2027, 0, 18, 10, 0, 0).getTime();
+    targetDate = new Date(2027, 0, 20, 10, 0, 0).getTime();
   }
 
   function update() {
@@ -296,15 +349,9 @@ function initSaveDate() {
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    const data = window.weddingData || {
-      couple: { bride: "Anjali", groom: "Madhav" },
-      event: {
-        venueName: "Bhaskareeyam Lake View",
-        venueAddress: "Elamakkara, Kochi, Kerala, India",
-        calendarStart: "20270118T100000",
-        calendarEnd: "20270118T180000"
-      }
-    };
+    const data = window.weddingData;
+    if (!data || !data.event) return;
+    
     const calendarEvent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
@@ -330,35 +377,10 @@ function initSaveDate() {
 }
 
 /* ==========================================
-   5. GIFT REGISTRY CONTRIBUTION ACTION (Defensive placeholder)
+   5. GIFT REGISTRY CONTRIBUTION ACTION
    ========================================== */
 function initRegistry() {
-  const buttons = document.querySelectorAll('.registry-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const fundName = e.target.getAttribute('data-fund');
-      showToastNotification(`Nandi! Thank you so much for contributing to our ${fundName}!`);
-    });
-  });
-}
-
-function showToastNotification(message) {
-  const existing = document.querySelector('.toast-notification');
-  if (existing) existing.remove();
-
-  const toast = document.createElement('div');
-  toast.className = 'toast-notification';
-  toast.innerText = message;
-  document.body.appendChild(toast);
-
-  setTimeout(() => {
-    toast.classList.add('show');
-  }, 50);
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 600);
-  }, 4000);
+  // Purged
 }
 
 /* ==========================================
@@ -387,7 +409,7 @@ function initFaqs() {
 }
 
 /* ==========================================
-   7. RSVP STATE MANAGEMENT (Defensive fallback if needed)
+   7. RSVP STATE MANAGEMENT
    ========================================== */
 function initRsvp() {
   // Purged to keep template static
