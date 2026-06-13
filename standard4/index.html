@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Wedding Invitation - Zayn & Aara. Join us under a magical night sky to celebrate our love.">
-    <title>Wedding of Zayn & Aara - Celestial Night Sky Wedding Invitation</title>
+    <meta name="description" content="Wedding Invitation. Join us under a magical night sky to celebrate our love.">
+    <title id="metaTitle">Wedding of Zayn & Aara - Celestial Night Sky Wedding Invitation</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,18 +50,18 @@
             <div class="cover-crescent-moon"></div>
             
             <div class="cover-content">
-                <span class="cover-lettering">The Cosmic Invitation</span>
+                <span class="cover-lettering" id="coverLettering">The Cosmic Invitation</span>
                 
                 <!-- Couple names with constellations connection overlay -->
-                <div class="cover-names" id="cover-names">
+                <div class="cover-names" id="coverNames">
                     Zayn & Aara
                 </div>
                 
-                <span class="cover-subtitle">Are Getting Married</span>
+                <span class="cover-subtitle" id="coverSubtitle">Are Getting Married</span>
                 
                 <!-- Personalized Guest Welcome Box -->
                 <div class="cover-personalized-box" id="personalized-welcome">
-                    <span class="cover-dear-tag">Dear Guest</span>
+                    <span class="cover-dear-tag" id="coverDear">Dear Guest</span>
                     <div class="cover-guest-name" id="guest-name-display">Honored Guest</div>
                     <p class="cover-greeting-phrase" id="guest-welcome-text">
                         Destiny has written your name among our stars. Join us as we celebrate our love under the moonlit sky.
@@ -70,7 +70,7 @@
                 
                 <!-- Open button -->
                 <button class="btn-open-cosmic" id="btn-open-cosmic" aria-label="Open Cosmic Invitation">
-                    Open Invitation
+                    <span id="openInviteButtonText">Open Invitation</span>
                 </button>
             </div>
         </div>
@@ -81,7 +81,7 @@
        ========================================================================== -->
     <header id="main-header" class="content-hidden">
         <div class="header-container">
-            <a href="#" class="brand-monogram">Z&A</a>
+            <a href="#" class="brand-monogram" id="headerLogo">Z&A</a>
         </div>
     </header>
 
@@ -92,7 +92,7 @@
             <i class="fa-solid fa-volume-xmark"></i>
         </button>
         <!-- Quick WhatsApp -->
-        <a href="https://wa.me/919876543210" target="_blank" class="floating-widget-btn floating-whatsapp-btn" id="floating-whatsapp" aria-label="WhatsApp Us">
+        <a href="#" class="floating-widget-btn floating-whatsapp-btn" id="floating-whatsapp" aria-label="WhatsApp Us">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
     </div>
@@ -107,18 +107,18 @@
            ========================================================================== -->
         <section class="hero-section" id="home">
             <div class="hero-content">
-                <span class="hero-cosmic-tag">The Celestial Celebration</span>
-                <h1 class="hero-names">Zayn & Aara</h1>
+                <span class="hero-cosmic-tag" id="heroIntroScript">The Celestial Celebration</span>
+                <h1 class="hero-names" id="heroNames">Zayn & Aara</h1>
                 <div class="celestial-separator">
                     <div class="constellation-line"></div>
                     <i class="fa-solid fa-star"></i>
                     <div class="constellation-line"></div>
                 </div>
-                <div class="hero-welcome-phrase" id="hero-welcome-phrase">Join Us Under The Stars</div>
+                <div class="hero-welcome-phrase" id="heroWelcomePhrase">Join Us Under The Stars</div>
                 
                 <div class="hero-details-box">
-                    <div class="hero-date-text">December 12, 2026</div>
-                    <div class="hero-lunar-date">Under the Glow of a Crescent Moon</div>
+                    <div class="hero-date-text" id="heroDate">December 12, 2026</div>
+                    <div class="hero-lunar-date" id="heroLunarDate">Under the Glow of a Crescent Moon</div>
                 </div>
             </div>
         </section>
@@ -129,8 +129,8 @@
         <section class="section-padding" id="couple-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Written in the Stars</span>
-                    <h2 class="section-title">The Bride & Groom</h2>
+                    <span class="sub-title" id="coupleSubTitle">Written in the Stars</span>
+                    <h2 class="section-title" id="coupleTitle">The Bride & Groom</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-moon"></i>
@@ -144,17 +144,17 @@
                         <div class="lunar-frame-container">
                             <div class="lunar-bg-glow"></div>
                             <div class="lunar-photo-mask">
-                                <img src="images/groom.png" alt="Zayn Malik - Groom" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400';">
+                                <img src="images/groom.png" id="groomImg" alt="Groom">
                             </div>
                         </div>
-                        <span class="profile-role-tag">The Groom</span>
-                        <h3 class="profile-name-text">Zayn Malik</h3>
-                        <p class="profile-bio-text">
+                        <span class="profile-role-tag" id="groomRoleTag">The Groom</span>
+                        <h3 class="profile-name-text" id="groomName">Zayn Malik</h3>
+                        <p class="profile-bio-text" id="groomBio">
                             A stargazing architect who loves mapping constellations and designing dreams. He found his true north in Aara.
                         </p>
                         <div class="family-box-card">
-                            <span class="family-member-label">Parents of Groom</span>
-                            <span class="family-member-names">Mr. Bilal & Mrs. Amina Malik</span>
+                            <span class="family-member-label" id="groomParentsLabel">Parents of Groom</span>
+                            <span class="family-member-names" id="groomParentsNames">Mr. Bilal & Mrs. Amina Malik</span>
                         </div>
                     </div>
 
@@ -163,17 +163,17 @@
                         <div class="lunar-frame-container">
                             <div class="lunar-bg-glow"></div>
                             <div class="lunar-photo-mask">
-                                <img src="images/bride.png" alt="Aara Ibrahim - Bride" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400';">
+                                <img src="images/bride.png" id="brideImg" alt="Bride">
                             </div>
                         </div>
-                        <span class="profile-role-tag">The Bride</span>
-                        <h3 class="profile-name-text">Aara Ibrahim</h3>
-                        <p class="profile-bio-text">
+                        <span class="profile-role-tag" id="brideRoleTag">The Bride</span>
+                        <h3 class="profile-name-text" id="brideName">Aara Ibrahim</h3>
+                        <p class="profile-bio-text" id="brideBio">
                             A romantic astrophysicist who spends her nights looking at nebulas. She believes that their souls were bound in stardust.
                         </p>
                         <div class="family-box-card">
-                            <span class="family-member-label">Parents of Bride</span>
-                            <span class="family-member-names">Mr. Tariq & Mrs. Yasmin Ibrahim</span>
+                            <span class="family-member-label" id="brideParentsLabel">Parents of Bride</span>
+                            <span class="family-member-names" id="brideParentsNames">Mr. Tariq & Mrs. Yasmin Ibrahim</span>
                         </div>
                     </div>
                 </div>
@@ -186,8 +186,8 @@
         <section class="section-padding" id="story-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Our Celestial Journey</span>
-                    <h2 class="section-title">The Love Timeline</h2>
+                    <span class="sub-title" id="storySubTitle">Our Celestial Journey</span>
+                    <h2 class="section-title" id="storyTitle">The Love Timeline</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-star-and-crescent"></i>
@@ -195,50 +195,8 @@
                     </div>
                 </div>
 
-                <div class="constellation-timeline-wrapper">
-                    <!-- Node 1 -->
-                    <div class="timeline-constellation-node" id="story-node-1">
-                        <div class="timeline-card">
-                            <span class="timeline-date-tag">September 14, 2024</span>
-                            <h3 class="timeline-title-text">First Alignment</h3>
-                            <p class="timeline-desc-text">
-                                We met at a stargazing camping retreat in the mountains. Amidst telescope alignments and cool mountain breezes, our orbits crossed.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Node 2 -->
-                    <div class="timeline-constellation-node" id="story-node-2">
-                        <div class="timeline-card">
-                            <span class="timeline-date-tag">November 20, 2024</span>
-                            <h3 class="timeline-title-text">The First Date</h3>
-                            <p class="timeline-desc-text">
-                                Over warm hot chocolate and endless conversations about universe theories, we spent hours talking under the city’s moonlit skyline.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Node 3 -->
-                    <div class="timeline-constellation-node" id="story-node-3">
-                        <div class="timeline-card">
-                            <span class="timeline-date-tag">August 12, 2025</span>
-                            <h3 class="timeline-title-text">The Perseids Proposal</h3>
-                            <p class="timeline-desc-text">
-                                Under a peak Perseid meteor shower, Zayn pointed to a shooting star, got down on one knee, and asked Aara to share her cosmos with him.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Node 4 -->
-                    <div class="timeline-constellation-node" id="story-node-4">
-                        <div class="timeline-card">
-                            <span class="timeline-date-tag">December 12, 2026</span>
-                            <h3 class="timeline-title-text">The Wedding Day</h3>
-                            <p class="timeline-desc-text">
-                                Today, we seal our love forever. Written in the constellations and witnessed by those we hold dearest.
-                            </p>
-                        </div>
-                    </div>
+                <div class="constellation-timeline-wrapper" id="timelineContainer">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -249,8 +207,8 @@
         <section class="section-padding" id="events-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Celestial Registry</span>
-                    <h2 class="section-title">The Star Map Schedule</h2>
+                    <span class="sub-title" id="eventsSubTitle">Celestial Registry</span>
+                    <h2 class="section-title" id="eventsTitle">The Star Map Schedule</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-compass"></i>
@@ -258,81 +216,8 @@
                     </div>
                 </div>
 
-                <div class="events-schedule-grid">
-                    <!-- Event 1: Mehendi -->
-                    <div class="event-map-card">
-                        <div class="event-starmap-header"></div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Mehendi Ceremony</h3>
-                            <div class="event-details-list">
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-calendar-day"></i>
-                                    <span class="row-label">Date</span>
-                                    <span class="row-value">Friday, December 11, 2026</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <span class="row-label">Time</span>
-                                    <span class="row-value">06:30 PM IST</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-hotel"></i>
-                                    <span class="row-label">Location</span>
-                                    <span class="row-value">Starry Canopy Gardens, Lawn B</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event 2: Nikkah -->
-                    <div class="event-map-card">
-                        <div class="event-starmap-header"></div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Nikkah Ceremony</h3>
-                            <div class="event-details-list">
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-calendar-day"></i>
-                                    <span class="row-label">Date</span>
-                                    <span class="row-value">Saturday, December 12, 2026</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <span class="row-label">Time</span>
-                                    <span class="row-value">04:30 PM IST</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-hotel"></i>
-                                    <span class="row-label">Location</span>
-                                    <span class="row-value">Grand Starlight Palace, Hall A</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Event 3: Reception -->
-                    <div class="event-map-card">
-                        <div class="event-starmap-header"></div>
-                        <div class="event-card-content">
-                            <h3 class="event-card-title">Grand Reception</h3>
-                            <div class="event-details-list">
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-calendar-day"></i>
-                                    <span class="row-label">Date</span>
-                                    <span class="row-value">Sunday, December 13, 2026</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-clock"></i>
-                                    <span class="row-label">Time</span>
-                                    <span class="row-value">07:00 PM IST</span>
-                                </div>
-                                <div class="event-info-row">
-                                    <i class="fa-solid fa-hotel"></i>
-                                    <span class="row-label">Location</span>
-                                    <span class="row-value">Celestial Gardens Resort, Main Lawn</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="events-schedule-grid" id="eventsContainer">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -343,23 +228,23 @@
         <section class="section-padding" id="countdown-section">
             <div class="container">
                 <div class="countdown-box-wrapper">
-                    <h3 class="countdown-timer-title">Counting Down to Our Universe</h3>
+                    <h3 class="countdown-timer-title" id="countdownTitle">Counting Down to Our Universe</h3>
                     <div class="countdown-flex-grid" id="countdown-timer">
                         <div class="countdown-unit-box">
                             <span class="countdown-numeric-value" id="days">00</span>
-                            <span class="countdown-label-value">Days</span>
+                            <span class="countdown-label-value" id="daysLabel">Days</span>
                         </div>
                         <div class="countdown-unit-box">
                             <span class="countdown-numeric-value" id="hours">00</span>
-                            <span class="countdown-label-value">Hours</span>
+                            <span class="countdown-label-value" id="hoursLabel">Hours</span>
                         </div>
                         <div class="countdown-unit-box">
                             <span class="countdown-numeric-value" id="minutes">00</span>
-                            <span class="countdown-label-value">Mins</span>
+                            <span class="countdown-label-value" id="minutesLabel">Mins</span>
                         </div>
                         <div class="countdown-unit-box">
                             <span class="countdown-numeric-value" id="seconds">00</span>
-                            <span class="countdown-label-value">Secs</span>
+                            <span class="countdown-label-value" id="secondsLabel">Secs</span>
                         </div>
                     </div>
                 </div>
@@ -372,8 +257,8 @@
         <section class="section-padding" id="venue-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">The Celebration Grounds</span>
-                    <h2 class="section-title">The Wedding Venue</h2>
+                    <span class="sub-title" id="venueSubTitle">The Celebration Grounds</span>
+                    <h2 class="section-title" id="venueTitle">The Wedding Venue</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-map-location-dot"></i>
@@ -382,22 +267,15 @@
                 </div>
 
                 <div class="venue-widget-box">
-                    <div class="map-iframe-container">
+                    <div class="map-iframe-container" id="mapEmbedWrapper">
                         <!-- Custom styled inverted Dark Google Map -->
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7989975765037!2d72.88283401538356!3d19.07361298708816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c8702c2e0b57%3A0xe5f5d8ab5c4b8b6f!2sHotel%20Sahara%20Star!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Venue Map">
-                        </iframe>
                     </div>
-                    <p class="venue-address-text">
+                    <p class="venue-address-text" id="venueAddress">
                         <strong>Hotel Sahara Star - Grand Ballroom</strong><br>
                         Opposite Domestic Airport, Nehru Road, Vile Parle East, Mumbai, Maharashtra 400099
                     </p>
-                    <a href="https://goo.gl/maps/W5H5P2WSt97J2" target="_blank" class="btn-directions-link">
-                        <i class="fa-solid fa-location-arrow"></i> Navigate to Venue
+                    <a href="#" target="_blank" class="btn-directions-link" id="btnDirections">
+                        <i class="fa-solid fa-location-arrow"></i> <span id="directionsButtonText">Navigate to Venue</span>
                     </a>
                 </div>
             </div>
@@ -409,8 +287,8 @@
         <section class="section-padding" id="gallery-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Capturing Starlight</span>
-                    <h2 class="section-title">Celestial Gallery</h2>
+                    <span class="sub-title" id="gallerySubTitle">Capturing Starlight</span>
+                    <h2 class="section-title" id="galleryTitle">Celestial Gallery</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-images"></i>
@@ -420,29 +298,7 @@
 
                 <!-- Swipeable Stack of Gallery cards -->
                 <div class="polaroid-gallery-wrapper" id="polaroid-gallery">
-                    <!-- Card 1 -->
-                    <div class="star-card-gallery active-stack" data-index="0">
-                        <div class="gallery-img-frame">
-                            <img src="images/gallery1.png" alt="Stargazing Proposal" onerror="this.src='https://images.unsplash.com/photo-1472552947054-a6976ddde122?auto=format&fit=crop&q=80&w=400';">
-                        </div>
-                        <h4 class="gallery-caption-title">Under the Milky Way</h4>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="star-card-gallery stack-2" data-index="1">
-                        <div class="gallery-img-frame">
-                            <img src="images/gallery2.png" alt="Love in the Stars" onerror="this.src='https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?auto=format&fit=crop&q=80&w=400';">
-                        </div>
-                        <h4 class="gallery-caption-title">Starlight Vows</h4>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="star-card-gallery stack-3" data-index="2">
-                        <div class="gallery-img-frame">
-                            <img src="images/gallery3.png" alt="Cosmic Connection" onerror="this.src='https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80&w=400';">
-                        </div>
-                        <h4 class="gallery-caption-title">Infinite Galaxies</h4>
-                    </div>
+                    <!-- Populated dynamically from data.js -->
                 </div>
 
                 <!-- Navigation arrows -->
@@ -474,8 +330,8 @@
         <section class="section-padding" id="interactive-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Interact with the Cosmos</span>
-                    <h2 class="section-title">Celestial Blessings</h2>
+                    <span class="sub-title" id="interactiveSubTitle">Interact with the Cosmos</span>
+                    <h2 class="section-title" id="interactiveTitle">Celestial Blessings</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
@@ -484,8 +340,8 @@
                 </div>
 
                 <div class="lunar-blessing-box">
-                    <h3>Tap the Blessing Moon</h3>
-                    <p>Tap the glowing crescent moon to receive a blessing from the universe.</p>
+                    <h3 id="moonBlessingInstruction">Tap the Blessing Moon</h3>
+                    <p id="moonBlessingDesc">Tap the glowing crescent moon to receive a blessing from the universe.</p>
                     
                     <div class="interactive-moon-svg-container" id="blessing-moon-widget">
                         <!-- Crescent moon SVG -->
@@ -510,8 +366,8 @@
         <section class="section-padding" id="game-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Connect the Stars</span>
-                    <h2 class="section-title">Constellation Creator</h2>
+                    <span class="sub-title" id="gameSubTitle">Connect the Stars</span>
+                    <h2 class="section-title" id="gameTitle">Constellation Creator</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-draw-polygon"></i>
@@ -520,8 +376,8 @@
                 </div>
 
                 <div class="constellation-game-box">
-                    <h3>Draw Our Love Constellation</h3>
-                    <p>Swipe or drag to connect the glowing star nodes sequentially. Connect all 5 stars to reveal a love quote!</p>
+                    <h3 id="gameInstructionTitle">Draw Our Love Constellation</h3>
+                    <p id="gameInstructionDesc">Swipe or drag to connect the glowing star nodes sequentially. Connect all 5 stars to reveal a love quote!</p>
                     
                     <div class="game-canvas-wrapper">
                         <canvas class="constellation-canvas" id="constellation-canvas" width="320" height="320"></canvas>
@@ -538,16 +394,14 @@
             </div>
         </section>
 
-
-
         <!-- ==========================================================================
            14. FAMILY CONTACT ACTIONS
            ========================================================================== -->
         <section class="section-padding" id="contact-section">
             <div class="container">
                 <div class="section-header">
-                    <span class="sub-title">Reach Our Orbit</span>
-                    <h2 class="section-title">Contact & Help</h2>
+                    <span class="sub-title" id="contactsSubTitle">Reach Our Orbit</span>
+                    <h2 class="section-title" id="contactsTitle">Contact & Help</h2>
                     <div class="celestial-separator">
                         <div class="constellation-line"></div>
                         <i class="fa-solid fa-phone-volume"></i>
@@ -555,26 +409,8 @@
                     </div>
                 </div>
 
-                <div class="contact-grid">
-                    <!-- Groom Side contact -->
-                    <div class="contact-card-box scroll-reveal">
-                        <h3 class="contact-card-name">Amina Malik</h3>
-                        <span class="contact-card-relation">Groom's Family Representative</span>
-                        <div class="contact-action-flex">
-                            <a href="tel:+919876543210" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                            <a href="https://wa.me/919876543210" target="_blank" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                        </div>
-                    </div>
-
-                    <!-- Bride Side contact -->
-                    <div class="contact-card-box scroll-reveal">
-                        <h3 class="contact-card-name">Yasmin Ibrahim</h3>
-                        <span class="contact-card-relation">Bride's Family Representative</span>
-                        <div class="contact-action-flex">
-                            <a href="tel:+919123456789" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                            <a href="https://wa.me/919123456789" target="_blank" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                        </div>
-                    </div>
+                <div class="contact-grid" id="contactsContainer">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -584,10 +420,10 @@
            ========================================================================== -->
         <footer class="footer-section">
             <div class="container">
-                <div class="footer-monogram">Z&A</div>
-                <h2 class="footer-names">Zayn & Aara</h2>
-                <div class="footer-thank-you">Thank You For Sharing Our Universe</div>
-                <div class="footer-copyright">
+                <div class="footer-monogram" id="footerMonogram">Z&A</div>
+                <h2 class="footer-names" id="footerNames">Zayn & Aara</h2>
+                <div class="footer-thank-you" id="footerThankYou">Thank You For Sharing Our Universe</div>
+                <div class="footer-copyright" id="footerCopyright">
                     © 2026 Zayn & Aara. Created under a starry sky.
                 </div>
             </div>
@@ -596,6 +432,7 @@
     </main>
 
     <!-- JavaScript code -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

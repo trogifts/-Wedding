@@ -1,60 +1,415 @@
-// ==========================================================================
-// CELESTIAL NIGHT SKY & STARS SCRIPT WIDGETS
-// ==========================================================================
+/**
+ * standard4 - Celestial Night Sky Wedding Invitation Template Client Logic
+ * Handles reveal cover, personalized guest welcoming, music disc toggles,
+ * swipeable polaroid decks, crescent moon blessings, constellation connect canvas game,
+ * and shooting star generators.
+ */
 
 document.addEventListener("DOMContentLoaded", () => {
-    // ----------------------------------------------------------------------
-    // 1. URL QUERY PARAMETER PARSING (PERSONALIZED GUEST GREETING)
-    // ----------------------------------------------------------------------
+    console.log("standard4 template DOM Loaded - Processing data...");
+    
+    // 1. Process date/time configurations
+    processWeddingData();
+
+    // 2. Render all dynamic elements
+    renderData();
+
+    // 3. Initialize Interactive Features
+    parseGuestGreeting();
+    initInviteOpener();
+    initMusicControls();
+    initScrollProgress();
+    initConstellationTimeline();
+    initPolaroidRotator();
+    initBlessingMoon();
+    initConstellationGame();
+    initCountdown();
+});
+
+/* ==========================================
+   DATE & TIME PRE-PROCESSOR
+   ========================================== */
+function processWeddingData() {
+  const data = window.weddingData;
+  if (!data || !data.event) return;
+
+  const dateVal = data.event.date || "2026-12-12";
+  const timeVal = data.event.time || "04:30 PM";
+
+  // Helper to convert 12h time ("04:30 PM") to 24h format ("16:30:00")
+  function parseTime24h(t) {
+    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+    if (!match) return "16:30:00";
+    let hr = parseInt(match[1]);
+    const min = match[2];
+    const ampm = match[3].toUpperCase();
+    if (ampm === "PM" && hr < 12) hr += 12;
+    if (ampm === "AM" && hr === 12) hr = 0;
+    return `${String(hr).padStart(2, '0')}:${min}:00`;
+  }
+
+  // Helper to format date to human readable form
+  function formatLocalDate(dStr) {
+    const dateObj = new Date(dStr + "T00:00:00");
+    if (isNaN(dateObj)) return "Saturday, December 12, 2026";
+    return dateObj.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  const time24h = parseTime24h(timeVal);
+
+  data.event.dateTimeString = `${dateVal}T${time24h}`;
+  data.event.dateFormatted = formatLocalDate(dateVal);
+}
+
+/* ==========================================
+   DYNAMIC DATA RENDERING
+   ========================================== */
+function renderData() {
+  const data = window.weddingData;
+  if (!data) return;
+
+  // Title
+  const metaTitle = document.getElementById('metaTitle');
+  if (metaTitle) metaTitle.innerText = `Wedding of ${data.couple.groom} & ${data.couple.bride} - Celestial Night Sky Wedding Invitation`;
+
+  // Cover Envelope
+  const coverLettering = document.getElementById('coverLettering');
+  if (coverLettering) coverLettering.innerText = data.labels.coverLettering;
+
+  const coverNames = document.getElementById('coverNames');
+  if (coverNames) coverNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+
+  const coverSubtitle = document.getElementById('coverSubtitle');
+  if (coverSubtitle) coverSubtitle.innerText = data.labels.coverSubtitle;
+
+  const coverDear = document.getElementById('coverDear');
+  if (coverDear) coverDear.innerText = data.labels.dear;
+
+  const guestWelcomeText = document.getElementById('guest-welcome-text');
+  if (guestWelcomeText) guestWelcomeText.innerText = data.labels.welcomePhrase;
+
+  const openInviteButtonText = document.getElementById('openInviteButtonText');
+  if (openInviteButtonText) openInviteButtonText.innerText = data.labels.openInviteButton;
+
+  // Background Music URL
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic) {
+    const src = bgMusic.querySelector('source');
+    if (src) src.src = data.event.bgMusicUrl;
+    bgMusic.load();
+  }
+
+  // Floating WhatsApp Link
+  const floatingWhatsapp = document.getElementById('floating-whatsapp');
+  if (floatingWhatsapp) {
+    floatingWhatsapp.href = `https://wa.me/${data.event.whatsappNumber}?text=Hi%20${data.couple.groom}%20and%20${data.couple.bride}!%20I%20have%20an%20inquiry%20about%20the%20wedding%20celebrations.`;
+  }
+
+  // Header Logo
+  const headerLogo = document.getElementById('headerLogo');
+  if (headerLogo) headerLogo.innerText = data.couple.monogram;
+
+  // Hero Section
+  const heroIntroScript = document.getElementById('heroIntroScript');
+  if (heroIntroScript) heroIntroScript.innerText = data.labels.heroIntroScript;
+
+  const heroNames = document.getElementById('heroNames');
+  if (heroNames) heroNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+
+  const heroWelcomePhrase = document.getElementById('heroWelcomePhrase');
+  if (heroWelcomePhrase) heroWelcomePhrase.innerText = data.labels.heroWelcomePhrase;
+
+  const heroDate = document.getElementById('heroDate');
+  if (heroDate) heroDate.innerText = data.event.dateFormatted;
+
+  const heroLunarDate = document.getElementById('heroLunarDate');
+  if (heroLunarDate) heroLunarDate.innerText = data.labels.heroLunarDate;
+
+  // Couple Section Headings
+  const coupleSubTitle = document.getElementById('coupleSubTitle');
+  if (coupleSubTitle) coupleSubTitle.innerText = data.labels.coupleSubTitle;
+
+  const coupleTitle = document.getElementById('coupleTitle');
+  if (coupleTitle) coupleTitle.innerText = data.labels.coupleTitle;
+
+  // Groom Card Detail
+  const groomRoleTag = document.getElementById('groomRoleTag');
+  if (groomRoleTag) groomRoleTag.innerText = data.labels.groomRoleTag;
+
+  const groomName = document.getElementById('groomName');
+  if (groomName) groomName.innerText = data.couple.groomFull;
+
+  const groomBio = document.getElementById('groomBio');
+  if (groomBio) groomBio.innerText = data.coupleDetails.groomBio;
+
+  const groomParentsLabel = document.getElementById('groomParentsLabel');
+  if (groomParentsLabel) groomParentsLabel.innerText = data.labels.groomParentsLabel;
+
+  const groomParentsNames = document.getElementById('groomParentsNames');
+  if (groomParentsNames) groomParentsNames.innerHTML = `${data.coupleDetails.groomParentsFather} & ${data.coupleDetails.groomParentsMother}`;
+
+  // Bride Card Detail
+  const brideRoleTag = document.getElementById('brideRoleTag');
+  if (brideRoleTag) brideRoleTag.innerText = data.labels.brideRoleTag;
+
+  const brideName = document.getElementById('brideName');
+  if (brideName) brideName.innerText = data.couple.brideFull;
+
+  const brideBio = document.getElementById('brideBio');
+  if (brideBio) brideBio.innerText = data.coupleDetails.brideBio;
+
+  const brideParentsLabel = document.getElementById('brideParentsLabel');
+  if (brideParentsLabel) brideParentsLabel.innerText = data.labels.brideParentsLabel;
+
+  const brideParentsNames = document.getElementById('brideParentsNames');
+  if (brideParentsNames) brideParentsNames.innerHTML = `${data.coupleDetails.brideParentsFather} & ${data.coupleDetails.brideParentsMother}`;
+
+  // Story Headings
+  const storySubTitle = document.getElementById('storySubTitle');
+  if (storySubTitle) storySubTitle.innerText = data.labels.storySubTitle;
+
+  const storyTitle = document.getElementById('storyTitle');
+  if (storyTitle) storyTitle.innerText = data.labels.storyTitle;
+
+  // Timeline Stories Render
+  const timelineContainer = document.getElementById('timelineContainer');
+  if (timelineContainer && data.story) {
+    timelineContainer.innerHTML = data.story.map((item, idx) => `
+      <div class="timeline-constellation-node" id="story-node-${idx + 1}">
+          <div class="timeline-card">
+              <span class="timeline-date-tag">${item.date}</span>
+              <h3 class="timeline-title-text">${item.title}</h3>
+              <p class="timeline-desc-text">${item.text}</p>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Events Headings
+  const eventsSubTitle = document.getElementById('eventsSubTitle');
+  if (eventsSubTitle) eventsSubTitle.innerText = data.labels.eventsSubTitle;
+
+  const eventsTitle = document.getElementById('eventsTitle');
+  if (eventsTitle) eventsTitle.innerText = data.labels.eventsTitle;
+
+  // Events List Render
+  const eventsContainer = document.getElementById('eventsContainer');
+  if (eventsContainer && data.itinerary) {
+    eventsContainer.innerHTML = data.itinerary.map(item => `
+      <div class="event-map-card">
+          <div class="event-starmap-header"></div>
+          <div class="event-card-content">
+              <h3 class="event-card-title">${item.title}</h3>
+              <div class="event-details-list">
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-calendar-day"></i>
+                      <span class="row-label">Date</span>
+                      <span class="row-value">${item.date}</span>
+                  </div>
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-clock"></i>
+                      <span class="row-label">Time</span>
+                      <span class="row-value">${item.time}</span>
+                  </div>
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-hotel"></i>
+                      <span class="row-label">Location</span>
+                      <span class="row-value">${item.venue}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Countdown Title
+  const countdownTitle = document.getElementById('countdownTitle');
+  if (countdownTitle) countdownTitle.innerText = data.labels.countdownTitle;
+
+  const daysLabel = document.getElementById('daysLabel');
+  if (daysLabel) daysLabel.innerText = data.labels.days;
+
+  const hoursLabel = document.getElementById('hoursLabel');
+  if (hoursLabel) hoursLabel.innerText = data.labels.hours;
+
+  const minutesLabel = document.getElementById('minutesLabel');
+  if (minutesLabel) minutesLabel.innerText = data.labels.minutes;
+
+  const secondsLabel = document.getElementById('secondsLabel');
+  if (secondsLabel) secondsLabel.innerText = data.labels.seconds;
+
+  // Venue Headings
+  const venueSubTitle = document.getElementById('venueSubTitle');
+  if (venueSubTitle) venueSubTitle.innerText = data.labels.venueSubTitle;
+
+  const venueTitle = document.getElementById('venueTitle');
+  if (venueTitle) venueTitle.innerText = data.labels.venueTitle;
+
+  const venueAddress = document.getElementById('venueAddress');
+  if (venueAddress) venueAddress.innerHTML = `<strong>${data.event.venueName}</strong><br>${data.event.venueAddress}`;
+
+  const directionsButtonText = document.getElementById('directionsButtonText');
+  if (directionsButtonText) directionsButtonText.innerText = data.labels.directionsButtonText;
+
+  const btnDirections = document.getElementById('btnDirections');
+  if (btnDirections) {
+    btnDirections.href = data.event.mapDirectionsUrl;
+  }
+
+  // Google Map embed
+  const mapEmbedWrapper = document.getElementById('mapEmbedWrapper');
+  if (mapEmbedWrapper) {
+    mapEmbedWrapper.innerHTML = `
+      <iframe src="${data.event.mapEmbedUrl}" 
+              width="100%" height="100%" style="border:0;"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Venue Map"></iframe>
+    `;
+  }
+
+  // Gallery Headings
+  const gallerySubTitle = document.getElementById('gallerySubTitle');
+  if (gallerySubTitle) gallerySubTitle.innerText = data.labels.gallerySubTitle;
+
+  const galleryTitle = document.getElementById('galleryTitle');
+  if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
+
+  // Gallery Cards render
+  const polaroidGallery = document.getElementById('polaroid-gallery');
+  if (polaroidGallery && data.gallery) {
+    polaroidGallery.innerHTML = data.gallery.map((item, idx) => `
+      <div class="star-card-gallery ${idx === 0 ? 'active-stack' : (idx === 1 ? 'stack-2' : 'stack-3')}" data-index="${idx}">
+          <div class="gallery-img-frame">
+              <img src="${item.src}" alt="${item.title}">
+          </div>
+          <h4 class="gallery-caption-title">${item.title}</h4>
+      </div>
+    `).join('');
+  }
+
+  // Interactive headings
+  const interactiveSubTitle = document.getElementById('interactiveSubTitle');
+  if (interactiveSubTitle) interactiveSubTitle.innerText = data.labels.interactiveSubTitle;
+
+  const interactiveTitle = document.getElementById('interactiveTitle');
+  if (interactiveTitle) interactiveTitle.innerText = data.labels.interactiveTitle;
+
+  const moonBlessingInstruction = document.getElementById('moonBlessingInstruction');
+  if (moonBlessingInstruction) moonBlessingInstruction.innerText = data.labels.interactiveTitle;
+
+  // Constellation Game headings
+  const gameSubTitle = document.getElementById('gameSubTitle');
+  if (gameSubTitle) gameSubTitle.innerText = data.labels.gameSubTitle;
+
+  const gameTitle = document.getElementById('gameTitle');
+  if (gameTitle) gameTitle.innerText = data.labels.gameTitle;
+
+  const gameInstructionTitle = document.getElementById('gameInstructionTitle');
+  if (gameInstructionTitle) gameInstructionTitle.innerText = data.labels.gameTitle;
+
+  const constellationQuoteText = document.getElementById('constellation-quote-text');
+  if (constellationQuoteText && data.interactiveCeremonies) {
+    constellationQuoteText.innerText = data.interactiveCeremonies.constellationGameQuote;
+  }
+
+  // Family Contacts Headings
+  const contactsSubTitle = document.getElementById('contactsSubTitle');
+  if (contactsSubTitle) contactsSubTitle.innerText = data.labels.contactsSubTitle;
+
+  const contactsTitle = document.getElementById('contactsTitle');
+  if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
+
+  // Family Contacts Render
+  const contactsContainer = document.getElementById('contactsContainer');
+  if (contactsContainer && data.contacts) {
+    contactsContainer.innerHTML = data.contacts.map(contact => `
+      <div class="contact-card-box scroll-reveal">
+          <h3 class="contact-card-name">${contact.name}</h3>
+          <span class="contact-card-relation">${contact.relation}</span>
+          <div class="contact-action-flex">
+              <a href="tel:${contact.phone.replace(/[\s()-]/g, '')}" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> ${data.labels.contactsCallLabel}</a>
+              <a href="https://wa.me/${contact.whatsapp}" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> ${data.labels.contactsChatLabel}</a>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Footer Render
+  const footerMonogram = document.getElementById('footerMonogram');
+  if (footerMonogram) footerMonogram.innerText = data.couple.monogram;
+
+  const footerNames = document.getElementById('footerNames');
+  if (footerNames) footerNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+
+  const footerThankYou = document.getElementById('footerThankYou');
+  if (footerThankYou) footerThankYou.innerText = data.couple.tagline;
+
+  const footerCopyright = document.getElementById('footerCopyright');
+  if (footerCopyright) footerCopyright.innerText = `© 2026 ${data.couple.groom} & ${data.couple.bride}. Created under a starry sky.`;
+}
+
+/* ==========================================
+   PERSONALIZED WELCOME PARSER
+   ========================================== */
+function parseGuestGreeting() {
     const urlParams = new URLSearchParams(window.location.search);
     let guestName = urlParams.get("guest") || urlParams.get("g");
     
     const guestNameDisplay = document.getElementById("guest-name-display");
     const guestWelcomeText = document.getElementById("guest-welcome-text");
     const heroWelcomePhrase = document.getElementById("hero-welcome-phrase");
-    const rsvpNameField = document.getElementById("rsvp-name");
-    const wishesSenderField = document.getElementById("wish-sender");
-    const lanternSenderField = document.getElementById("lantern-sender");
+
+    const defaultWelcome = (window.weddingData && window.weddingData.labels.welcomePhrase) || "Destiny has written your name among our stars. Join us as we celebrate our love under the moonlit sky.";
 
     if (guestName) {
-        // Sanitize name to prevent XSS
         guestName = sanitizeInput(guestName);
-        
-        // Update Cover Overlay Greeting
         if (guestNameDisplay) guestNameDisplay.textContent = guestName;
         if (guestWelcomeText) {
             guestWelcomeText.innerHTML = `Dear <strong>${guestName}</strong>, destiny has written your name among our stars. Join us as we celebrate our love under the moonlit sky.`;
         }
-        
-        // Update Hero Welcome Title
         if (heroWelcomePhrase) {
             heroWelcomePhrase.innerHTML = `Welcome <strong>${guestName}</strong>,<br>Join Us Under The Stars`;
         }
-        
-        // Pre-fill RSVP and wishes name fields
-        if (rsvpNameField) rsvpNameField.value = guestName;
-        if (wishesSenderField) wishesSenderField.value = guestName;
-        if (lanternSenderField) lanternSenderField.value = guestName;
+    } else {
+        if (guestNameDisplay) guestNameDisplay.textContent = (window.weddingData && window.weddingData.labels.defaultGuestName) || "Honored Guest";
+        if (guestWelcomeText) guestWelcomeText.textContent = defaultWelcome;
+        if (heroWelcomePhrase) heroWelcomePhrase.textContent = (window.weddingData && window.weddingData.labels.heroWelcomePhrase) || "Join Us Under The Stars";
     }
+}
 
-    function sanitizeInput(str) {
-        return str.replace(/[&<>"']/g, function(m) {
-            return {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            }[m];
-        });
-    }
+function sanitizeInput(str) {
+    return str.replace(/[&<>"']/g, function(m) {
+        return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        }[m];
+    });
+}
 
-    // ----------------------------------------------------------------------
-    // 2. STARS BG TWINKLING & DYNAMIC COVER GENERATOR
-    // ----------------------------------------------------------------------
+/* ==========================================
+   OPEN COVERS AND REVEAL SYSTEM
+   ========================================== */
+let huntInterval = null;
+function initInviteOpener() {
+    const btnOpenCosmic = document.getElementById("btn-open-cosmic");
+    const loadingOverlay = document.getElementById("loading-overlay");
+    const mainHeader = document.getElementById("main-header");
+    const mainContent = document.getElementById("main-content");
+    const floatingWidgets = document.getElementById("floating-widgets");
+    const bgMusic = document.getElementById("bg-music");
+    const musicToggleBtn = document.getElementById("music-toggle-btn");
+
+    // Populate stars cover
     const coverStarfield = document.getElementById("cover-starfield");
     if (coverStarfield) {
-        // Populate random stars inside the cover background
         for (let i = 0; i < 40; i++) {
             const star = document.createElement("div");
             star.className = "star-point";
@@ -66,20 +421,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ----------------------------------------------------------------------
-    // 3. COSMIC OPEN ENVELOPE WIPE
-    // ----------------------------------------------------------------------
-    const btnOpenCosmic = document.getElementById("btn-open-cosmic");
-    const loadingOverlay = document.getElementById("loading-overlay");
-    const mainHeader = document.getElementById("main-header");
-    const mainContent = document.getElementById("main-content");
-    const floatingWidgets = document.getElementById("floating-widgets");
-    const bgMusic = document.getElementById("bg-music");
-    const musicToggleBtn = document.getElementById("music-toggle-btn");
-
     if (btnOpenCosmic) {
         btnOpenCosmic.addEventListener("click", () => {
-            // Play Background Music
             if (bgMusic) {
                 bgMusic.play().then(() => {
                     if (musicToggleBtn) {
@@ -92,99 +435,238 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // Animate overlay removal
-            if (loadingOverlay) {
-                loadingOverlay.classList.add("fade-out");
-            }
+            if (loadingOverlay) loadingOverlay.classList.add("fade-out");
 
-            // Expose main website sections
             if (mainHeader) mainHeader.classList.remove("content-hidden");
             if (floatingWidgets) floatingWidgets.classList.remove("content-hidden");
             if (mainContent) {
                 mainContent.classList.remove("content-hidden");
-                // Allow a small delay to register display block for transition
                 setTimeout(() => {
                     mainContent.classList.add("fade-in");
-                    // Trigger introductory shooting stars
                     triggerInitialMeteorShower();
-                    // Project Guest Name briefly in constellations
+                    
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let guestName = urlParams.get("guest") || urlParams.get("g");
                     if (guestName) {
-                        projectGuestNameConstellation(guestName);
+                        projectGuestNameConstellation(sanitizeInput(guestName));
                     }
                 }, 50);
             }
-        });
-    }
 
-    // Project Name in the Stars (Temporary Toast Overlay)
-    function projectGuestNameConstellation(name) {
-        const projection = document.createElement("div");
-        projection.style.position = "fixed";
-        projection.style.top = "40%";
-        projection.style.left = "50%";
-        projection.style.transform = "translate(-50%, -50%)";
-        projection.style.color = "var(--color-silver)";
-        projection.style.fontFamily = "var(--font-serif-decorative)";
-        projection.style.fontSize = "clamp(1.5rem, 5vw, 2.5rem)";
-        projection.style.textAlign = "center";
-        projection.style.zIndex = "9999";
-        projection.style.pointerEvents = "none";
-        projection.style.textShadow = "0 0 15px rgba(255,255,255,0.7), 0 0 30px var(--color-indigo)";
-        projection.style.opacity = "0";
-        projection.style.transition = "all 2.5s ease";
-        projection.innerHTML = `<span style="font-size:0.7rem; letter-spacing:4px; display:block; color:var(--color-text-gold); margin-bottom:10px;">CONSTELLATION ALIGNED</span>${name.toUpperCase()}`;
-        
-        document.body.appendChild(projection);
-
-        setTimeout(() => {
-            projection.style.opacity = "1";
-            projection.style.transform = "translate(-50%, -60%) scale(1.05)";
-        }, 800);
-
-        setTimeout(() => {
-            projection.style.opacity = "0";
-            projection.style.transform = "translate(-50%, -80%) scale(0.9)";
-        }, 4000);
-
-        setTimeout(() => {
-            projection.remove();
-        }, 6500);
-    }
-
-    function triggerInitialMeteorShower() {
-        for (let i = 0; i < 4; i++) {
+            // Starmap story hunt interval
             setTimeout(() => {
-                spawnShootingStar(
-                    Math.random() * window.innerWidth * 0.8,
-                    Math.random() * window.innerHeight * 0.4
-                );
-            }, i * 400);
-        }
-    }
-
-    // ----------------------------------------------------------------------
-    // 4. MUSIC PLAYER AUDIO CONTROLLER
-    // ----------------------------------------------------------------------
-    if (musicToggleBtn && bgMusic) {
-        musicToggleBtn.addEventListener("click", () => {
-            if (bgMusic.paused) {
-                bgMusic.play();
-                musicToggleBtn.classList.remove("muted");
-                musicToggleBtn.classList.add("playing");
-                musicToggleBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
-            } else {
-                bgMusic.pause();
-                musicToggleBtn.classList.remove("playing");
-                musicToggleBtn.classList.add("muted");
-                musicToggleBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-            }
+                spawnHuntingStarLoop();
+                huntInterval = setInterval(spawnHuntingStarLoop, 18000);
+            }, 6000);
         });
     }
 
-    // ----------------------------------------------------------------------
-    // 5. SCROLL PROGRESS INDICATOR & HEADER STYLE ON SCROLL
-    // ----------------------------------------------------------------------
+    // Make starsbg clickable for shooting star wishes
+    const starsBg = document.getElementById("stars-bg");
+    if (starsBg) {
+        starsBg.addEventListener("click", (e) => {
+            spawnShootingStar(e.clientX, e.clientY);
+            const data = window.weddingData;
+            const romanticWishes = (data && data.interactiveCeremonies && data.interactiveCeremonies.shootingStarWishes) || [
+                "Your wish has been carried to the stars.",
+                "Thank you for sending your blessings.",
+                "A shooting star has captured your love.",
+                "Love is the gravity of our solar system.",
+                "Two stars, one beautiful universe."
+            ];
+            const msg = romanticWishes[Math.floor(Math.random() * romanticWishes.length)];
+            showWishToast(msg);
+        });
+    }
+}
+
+function projectGuestNameConstellation(name) {
+    const projection = document.createElement("div");
+    projection.style.position = "fixed";
+    projection.style.top = "40%";
+    projection.style.left = "50%";
+    projection.style.transform = "translate(-50%, -50%)";
+    projection.style.color = "var(--color-silver)";
+    projection.style.fontFamily = "var(--font-serif-decorative)";
+    projection.style.fontSize = "clamp(1.5rem, 5vw, 2.5rem)";
+    projection.style.textAlign = "center";
+    projection.style.zIndex = "9999";
+    projection.style.pointerEvents = "none";
+    projection.style.textShadow = "0 0 15px rgba(255,255,255,0.7), 0 0 30px var(--color-indigo)";
+    projection.style.opacity = "0";
+    projection.style.transition = "all 2.5s ease";
+    projection.innerHTML = `<span style="font-size:0.7rem; letter-spacing:4px; display:block; color:var(--color-text-gold); margin-bottom:10px;">CONSTELLATION ALIGNED</span>${name.toUpperCase()}`;
+    
+    document.body.appendChild(projection);
+
+    setTimeout(() => {
+        projection.style.opacity = "1";
+        projection.style.transform = "translate(-50%, -60%) scale(1.05)";
+    }, 800);
+
+    setTimeout(() => {
+        projection.style.opacity = "0";
+        projection.style.transform = "translate(-50%, -80%) scale(0.9)";
+    }, 4000);
+
+    setTimeout(() => {
+        projection.remove();
+    }, 6500);
+}
+
+function triggerInitialMeteorShower() {
+    for (let i = 0; i < 4; i++) {
+        setTimeout(() => {
+            spawnShootingStar(
+                Math.random() * window.innerWidth * 0.8,
+                Math.random() * window.innerHeight * 0.4
+            );
+        }, i * 400);
+    }
+}
+
+function spawnShootingStar(x, y) {
+    const overlay = document.getElementById("shooting-star-canvas-overlay");
+    if (!overlay) return;
+
+    const star = document.createElement("div");
+    star.className = "triggered-shooting-star";
+    
+    const angle = 25 + Math.random() * 20; 
+    star.style.left = `${x}px`;
+    star.style.top = `${y}px`;
+    star.style.setProperty("--angle", `${angle}deg`);
+    
+    overlay.appendChild(star);
+
+    setTimeout(() => {
+        star.remove();
+    }, 1100);
+}
+
+function showWishToast(message) {
+    const toast = document.getElementById("star-wish-toast");
+    if (toast) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3000);
+    }
+}
+
+/* ==========================================
+   STORY HUNT LOOP
+   ========================================== */
+function spawnHuntingStarLoop() {
+    const overlay = document.getElementById("shooting-star-canvas-overlay");
+    if (!overlay) return;
+
+    const star = document.createElement("div");
+    star.className = "hunting-shooting-star";
+
+    const startX = -100; 
+    const startY = Math.random() * window.innerHeight * 0.5; 
+    const angle = 20 + Math.random() * 20; 
+    const duration = 2 + Math.random() * 1.5; 
+
+    const distanceX = window.innerWidth + 200;
+    const distanceY = distanceX * Math.tan(angle * Math.PI / 180);
+
+    const endX = startX + distanceX;
+    const endY = startY + distanceY;
+
+    star.style.setProperty("--start-x", `${startX}px`);
+    star.style.setProperty("--start-y", `${startY}px`);
+    star.style.setProperty("--end-x", `${endX}px`);
+    star.style.setProperty("--end-y", `${endY}px`);
+    star.style.setProperty("--angle", `${angle}deg`);
+    star.style.setProperty("--duration", `${duration}s`);
+
+    overlay.appendChild(star);
+
+    const handleCatch = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const rect = star.getBoundingClientRect();
+        const clientX = rect.left + rect.width / 2;
+        const clientY = rect.top + rect.height / 2;
+
+        createSparkleBurst(clientX, clientY);
+        star.remove();
+
+        const data = window.weddingData;
+        const romanticStories = (data && data.interactiveCeremonies && data.interactiveCeremonies.romanticStories) || [
+            "Zayn designed a custom starry constellation map showing how the night sky looked when they first met.",
+            "Aara loves how Zayn always listens patiently to her endless explanations about black holes and nebulas.",
+            "Their favorite stargazing spot is a quiet mountain ridge where the city lights fade completely.",
+            "Zayn claims that Aara's bright eyes possess more luminosity than a young supernova.",
+            "Aara believes they are bound by the gravity of love, destined to orbit each other for infinity."
+        ];
+        const randomStory = romanticStories[Math.floor(Math.random() * romanticStories.length)];
+        showWishToast(`✨ Zayn & Aara's Star Story: "${randomStory}"`);
+    };
+
+    star.addEventListener("mousedown", handleCatch);
+    star.addEventListener("touchstart", handleCatch, { passive: false });
+
+    setTimeout(() => {
+        if (star.parentNode) star.remove();
+    }, duration * 1000);
+}
+
+function createSparkleBurst(x, y) {
+    const particleCount = 15;
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.className = "star-burst-particle";
+        
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 20 + Math.random() * 60; 
+        const mx = Math.cos(angle) * speed;
+        const my = Math.sin(angle) * speed;
+
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        particle.style.setProperty("--mx", `${mx}px`);
+        particle.style.setProperty("--my", `${my}px`);
+
+        document.body.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 700);
+    }
+}
+
+/* ==========================================
+   MUSIC & SCROLL PROGRESS CONTROLLERS
+   ========================================== */
+function initMusicControls() {
+    const bgMusic = document.getElementById("bg-music");
+    const musicToggleBtn = document.getElementById("music-toggle-btn");
+    if (!bgMusic || !musicToggleBtn) return;
+
+    musicToggleBtn.addEventListener("click", () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+            musicToggleBtn.classList.remove("muted");
+            musicToggleBtn.classList.add("playing");
+            musicToggleBtn.innerHTML = '<i class="fa-solid fa-compact-disc"></i>';
+        } else {
+            bgMusic.pause();
+            musicToggleBtn.classList.remove("playing");
+            musicToggleBtn.classList.add("muted");
+            musicToggleBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+        }
+    });
+}
+
+function initScrollProgress() {
     const progressBar = document.getElementById("scroll-progress-bar");
+    const mainHeader = document.getElementById("main-header");
     
     window.addEventListener("scroll", () => {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -195,7 +677,6 @@ document.addEventListener("DOMContentLoaded", () => {
             progressBar.style.width = `${scrollPercent}%`;
         }
 
-        // Make sticky header slightly solid on scroll
         if (mainHeader) {
             if (scrollTop > 50) {
                 mainHeader.style.backgroundColor = "rgba(10, 14, 26, 0.95)";
@@ -208,73 +689,38 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
+}
 
-    // ----------------------------------------------------------------------
-    // 6. CONSTELLATION STORY TIMELINE INTERSECT OBSERVER
-    // ----------------------------------------------------------------------
+/* ==========================================
+   CONSTELLATION TIMELINE ACTIVE OBSERVER
+   ========================================== */
+function initConstellationTimeline() {
     const timelineNodes = document.querySelectorAll(".timeline-constellation-node");
-    
-    if (timelineNodes.length > 0) {
-        const observerOptions = {
-            root: null,
-            rootMargin: "0px 0px -20% 0px",
-            threshold: 0.15
-        };
+    if (timelineNodes.length === 0) return;
 
-        const timelineObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("active");
-                }
-            });
-        }, observerOptions);
+    const observerOptions = {
+        root: null,
+        rootMargin: "0px 0px -20% 0px",
+        threshold: 0.15
+    };
 
-        timelineNodes.forEach(node => {
-            timelineObserver.observe(node);
-        });
-    }
-
-    // ----------------------------------------------------------------------
-    // 7. COUNTDOWN CELESTIAL TIMER
-    // ----------------------------------------------------------------------
-    // Target date: Dec 12, 2026 16:30:00 (Nikkah Time)
-    const targetWeddingDate = new Date("Dec 12, 2026 16:30:00").getTime();
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const difference = targetWeddingDate - now;
-
-        if (difference < 0) {
-            // Wedding has passed
-            const countdownTimer = document.getElementById("countdown-timer");
-            if (countdownTimer) {
-                countdownTimer.innerHTML = "<h3 style='color: var(--color-text-gold); font-family: var(--font-serif); font-size: 1.4rem;'>The Stars Have Aligned - Zayn & Aara are Married!</h3>";
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
             }
-            return;
-        }
+        });
+    }, observerOptions);
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    timelineNodes.forEach(node => {
+        timelineObserver.observe(node);
+    });
+}
 
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        if (daysEl) daysEl.textContent = String(days).padStart(2, "0");
-        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
-        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, "0");
-        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, "0");
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // ----------------------------------------------------------------------
-    // 8. POLAROID CARD SWIPE & STACK GALLERY
-    // ----------------------------------------------------------------------
+/* ==========================================
+   POLAROID STACKED ROTATOR
+   ========================================== */
+function initPolaroidRotator() {
     const polaroidGallery = document.getElementById("polaroid-gallery");
     const prevBtn = document.getElementById("gallery-prev");
     const nextBtn = document.getElementById("gallery-next");
@@ -283,15 +729,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxCaption = document.getElementById("lightbox-caption");
     const lightboxCloseBtn = document.getElementById("lightbox-close-btn");
 
-    let cards = [];
-    if (polaroidGallery) {
-        cards = Array.from(polaroidGallery.querySelectorAll(".star-card-gallery"));
-    }
+    if (!polaroidGallery || !prevBtn || !nextBtn) return;
+
+    let cards = Array.from(polaroidGallery.querySelectorAll(".star-card-gallery"));
 
     function rotateGallery(direction) {
         if (cards.length === 0) return;
 
-        // Get index layout
         let activeIdx = cards.findIndex(c => c.classList.contains("active-stack"));
         let cardToSwipe = cards[activeIdx];
 
@@ -308,7 +752,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 nextStack2.className = "star-card-gallery stack-2";
             }, 300);
         } else {
-            // Swipe back logic
             let prevActiveIdx = (activeIdx - 1 + cards.length) % cards.length;
             let cardToRecover = cards[prevActiveIdx];
             
@@ -325,44 +768,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    if (nextBtn) nextBtn.addEventListener("click", () => rotateGallery("next"));
-    if (prevBtn) prevBtn.addEventListener("click", () => rotateGallery("prev"));
+    nextBtn.addEventListener("click", () => rotateGallery("next"));
+    prevBtn.addEventListener("click", () => rotateGallery("prev"));
 
-    // Swipe gestures on mobile devices
+    // Mobile swipe gestures
     let startX = 0;
-    if (polaroidGallery) {
-        polaroidGallery.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
+    polaroidGallery.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
 
-        polaroidGallery.addEventListener("touchend", (e) => {
-            let endX = e.changedTouches[0].clientX;
-            let deltaX = endX - startX;
+    polaroidGallery.addEventListener("touchend", (e) => {
+        let endX = e.changedTouches[0].clientX;
+        let deltaX = endX - startX;
 
-            if (Math.abs(deltaX) > 60) {
-                if (deltaX < 0) {
-                    rotateGallery("next"); // Swipe left shifts next
-                } else {
-                    rotateGallery("prev"); // Swipe right shifts prev
-                }
+        if (Math.abs(deltaX) > 60) {
+            if (deltaX < 0) {
+                rotateGallery("next");
+            } else {
+                rotateGallery("prev");
             }
-        }, { passive: true });
-    }
+        }
+    }, { passive: true });
 
     // Lightbox modal trigger
-    cards.forEach(card => {
-        card.addEventListener("click", (e) => {
-            // Prevent triggering lightbox if swiping/dragging is active
-            if (card.classList.contains("active-stack")) {
-                const img = card.querySelector("img");
-                const caption = card.querySelector(".gallery-caption-title");
-                if (lightboxModal && img && lightboxImg) {
-                    lightboxImg.src = img.src;
-                    if (lightboxCaption && caption) lightboxCaption.textContent = caption.textContent;
-                    lightboxModal.style.display = "flex";
-                }
+    polaroidGallery.addEventListener("click", (e) => {
+        const card = e.target.closest(".star-card-gallery");
+        if (card && card.classList.contains("active-stack")) {
+            const data = window.weddingData;
+            const index = parseInt(card.getAttribute("data-index"));
+            const item = data && data.gallery && data.gallery[index];
+            if (lightboxModal && item && lightboxImg) {
+                lightboxImg.src = item.src;
+                if (lightboxCaption) lightboxCaption.textContent = item.desc;
+                lightboxModal.style.display = "flex";
             }
-        });
+        }
     });
 
     if (lightboxCloseBtn) {
@@ -378,649 +818,304 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+}
 
-    // ----------------------------------------------------------------------
-    // 9. INTERACTIVE BLESSING MOON & WISHES METEORS
-    // ----------------------------------------------------------------------
+/* ==========================================
+   CRESCENT BLESSING MOON
+   ========================================== */
+function initBlessingMoon() {
     const blessingMoonWidget = document.getElementById("blessing-moon-widget");
     const blessingsMoonBubble = document.getElementById("blessings-moon-bubble");
     const moonBlessingHeading = document.getElementById("moon-blessing-heading");
     const moonBlessingQuote = document.getElementById("moon-blessing-quote");
 
-    const moonBlessingsList = [
-        { title: "Infinite Love", quote: "May your lives be bound in stardust and celestial joy, sharing standard orbits forever." },
-        { title: "Harmony & Peace", quote: "As the crescent moon glows, may your marriage grow into a full moon of brightness." },
-        { title: "Cosmic Bond", quote: "True love matches souls. May yours reflect the serenity and grandeur of the night sky." },
-        { title: "Unending Wonders", quote: "Wishing you a lifetime of stargazing, hand-holding, and deep galactic laughter." },
-        { title: "Divine Guidance", quote: "May the light of a thousand stars always illuminate your paths during darker phases." }
-    ];
+    if (!blessingMoonWidget) return;
 
-    if (blessingMoonWidget) {
-        blessingMoonWidget.addEventListener("click", () => {
-            blessingMoonWidget.classList.add("glow-intense");
-            
-            // Choose a random blessing
-            const randomBlessing = moonBlessingsList[Math.floor(Math.random() * moonBlessingsList.length)];
-            if (moonBlessingHeading && moonBlessingQuote) {
-                moonBlessingHeading.textContent = randomBlessing.title;
-                moonBlessingQuote.textContent = `"${randomBlessing.quote}"`;
-            }
+    blessingMoonWidget.addEventListener("click", () => {
+        blessingMoonWidget.classList.add("glow-intense");
+        
+        const data = window.weddingData;
+        const moonBlessingsList = (data && data.interactiveCeremonies && data.interactiveCeremonies.moonBlessingsList) || [
+            { title: "Infinite Love", quote: "May your lives be bound in stardust and celestial joy, sharing standard orbits forever." },
+            { title: "Harmony & Peace", quote: "As the crescent moon glows, may your marriage grow into a full moon of brightness." },
+            { title: "Cosmic Bond", quote: "True love matches souls. May yours reflect the serenity and grandeur of the night sky." },
+            { title: "Unending Wonders", quote: "Wishing you a lifetime of stargazing, hand-holding, and deep galactic laughter." },
+            { title: "Divine Guidance", quote: "May the light of a thousand stars always illuminate your paths during darker phases." }
+        ];
 
-            // Expose blessing panel
-            if (blessingsMoonBubble) {
-                blessingsMoonBubble.style.display = "block";
-            }
-
-            // Trigger shooting stars!
-            triggerInitialMeteorShower();
-
-            // Display Toast
-            showWishToast("The Moon has blessed Zayn & Aara!");
-
-            // Remove glow effect after short timeout
-            setTimeout(() => {
-                blessingMoonWidget.classList.remove("glow-intense");
-            }, 1500);
-        });
-    }
-
-    // Make a Wish upon a Star anywhere on Starry Sky Backdrop
-    const starsBg = document.getElementById("stars-bg");
-    if (starsBg) {
-        starsBg.addEventListener("click", (e) => {
-            // Spawn shooting star at coordinates
-            spawnShootingStar(e.clientX, e.clientY);
-            
-            // Random romantic message
-            const romanticWishes = [
-                "Your wish has been carried to the stars.",
-                "Thank you for sending your blessings.",
-                "A shooting star has captured your love.",
-                "Love is the gravity of our solar system.",
-                "Two stars, one beautiful universe."
-            ];
-            const msg = romanticWishes[Math.floor(Math.random() * romanticWishes.length)];
-            showWishToast(msg);
-        });
-    }
-
-    function showWishToast(message) {
-        const toast = document.getElementById("star-wish-toast");
-        if (toast) {
-            toast.textContent = message;
-            toast.classList.add("show");
-            
-            setTimeout(() => {
-                toast.classList.remove("show");
-            }, 3000);
+        const randomBlessing = moonBlessingsList[Math.floor(Math.random() * moonBlessingsList.length)];
+        if (moonBlessingHeading && moonBlessingQuote) {
+            moonBlessingHeading.textContent = randomBlessing.title;
+            moonBlessingQuote.textContent = `"${randomBlessing.quote}"`;
         }
-    }
 
-    function spawnShootingStar(x, y) {
-        const overlay = document.getElementById("shooting-star-canvas-overlay");
-        if (!overlay) return;
+        if (blessingsMoonBubble) {
+            blessingsMoonBubble.style.display = "block";
+        }
 
-        const star = document.createElement("div");
-        star.className = "triggered-shooting-star";
-        
-        // Flight direction: left to right, angled downwards
-        const angle = 25 + Math.random() * 20; // degrees
-        star.style.left = `${x}px`;
-        star.style.top = `${y}px`;
-        star.style.setProperty("--angle", `${angle}deg`);
-        
-        overlay.appendChild(star);
+        triggerInitialMeteorShower();
+        showWishToast("The Moon has blessed Zayn & Aara!");
 
-        // Cleanup
         setTimeout(() => {
-            star.remove();
-        }, 1100);
-    }
+            blessingMoonWidget.classList.remove("glow-intense");
+        }, 1500);
+    });
+}
 
-    // ----------------------------------------------------------------------
-    // 10. CONSTELLATION CREATOR INTERACTIVE DRAWING GAME
-    // ----------------------------------------------------------------------
+/* ==========================================
+   CONSTELLATION CREATOR GAME
+   ========================================== */
+function initConstellationGame() {
     const canvas = document.getElementById("constellation-canvas");
     const gameQuoteBubble = document.getElementById("constellation-quote-bubble");
     
-    if (canvas) {
-        const ctx = canvas.getContext("2d");
-        let isDrawing = false;
-        let points = [
-            { x: 60, y: 140, radius: 8, connected: false },  // Node 0
-            { x: 160, y: 60, radius: 8, connected: false },   // Node 1
-            { x: 260, y: 140, radius: 8, connected: false },  // Node 2
-            { x: 210, y: 240, radius: 8, connected: false },  // Node 3
-            { x: 110, y: 240, radius: 8, connected: false }   // Node 4
-        ];
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    let isDrawing = false;
+    let points = [
+        { x: 60, y: 140, radius: 8, connected: false },  
+        { x: 160, y: 60, radius: 8, connected: false },   
+        { x: 260, y: 140, radius: 8, connected: false },  
+        { x: 210, y: 240, radius: 8, connected: false },  
+        { x: 110, y: 240, radius: 8, connected: false }   
+    ];
+    
+    let lastNodeIdx = -1;
+    let currentMousePos = { x: 0, y: 0 };
+    let gameCompleted = false;
+
+    function getCanvasMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
         
-        let lastNodeIdx = -1;
-        let currentMousePos = { x: 0, y: 0 };
-        let gameCompleted = false;
+        return {
+            x: ((clientX - rect.left) / rect.width) * canvas.width,
+            y: ((clientY - rect.top) / rect.height) * canvas.height
+        };
+    }
 
-        function getCanvasMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            // Supports touch
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-            
-            return {
-                x: ((clientX - rect.left) / rect.width) * canvas.width,
-                y: ((clientY - rect.top) / rect.height) * canvas.height
-            };
-        }
-
-        function drawGame() {
-            // Clear canvas
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Draw background grid lines (Star map coordinates details)
-            ctx.strokeStyle = "rgba(245, 158, 11, 0.05)";
-            ctx.lineWidth = 1;
-            for (let i = 0; i < canvas.width; i += 40) {
-                ctx.beginPath();
-                ctx.moveTo(i, 0);
-                ctx.lineTo(i, canvas.height);
-                ctx.stroke();
-                
-                ctx.beginPath();
-                ctx.moveTo(0, i);
-                ctx.lineTo(canvas.width, i);
-                ctx.stroke();
-            }
-
-            // Draw locked connected lines
-            ctx.strokeStyle = "var(--color-gold)";
-            ctx.lineWidth = 2.5;
-            ctx.shadowColor = "var(--color-gold)";
-            ctx.shadowBlur = 8;
+    function drawGame() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Coordinates details grid
+        ctx.strokeStyle = "rgba(245, 158, 11, 0.05)";
+        ctx.lineWidth = 1;
+        for (let i = 0; i < canvas.width; i += 40) {
+            ctx.beginPath();
+            ctx.moveTo(i, 0);
+            ctx.lineTo(i, canvas.height);
+            ctx.stroke();
             
             ctx.beginPath();
-            let hasLine = false;
-            for (let i = 0; i < points.length; i++) {
-                if (points[i].connected && i > 0) {
-                    if (!hasLine) {
-                        ctx.moveTo(points[i-1].x, points[i-1].y);
-                        hasLine = true;
-                    }
-                    ctx.lineTo(points[i].x, points[i].y);
-                }
-            }
-            // If completed, loop the final segment to origin
-            if (gameCompleted) {
-                ctx.lineTo(points[0].x, points[0].y);
-            }
+            ctx.moveTo(0, i);
+            ctx.lineTo(canvas.width, i);
             ctx.stroke();
-            ctx.shadowBlur = 0; // reset shadow
-
-            // Draw current active dragging line
-            if (isDrawing && lastNodeIdx >= 0 && lastNodeIdx < points.length - 1 && !gameCompleted) {
-                ctx.strokeStyle = "rgba(226, 232, 240, 0.6)";
-                ctx.lineWidth = 1.5;
-                ctx.setLineDash([4, 4]);
-                ctx.beginPath();
-                ctx.moveTo(points[lastNodeIdx].x, points[lastNodeIdx].y);
-                ctx.lineTo(currentMousePos.x, currentMousePos.y);
-                ctx.stroke();
-                ctx.setLineDash([]); // Reset dash
-            }
-
-            // Draw star nodes
-            points.forEach((pt, idx) => {
-                // If it is the next node to target, make it pulse/glow
-                let isTarget = (idx === lastNodeIdx + 1 && !gameCompleted) || (lastNodeIdx === -1 && idx === 0);
-                
-                if (isTarget) {
-                    ctx.shadowColor = "var(--color-gold-light)";
-                    ctx.shadowBlur = 12;
-                    ctx.fillStyle = "#FFF";
-                } else if (pt.connected || gameCompleted) {
-                    ctx.shadowColor = "var(--color-gold)";
-                    ctx.shadowBlur = 6;
-                    ctx.fillStyle = "var(--color-gold)";
-                } else {
-                    ctx.shadowBlur = 0;
-                    ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
-                }
-
-                // Draw solid center
-                ctx.beginPath();
-                ctx.arc(pt.x, pt.y, isTarget ? 6 : 4, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Draw decorative ring around stars
-                if (isTarget) {
-                    ctx.strokeStyle = "var(--color-gold)";
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.arc(pt.x, pt.y, 11 + Math.sin(Date.now() / 150) * 2, 0, Math.PI * 2);
-                    ctx.stroke();
-                }
-
-                // Draw order numbers
-                if (!gameCompleted) {
-                    ctx.fillStyle = "var(--color-text-muted)";
-                    ctx.font = "8px sans-serif";
-                    ctx.textAlign = "center";
-                    ctx.fillText(idx + 1, pt.x, pt.y - 12);
-                }
-
-                ctx.shadowBlur = 0; // reset
-            });
         }
 
-        // Animation frame loop for canvas pulses
-        function animateCanvas() {
-            drawGame();
-            if (!gameCompleted) {
-                requestAnimationFrame(animateCanvas);
+        // Connect lines
+        ctx.strokeStyle = "var(--color-gold)";
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = "var(--color-gold)";
+        ctx.shadowBlur = 8;
+        
+        ctx.beginPath();
+        let hasLine = false;
+        for (let i = 0; i < points.length; i++) {
+            if (points[i].connected && i > 0) {
+                if (!hasLine) {
+                    ctx.moveTo(points[i-1].x, points[i-1].y);
+                    hasLine = true;
+                }
+                ctx.lineTo(points[i].x, points[i].y);
             }
         }
-        animateCanvas();
+        if (gameCompleted) {
+            ctx.lineTo(points[0].x, points[0].y);
+        }
+        ctx.stroke();
+        ctx.shadowBlur = 0; 
 
-        function checkNodeCollision(pos, index) {
-            const pt = points[index];
-            const dist = Math.hypot(pos.x - pt.x, pos.y - pt.y);
-            return dist < 25; // 25px tolerance touch boundary
+        // Dragging line
+        if (isDrawing && lastNodeIdx >= 0 && lastNodeIdx < points.length - 1 && !gameCompleted) {
+            ctx.strokeStyle = "rgba(226, 232, 240, 0.6)";
+            ctx.lineWidth = 1.5;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(points[lastNodeIdx].x, points[lastNodeIdx].y);
+            ctx.lineTo(currentMousePos.x, currentMousePos.y);
+            ctx.stroke();
+            ctx.setLineDash([]); 
         }
 
-        function handleStart(e) {
-            if (gameCompleted) return;
-            const mousePos = getCanvasMousePos(e);
+        // Draw nodes
+        points.forEach((pt, idx) => {
+            let isTarget = (idx === lastNodeIdx + 1 && !gameCompleted) || (lastNodeIdx === -1 && idx === 0);
             
-            // Check if user tapped Node 0 (if starting) or last locked node
-            if (lastNodeIdx === -1) {
-                if (checkNodeCollision(mousePos, 0)) {
-                    isDrawing = true;
-                    lastNodeIdx = 0;
-                    points[0].connected = true;
-                    currentMousePos = mousePos;
-                }
-            } else if (checkNodeCollision(mousePos, lastNodeIdx)) {
+            if (isTarget) {
+                ctx.shadowColor = "var(--color-gold-light)";
+                ctx.shadowBlur = 12;
+                ctx.fillStyle = "#FFF";
+            } else if (pt.connected || gameCompleted) {
+                ctx.shadowColor = "var(--color-gold)";
+                ctx.shadowBlur = 6;
+                ctx.fillStyle = "var(--color-gold)";
+            } else {
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
+            }
+
+            ctx.beginPath();
+            ctx.arc(pt.x, pt.y, isTarget ? 6 : 4, 0, Math.PI * 2);
+            ctx.fill();
+
+            if (isTarget) {
+                ctx.strokeStyle = "var(--color-gold)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.arc(pt.x, pt.y, 11 + Math.sin(Date.now() / 150) * 2, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            if (!gameCompleted) {
+                ctx.fillStyle = "var(--color-text-muted)";
+                ctx.font = "8px sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(idx + 1, pt.x, pt.y - 12);
+            }
+            ctx.shadowBlur = 0; 
+        });
+    }
+
+    function animateCanvas() {
+        drawGame();
+        if (!gameCompleted) {
+            requestAnimationFrame(animateCanvas);
+        }
+    }
+    animateCanvas();
+
+    function checkNodeCollision(pos, index) {
+        const pt = points[index];
+        const dist = Math.hypot(pos.x - pt.x, pos.y - pt.y);
+        return dist < 25; 
+    }
+
+    function handleStart(e) {
+        if (gameCompleted) return;
+        const mousePos = getCanvasMousePos(e);
+        
+        if (lastNodeIdx === -1) {
+            if (checkNodeCollision(mousePos, 0)) {
                 isDrawing = true;
+                lastNodeIdx = 0;
+                points[0].connected = true;
                 currentMousePos = mousePos;
             }
-        }
-
-        function handleMove(e) {
-            if (!isDrawing || gameCompleted) return;
-            // Prevent default scrolling on mobile drag
-            if (e.cancelable) e.preventDefault();
-            
-            const mousePos = getCanvasMousePos(e);
+        } else if (checkNodeCollision(mousePos, lastNodeIdx)) {
+            isDrawing = true;
             currentMousePos = mousePos;
-
-            // Check if dragging near the next target node
-            const targetIdx = lastNodeIdx + 1;
-            if (targetIdx < points.length) {
-                if (checkNodeCollision(mousePos, targetIdx)) {
-                    points[targetIdx].connected = true;
-                    lastNodeIdx = targetIdx;
-                    
-                    // Trigger haptic rumble or shooting star on connection
-                    spawnShootingStar(points[targetIdx].x + canvas.getBoundingClientRect().left, points[targetIdx].y + canvas.getBoundingClientRect().top);
-                    
-                    if (targetIdx === points.length - 1) {
-                        // All connected! Game completed!
-                        gameCompleted = true;
-                        isDrawing = false;
-                        handleCompletion();
-                    }
-                }
-            }
         }
-
-        function handleEnd() {
-            isDrawing = false;
-        }
-
-        function handleCompletion() {
-            // Reveal quote bubble
-            if (gameQuoteBubble) {
-                gameQuoteBubble.style.display = "block";
-            }
-            
-            // Redraw final loop
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawGame();
-
-            // Trigger beautiful star rain!
-            triggerInitialMeteorShower();
-            showWishToast("Constellation Complete: Love Unlocked!");
-        }
-
-        // Register Mouse events
-        canvas.addEventListener("mousedown", handleStart);
-        canvas.addEventListener("mousemove", handleMove);
-        window.addEventListener("mouseup", handleEnd);
-
-        // Register Touch events
-        canvas.addEventListener("touchstart", handleStart, { passive: false });
-        canvas.addEventListener("touchmove", handleMove, { passive: false });
-        canvas.addEventListener("touchend", handleEnd, { passive: true });
     }
 
-    // ----------------------------------------------------------------------
-    // 11. RSVP FORM CONTROLLER
-    // ----------------------------------------------------------------------
-    const rsvpForm = document.getElementById("rsvp-form");
-    const rsvpSuccessOverlay = document.getElementById("rsvp-success-overlay");
-    const rsvpSuccessClose = document.getElementById("rsvp-success-close");
-
-    if (rsvpForm) {
-        rsvpForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            // Frontend inputs validation
-            const nameInput = document.getElementById("rsvp-name");
-            const phoneInput = document.getElementById("rsvp-phone");
-            const guestsSelect = document.getElementById("rsvp-guests");
-            const statusInput = document.querySelector('input[name="rsvp-status"]:checked');
-
-            if (nameInput && !nameInput.value.trim()) {
-                alert("Please enter your name.");
-                return;
-            }
-            if (phoneInput && (!phoneInput.value.trim() || phoneInput.value.length < 6)) {
-                alert("Please enter a valid phone number.");
-                return;
-            }
-            if (guestsSelect && !guestsSelect.value) {
-                alert("Please select the number of attendees.");
-                return;
-            }
-
-            // Save details locally
-            const rsvpData = {
-                name: nameInput ? nameInput.value : "",
-                phone: phoneInput ? phoneInput.value : "",
-                guests: guestsSelect ? guestsSelect.value : "1",
-                status: statusInput ? statusInput.value : "attending",
-                timestamp: new Date().toISOString()
-            };
-            localStorage.setItem("celestial_rsvp", JSON.stringify(rsvpData));
-
-            // Display success popup modal
-            if (rsvpSuccessOverlay) {
-                const title = document.getElementById("rsvp-success-title");
-                const msg = document.getElementById("rsvp-success-message");
-                
-                if (rsvpData.status === "declined") {
-                    if (title) title.textContent = "Thank You!";
-                    if (msg) msg.textContent = "We regret that you cannot make it, but thank you for sending your blessings and updates.";
-                } else {
-                    if (title) title.textContent = "RSVP Confirmed!";
-                    if (msg) msg.textContent = `Thank you, ${rsvpData.name}. Your presence of ${rsvpData.guests} has been plotted under our wedding stars.`;
-                }
-
-                rsvpSuccessOverlay.style.display = "flex";
-            }
-        });
-    }
-
-    if (rsvpSuccessClose) {
-        rsvpSuccessClose.addEventListener("click", () => {
-            if (rsvpSuccessOverlay) rsvpSuccessOverlay.style.display = "none";
-        });
-    }
-
-    // ----------------------------------------------------------------------
-    // 12. WISHES BOARD SYNC & STAR GENERATOR
-    // ----------------------------------------------------------------------
-    const wishesForm = document.getElementById("wishes-form");
-    const wishesDisplayBoard = document.getElementById("wishes-display-board");
-
-    // Standard preloaded default wishes
-    const defaultWishes = [
-        { name: "Shamil", text: "May your love shine brighter than a thousand galaxies! Excited to attend." },
-        { name: "Bilal Malik", text: "Wishing Zayn & Aara a lifetime of happiness under standard celestial alignments." },
-        { name: "Yasmin Ibrahim", text: "Looking forward to seeing my beautiful daughter walk into her new universe." },
-        { name: "Zoya", text: "So romantic! Connecting stars matches your love story perfectly." }
-    ];
-
-    function getLocalWishes() {
-        const stored = localStorage.getItem("celestial_wishes");
-        if (stored) {
-            return JSON.parse(stored);
-        }
-        return defaultWishes;
-    }
-
-    function saveLocalWishes(wishes) {
-        localStorage.setItem("celestial_wishes", JSON.stringify(wishes));
-    }
-
-    function renderWishStars() {
-        if (!wishesDisplayBoard) return;
+    function handleMove(e) {
+        if (!isDrawing || gameCompleted) return;
+        if (e.cancelable) e.preventDefault();
         
-        // Clear old stars (except sky label)
-        const oldStars = wishesDisplayBoard.querySelectorAll(".wish-star-node");
-        oldStars.forEach(s => s.remove());
+        const mousePos = getCanvasMousePos(e);
+        currentMousePos = mousePos;
 
-        const wishes = getLocalWishes();
-
-        wishes.forEach((wish, index) => {
-            const starNode = document.createElement("div");
-            starNode.className = "wish-star-node";
-            
-            // Random coordinates inside wishes canvas board (leaving borders safe)
-            const x = 5 + Math.random() * 88; // %
-            const y = 20 + Math.random() * 65; // %
-            starNode.style.left = `${x}%`;
-            starNode.style.top = `${y}%`;
-            
-            // Random animation delay
-            starNode.style.setProperty("--star-delay", `${Math.random() * 2.5}s`);
-            
-            starNode.innerHTML = `
-                <i class="fa-solid fa-star"></i>
-                <div class="wish-star-tooltip">
-                    <p>"${sanitizeInput(wish.text)}"</p>
-                    <div class="wish-tooltip-sender">- ${sanitizeInput(wish.name)}</div>
-                </div>
-            `;
-            
-            wishesDisplayBoard.appendChild(starNode);
-        });
-    }
-
-    if (wishesForm) {
-        wishesForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const textInput = document.getElementById("wish-message");
-            const senderInput = document.getElementById("wish-sender");
-
-            if (textInput && senderInput && (!textInput.value.trim() || !senderInput.value.trim())) {
-                alert("Please fill in both name and blessing message.");
-                return;
+        const targetIdx = lastNodeIdx + 1;
+        if (targetIdx < points.length) {
+            if (checkNodeCollision(mousePos, targetIdx)) {
+                points[targetIdx].connected = true;
+                lastNodeIdx = targetIdx;
+                
+                spawnShootingStar(points[targetIdx].x + canvas.getBoundingClientRect().left, points[targetIdx].y + canvas.getBoundingClientRect().top);
+                
+                if (targetIdx === points.length - 1) {
+                    gameCompleted = true;
+                    isDrawing = false;
+                    handleCompletion();
+                }
             }
-
-            const newWish = {
-                name: senderInput ? senderInput.value.trim() : "",
-                text: textInput ? textInput.value.trim() : ""
-            };
-
-            const wishes = getLocalWishes();
-            wishes.push(newWish);
-            saveLocalWishes(wishes);
-
-            // Re-render wishes board
-            renderWishStars();
-
-            // Clear inputs
-            if (textInput) textInput.value = "";
-            
-            // Spawn wish success effects
-            showWishToast("Your blessing star has been pinned to the sky!");
-            triggerInitialMeteorShower();
-        });
-    }
-
-    if (wishesDisplayBoard) {
-        // Run initial wishes board render
-        renderWishStars();
-    }
-
-    // ----------------------------------------------------------------------
-    // 13. VIRTUAL MEMORY LANTERN RELEASE
-    // ----------------------------------------------------------------------
-    const lanternForm = document.getElementById("lantern-form");
-
-    if (lanternForm) {
-        lanternForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const messageInput = document.getElementById("lantern-message");
-            const senderInput = document.getElementById("lantern-sender");
-
-            if (messageInput && senderInput && (!messageInput.value.trim() || !senderInput.value.trim())) {
-                alert("Please enter your blessing message.");
-                return;
-            }
-
-            const sender = senderInput ? senderInput.value.trim() : "";
-            const text = messageInput ? messageInput.value.trim() : "";
-
-            // Create memory lantern element
-            const lantern = document.createElement("div");
-            lantern.className = "floating-memory-lantern";
-            
-            // Random horizontal launch coordinate & wind drift
-            const startX = 15 + Math.random() * 70; // % from left edge
-            const endX = startX + (-15 + Math.random() * 30); // Drift offset
-            
-            lantern.style.setProperty("--start-x", `${startX}vw`);
-            lantern.style.setProperty("--end-x", `${endX}vw`);
-            
-            // Unique visual content
-            lantern.innerHTML = `
-                <div class="lantern-body-glow"></div>
-            `;
-            
-            document.body.appendChild(lantern);
-
-            // Notify user
-            showWishToast(`Lantern released by ${sender}!`);
-
-            // Clear message input
-            if (messageInput) messageInput.value = "";
-
-            // Cleanup after animation finishes (18s)
-            setTimeout(() => {
-                lantern.remove();
-            }, 18000);
-        });
-    }
-
-    // ----------------------------------------------------------------------
-    // 14. SHOOTING STAR HUNT (RANDOM CLICKABLE STARS & ROMANTIC STORIES)
-    // ----------------------------------------------------------------------
-    const romanticStories = [
-        "Zayn designed a custom starry constellation map showing how the night sky looked when they first met.",
-        "Aara loves how Zayn always listens patiently to her endless explanations about black holes and nebulas.",
-        "Their favorite stargazing spot is a quiet mountain ridge where the city lights fade completely.",
-        "Zayn claims that Aara's bright eyes possess more luminosity than a young supernova.",
-        "Aara believes they are bound by the gravity of love, destined to orbit each other for infinity."
-    ];
-
-    let huntInterval = null;
-
-    // We start the hunt after the cover loading screen is opened
-    if (btnOpenCosmic) {
-        btnOpenCosmic.addEventListener("click", () => {
-            // Wait 6 seconds before launching the first random star hunt, then repeat every 18 seconds
-            setTimeout(() => {
-                spawnHuntingStarLoop();
-                huntInterval = setInterval(spawnHuntingStarLoop, 18000);
-            }, 6000);
-        });
-    }
-
-    function spawnHuntingStarLoop() {
-        const overlay = document.getElementById("shooting-star-canvas-overlay");
-        if (!overlay) return;
-
-        const star = document.createElement("div");
-        star.className = "hunting-shooting-star";
-
-        // Random starting coordinates
-        const startX = -100; // start off-screen left
-        const startY = Math.random() * window.innerHeight * 0.5; // upper half of screen
-        const angle = 20 + Math.random() * 20; // 20 to 40 degrees diagonal path
-        const duration = 2 + Math.random() * 1.5; // 2 to 3.5 seconds
-
-        const distanceX = window.innerWidth + 200;
-        const distanceY = distanceX * Math.tan(angle * Math.PI / 180);
-
-        const endX = startX + distanceX;
-        const endY = startY + distanceY;
-
-        star.style.setProperty("--start-x", `${startX}px`);
-        star.style.setProperty("--start-y", `${startY}px`);
-        star.style.setProperty("--end-x", `${endX}px`);
-        star.style.setProperty("--end-y", `${endY}px`);
-        star.style.setProperty("--angle", `${angle}deg`);
-        star.style.setProperty("--duration", `${duration}s`);
-
-        overlay.appendChild(star);
-
-        // Click or tap to catch the shooting star
-        const handleCatch = (e) => {
-            e.stopPropagation();
-            e.preventDefault();
-
-            // Get exact coordinates for explosion particle effect
-            const rect = star.getBoundingClientRect();
-            const clientX = rect.left + rect.width / 2;
-            const clientY = rect.top + rect.height / 2;
-
-            // Trigger sparkles
-            createSparkleBurst(clientX, clientY);
-
-            // Remove star immediately
-            star.remove();
-
-            // Unlock and display random romantic story
-            const randomStory = romanticStories[Math.floor(Math.random() * romanticStories.length)];
-            showWishToast(`✨ Zayn & Aara's Star Story: "${randomStory}"`);
-        };
-
-        // Support mouse and touch events
-        star.addEventListener("mousedown", handleCatch);
-        star.addEventListener("touchstart", handleCatch, { passive: false });
-
-        // Auto-remove star after flight duration is complete
-        setTimeout(() => {
-            if (star.parentNode) {
-                star.remove();
-            }
-        }, duration * 1000);
-    }
-
-    function createSparkleBurst(x, y) {
-        const particleCount = 15;
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement("div");
-            particle.className = "star-burst-particle";
-            
-            // Random direction offsets
-            const angle = Math.random() * Math.PI * 2;
-            const speed = 20 + Math.random() * 60; // distance moved
-            const mx = Math.cos(angle) * speed;
-            const my = Math.sin(angle) * speed;
-
-            particle.style.left = `${x}px`;
-            particle.style.top = `${y}px`;
-            particle.style.setProperty("--mx", `${mx}px`);
-            particle.style.setProperty("--my", `${my}px`);
-
-            document.body.appendChild(particle);
-
-            // Cleanup particle
-            setTimeout(() => {
-                particle.remove();
-            }, 700);
         }
     }
-});
+
+    function handleEnd() {
+        isDrawing = false;
+    }
+
+    function handleCompletion() {
+        if (gameQuoteBubble) {
+            gameQuoteBubble.style.display = "block";
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawGame();
+
+        triggerInitialMeteorShower();
+        showWishToast("Constellation Complete: Love Unlocked!");
+    }
+
+    canvas.addEventListener("mousedown", handleStart);
+    canvas.addEventListener("mousemove", handleMove);
+    window.addEventListener("mouseup", handleEnd);
+
+    canvas.addEventListener("touchstart", handleStart, { passive: false });
+    canvas.addEventListener("touchmove", handleMove, { passive: false });
+    canvas.addEventListener("touchend", handleEnd, { passive: true });
+}
+
+/* ==========================================
+   CELESTIAL COUNTDOWN TIMER
+   ========================================== */
+let countdownInterval;
+function initCountdown() {
+    clearInterval(countdownInterval);
+    
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    
+    const data = window.weddingData;
+    const dateStr = (data && data.event && data.event.dateTimeString) || "2026-12-12T16:30:00";
+    let weddingDate = new Date(dateStr).getTime();
+
+    if (isNaN(weddingDate)) {
+        const cleaned = dateStr.replace(/-/g, '/').replace('T', ' ');
+        weddingDate = new Date(cleaned).getTime();
+    }
+    if (isNaN(weddingDate)) {
+        weddingDate = new Date(2026, 11, 12, 16, 30, 0).getTime();
+    }
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            const countdownTimer = document.getElementById("countdown-timer");
+            if (countdownTimer) {
+                const partnerName = (data && data.couple) ? `${data.couple.groom} & ${data.couple.bride}` : "Zayn & Aara";
+                countdownTimer.innerHTML = `<h3 style='color: var(--color-text-gold); font-family: var(--font-serif); font-size: 1.4rem;'>The Stars Have Aligned - ${partnerName} are Married!</h3>`;
+            }
+            return;
+        }
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+    }
+    
+    updateTimer();
+    countdownInterval = setInterval(updateTimer, 1000);
+}
