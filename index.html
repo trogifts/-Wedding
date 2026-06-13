@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation Collection</title>
+    <title>TRO Wedding</title>
     <meta name="description" content="Browse our curated collection of luxury digital wedding invitation templates.">
     
     <!-- Google Fonts: Editorial Serif & Clean Sans -->
@@ -259,10 +259,42 @@
             cursor: pointer;
         }
 
-        .cta-btn:hover {
-            background-color: #b38e4b;
-            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.35);
-            transform: translateY(-2px);
+        .wishes-section {
+            margin-bottom: 80px;
+        }
+
+        .wishes-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            resize: none;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            transition: var(--transition-smooth);
+        }
+
+        .wishes-input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.1);
+        }
+
+        .wishes-btn {
+            background-color: var(--text-color);
+            color: var(--card-bg);
+            border: 1px solid var(--text-color);
+        }
+
+        .wishes-btn:hover {
+            background-color: transparent;
+            color: var(--text-color);
+            border-color: var(--text-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         @media (max-width: 768px) {
@@ -288,7 +320,7 @@
 <body>
 
     <header>
-        <div class="logo">✦ The Atelier ✦</div>
+        <div class="logo">✦ TRO Wedding ✦</div>
         <h1 class="title">Design Collection</h1>
         <p class="subtitle">Curated digital invitation templates</p>
     </header>
@@ -404,6 +436,18 @@
         </div>
     </div>
 
+    <!-- Congratulate & Send Wishes Section -->
+    <div class="cta-section wishes-section">
+        <h2 class="cta-title">Send Your Blessings</h2>
+        <p class="cta-desc">Type your congratulations and warm wishes below to send them directly via WhatsApp.</p>
+        <textarea id="wishesInput" class="wishes-input" placeholder="Write your congratulations and wedding wishes here..." rows="3"></textarea>
+        <div>
+            <button onclick="sendWishes()" class="cta-btn wishes-btn">
+                <i class="fa-brands fa-whatsapp"></i> Send Wishes
+            </button>
+        </div>
+    </div>
+
     <!-- Custom Designs CTA -->
     <div class="cta-section">
         <h2 class="cta-title">Bespoke Creations</h2>
@@ -417,6 +461,19 @@
         <div class="footer-logo">✦ A ✦</div>
         <div class="footer-copy">&copy; 2026 Antigravity. All Rights Reserved.</div>
     </footer>
+
+    <script>
+        function sendWishes() {
+            const wishes = document.getElementById('wishesInput').value.trim();
+            if (!wishes) {
+                alert('Please type your wishes before sending.');
+                return;
+            }
+            const encodedWishes = encodeURIComponent(wishes);
+            const whatsappUrl = `https://wa.me/918078759252?text=${encodedWishes}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 
 </body>
 </html>
