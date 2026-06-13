@@ -90,13 +90,6 @@ window.weddingData = {
     }
   ],
   interactiveCeremonies: {
-    moonBlessingsList: [
-      { title: "Infinite Love", quote: "May your lives be bound in stardust and celestial joy, sharing standard orbits forever." },
-      { title: "Harmony & Peace", quote: "As the crescent moon glows, may your marriage grow into a full moon of brightness." },
-      { title: "Cosmic Bond", quote: "True love matches souls. May yours reflect the serenity and grandeur of the night sky." },
-      { title: "Unending Wonders", quote: "Wishing you a lifetime of stargazing, hand-holding, and deep galactic laughter." },
-      { title: "Divine Guidance", quote: "May the light of a thousand stars always illuminate your paths during darker phases." }
-    ],
     shootingStarWishes: [
       "Your wish has been carried to the stars.",
       "Thank you for sending your blessings.",
@@ -142,8 +135,6 @@ window.weddingData = {
     directionsButtonText: "Navigate to Venue",
     gallerySubTitle: "Capturing Starlight",
     galleryTitle: "Celestial Gallery",
-    interactiveSubTitle: "Interact with the Cosmos",
-    interactiveTitle: "Celestial Blessings",
     contactsSubTitle: "Reach Our Orbit",
     contactsTitle: "Contact & Help",
     contactsCallLabel: "Call",

@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollProgress();
     initConstellationTimeline();
     initPolaroidRotator();
-    initBlessingMoon();
     initCountdown();
 });
 
@@ -291,15 +290,7 @@ function renderData() {
     `).join('');
   }
 
-  // Interactive headings
-  const interactiveSubTitle = document.getElementById('interactiveSubTitle');
-  if (interactiveSubTitle) interactiveSubTitle.innerText = data.labels.interactiveSubTitle;
 
-  const interactiveTitle = document.getElementById('interactiveTitle');
-  if (interactiveTitle) interactiveTitle.innerText = data.labels.interactiveTitle;
-
-  const moonBlessingInstruction = document.getElementById('moonBlessingInstruction');
-  if (moonBlessingInstruction) moonBlessingInstruction.innerText = data.labels.interactiveTitle;
 
 
 
@@ -809,44 +800,7 @@ function initPolaroidRotator() {
 /* ==========================================
    CRESCENT BLESSING MOON
    ========================================== */
-function initBlessingMoon() {
-    const blessingMoonWidget = document.getElementById("blessing-moon-widget");
-    const blessingsMoonBubble = document.getElementById("blessings-moon-bubble");
-    const moonBlessingHeading = document.getElementById("moon-blessing-heading");
-    const moonBlessingQuote = document.getElementById("moon-blessing-quote");
 
-    if (!blessingMoonWidget) return;
-
-    blessingMoonWidget.addEventListener("click", () => {
-        blessingMoonWidget.classList.add("glow-intense");
-        
-        const data = window.weddingData;
-        const moonBlessingsList = (data && data.interactiveCeremonies && data.interactiveCeremonies.moonBlessingsList) || [
-            { title: "Infinite Love", quote: "May your lives be bound in stardust and celestial joy, sharing standard orbits forever." },
-            { title: "Harmony & Peace", quote: "As the crescent moon glows, may your marriage grow into a full moon of brightness." },
-            { title: "Cosmic Bond", quote: "True love matches souls. May yours reflect the serenity and grandeur of the night sky." },
-            { title: "Unending Wonders", quote: "Wishing you a lifetime of stargazing, hand-holding, and deep galactic laughter." },
-            { title: "Divine Guidance", quote: "May the light of a thousand stars always illuminate your paths during darker phases." }
-        ];
-
-        const randomBlessing = moonBlessingsList[Math.floor(Math.random() * moonBlessingsList.length)];
-        if (moonBlessingHeading && moonBlessingQuote) {
-            moonBlessingHeading.textContent = randomBlessing.title;
-            moonBlessingQuote.textContent = `"${randomBlessing.quote}"`;
-        }
-
-        if (blessingsMoonBubble) {
-            blessingsMoonBubble.style.display = "block";
-        }
-
-        triggerInitialMeteorShower();
-        showWishToast("The Moon has blessed Zayn & Aara!");
-
-        setTimeout(() => {
-            blessingMoonWidget.classList.remove("glow-intense");
-        }, 1500);
-    });
-}
 
 
 
