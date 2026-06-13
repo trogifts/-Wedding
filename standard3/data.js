@@ -89,24 +89,6 @@ window.weddingData = {
       whatsapp: "0987654321"
     }
   ],
-  paintPalette: {
-    quotes: [
-      "Thank you for painting our world with love! 🎨",
-      "May our wedding day be as vibrant as this splash! 🌸",
-      "Blessings of joy, color, and laughter received! ✨",
-      "A canvas of shared memories is what we build! 🖌",
-      "Wishing you a beautiful path painted in gold! 💛",
-      "Your color blessing makes our day more artistic! 🎨"
-    ],
-    colors: {
-      "well-blush": "#FFD1DC",
-      "well-lavender": "#E8DFF5",
-      "well-blue": "#E2ECEF",
-      "well-green": "#D7E7DE",
-      "well-peach": "#FCE1D4",
-      "well-gold": "#D4AF37"
-    }
-  },
   labels: {
     coverLetteringTop: "Save the Date",
     coverSubtitle: "Are Getting Married",
@@ -137,9 +119,6 @@ window.weddingData = {
     gallerySubTitle: "Moments",
     galleryTitle: "Memory Gallery",
     galleryInstructions: "Swipe the Polaroids left/right or click the arrows to browse through the pages of our artist journal. Click the photo to enlarge.",
-    paintSubTitle: "Paint Palette",
-    paintTitle: "Bless Us With Colors",
-    paintInstructions: "Tap the watercolor wells on the palette to shower Zayn and Aara with colorful paint splashes and read our wedding thank-you wishes.",
     contactsSubTitle: "Coordination",
     contactsTitle: "Family Contacts",
     contactsCallLabel: "Call",

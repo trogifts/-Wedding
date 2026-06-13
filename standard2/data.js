@@ -34,7 +34,7 @@ window.weddingData = {
   },
   interactiveCeremonies: {
     lampBlessingTitle: "Ponmangalashamsakal",
-    lampBlessingText: "May the divine light guide the couple with love, prosperity, and endless blessings. Thank you for lighting our path!",
+    lampBlessingText: "",
     flowerBlessingSayings: [
       "May their life be as fragrant as jasmine! 🌸",
       "Wishing Zayn & Aara a golden future! 🌟",

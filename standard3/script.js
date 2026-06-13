@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initInviteOpener();
     initMusicControls();
     initScrollProgress();
-    initPaintPalette();
     initPolaroidRotator();
     initCountdown();
 });
@@ -294,15 +293,7 @@ function renderData() {
     `).join('');
   }
 
-  // Paint Palette headings
-  const paintSubTitle = document.getElementById('paintSubTitle');
-  if (paintSubTitle) paintSubTitle.innerText = data.labels.paintSubTitle;
 
-  const paintTitle = document.getElementById('paintTitle');
-  if (paintTitle) paintTitle.innerText = data.labels.paintTitle;
-
-  const paintInstructions = document.getElementById('paintInstructions');
-  if (paintInstructions) paintInstructions.innerText = data.labels.paintInstructions;
 
   // Family Contacts Section headings
   const contactsSubTitle = document.getElementById('contactsSubTitle');
@@ -615,90 +606,7 @@ window.closeLightbox = function() {
     document.body.style.overflow = "auto";
 };
 
-/* ==========================================
-   INTERACTIVE WATERCOLOR PAINT PALETTE
-   ========================================== */
-let toastTimer;
-function initPaintPalette() {
-    const paletteBlobs = document.querySelectorAll(".color-well-blob");
-    paletteBlobs.forEach(blob => {
-        blob.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const data = window.weddingData;
-            
-            const colorMap = (data && data.paintPalette && data.paintPalette.colors) || {
-                "well-blush": "#FFD1DC",
-                "well-lavender": "#E8DFF5",
-                "well-blue": "#E2ECEF",
-                "well-green": "#D7E7DE",
-                "well-peach": "#FCE1D4",
-                "well-gold": "#D4AF37"
-            };
 
-            const wellId = blob.id;
-            const color = colorMap[wellId] || "#FFD1DC";
-            
-            const randomX = 10 + Math.random() * 80;
-            const randomY = 10 + Math.random() * 80;
-            
-            spawnPaintSplat(randomX, randomY, color);
-            
-            blob.style.transform = "scale(1.2)";
-            setTimeout(() => { blob.style.transform = ""; }, 300);
-            
-            showPaintToast();
-        });
-    });
-}
-
-function spawnPaintSplat(x, y, color) {
-    const splatContainer = document.getElementById("splat-container");
-    if (!splatContainer) return;
-
-    const splat = document.createElement("div");
-    splat.className = "screen-paint-splat";
-    
-    const r1 = 30 + Math.random() * 30;
-    const r2 = 30 + Math.random() * 30;
-    const r3 = 30 + Math.random() * 30;
-    const r4 = 30 + Math.random() * 30;
-    splat.style.borderRadius = `${r1}% ${100-r1}% ${r2}% ${100-r2}% / ${r3}% ${r4}% ${100-r4}% ${100-r3}%`;
-    
-    splat.style.left = `${x}vw`;
-    splat.style.top = `${y}vh`;
-    splat.style.backgroundColor = color;
-    splat.style.boxShadow = `inset 0 0 20px rgba(0,0,0,0.05), 0 5px 15px ${color}44`;
-    
-    splatContainer.appendChild(splat);
-    
-    setTimeout(() => {
-        splat.remove();
-    }, 1500);
-}
-
-function showPaintToast() {
-    const paintToast = document.getElementById("paint-toast");
-    if (!paintToast) return;
-
-    clearTimeout(toastTimer);
-    const data = window.weddingData;
-    const quotes = (data && data.paintPalette && data.paintPalette.quotes) || [
-        "Thank you for painting our world with love! 🎨",
-        "May our wedding day be as vibrant as this splash! 🌸",
-        "Blessings of joy, color, and laughter received! ✨",
-        "A canvas of shared memories is what we build! 🖌",
-        "Wishing you a beautiful path painted in gold! 💛",
-        "Your color blessing makes our day more artistic! 🎨"
-    ];
-
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-    paintToast.innerText = quote;
-    paintToast.classList.add("show");
-    
-    toastTimer = setTimeout(() => {
-        paintToast.classList.remove("show");
-    }, 3000);
-}
 
 /* ==========================================
    WEDDING TIMER COUNTDOWN Muhurtham
