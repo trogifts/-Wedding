@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Save the Date - Sophia & Alexander</title>
+  <meta name="description" content="You are cordially invited to celebrate the wedding of Sophia and Alexander.">
+  
+  <!-- Premium Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Music Control -->
+  <div class="music-control-container">
+    <button id="musicToggle" class="music-toggle-btn" aria-label="Play background music">
+      <i class="fas fa-music"></i>
+    </button>
+    <audio id="bgMusic" loop src="https://assets.mixkit.co/active_storage/sfx/123/123-100.wav"></audio>
+  </div>
+
+  <!-- Hero Cover Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="hero-subtitle">SAVE THE DATE</span>
+      <h1 class="couple-names">Sophia &amp; Alexander</h1>
+      <p class="hero-details">JANUARY 23, 2027 &bull; NAPA VALLEY, CA</p>
+      
+      <div class="scroll-indicator">
+        <span>Scroll to Reveal</span>
+        <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content wrapper -->
+  <main id="main-content">
+    
+    <!-- Couple Introduction Section -->
+    <section class="intro-section fade-up">
+      <div class="container">
+        <div class="editorial-quote">
+          <p class="quote-text">"Two souls with but a single thought, two hearts that beat as one."</p>
+          <span class="quote-author">&mdash; Friedrich Halm</span>
+        </div>
+        <p class="invitation-text">
+          We invite you to share our joy as we exchange vows and begin our new chapter together under the California sky.
+        </p>
+      </div>
+    </section>
+
+    <!-- Countdown Timer -->
+    <section class="countdown-section fade-up">
+      <div class="container">
+        <h2 class="section-title">The Anticipation</h2>
+        <div class="countdown-grid">
+          <div class="countdown-card">
+            <span id="days" class="time-num">00</span>
+            <span class="time-label">Days</span>
+          </div>
+          <div class="countdown-divider">:</div>
+          <div class="countdown-card">
+            <span id="hours" class="time-num">00</span>
+            <span class="time-label">Hours</span>
+          </div>
+          <div class="countdown-divider">:</div>
+          <div class="countdown-card">
+            <span id="minutes" class="time-num">00</span>
+            <span class="time-label">Mins</span>
+          </div>
+          <div class="countdown-divider">:</div>
+          <div class="countdown-card">
+            <span id="seconds" class="time-num">00</span>
+            <span class="time-label">Secs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Event Details & Calendar Add -->
+    <section class="event-details-section fade-up">
+      <div class="container">
+        <div class="event-card">
+          <h2 class="section-title">The Celebration</h2>
+          <div class="details-grid">
+            <div class="detail-item">
+              <i class="fas fa-calendar-day"></i>
+              <h3>When</h3>
+              <p>Saturday, January 23, 2027<br>at 4:00 PM PST</p>
+            </div>
+            <div class="detail-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <h3>Where</h3>
+              <p>Auberge du Soleil Estate<br>180 Rutherford Hill Rd, Rutherford, CA</p>
+            </div>
+          </div>
+          <button class="btn-primary" id="btnSaveDate">Add to Calendar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline of Events -->
+    <section class="timeline-section fade-up">
+      <div class="container">
+        <h2 class="section-title">The Day's Flow</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">4:00 PM</div>
+            <div class="timeline-content">
+              <h3>The Vows</h3>
+              <p>An intimate ceremony on the terrace overlooking the olive groves and vineyards.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">5:00 PM</div>
+            <div class="timeline-content">
+              <h3>Cocktail Hour</h3>
+              <p>Sip sparkling wine and enjoy local artisanal pairings as the sun dips behind the hills.</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">6:30 PM</div>
+            <div class="timeline-content">
+              <h3>Dinner &amp; Dancing</h3>
+              <p>A candlelit outdoor dining experience followed by music and celebrations under the stars.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="gallery-section fade-up">
+      <div class="container">
+        <h2 class="section-title">Moments Shared</h2>
+        <p class="gallery-sub">A glimpse into our journey together</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="placeholder-img" style="background-image: linear-gradient(135deg, #fcece9, #ebd6d1)">
+              <i class="fas fa-heart"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="placeholder-img" style="background-image: linear-gradient(135deg, #ebd6d1, #dfc0b8)">
+              <i class="fas fa-camera"></i>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="placeholder-img" style="background-image: linear-gradient(135deg, #dfc0b8, #fcece9)">
+              <i class="fas fa-ring"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common FAQ Section -->
+    <section class="faq-section fade-up">
+      <div class="container">
+        <h2 class="section-title">Information</h2>
+        <div class="faq-accordion">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What is the dress code?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We recommend Cocktail attire. Keep in mind the ceremony and reception are outdoors, and Napa Valley evenings can get cool, so a light wrap or jacket is recommended.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Where should we stay?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We have reserved a block of rooms at the nearby Rutherford Ranch Resort. Mention our wedding when booking to receive a special rate.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>Are children invited?</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>To give all our guests the opportunity to celebrate without worry, we have chosen for our wedding day to be an adults-only occasion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Static Registry Note (No Links or Forms) -->
+    <section class="registry-note-section fade-up">
+      <div class="container">
+        <div class="registry-card-box">
+          <h2 class="section-title">With Love</h2>
+          <p>Your presence at our wedding is the greatest gift of all. We are incredibly grateful to have you in our lives and looking forward to celebrating together.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <p>Sophia &amp; Alexander &bull; Napa Valley 2027</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
