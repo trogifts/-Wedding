@@ -3,345 +3,1560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation Templates Portal</title>
-    <meta name="description" content="Explore and select premium static wedding invitation templates.">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Antigravity Invites | Bespoke Digital Wedding Invitations</title>
+    <meta name="description" content="Explore and purchase our collection of luxury, interactive digital wedding invitations. Crafted for standard celebrations.">
+    
+    <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* ==========================================================================
+           1. CORE DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
         :root {
-            --color-bg: #FAF7F0;
-            --color-card-bg: #FFFFFF;
-            --color-primary: #6B1D2F;
-            --color-gold: #D4AF37;
-            --color-gold-dark: #AA771C;
-            --color-text-main: #2C2523;
-            --color-text-muted: #615653;
-            --font-serif: 'Cinzel', Georgia, serif;
+            --bg-dark: #06070c;          /* Velvet Obsidian */
+            --bg-darker: #020305;        /* Deep Cosmos Black */
+            --color-gold: #dfb07a;       /* Liquid Gold */
+            --color-gold-light: #f7dfbe; /* Champagne Cream */
+            --color-gold-dark: #b3854e;  /* Antique Gold */
+            
+            --text-main: #f5f6fa;        /* Pearl White */
+            --text-muted: #8e94a5;       /* Slate Grey */
+            --text-gold: #dfb07a;        
+            
+            --glass-bg: rgba(14, 16, 27, 0.75);
+            --glass-border: rgba(223, 176, 122, 0.16);
+            --glass-border-hover: rgba(223, 176, 122, 0.45);
+            --shadow-glow: 0 0 25px rgba(223, 176, 122, 0.08);
+            --shadow-glow-intense: 0 0 45px rgba(223, 176, 122, 0.2);
+            
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Montserrat', sans-serif;
-            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition-smooth: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-sans);
-            background-color: var(--color-bg);
-            color: var(--color-text-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(107, 29, 47, 0.03) 0%, transparent 40%);
+            position: relative;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            max-width: 700px;
+        /* Ambient Cosmic Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(223, 176, 122, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(107, 29, 47, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(14, 16, 27, 0.6) 0%, transparent 100%);
+            z-index: -2;
+            pointer-events: none;
+            animation: nebulaDrift 60s infinite alternate ease-in-out;
         }
 
-        header h1 {
+        @keyframes nebulaDrift {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(5deg) scale(1.06); }
+        }
+
+        /* Live Starfield Canvas */
+        #starfield-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. NAVIGATION BAR
+           ========================================================================== */
+        nav {
+            backdrop-filter: blur(15px);
+            background: rgba(6, 7, 12, 0.7);
+            border-bottom: 1px solid var(--glass-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .brand-logo {
             font-family: var(--font-serif);
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: var(--color-gold);
+            text-decoration: none;
+            letter-spacing: 4px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-logo i {
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-gold-light);
+            text-shadow: 0 0 8px var(--gold-glow);
+        }
+
+        .btn-nav-cta {
+            background: transparent;
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-nav-cta:hover {
+            background: var(--color-gold);
+            color: var(--bg-darker);
+            box-shadow: var(--shadow-glow);
             font-weight: 600;
         }
 
-        header p {
-            font-size: 1rem;
-            color: var(--color-text-muted);
-            font-weight: 400;
+        /* ==========================================================================
+           3. HERO / INTRODUCTION
+           ========================================================================== */
+        .hero-section {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--color-gold);
+            margin-bottom: 25px;
+            display: inline-block;
+            background: rgba(223, 176, 122, 0.05);
+            border: 1px solid rgba(223, 176, 122, 0.15);
+            padding: 6px 16px;
+            border-radius: 30px;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .main-title {
+            font-family: var(--font-serif);
+            font-size: 4.5rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 25px;
             letter-spacing: 1px;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 40%, var(--color-gold) 70%, var(--color-gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            text-shadow: 0 0 30px rgba(223, 176, 122, 0.1);
+        }
+
+        .hero-desc {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--bg-darker);
+            border: none;
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(223, 176, 122, 0.25);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(223, 176, 122, 0.45);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            padding: 16px 36px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold-light);
+            background: rgba(223, 176, 122, 0.03);
+        }
+
+        /* ==========================================================================
+           4. TRUSTED / BENEFITS STATS
+           ========================================================================== */
+        .stats-section {
+            padding: 50px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(6, 7, 12, 0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--color-gold);
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: var(--shadow-glow);
+        }
+
+        .stat-item p {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           5. PORTAL CATEGORY FILTERS & GRID
+           ========================================================================== */
+        .catalog-section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--color-gold);
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            background: rgba(14, 16, 27, 0.4);
+            border: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            padding: 10px 24px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-gold);
+            color: var(--color-gold-light);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .filter-btn.active {
+            background: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--bg-darker);
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(223, 176, 122, 0.3);
         }
 
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
-            width: 100%;
-            max-width: 1100px;
-            margin-bottom: 60px;
         }
 
         .template-card {
-            background-color: var(--color-card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            border-radius: 12px;
-            padding: 30px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 45px 35px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(44, 37, 35, 0.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
             transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(15px);
         }
 
-        .template-card::before {
+        /* Glow Aura behind card */
+        .template-card::after {
             content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(223, 176, 122, 0.04) 0%, transparent 70%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .card-border-top {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
-            opacity: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+            transform: scaleX(0);
             transition: var(--transition-smooth);
         }
 
         .template-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(44, 37, 35, 0.08);
-            border-color: rgba(212, 175, 55, 0.4);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--shadow-glow-intense), 0 20px 40px rgba(0, 0, 0, 0.65);
         }
 
-        .template-card:hover::before {
-            opacity: 1;
-        }
+        .template-card:hover::after { opacity: 1; }
+        .template-card:hover .card-border-top { transform: scaleX(1); }
 
-        .card-icon {
-            font-size: 2.2rem;
-            color: var(--color-gold);
-            margin-bottom: 20px;
-            transition: var(--transition-smooth);
-        }
-
-        .template-card:hover .card-icon {
-            transform: scale(1.1);
-            color: var(--color-primary);
-        }
-
-        .card-title {
-            font-family: var(--font-serif);
-            font-size: 1.35rem;
-            color: var(--color-primary);
-            margin-bottom: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: var(--color-text-muted);
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-
-        .btn-open {
-            display: inline-block;
-            text-decoration: none;
-            background: linear-gradient(135deg, var(--color-primary) 0%, #3d0a15 100%);
-            color: #FFFFFF;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: var(--transition-smooth);
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(107, 29, 47, 0.2);
-        }
-
-        .btn-open:hover {
-            background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(170, 119, 28, 0.3);
-        }
-
+        /* Featured Badge Styles */
         .template-card.featured {
-            border-color: var(--color-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+            border-color: rgba(223, 176, 122, 0.45);
         }
 
-        .template-card.featured::before {
-            opacity: 1;
+        .template-card.featured .card-border-top {
+            transform: scaleX(1);
         }
 
         .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--color-gold);
-            color: #fff;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--bg-darker);
             font-size: 0.65rem;
             font-weight: 700;
             text-transform: uppercase;
-            padding: 3px 8px;
+            padding: 4px 12px;
             border-radius: 20px;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 10px rgba(223, 176, 122, 0.2);
         }
 
-        footer {
-            margin-top: auto;
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--color-text-muted);
+        .card-icon-wrapper {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-icon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(223, 176, 122, 0.05);
+            border: 1px solid rgba(223, 176, 122, 0.1);
+            transition: var(--transition-smooth);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--color-gold);
+            z-index: 2;
+            transition: var(--transition-smooth);
+        }
+
+        .template-card:hover .card-icon-bg {
+            background: rgba(223, 176, 122, 0.12);
+            border-color: rgba(223, 176, 122, 0.4);
+            transform: scale(1.1);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .template-card:hover .card-icon {
+            transform: scale(1.15) rotate(5deg);
+            color: var(--color-gold-light);
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .card-action-bar {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-card-primary {
+            flex: 1;
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--bg-darker);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-card-primary:hover {
+            box-shadow: 0 4px 15px rgba(223, 176, 122, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-card-secondary {
+            flex: 1;
+            display: inline-block;
+            text-decoration: none;
+            background: transparent;
+            color: var(--color-gold);
+            border: 1px solid var(--color-gold);
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .btn-card-secondary:hover {
+            background: rgba(223, 176, 122, 0.05);
+            color: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           6. CRAFTSMANSHIP / FEATURES
+           ========================================================================== */
+        .features-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--glass-border);
+            background: rgba(6, 7, 12, 0.4);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 35px;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover {
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon-box {
+            font-size: 2.2rem;
+            color: var(--color-gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
             letter-spacing: 0.5px;
         }
 
-        footer a {
-            color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        @media (max-width: 600px) {
-            body {
-                padding: 30px 15px;
+        /* ==========================================================================
+           7. PRICING PACKAGES (TIERS)
+           ========================================================================== */
+        .pricing-section {
+            padding: 100px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 50px 35px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(15px);
+        }
+
+        .pricing-card.premium {
+            border-color: var(--color-gold);
+            box-shadow: var(--shadow-glow-intense);
+            transform: scale(1.03);
+        }
+
+        .pricing-card.premium .badge-popular {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--bg-darker);
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 10px rgba(223, 176, 122, 0.3);
+        }
+
+        .pricing-header h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .pricing-header .price {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            color: var(--color-gold);
+            font-weight: 300;
+            margin: 20px 0;
+        }
+
+        .pricing-header .price span {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 30px 0 40px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .pricing-features li {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li i {
+            color: var(--color-gold);
+            font-size: 0.85rem;
+        }
+
+        .btn-pricing {
+            display: block;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-pricing.outline {
+            border: 1px solid var(--color-gold);
+            color: var(--color-gold);
+            background: transparent;
+        }
+
+        .btn-pricing.outline:hover {
+            background: rgba(223, 176, 122, 0.05);
+            color: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+        }
+
+        .btn-pricing.solid {
+            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
+            color: var(--bg-darker);
+            border: none;
+            box-shadow: 0 4px 15px rgba(223, 176, 122, 0.25);
+        }
+
+        .btn-pricing.solid:hover {
+            box-shadow: 0 8px 25px rgba(223, 176, 122, 0.45);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           8. TESTIMONIALS (CUSTOMER REVIEWS)
+           ========================================================================== */
+        .testimonials-section {
+            padding: 100px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            background: rgba(6, 7, 12, 0.4);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .testimonial-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 40px 30px;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-3px);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: rgba(223, 176, 122, 0.08);
+        }
+
+        .stars-row {
+            color: var(--color-gold);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin-bottom: 25px;
+        }
+
+        .client-info h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-gold-light);
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        .client-info span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           9. BOOKING / CUSTOMIZATION INQUIRY FORM
+           ========================================================================== */
+        .inquiry-section {
+            padding: 100px 0 150px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .inquiry-form {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            margin-top: 50px;
+        }
+
+        .form-row {
+            margin-bottom: 30px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap input, .input-wrap select, .input-wrap textarea {
+            width: 100%;
+            padding: 15px 0 8px;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--text-main);
+            border: none;
+            border-bottom: 1px solid var(--glass-border);
+            background: transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-wrap input:focus, .input-wrap select:focus, .input-wrap textarea:focus {
+            outline: none;
+            border-bottom-color: var(--color-gold);
+        }
+
+        .input-wrap label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: 0.3s ease all;
+        }
+
+        .input-wrap input:focus ~ label,
+        .input-wrap input:not(:placeholder-shown) ~ label,
+        .input-wrap select:focus ~ label,
+        .input-wrap select:valid ~ label,
+        .input-wrap textarea:focus ~ label,
+        .input-wrap textarea:not(:placeholder-shown) ~ label {
+            top: -12px;
+            font-size: 0.65rem;
+            color: var(--color-gold);
+        }
+
+        /* Custom dropdown select icon */
+        .select-wrap select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dfb07a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 14px;
+        }
+
+        /* Success Message styling */
+        .inquiry-success {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .inquiry-success i {
+            font-size: 3rem;
+            color: var(--color-gold);
+            margin-bottom: 20px;
+        }
+
+        .inquiry-success h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        footer {
+            text-align: center;
+            padding: 80px 20px;
+            border-top: 1px solid var(--glass-border);
+            background: var(--bg-darker);
+            position: relative;
+            z-index: 5;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            color: var(--color-gold);
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo i {
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+
+        .footer-nav {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-gold);
+        }
+
+        .footer-copy {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* ==========================================================================
+           11. RESPONSIVE DESIGN ADJUSTMENTS
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .features-grid, .pricing-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .pricing-card.premium {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta-wrapper {
+                display: none;
             }
 
-            header {
-                margin-bottom: 35px;
+            .hero-section {
+                padding: 130px 0 60px;
             }
 
-            header h1 {
-                font-size: 1.8rem;
-                letter-spacing: 1px;
+            .main-title {
+                font-size: 2.8rem;
             }
 
-            header p {
-                font-size: 0.85rem;
+            .hero-desc {
+                font-size: 1.2rem;
             }
 
-            .portal-grid {
+            .hero-ctas {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
 
-            .template-card {
-                padding: 20px;
-                border-radius: 10px;
+            .features-grid, .pricing-grid, .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 10px;
             }
 
-            .card-icon {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-            }
-
-            .card-title {
-                font-size: 1.15rem;
-                margin-bottom: 8px;
-            }
-
-            .card-desc {
-                font-size: 0.8rem;
-                margin-bottom: 20px;
-            }
-
-            .btn-open {
-                padding: 10px 20px;
-                font-size: 0.8rem;
-                letter-spacing: 1px;
+            .section-header h2 {
+                font-size: 2.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Wedding Invitations</h1>
-        <p>Select a template below to view the premium interactive wedding invitation designs.</p>
+    <!-- Dynamic Stardust Particles Background Canvas -->
+    <canvas id="starfield-canvas"></canvas>
+
+    <!-- Navigation Header -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Antigravity
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#features">Bespoke Suite</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#inquiry">Order</a></li>
+            </ul>
+            <div class="nav-cta-wrapper">
+                <a href="#inquiry" class="btn-nav-cta">Consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Showcase Section -->
+    <header class="hero-section" id="hero">
+        <div class="container">
+            <span class="hero-tag">Bespoke Digital Invitations</span>
+            <h1 class="main-title">Crafting <span class="gold-gradient-text">Unforgettable First Impressions</span></h1>
+            <p class="hero-desc">Elegant, high-end digital invitation suites styled with dynamic micro-animations, customizable music controllers, and immersive unboxing experiences.</p>
+            <div class="hero-ctas">
+                <a href="#templates" class="btn-primary">Explore Templates</a>
+                <a href="#inquiry" class="btn-secondary">Request Custom Quote</a>
+            </div>
+        </div>
     </header>
 
-    <div class="portal-grid">
-        <!-- Kerala Style -->
-        <div class="template-card featured">
-            <span class="badge">Featured</span>
-            <div class="card-icon"><i class="fa-solid fa-tree"></i></div>
-            <h2 class="card-title">Kerala Style</h2>
-            <p class="card-desc">Traditional Kasavu cream & gold theme featuring virtual lamp lighting, jasmine showers, and Kochi backwater aesthetics.</p>
-            <a href="kerala/index.html" class="btn-open">View Invitation</a>
+    <!-- Core Business Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Bespoke Customization</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5,000+</h3>
+                    <p>Guests Wowed Globally</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24h</h3>
+                    <p>Fast Setup & Deployment</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Celestial Luxury -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-star-and-crescent"></i></div>
-            <h2 class="card-title">Celestial Luxury</h2>
-            <p class="card-desc">Dark-mode editorial design featuring midnight blue, liquid gold accents, and astronomical layouts.</p>
-            <a href="celestial/index.html" class="btn-open">View Invitation</a>
+    <!-- Templates Portfolio Showcase Section -->
+    <section class="catalog-section" id="templates">
+        <div class="container">
+            <div class="section-header">
+                <span>The Portfolio</span>
+                <h2>The Template Collection</h2>
+            </div>
+
+            <!-- Interactive Category Filter Tabs -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-category="all">All Invitations</button>
+                <button class="filter-btn" data-category="luxury">Celestial & Luxury</button>
+                <button class="filter-btn" data-category="traditional">Traditional & Cultural</button>
+                <button class="filter-btn" data-category="minimalist">Modern Minimalist</button>
+            </div>
+
+            <!-- Templates Catalog Grid -->
+            <div class="portal-grid" id="portal-grid">
+                <!-- Celestial Luxury (Luxury) -->
+                <div class="template-card featured" data-tags="luxury">
+                    <div class="card-border-top"></div>
+                    <span class="badge">Bestseller</span>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-moon"></i></div>
+                    </div>
+                    <h2 class="card-title">Celestial Luxury</h2>
+                    <p class="card-desc">Dark-mode editorial design featuring midnight blue, gold trims, 3D wax seal unboxing, and celestial star schedule maps.</p>
+                    <div class="card-action-bar">
+                        <a href="celestial/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Kerala Style (Traditional) -->
+                <div class="template-card" data-tags="traditional">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-om"></i></div>
+                    </div>
+                    <h2 class="card-title">Royal Kerala</h2>
+                    <p class="card-desc">Traditional Kasavu cream & gold theme featuring automated oil lamp lighting, falling jasmine flowers, and backwater aesthetics.</p>
+                    <div class="card-action-bar">
+                        <a href="kerala/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Rose Gold (Minimalist) -->
+                <div class="template-card" data-tags="minimalist">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+                    </div>
+                    <h2 class="card-title">Rose Gold Suite</h2>
+                    <p class="card-desc">Elegant contemporary layout featuring delicate rose gold accents, premium editorial typography, and soft scroll reveals.</p>
+                    <div class="card-action-bar">
+                        <a href="rose-gold/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Standard 2 (Traditional) -->
+                <div class="template-card" data-tags="traditional">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+                    </div>
+                    <h2 class="card-title">Standard 2</h2>
+                    <p class="card-desc">Traditional temple layout with automated wick lighting, memory tree slide loops, and clean facts checklists.</p>
+                    <div class="card-action-bar">
+                        <a href="standard2/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Standard 3 (Luxury) -->
+                <div class="template-card" data-tags="luxury">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    </div>
+                    <h2 class="card-title">Standard 3</h2>
+                    <p class="card-desc">Chic luxury design featuring pastel watercolor boards, interactive floating canvas butterflies, and fluid typography.</p>
+                    <div class="card-action-bar">
+                        <a href="standard3/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Standard 4 (Minimalist) -->
+                <div class="template-card" data-tags="minimalist">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-feather"></i></div>
+                    </div>
+                    <h2 class="card-title">Standard 4</h2>
+                    <p class="card-desc">Sleek modern minimalist layout featuring background meteor showers, star-hunting timelines, and fluid contacts.</p>
+                    <div class="card-action-bar">
+                        <a href="standard4/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Standard 1 (Minimalist) -->
+                <div class="template-card" data-tags="minimalist">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
+                    </div>
+                    <h2 class="card-title">Standard 1</h2>
+                    <p class="card-desc">Elegant standard card template incorporating background stardust particle engines, sound toggles, and responsive drawers.</p>
+                    <div class="card-action-bar">
+                        <a href="standard1/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Basic 1 (Minimalist) -->
+                <div class="template-card" data-tags="minimalist">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    </div>
+                    <h2 class="card-title">Basic 1</h2>
+                    <p class="card-desc">High-contrast classic wedding card layout with simple mobile drawer navigation links and static info blocks.</p>
+                    <div class="card-action-bar">
+                        <a href="basic1/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+
+                <!-- Basic 2 (Minimalist) -->
+                <div class="template-card" data-tags="minimalist">
+                    <div class="card-border-top"></div>
+                    <div class="card-icon-wrapper">
+                        <div class="card-icon-bg"></div>
+                        <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+                    </div>
+                    <h2 class="card-title">Basic 2</h2>
+                    <p class="card-desc">Minimalist layout with clean alignments, mobile drawer navigation menus, and clean slate margins.</p>
+                    <div class="card-action-bar">
+                        <a href="basic2/index.html" class="btn-card-primary" target="_blank">Live Demo</a>
+                        <a href="#inquiry" class="btn-card-secondary">Purchase</a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Rose Gold Minimalist -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
-            <h2 class="card-title">Rose Gold</h2>
-            <p class="card-desc">Modern minimalist layout featuring rose gold accents, elegant editorial serif typography, and soft scroll animations.</p>
-            <a href="rose-gold/index.html" class="btn-open">View Invitation</a>
+    <!-- Features and Benefits Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span>The Antigravity Edge</span>
+                <h2>Why Choose Our Digital Invites?</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3>Safari & iOS Perfect</h3>
+                    <p>Designed defensively for cross-browser reliability. Built to render beautifully on mobile Safaris and webviews without clipping or layout shifts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Hands-Free Automation</h3>
+                    <p>All animations run seamlessly. Oil lamps light up, flower petals shower, and slideshows transition automatically upon scroll reveal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-music"></i></div>
+                    <h3>Bespoke Soundtrack</h3>
+                    <p>Integrated background music loop controllers with smooth play/pause buttons, designed with elegant fade effects.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Standard 2 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
-            <h2 class="card-title">Standard 2</h2>
-            <p class="card-desc">Traditional temple styling with interactive virtual lamp, memory tree timelines, and couple quiz game.</p>
-            <a href="standard2/index.html" class="btn-open">View Invitation</a>
+    <!-- Pricing Packages Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span>Invest in your Memories</span>
+                <h2>Sleek Pricing Packages</h2>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Basic Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Minimalist Suite</h3>
+                        <div class="price">$99</div>
+                        <p>Perfect for clean, elegant announcements</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Standard Minimalist layouts</li>
+                        <li><i class="fa-solid fa-check"></i> 100% Mobile Responsive</li>
+                        <li><i class="fa-solid fa-check"></i> Google Maps & Navigation</li>
+                        <li><i class="fa-solid fa-check"></i> Custom Countdown Timer</li>
+                        <li><i class="fa-solid fa-check"></i> Hosted on custom subdomain</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-pricing outline" onclick="selectPackage('Minimalist Suite')">Choose Package</a>
+                </div>
+
+                <!-- Featured Plan -->
+                <div class="pricing-card premium">
+                    <span class="badge-popular">Most Popular</span>
+                    <div class="pricing-header">
+                        <h3>Traditional & Cultural</h3>
+                        <div class="price">$149</div>
+                        <p>Beautiful traditional elements and audio</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Royal Kerala / Temple templates</li>
+                        <li><i class="fa-solid fa-check"></i> Automated lamp-lighting trigger</li>
+                        <li><i class="fa-solid fa-check"></i> Continuous jasmine flower shower</li>
+                        <li><i class="fa-solid fa-check"></i> Music integration with player</li>
+                        <li><i class="fa-solid fa-check"></i> 48-Hour delivery & customization</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-pricing solid" onclick="selectPackage('Traditional Suite')">Choose Package</a>
+                </div>
+
+                <!-- Celestial Plan -->
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Celestial Couture</h3>
+                        <div class="price">$249</div>
+                        <p>Immersive 3D animations and timeline</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Celestial Luxury template</li>
+                        <li><i class="fa-solid fa-check"></i> WebGL Wax Seal unboxing</li>
+                        <li><i class="fa-solid fa-check"></i> Background stardust animations</li>
+                        <li><i class="fa-solid fa-check"></i> Calendar event file generation</li>
+                        <li><i class="fa-solid fa-check"></i> Lifetime hosting & support</li>
+                    </ul>
+                    <a href="#inquiry" class="btn-pricing outline" onclick="selectPackage('Celestial Couture')">Choose Package</a>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Standard 1 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
-            <h2 class="card-title">Standard 1</h2>
-            <p class="card-desc">Elegant standard invitation template with custom background music control and responsive navigation.</p>
-            <a href="standard1/index.html" class="btn-open">View Invitation</a>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span>Real Love Stories</span>
+                <h2>What Couples Say About Us</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="stars-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Buying the Celestial Luxury invite was the best decision we made. Our guests were absolutely wowed by the wax seal unboxing experience. The midnight blue looks incredibly premium."</p>
+                    <div class="client-info">
+                        <h4>Aria & Ethan</h4>
+                        <span>San Francisco, CA</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="stars-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"The Royal Kerala theme was gorgeous. Our grandparents in Kochi were so emotional when they saw the virtual oil lamp lighting up automatically on their iPads. It was so elegant."</p>
+                    <div class="client-info">
+                        <h4>Rahul & Anjali</h4>
+                        <span>Kochi, Kerala</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <div class="stars-row">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"We loved how responsive and simple the booking process was. Antigravity updated all our timeline milestones and gallery details in under 24 hours. Phenomenal service!"</p>
+                    <div class="client-info">
+                        <h4>Sarah & Marcus</h4>
+                        <span>London, UK</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <!-- Standard 3 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-            <h2 class="card-title">Standard 3</h2>
-            <p class="card-desc">Premium standard layout featuring pastel color palettes and custom typography transitions.</p>
-            <a href="standard3/index.html" class="btn-open">View Invitation</a>
+    <!-- Booking / Customization Form Section -->
+    <section class="inquiry-section" id="inquiry">
+        <div class="container">
+            <div class="section-header">
+                <span>Start Your Journey</span>
+                <h2>Request Customization</h2>
+            </div>
+
+            <form class="inquiry-form" id="consultationForm">
+                <div class="form-row">
+                    <div class="input-wrap">
+                        <input type="text" id="custName" placeholder=" " required>
+                        <label for="custName">Your Name</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-wrap">
+                        <input type="email" id="custEmail" placeholder=" " required>
+                        <label for="custEmail">Email Address</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-wrap select-wrap">
+                        <select id="custPackage" required>
+                            <option value="" disabled selected hidden></option>
+                            <option value="Minimalist Suite">Minimalist Suite ($99)</option>
+                            <option value="Traditional Suite">Traditional & Cultural ($149)</option>
+                            <option value="Celestial Couture">Celestial Couture ($249)</option>
+                        </select>
+                        <label for="custPackage">Select Invite Suite Package</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-wrap">
+                        <textarea id="custDetails" rows="3" placeholder=" "></textarea>
+                        <label for="custDetails">Special Customization Wishes</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary" style="width:100%; border:none; cursor:pointer;">Submit Booking Inquiry</button>
+            </form>
         </div>
+    </section>
 
-        <!-- Standard 4 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-feather"></i></div>
-            <h2 class="card-title">Standard 4</h2>
-            <p class="card-desc">Clean modern design with simple scroll action layouts and minimal interface accents.</p>
-            <a href="standard4/index.html" class="btn-open">View Invitation</a>
-        </div>
-
-        <!-- Basic 1 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
-            <h2 class="card-title">Basic 1</h2>
-            <p class="card-desc">Minimalist classic wedding card layout with clean responsive mobile drawer menu.</p>
-            <a href="basic1/index.html" class="btn-open">View Invitation</a>
-        </div>
-
-        <!-- Basic 2 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
-            <h2 class="card-title">Basic 2</h2>
-            <p class="card-desc">Modern minimalist layout with mobile drawer navigation and refined margins.</p>
-            <a href="basic2/index.html" class="btn-open">View Invitation</a>
-        </div>
-
-        <!-- Basic 3 -->
-        <div class="template-card">
-            <div class="card-icon"><i class="fa-solid fa-ring"></i></div>
-            <h2 class="card-title">Basic 3</h2>
-            <p class="card-desc">Charming light aesthetic layout with simple navigation controls and responsive styling.</p>
-            <a href="basic3/index.html" class="btn-open">View Invitation</a>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026. All Rights Reserved.</p>
+        <div class="container">
+            <div class="footer-logo">✦ Antigravity ✦</div>
+            <ul class="footer-nav">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#templates">Collection</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#inquiry">Contact</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Antigravity. All Rights Reserved.</div>
+        </div>
     </footer>
 
+    <!-- Filter & starfield background scripts -->
+    <script>
+        // ==========================================
+        // 1. FILTER TABS CONTROLLER
+        // ==========================================
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const templateCards = document.querySelectorAll('.template-card');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.getAttribute('data-category');
+
+                templateCards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'flex';
+                        setTimeout(() => card.style.opacity = '1', 50);
+                    } else {
+                        const tags = card.getAttribute('data-tags');
+                        if (tags && tags.includes(category)) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 50);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => card.style.display = 'none', 300);
+                        }
+                    }
+                });
+            });
+        });
+
+        // Auto select package in inquiry form
+        function selectPackage(packageName) {
+            const dropdown = document.getElementById('custPackage');
+            if (dropdown) {
+                dropdown.value = packageName;
+            }
+        }
+
+        // Form submit handler
+        const form = document.getElementById('consultationForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.innerHTML = `
+                <div class="inquiry-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h3>Inquiry Received!</h3>
+                    <p>Our bespoke design consultants will reach out to you within 4 hours to begin crafting your digital invitation experience.</p>
+                </div>
+            `;
+        });
+
+        // ==========================================
+        // 2. DYNAMIC CANVAS STARDUST BACKGROUND
+        // ==========================================
+        const canvas = document.getElementById('starfield-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [];
+        const starCount = 80;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initStars();
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < starCount; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5 + 0.5,
+                    speed: Math.random() * 0.05 + 0.01,
+                    alpha: Math.random() * 0.5 + 0.1,
+                    direction: Math.random() > 0.5 ? 1 : -1
+                });
+            }
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#dfb07a';
+
+            stars.forEach(star => {
+                ctx.globalAlpha = star.alpha;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                star.y -= star.speed;
+                star.alpha += (Math.random() * 0.04 - 0.02) * star.direction;
+                if (star.alpha > 0.8) star.direction = -1;
+                if (star.alpha < 0.1) star.direction = 1;
+
+                if (star.y < 0) {
+                    star.y = canvas.height;
+                    star.x = Math.random() * canvas.width;
+                }
+            });
+
+            requestAnimationFrame(drawStars);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        drawStars();
+    </script>
 </body>
 </html>

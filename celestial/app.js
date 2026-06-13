@@ -208,6 +208,8 @@ function initUnboxingScene() {
   scene = new THREE.Scene();
   
   // Setup Camera (Adjust default z based on mobile)
+  // Setup Camera (Adjust default z based on mobile)
+  console.log("canvas3dDiv dimensions:", canvas3dDiv.clientWidth, "x", canvas3dDiv.clientHeight);
   camera = new THREE.PerspectiveCamera(45, canvas3dDiv.clientWidth / canvas3dDiv.clientHeight, 0.1, 100);
   adjustCameraZoom();
   
@@ -215,6 +217,7 @@ function initUnboxingScene() {
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(canvas3dDiv.clientWidth, canvas3dDiv.clientHeight);
+  console.log("Renderer size set to:", canvas3dDiv.clientWidth, "x", canvas3dDiv.clientHeight);
   canvas3dDiv.appendChild(renderer.domElement);
   
   // Lighting
@@ -353,6 +356,7 @@ function initUnboxingScene() {
 }
 
 function adjustCameraZoom() {
+  const canvas3dDiv = document.getElementById('canvas3d');
   if (!camera || !canvas3dDiv) return;
   // Zoom out on mobile/vertical screens to fit envelope without clipping
   if (window.innerWidth < 500) {
