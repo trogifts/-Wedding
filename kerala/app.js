@@ -270,7 +270,7 @@ function initRsvp() {
 
   // Check if RSVP is already saved in LocalStorage
   const savedRsvp = localStorage.getItem('keralaWeddingRsvp');
-  if (savedRsvp) {
+  if (savedRsvp && form) {
     const data = JSON.parse(savedRsvp);
     showSuccessState(data.name, data.attendance);
   }
@@ -279,10 +279,14 @@ function initRsvp() {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('guestName').value;
-      const email = document.getElementById('guestEmail').value;
-      const attendance = form.elements['attendance'].value;
-      const meal = document.getElementById('mealPreference').value;
+      const nameEl = document.getElementById('guestName');
+      const emailEl = document.getElementById('guestEmail');
+      const mealEl = document.getElementById('mealPreference');
+
+      const name = nameEl ? nameEl.value : '';
+      const email = emailEl ? emailEl.value : '';
+      const attendance = form.elements['attendance'] ? form.elements['attendance'].value : 'yes';
+      const meal = mealEl ? mealEl.value : '';
 
       const rsvpData = { name, email, attendance, meal };
       localStorage.setItem('keralaWeddingRsvp', JSON.stringify(rsvpData));

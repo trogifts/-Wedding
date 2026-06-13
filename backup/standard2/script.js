@@ -5,14 +5,14 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // ==========================================
     // 1. CONFIGURATION & CORE STATE
     // ==========================================
-    
+
     // Target Muhurtham date: September 10, 2026 at 10:30 AM IST
     const weddingDate = new Date("September 10, 2026 10:30:00").getTime();
-    
+
     // Gallery Items data (renders decorative SVGs inside lightbox as visual assets)
     const galleryItems = [
         { title: "The Promise", desc: "Engagement rings surrounded by golden Kasavu styling.", color: "#E5C396" },
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         { title: "Sneha Walk", desc: "Walking together along the historic Fort Kochi sea walkway.", color: "#E5C396" }
     ];
     let currentGalleryIndex = 0;
-    
+
     // Memory Tree Facts Database
     const memoryTreeFacts = {
         1: {
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
             desc: "During their traditional ring exchange in Thrissur, Zayn got nervous and tried to slide the ring onto Aara's right hand instead of the left!"
         }
     };
-    
+
     // Quiz State Variables
     let quizScore = 0;
     let quizAnswers = { 1: null, 2: null, 3: null };
@@ -57,19 +57,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnOpenInvite = document.getElementById("btn-open-invite");
     const bgMusic = document.getElementById("bg-music");
     const musicToggle = document.getElementById("music-toggle");
-    
+
     const guestNameDisplay = document.getElementById("guest-name-display");
-    
+
     const rsvpForm = document.getElementById("rsvp-form");
     const rsvpSuccessModal = document.getElementById("rsvp-success");
-    
+
     const wishesForm = document.getElementById("wishes-form");
     const wishesBoard = document.getElementById("wishes-board");
     const wishText = document.getElementById("wish-text");
     const wishSender = document.getElementById("wish-sender");
-    
+
     const scrollBar = document.getElementById("scroll-bar");
-    
+
     // ==========================================
     // 3. PARSE PERSONALIZED GUEST GREETING
     // ==========================================
@@ -92,23 +92,23 @@ document.addEventListener("DOMContentLoaded", () => {
     btnOpenInvite.addEventListener("click", () => {
         // Play traditional music
         playAudio();
-        
+
         // Hide cover with fade-out
         loaderScreen.classList.add("fade-out");
-        
+
         // Show main website wrapper
         mainContent.classList.remove("content-hidden");
         void mainContent.offsetWidth; // Force Reflow
         mainContent.classList.add("fade-in");
-        
+
         // Unlock scroll
         document.body.style.overflow = "auto";
-        
+
         // Initialize active scroll reveal & countdown
         initializeCountdown();
         revealOnScroll();
     });
-    
+
     // Prevent scrolling initially when cover is active
     document.body.style.overflow = "hidden";
 
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. BACKGROUND MUSIC CONTROL
     // ==========================================
     let isPlaying = false;
-    
+
     function playAudio() {
         bgMusic.play().then(() => {
             isPlaying = true;
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
             musicToggle.classList.add("muted");
         });
     }
-    
+
     function pauseAudio() {
         bgMusic.pause();
         isPlaying = false;
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         musicToggle.classList.add("muted");
         musicToggle.setAttribute("aria-label", "Play Background Music");
     }
-    
+
     musicToggle.addEventListener("click", (e) => {
         e.stopPropagation();
         if (isPlaying) {
@@ -149,32 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================
-    // Mobile Navigation Toggle
-    // ==========================================
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    const navLinks = document.querySelectorAll("#nav-menu .nav-link");
-
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener("click", (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle("active");
-        });
-
-        document.addEventListener("click", (e) => {
-            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-                navMenu.classList.remove("active");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                navMenu.classList.remove("active");
-            });
-        });
-    }
-
-    // ==========================================
     // 6. SCROLL PROGRESS INDICATOR & REVEALS
     // ==========================================
     window.addEventListener("scroll", () => {
@@ -183,15 +157,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         scrollBar.style.width = scrolled + "%";
-        
+
         // Active scroll reveal elements
         revealOnScroll();
     });
-    
+
     function revealOnScroll() {
         const reveals = document.querySelectorAll(".reveal");
         const triggerBottom = window.innerHeight * 0.85;
-        
+
         reveals.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
             if (elementTop < triggerBottom) {
@@ -206,16 +180,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const wickSpots = document.querySelectorAll(".wick-spot");
     const lampBlessingCard = document.getElementById("lamp-blessing-card");
     let totalLitWicks = 0;
-    
+
     wickSpots.forEach(wick => {
         wick.addEventListener("click", () => {
             if (!wick.classList.contains("lit")) {
                 wick.classList.add("lit");
                 totalLitWicks++;
-                
+
                 // Show floating confirmation toast
                 showFlowerToast("Auspicious flame lit! 🕯️");
-                
+
                 // When all 5 wicks are lit, trigger blessing card & special automatic flower rain
                 if (totalLitWicks === 5) {
                     setTimeout(() => {
@@ -235,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const flowerShowerOverlay = document.getElementById("flower-shower-overlay");
     const flowerToast = document.getElementById("flower-toast");
     let toastTimeout;
-    
+
     const blessingSayings = [
         "May their life be as fragrant as jasmine! 🌸",
         "Wishing Zayn & Aara a golden future! 🌟",
@@ -243,48 +217,48 @@ document.addEventListener("DOMContentLoaded", () => {
         "Blessings of happiness, peace, and abundance! 🌿",
         "May joy shower upon their union! 🌺"
     ];
-    
+
     urliBasket.addEventListener("click", () => {
         // Trigger flower drop
         triggerFlowerShower(25);
-        
+
         // Show random blessing phrase toast
         const randomSaying = blessingSayings[Math.floor(Math.random() * blessingSayings.length)];
         showFlowerToast(randomSaying);
     });
-    
+
     function showFlowerToast(message) {
         clearTimeout(toastTimeout);
         flowerToast.innerText = message;
         flowerToast.classList.add("show");
-        
+
         toastTimeout = setTimeout(() => {
             flowerToast.classList.remove("show");
         }, 3500);
     }
-    
+
     function triggerFlowerShower(count) {
         const petalTypes = ["jasmine", "marigold", "rose"];
-        
+
         for (let i = 0; i < count; i++) {
             const petal = document.createElement("div");
             const type = petalTypes[Math.floor(Math.random() * petalTypes.length)];
-            
+
             petal.className = `falling-petal ${type}`;
-            
+
             // Randomized physics properties
             const startX = Math.random() * 100; // viewport percentage width
             const scale = 0.5 + Math.random() * 0.8;
             const duration = 2.5 + Math.random() * 3; // fall duration in seconds
             const delay = Math.random() * 0.8; // entry delay
-            
+
             petal.style.left = `${startX}vw`;
             petal.style.transform = `scale(${scale})`;
             petal.style.animationDuration = `${duration}s`;
             petal.style.animationDelay = `${delay}s`;
-            
+
             flowerShowerOverlay.appendChild(petal);
-            
+
             // Clean up petal after animation concludes
             setTimeout(() => {
                 petal.remove();
@@ -299,22 +273,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const memoryRevealBox = document.getElementById("memory-reveal-box");
     const memoryRevealTitle = document.getElementById("memory-reveal-title");
     const memoryRevealDesc = document.getElementById("memory-reveal-desc");
-    
+
     treeLeaves.forEach(leaf => {
         leaf.addEventListener("click", () => {
             const leafId = leaf.id.replace("leaf-", "");
             const fact = memoryTreeFacts[leafId];
-            
+
             if (fact) {
                 // Highlight leaf visually
                 treeLeaves.forEach(l => l.querySelector("circle").style.fill = "#FFF");
                 leaf.querySelector("circle").style.fill = "#FAF5B7";
-                
+
                 // Show fact box with text
                 memoryRevealTitle.innerText = fact.title;
                 memoryRevealDesc.innerText = fact.desc;
                 memoryRevealBox.style.display = "block";
-                
+
                 // Trigger a tiny flower splash around leaf spot
                 showFlowerToast("Fact Unlocked! 🍃");
             }
@@ -324,13 +298,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     // 10. COUPLE QUIZ GAME ENGINE
     // ==========================================
-    window.checkAnswer = function(questionNum, optionIdx, isCorrect) {
+    window.checkAnswer = function (questionNum, optionIdx, isCorrect) {
         const currentCard = document.getElementById(`q-${questionNum}`);
         const optionButtons = currentCard.querySelectorAll(".quiz-opt-btn");
-        
+
         // Save answer status
         quizAnswers[questionNum] = isCorrect;
-        
+
         // Highlight choices
         optionButtons.forEach((btn, idx) => {
             btn.setAttribute("disabled", "true");
@@ -338,15 +312,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 btn.classList.add(isCorrect ? "correct" : "wrong");
             }
         });
-        
+
         if (isCorrect) {
             quizScore++;
         }
-        
+
         // Transition to next question or result card
         setTimeout(() => {
             currentCard.style.display = "none";
-            
+
             if (questionNum < 3) {
                 const nextCard = document.getElementById(`q-${questionNum + 1}`);
                 nextCard.style.display = "block";
@@ -355,16 +329,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, 1200);
     };
-    
+
     function showQuizResult() {
         const resultCard = document.getElementById("quiz-result");
         const scoreBadge = document.getElementById("score-badge");
         const feedbackTitle = document.getElementById("quiz-feedback-title");
         const feedbackDesc = document.getElementById("quiz-feedback-desc");
-        
+
         scoreBadge.innerText = `${quizScore}/3`;
         resultCard.style.display = "block";
-        
+
         if (quizScore === 3) {
             feedbackTitle.innerText = "Zayn & Aara's Best Friend! 🏆";
             feedbackDesc.innerText = "Absolute perfection! You know the couple inside out. Ponmangalashamsakal!";
@@ -377,19 +351,19 @@ document.addEventListener("DOMContentLoaded", () => {
             feedbackDesc.innerText = "You scored " + quizScore + "/3. Restart the quiz to discover their stories again!";
         }
     }
-    
-    window.restartQuiz = function() {
+
+    window.restartQuiz = function () {
         // Reset state
         quizScore = 0;
         quizAnswers = { 1: null, 2: null, 3: null };
-        
+
         // Reset buttons classes
         const quizButtons = document.querySelectorAll(".quiz-opt-btn");
         quizButtons.forEach(btn => {
             btn.removeAttribute("disabled");
             btn.className = "quiz-opt-btn";
         });
-        
+
         // Hide result, show Q1
         document.getElementById("quiz-result").style.display = "none";
         document.getElementById("q-1").style.display = "block";
@@ -401,19 +375,19 @@ document.addEventListener("DOMContentLoaded", () => {
     // 11. LIVE COUNTDOWN Muhurtham
     // ==========================================
     let countdownInterval;
-    
+
     function initializeCountdown() {
         clearInterval(countdownInterval);
-        
+
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
         const minutesEl = document.getElementById("minutes");
         const secondsEl = document.getElementById("seconds");
-        
+
         function updateTimer() {
             const now = new Date().getTime();
             const distance = weddingDate - now;
-            
+
             if (distance < 0) {
                 clearInterval(countdownInterval);
                 daysEl.innerText = "00";
@@ -422,18 +396,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 secondsEl.innerText = "00";
                 return;
             }
-            
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
+
             daysEl.innerText = days < 10 ? "0" + days : days;
             hoursEl.innerText = hours < 10 ? "0" + hours : hours;
             minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
             secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
         }
-        
+
         updateTimer();
         countdownInterval = setInterval(updateTimer, 1000);
     }
@@ -444,20 +418,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightboxModal = document.getElementById("gallery-lightbox");
     const lightboxMediaContainer = document.getElementById("lightbox-media-container");
     const lightboxCaptionText = document.getElementById("lightbox-caption-text");
-    
-    window.openLightbox = function(index) {
+
+    window.openLightbox = function (index) {
         currentGalleryIndex = index;
         lightboxModal.style.display = "flex";
         document.body.style.overflow = "hidden"; // Lock scroll
         updateLightboxContent();
     };
-    
-    window.closeLightbox = function() {
+
+    window.closeLightbox = function () {
         lightboxModal.style.display = "none";
         document.body.style.overflow = "auto"; // Unlock scroll
     };
-    
-    window.navigateLightbox = function(direction) {
+
+    window.navigateLightbox = function (direction) {
         currentGalleryIndex += direction;
         if (currentGalleryIndex >= galleryItems.length) {
             currentGalleryIndex = 0;
@@ -466,37 +440,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateLightboxContent();
     };
-    
+
     function updateLightboxContent() {
         const item = galleryItems[currentGalleryIndex];
-        
+
         lightboxMediaContainer.innerHTML = `
             <img src="images/gallery${currentGalleryIndex + 1}.png" class="lightbox-img" alt="${item.title}">
         `;
-        
+
         lightboxCaptionText.innerText = item.desc;
     }
 
     // ==========================================
     // 13. RSVP SUBMISSION & VALIDATION
     // ==========================================
-    window.handleRSVPSubmit = function(event) {
+    window.handleRSVPSubmit = function (event) {
         event.preventDefault();
-        
+
         const name = document.getElementById("rsvp-name").value.trim();
         const phone = document.getElementById("rsvp-phone").value.trim();
         const attendees = document.getElementById("rsvp-attendees").value;
         const status = document.querySelector('input[name="attendance-status"]:checked').value;
-        
+
         if (name === "" || phone === "") {
             alert("Please fill out all required fields.");
             return;
         }
-        
+
         // Display confirmation modal
         const modalTitle = document.getElementById("rsvp-success-title");
         const modalDesc = document.getElementById("rsvp-success-desc");
-        
+
         if (status === "yes") {
             modalTitle.innerText = "Swagatham! 🌸";
             modalDesc.innerText = `Thank you, ${name}! Your presence (with ${attendees} attendee/s) is confirmed. Ponmangalashamsakal!`;
@@ -505,12 +479,12 @@ document.addEventListener("DOMContentLoaded", () => {
             modalTitle.innerText = "Regrets Accepted 🌿";
             modalDesc.innerText = `Thank you for letting us know, ${name}. You will be missed in our prayers.`;
         }
-        
+
         rsvpSuccessModal.style.display = "flex";
         document.body.style.overflow = "hidden";
     };
-    
-    window.closeRSVPSuccess = function() {
+
+    window.closeRSVPSuccess = function () {
         rsvpSuccessModal.style.display = "none";
         document.body.style.overflow = "auto";
         rsvpForm.reset();
@@ -529,7 +503,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (e) {
             console.error("Wishes could not be parsed from local storage.", e);
         }
-        
+
         // Default seed blessings if database is empty
         if (wishes.length === 0) {
             wishes = [
@@ -538,16 +512,16 @@ document.addEventListener("DOMContentLoaded", () => {
             ];
             localStorage.setItem("kerala_wishes", JSON.stringify(wishes));
         }
-        
+
         renderWishes(wishes);
     }
-    
+
     function renderWishes(wishes) {
         wishesBoard.innerHTML = "";
-        
+
         // Reverse array to display most recent wishes first
         const sortedWishes = [...wishes].reverse();
-        
+
         sortedWishes.forEach(wish => {
             const wishCard = document.createElement("div");
             wishCard.className = "wish-floating-card reveal active";
@@ -558,17 +532,17 @@ document.addEventListener("DOMContentLoaded", () => {
             wishesBoard.appendChild(wishCard);
         });
     }
-    
-    window.handleWishSubmit = function(event) {
+
+    window.handleWishSubmit = function (event) {
         event.preventDefault();
-        
+
         const sender = wishSender.value.trim();
         const text = wishText.value.trim();
-        
+
         if (sender === "" || text === "") {
             return;
         }
-        
+
         let wishes = [];
         try {
             const rawWishes = localStorage.getItem("kerala_wishes");
@@ -578,27 +552,27 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (e) {
             console.error("Could not fetch current blessings database.", e);
         }
-        
+
         // Append new blessing
         wishes.push({ sender, text });
         localStorage.setItem("kerala_wishes", JSON.stringify(wishes));
-        
+
         // Re-render and clear inputs
         renderWishes(wishes);
         wishText.value = "";
         wishSender.value = "";
-        
+
         // Trigger flower drop to celebrate blessing submission
         triggerFlowerShower(15);
         showFlowerToast("Blessing Posted! Thank you! ❤️");
     };
-    
+
     loadWishes();
 
     // ==========================================
     // 15. VENUE COORDINATION REDIRECTS
     // ==========================================
-    window.openMap = function(url) {
+    window.openMap = function (url) {
         window.open(url, "_blank", "noopener,noreferrer");
     };
 });

@@ -265,100 +265,114 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     
     // Toggle guests dropdown depending on attendance checked
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            if (e.target.value === "declined") {
-                guestsSelectWrapper.classList.add("input-hidden");
-                guestsSelect.disabled = true;
+    if (attendanceRadios && attendanceRadios.length > 0 && guestsSelectWrapper && guestsSelect) {
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                if (e.target.value === "declined") {
+                    guestsSelectWrapper.classList.add("input-hidden");
+                    guestsSelect.disabled = true;
+                } else {
+                    guestsSelectWrapper.classList.remove("input-hidden");
+                    guestsSelect.disabled = false;
+                }
+            });
+        });
+    }
+
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const nameBlock = document.getElementById("guest-name").parentElement;
+            const phoneBlock = document.getElementById("guest-phone").parentElement;
+            
+            const name = document.getElementById("guest-name").value.trim();
+            const phone = document.getElementById("guest-phone").value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const totalGuests = attendance === "attending" && guestsSelect ? parseInt(guestsSelect.value) : 0;
+            
+            let isValid = true;
+            
+            // Validation Check 1: Name must not be blank
+            if (!name) {
+                nameBlock.classList.add("error");
+                isValid = false;
             } else {
-                guestsSelectWrapper.classList.remove("input-hidden");
-                guestsSelect.disabled = false;
+                nameBlock.classList.remove("error");
+            }
+            
+            // Validation Check 2: Phone number regex check
+            const phoneRegex = /^[+]?[0-9\s-]{7,15}$/;
+            if (!phone || !phoneRegex.test(phone)) {
+                phoneBlock.classList.add("error");
+                isValid = false;
+            } else {
+                phoneBlock.classList.remove("error");
+            }
+            
+            if (!isValid) return; // Exit if validation fails
+            
+            // Save coordinates details to LocalStorage
+            const rsvpPassportResponse = {
+                name,
+                phone,
+                attendance,
+                additionalPassengers: totalGuests,
+                timestamp: new Date().toISOString()
+            };
+            localStorage.setItem("rsvp_passport_" + phone, JSON.stringify(rsvpPassportResponse));
+            
+            // Configure Success Visa Approved Modal message
+            if (attendance === "attending" && successMsgText) {
+                successMsgText.innerText = `APPROVED. Zayn & Aara have reserved best seats for you and ${totalGuests} passenger(s). Welcome aboard the Matrimonial Flight!`;
+            } else if (successMsgText) {
+                successMsgText.innerText = `DECLARED. Your visa application has been archived. We are sorry you cannot fly with us, and we appreciate your warm prayers!`;
+            }
+            
+            // Show success modal
+            if (rsvpSuccessModal) {
+                rsvpSuccessModal.classList.remove("modal-hidden");
+            }
+            
+            // Reset Inputs
+            rsvpForm.reset();
+            if (guestsSelectWrapper) guestsSelectWrapper.classList.remove("input-hidden");
+            if (guestsSelect) guestsSelect.disabled = false;
+        });
+
+        // Clear error blocks dynamically
+        const guestNameEl = document.getElementById("guest-name");
+        if (guestNameEl) {
+            guestNameEl.addEventListener("keyup", (e) => {
+                if (e.target.value.trim()) {
+                    guestNameEl.parentElement.classList.remove("error");
+                }
+            });
+        }
+
+        const guestPhoneEl = document.getElementById("guest-phone");
+        if (guestPhoneEl) {
+            guestPhoneEl.addEventListener("keyup", (e) => {
+                const val = e.target.value.trim();
+                const regex = /^[+]?[0-9\s-]{7,15}$/;
+                if (val && regex.test(val)) {
+                    guestPhoneEl.parentElement.classList.remove("error");
+                }
+            });
+        }
+    }
+
+    if (btnCloseSuccess && rsvpSuccessModal) {
+        btnCloseSuccess.addEventListener("click", () => {
+            rsvpSuccessModal.classList.add("modal-hidden");
+        });
+
+        rsvpSuccessModal.addEventListener("click", (e) => {
+            if (e.target === rsvpSuccessModal) {
+                rsvpSuccessModal.classList.add("modal-hidden");
             }
         });
-    });
-
-    rsvpForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const nameBlock = document.getElementById("guest-name").parentElement;
-        const phoneBlock = document.getElementById("guest-phone").parentElement;
-        
-        const name = document.getElementById("guest-name").value.trim();
-        const phone = document.getElementById("guest-phone").value.trim();
-        const attendance = document.querySelector('input[name="attendance"]:checked').value;
-        const totalGuests = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
-        
-        let isValid = true;
-        
-        // Validation Check 1: Name must not be blank
-        if (!name) {
-            nameBlock.classList.add("error");
-            isValid = false;
-        } else {
-            nameBlock.classList.remove("error");
-        }
-        
-        // Validation Check 2: Phone number regex check
-        const phoneRegex = /^[+]?[0-9\s-]{7,15}$/;
-        if (!phone || !phoneRegex.test(phone)) {
-            phoneBlock.classList.add("error");
-            isValid = false;
-        } else {
-            phoneBlock.classList.remove("error");
-        }
-        
-        if (!isValid) return; // Exit if validation fails
-        
-        // Save coordinates details to LocalStorage
-        const rsvpPassportResponse = {
-            name,
-            phone,
-            attendance,
-            additionalPassengers: totalGuests,
-            timestamp: new Date().toISOString()
-        };
-        localStorage.setItem("rsvp_passport_" + phone, JSON.stringify(rsvpPassportResponse));
-        
-        // Configure Success Visa Approved Modal message
-        if (attendance === "attending") {
-            successMsgText.innerText = `APPROVED. Zayn & Aara have reserved best seats for you and ${totalGuests} passenger(s). Welcome aboard the Matrimonial Flight!`;
-        } else {
-            successMsgText.innerText = `DECLARED. Your visa application has been archived. We are sorry you cannot fly with us, and we appreciate your warm prayers!`;
-        }
-        
-        // Show success modal
-        rsvpSuccessModal.classList.remove("modal-hidden");
-        
-        // Reset Inputs
-        rsvpForm.reset();
-        guestsSelectWrapper.classList.remove("input-hidden");
-        guestsSelect.disabled = false;
-    });
-
-    // Clear error blocks dynamically
-    document.getElementById("guest-name").addEventListener("keyup", (e) => {
-        if (e.target.value.trim()) {
-            document.getElementById("guest-name").parentElement.classList.remove("error");
-        }
-    });
-
-    document.getElementById("guest-phone").addEventListener("keyup", (e) => {
-        const val = e.target.value.trim();
-        const regex = /^[+]?[0-9\s-]{7,15}$/;
-        if (val && regex.test(val)) {
-            document.getElementById("guest-phone").parentElement.classList.remove("error");
-        }
-    });
-
-    btnCloseSuccess.addEventListener("click", () => {
-        rsvpSuccessModal.classList.add("modal-hidden");
-    });
-
-    rsvpSuccessModal.addEventListener("click", (e) => {
-        if (e.target === rsvpSuccessModal) {
-            rsvpSuccessModal.classList.add("modal-hidden");
-        }
-    });
+    }
 
     // ==========================================
     // 7. POLAROID EXPANDABLE LIGHTBOX

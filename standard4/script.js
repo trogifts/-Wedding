@@ -717,25 +717,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const guestsSelect = document.getElementById("rsvp-guests");
             const statusInput = document.querySelector('input[name="rsvp-status"]:checked');
 
-            if (!nameInput.value.trim()) {
+            if (nameInput && !nameInput.value.trim()) {
                 alert("Please enter your name.");
                 return;
             }
-            if (!phoneInput.value.trim() || phoneInput.value.length < 6) {
+            if (phoneInput && (!phoneInput.value.trim() || phoneInput.value.length < 6)) {
                 alert("Please enter a valid phone number.");
                 return;
             }
-            if (!guestsSelect.value) {
+            if (guestsSelect && !guestsSelect.value) {
                 alert("Please select the number of attendees.");
                 return;
             }
 
             // Save details locally
             const rsvpData = {
-                name: nameInput.value,
-                phone: phoneInput.value,
-                guests: guestsSelect.value,
-                status: statusInput.value,
+                name: nameInput ? nameInput.value : "",
+                phone: phoneInput ? phoneInput.value : "",
+                guests: guestsSelect ? guestsSelect.value : "1",
+                status: statusInput ? statusInput.value : "attending",
                 timestamp: new Date().toISOString()
             };
             localStorage.setItem("celestial_rsvp", JSON.stringify(rsvpData));
@@ -831,14 +831,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const textInput = document.getElementById("wish-message");
             const senderInput = document.getElementById("wish-sender");
 
-            if (!textInput.value.trim() || !senderInput.value.trim()) {
+            if (textInput && senderInput && (!textInput.value.trim() || !senderInput.value.trim())) {
                 alert("Please fill in both name and blessing message.");
                 return;
             }
 
             const newWish = {
-                name: senderInput.value.trim(),
-                text: textInput.value.trim()
+                name: senderInput ? senderInput.value.trim() : "",
+                text: textInput ? textInput.value.trim() : ""
             };
 
             const wishes = getLocalWishes();
@@ -849,7 +849,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderWishStars();
 
             // Clear inputs
-            textInput.value = "";
+            if (textInput) textInput.value = "";
             
             // Spawn wish success effects
             showWishToast("Your blessing star has been pinned to the sky!");
@@ -857,8 +857,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Run initial wishes board render
-    renderWishStars();
+    if (wishesDisplayBoard) {
+        // Run initial wishes board render
+        renderWishStars();
+    }
 
     // ----------------------------------------------------------------------
     // 13. VIRTUAL MEMORY LANTERN RELEASE
@@ -872,13 +874,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const messageInput = document.getElementById("lantern-message");
             const senderInput = document.getElementById("lantern-sender");
 
-            if (!messageInput.value.trim() || !senderInput.value.trim()) {
+            if (messageInput && senderInput && (!messageInput.value.trim() || !senderInput.value.trim())) {
                 alert("Please enter your blessing message.");
                 return;
             }
 
-            const sender = senderInput.value.trim();
-            const text = messageInput.value.trim();
+            const sender = senderInput ? senderInput.value.trim() : "";
+            const text = messageInput ? messageInput.value.trim() : "";
 
             // Create memory lantern element
             const lantern = document.createElement("div");
@@ -902,7 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showWishToast(`Lantern released by ${sender}!`);
 
             // Clear message input
-            messageInput.value = "";
+            if (messageInput) messageInput.value = "";
 
             // Cleanup after animation finishes (18s)
             setTimeout(() => {

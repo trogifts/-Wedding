@@ -409,10 +409,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.handleRSVPSubmit = function(event) {
         event.preventDefault();
         
-        const name = document.getElementById("rsvp-name").value.trim();
-        const phone = document.getElementById("rsvp-phone").value.trim();
-        const attendees = document.getElementById("rsvp-attendees").value;
-        const status = document.querySelector('input[name="attendance-status"]:checked').value;
+        if (!rsvpForm) return;
+
+        const nameEl = document.getElementById("rsvp-name");
+        const phoneEl = document.getElementById("rsvp-phone");
+        const attendeesEl = document.getElementById("rsvp-attendees");
+        const statusEl = document.querySelector('input[name="attendance-status"]:checked');
+
+        const name = nameEl ? nameEl.value.trim() : "";
+        const phone = phoneEl ? phoneEl.value.trim() : "";
+        const attendees = attendeesEl ? attendeesEl.value : "1";
+        const status = statusEl ? statusEl.value : "yes";
         
         if (name === "" || phone === "") {
             alert("Please fill out all required fields.");
@@ -421,8 +428,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // Update modal success displays
         if (status === "yes") {
-            rsvpSuccessTitle.innerText = "Honored to Welcome You! 🌸";
-            rsvpSuccessDesc.innerText = `Dear ${name}, your attendance (total ${attendees} guest/s) has been successfully confirmed. We look forward to celebrating with you!`;
+            if (rsvpSuccessTitle) rsvpSuccessTitle.innerText = "Honored to Welcome You! 🌸";
+            if (rsvpSuccessDesc) rsvpSuccessDesc.innerText = `Dear ${name}, your attendance (total ${attendees} guest/s) has been successfully confirmed. We look forward to celebrating with you!`;
             // Trigger color splashes celebration
             for (let i = 0; i < 4; i++) {
                 setTimeout(() => {
@@ -432,24 +439,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, i * 300);
             }
         } else {
-            rsvpSuccessTitle.innerText = "Regrets Recorded 🌿";
-            rsvpSuccessDesc.innerText = `Thank you for letting us know, ${name}. We appreciate your blessings and prayers from afar.`;
+            if (rsvpSuccessTitle) rsvpSuccessTitle.innerText = "Regrets Recorded 🌿";
+            if (rsvpSuccessDesc) rsvpSuccessDesc.innerText = `Thank you for letting us know, ${name}. We appreciate your blessings and prayers from afar.`;
         }
         
-        rsvpSuccessModal.style.display = "flex";
-        document.body.style.overflow = "hidden"; // lock scroll
+        if (rsvpSuccessModal) {
+            rsvpSuccessModal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // lock scroll
+        }
     };
     
     window.closeRSVPSuccess = function() {
-        rsvpSuccessModal.style.display = "none";
+        if (rsvpSuccessModal) rsvpSuccessModal.style.display = "none";
         document.body.style.overflow = "auto"; // unlock scroll
-        rsvpForm.reset();
+        if (rsvpForm) rsvpForm.reset();
     };
 
     // ==========================================
     // 11. LOCAL STORAGE GUEST CANVAS BOARD
     // ==========================================
     function loadWishes() {
+        if (!wishesBoard) return;
         let wishes = [];
         try {
             const rawWishes = localStorage.getItem("watercolor_wishes");
@@ -470,6 +480,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function renderWishes(wishes) {
+        if (!wishesBoard) return;
         wishesBoard.innerHTML = "";
         
         // Reverse wishes to display the most recent blessing first
@@ -490,6 +501,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.handleWishSubmit = function(event) {
         event.preventDefault();
         
+        if (!wishSender || !wishText) return;
+
         const sender = wishSender.value.trim();
         const text = wishText.value.trim();
         
@@ -522,7 +535,9 @@ document.addEventListener("DOMContentLoaded", () => {
         spawnPaintSplat(30 + Math.random() * 40, 40 + Math.random() * 30, "#D4AF37");
     };
     
-    loadWishes();
+    if (wishesBoard) {
+        loadWishes();
+    }
 
     // ==========================================
     // 12. WEDDING TIMER COUNTDOWN Muhurtham

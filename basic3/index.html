@@ -73,7 +73,6 @@
                         <li><a href="#couple" class="nav-link">Crew</a></li>
                         <li><a href="#events" class="nav-link">Stops</a></li>
                         <li><a href="#gallery" class="nav-link">Polaroids</a></li>
-                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
                     </ul>
                 </nav>
             </div>
@@ -464,83 +463,7 @@
             </div>
         </section>
 
-        <!-- ==================== SECTION 8: RSVP CUSTOM STAMP FORM ==================== -->
-        <section id="rsvp" class="section-padding rsvp-section">
-            <div class="container">
-                <div class="rsvp-card-passport reveal">
-                    <!-- Passport border overlay pattern -->
-                    <div class="passport-page-header">
-                        <span>MATRIMONIAL PASSPORT VISAS</span>
-                        <span>PAGE 04</span>
-                    </div>
-                    
-                    <div class="rsvp-stamp-content">
-                        <h2>VISA APPLICATION (RSVP)</h2>
-                        <p>Fill out the coordinates below to stamp your visa approval.</p>
-                        <div class="vintage-divider"></div>
-                    </div>
 
-                    <form id="rsvp-form" class="stamp-form-element">
-                        <div class="form-row-2">
-                            <div class="stamp-input-group">
-                                <label for="guest-name">PASSPORT NAME</label>
-                                <input type="text" id="guest-name" name="name" placeholder="E.g. Ayesha Rahman" required>
-                                <span class="stamp-border-line"></span>
-                                <span class="error-msg" id="name-error">Passenger name is required.</span>
-                            </div>
-                            <div class="stamp-input-group">
-                                <label for="guest-phone">TELEPHONE NUMBER</label>
-                                <input type="tel" id="guest-phone" name="phone" placeholder="E.g. +1 555-0100" required>
-                                <span class="stamp-border-line"></span>
-                                <span class="error-msg" id="phone-error">Valid contact number is required.</span>
-                            </div>
-                        </div>
-
-                        <div class="stamp-radio-group">
-                            <span class="radio-section-label">ATTENDANCE BOARDING DECLARATION</span>
-                            <div class="radio-options">
-                                <label class="stamp-radio-container">
-                                    <input type="radio" name="attendance" value="attending" checked required>
-                                    <span class="custom-stamp-box"></span>
-                                    <span class="stamp-radio-text">BOARDING APPROVED (I WILL ATTEND)</span>
-                                </label>
-                                <label class="stamp-radio-container">
-                                    <input type="radio" name="attendance" value="declined" required>
-                                    <span class="custom-stamp-box"></span>
-                                    <span class="stamp-radio-text">FLIGHT CANCELLED (I CANNOT ATTEND)</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="guests-select-wrapper" class="stamp-input-group">
-                            <label for="guests-count">ADDITIONAL PASSENGERS (GUESTS)</label>
-                            <select id="guests-count" name="guests">
-                                <option value="0">Passenger Only (1)</option>
-                                <option value="1">Plus 1 Guest (2)</option>
-                                <option value="2">Plus 2 Guests (3)</option>
-                                <option value="3">Plus 3 Guests (4)</option>
-                                <option value="4">Plus 4 Guests (5)</option>
-                            </select>
-                            <span class="stamp-border-line"></span>
-                        </div>
-
-                        <button type="submit" id="btn-submit" class="btn-stamp-press">
-                            PRESS STAMP ENTRY <i class="fa-solid fa-stamp"></i>
-                        </button>
-                    </form>
-
-                    <!-- Stamp-styled success receipt -->
-                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
-                        <div class="success-stamp-seal">
-                            <div class="visa-approved-stamp">VISA APPROVED</div>
-                            <h3>PASSPORT REGISTERED</h3>
-                            <p id="success-message">Your travel coordinates have been verified. Welcome aboard!</p>
-                            <button id="btn-close-success" class="btn-passport-outline btn-small">DISMISS</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ==================== SECTION 9: EMERGENCY CONSULAR DETAILS ==================== -->
         <section id="contacts" class="section-padding contacts-section">

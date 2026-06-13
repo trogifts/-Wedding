@@ -105,7 +105,6 @@
                         <li><a href="#couple" class="nav-link">Couple</a></li>
                         <li><a href="#events" class="nav-link">Events</a></li>
                         <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
                     </ul>
                 </nav>
             </div>
@@ -118,7 +117,6 @@
                 <li><a href="#story" class="dock-link"><i class="fa-solid fa-book-open"></i><span>Story</span></a></li>
                 <li><a href="#events" class="dock-link"><i class="fa-solid fa-calendar-days"></i><span>Events</span></a></li>
                 <li><a href="#gallery" class="dock-link"><i class="fa-solid fa-images"></i><span>Gallery</span></a></li>
-                <li><a href="#rsvp" class="dock-link"><i class="fa-solid fa-pen-to-square"></i><span>RSVP</span></a></li>
             </ul>
         </nav>
 
@@ -551,124 +549,7 @@
             </div>
         </section>
 
-        <!-- ==================== SECTION 9: RSVP FORM ==================== -->
-        <section id="rsvp" class="section-padding rsvp-section">
-            <div class="container">
-                <div class="rsvp-wrapper reveal glass-card">
-                    <div class="rsvp-header">
-                        <span class="sub-title">Honored Guest</span>
-                        <h2>Join Our Celebration</h2>
-                        <p>Kindly submit your response by August 15, 2026, to assist our event planners.</p>
-                        <div class="section-divider"></div>
-                    </div>
 
-                    <form id="rsvp-form" class="rsvp-form-element">
-                        <div class="form-row-2">
-                            <div class="input-group">
-                                <label for="guest-name">Full Name</label>
-                                <div class="input-with-icon">
-                                    <i class="fa-regular fa-user"></i>
-                                    <input type="text" id="guest-name" name="name" placeholder="E.g. Tariq Siddiqui" required>
-                                </div>
-                            </div>
-                            <div class="input-group">
-                                <label for="guest-phone">Phone Number</label>
-                                <div class="input-with-icon">
-                                    <i class="fa-solid fa-phone-flip"></i>
-                                    <input type="tel" id="guest-phone" name="phone" placeholder="E.g. +1 (555) 019-2834" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label>Will You Attend?</label>
-                            <div class="rsvp-radio-options">
-                                <label class="radio-label">
-                                    <input type="radio" name="attendance" value="attending" checked required>
-                                    <span class="custom-radio"></span>
-                                    <span class="radio-text"><i class="fa-regular fa-circle-check text-green"></i> Joyfully Accept</span>
-                                </label>
-                                <label class="radio-label">
-                                    <input type="radio" name="attendance" value="declined" required>
-                                    <span class="custom-radio"></span>
-                                    <span class="radio-text"><i class="fa-regular fa-circle-xmark text-red"></i> Regretfully Decline</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Guest count toggle dropdown -->
-                        <div id="guests-count-container" class="input-group">
-                            <label for="guests-count">Number of Additional Guests</label>
-                            <div class="input-with-icon">
-                                <i class="fa-solid fa-users"></i>
-                                <select id="guests-count" name="guests">
-                                    <option value="0">Just Me (1)</option>
-                                    <option value="1">Plus 1 Guest (2)</option>
-                                    <option value="2">Plus 2 Guests (3)</option>
-                                    <option value="3">Plus 3 Guests (4)</option>
-                                    <option value="4">Plus 4 Guests (5)</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label for="guest-msg">Wishes / Message for the Couple</label>
-                            <textarea id="guest-msg" name="message" rows="3" placeholder="Send your prayers or message..."></textarea>
-                        </div>
-
-                        <button type="submit" id="btn-submit-rsvp" class="btn-submit-gold">
-                            <span>Send RSVP</span> <i class="fa-regular fa-paper-plane"></i>
-                        </button>
-                    </form>
-
-                    <!-- Success Alert Modal Overlay -->
-                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
-                        <div class="success-card glass-card">
-                            <div class="success-check-icon">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <h3>Thank You!</h3>
-                            <p id="success-msg-text">Your response has been received. Looking forward to welcoming you!</p>
-                            <button id="btn-close-success" class="btn-primary-gold">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SECTION 10: GUEST WISHES BOARD ==================== -->
-        <section id="wishes" class="section-padding wishes-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <span class="sub-title">Wishes & Prayers</span>
-                    <h2 class="section-title">Guestbook</h2>
-                    <div class="section-divider"></div>
-                    <p class="guestbook-desc">Leave a blessing or wish for Zayn & Aara below to display it on our digital wishes wall.</p>
-                </div>
-
-                <!-- Wishes submission form -->
-                <div class="wishes-form-box reveal glass-card">
-                    <form id="wishes-post-form">
-                        <div class="form-row-2">
-                            <div class="input-group">
-                                <label for="wish-author">Your Name</label>
-                                <input type="text" id="wish-author" placeholder="E.g. Uncle Rashid" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="wish-text">Heartfelt Wish</label>
-                                <input type="text" id="wish-text" placeholder="E.g. May Allah bless your path together with love." required>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-primary-gold btn-send-wish">Post Wish <i class="fa-solid fa-pen-nib"></i></button>
-                    </form>
-                </div>
-
-                <!-- Wishes Cards wall container -->
-                <div class="wishes-cards-wall reveal" id="wishes-board">
-                    <!-- Javascript will load localStorage cards and template wishes here -->
-                </div>
-            </div>
-        </section>
 
         <!-- ==================== SECTION 11: GIFT & BLESSINGS ==================== -->
         <section id="gifts" class="section-padding gifts-section">

@@ -360,66 +360,74 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     
     // Toggle guest count dropdown based on RSVP selection
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            if (e.target.value === "declined") {
-                guestsContainer.classList.add("input-hidden");
-                guestsSelect.disabled = true;
-            } else {
-                guestsContainer.classList.remove("input-hidden");
-                guestsSelect.disabled = false;
-            }
+    if (attendanceRadios && attendanceRadios.length > 0 && guestsContainer && guestsSelect) {
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                if (e.target.value === "declined") {
+                    guestsContainer.classList.add("input-hidden");
+                    guestsSelect.disabled = true;
+                } else {
+                    guestsContainer.classList.remove("input-hidden");
+                    guestsSelect.disabled = false;
+                }
+            });
         });
-    });
+    }
     
     // RSVP submit
-    rsvpForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById("guest-name").value.trim();
-        const phone = document.getElementById("guest-phone").value.trim();
-        const attendance = document.querySelector('input[name="attendance"]:checked').value;
-        const additionalGuests = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
-        const message = document.getElementById("guest-msg").value.trim();
-        
-        // Save details to LocalStorage to simulate a working db/server submission
-        const rsvpResponse = {
-            name,
-            phone,
-            attendance,
-            guestsCount: additionalGuests + 1, // Include guest themselves
-            message,
-            timestamp: new Date().toISOString()
-        };
-        
-        localStorage.setItem("wedding_rsvp_" + phone, JSON.stringify(rsvpResponse));
-        
-        // Customize success message
-        if (attendance === "attending") {
-            successMsgText.innerText = `Jazakallah Khair, ${name}! We have registered you and ${additionalGuests} guest(s). Looking forward to celebrating this blessed occasion together!`;
-        } else {
-            successMsgText.innerText = `Jazakallah Khair, ${name}! Your response has been received. We are sorry you won't be able to join us, and we appreciate your warm prayers and wishes.`;
-        }
-        
-        // Show success modal
-        rsvpSuccessModal.classList.remove("modal-hidden");
-        
-        // Reset Form
-        rsvpForm.reset();
-        guestsContainer.classList.remove("input-hidden");
-        guestsSelect.disabled = false;
-    });
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById("guest-name").value.trim();
+            const phone = document.getElementById("guest-phone").value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const additionalGuests = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
+            const message = document.getElementById("guest-msg").value.trim();
+            
+            // Save details to LocalStorage to simulate a working db/server submission
+            const rsvpResponse = {
+                name,
+                phone,
+                attendance,
+                guestsCount: additionalGuests + 1, // Include guest themselves
+                message,
+                timestamp: new Date().toISOString()
+            };
+            
+            localStorage.setItem("wedding_rsvp_" + phone, JSON.stringify(rsvpResponse));
+            
+            // Customize success message
+            if (attendance === "attending" && successMsgText) {
+                successMsgText.innerText = `Jazakallah Khair, ${name}! We have registered you and ${additionalGuests} guest(s). Looking forward to celebrating this blessed occasion together!`;
+            } else if (successMsgText) {
+                successMsgText.innerText = `Jazakallah Khair, ${name}! Your response has been received. We are sorry you won't be able to join us, and we appreciate your warm prayers and wishes.`;
+            }
+            
+            // Show success modal
+            if (rsvpSuccessModal) {
+                rsvpSuccessModal.classList.remove("modal-hidden");
+            }
+            
+            // Reset Form
+            rsvpForm.reset();
+            if (guestsContainer) guestsContainer.classList.remove("input-hidden");
+            if (guestsSelect) guestsSelect.disabled = false;
+        });
+    }
     
     // Close success state modal
-    btnCloseSuccess.addEventListener("click", () => {
-        rsvpSuccessModal.classList.add("modal-hidden");
-    });
-    
-    rsvpSuccessModal.addEventListener("click", (e) => {
-        if (e.target === rsvpSuccessModal) {
+    if (btnCloseSuccess && rsvpSuccessModal) {
+        btnCloseSuccess.addEventListener("click", () => {
             rsvpSuccessModal.classList.add("modal-hidden");
-        }
-    });
+        });
+        
+        rsvpSuccessModal.addEventListener("click", (e) => {
+            if (e.target === rsvpSuccessModal) {
+                rsvpSuccessModal.classList.add("modal-hidden");
+            }
+        });
+    }
 
     // ==========================================
     // 8. SCROLL REVEAL (INTERSECTION OBSERVER)

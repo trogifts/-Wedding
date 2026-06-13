@@ -340,15 +340,17 @@ document.addEventListener('DOMContentLoaded', () => {
      4. SAVE THE DATE & RSVP LOGIC
      ========================================== */
   const btnSaveDate = document.getElementById('btnSaveDate');
-  btnSaveDate.addEventListener('click', () => {
-    const title = encodeURIComponent("Aria & Ethan's Wedding");
-    const details = encodeURIComponent("You are cordially invited to celebrate our wedding.");
-    const location = encodeURIComponent("Grand Palace Garden, 100 Luxury Estates Dr, San Francisco, CA");
-    const dates = "20261128T160000/20261129T000000";
-    
-    const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}&sf=true&output=xml`;
-    window.open(gCalUrl, '_blank');
-  });
+  if (btnSaveDate) {
+    btnSaveDate.addEventListener('click', () => {
+      const title = encodeURIComponent("Aria & Ethan's Wedding");
+      const details = encodeURIComponent("You are cordially invited to celebrate our wedding.");
+      const location = encodeURIComponent("Grand Palace Garden, 100 Luxury Estates Dr, San Francisco, CA");
+      const dates = "20261128T160000/20261129T000000";
+      
+      const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}&sf=true&output=xml`;
+      window.open(gCalUrl, '_blank');
+    });
+  }
 
   // RSVP Form
   const rsvpForm = document.getElementById('rsvpForm');
@@ -360,10 +362,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
   attendanceRadios.forEach(radio => {
     radio.addEventListener('change', (e) => {
-      if (e.target.value === 'yes') {
-        mealGroup.style.display = 'block';
-      } else {
-        mealGroup.style.display = 'none';
+      if (mealGroup) {
+        if (e.target.value === 'yes') {
+          mealGroup.style.display = 'block';
+        } else {
+          mealGroup.style.display = 'none';
+        }
       }
     });
   });
@@ -373,51 +377,67 @@ document.addEventListener('DOMContentLoaded', () => {
     if (savedRsvp) {
       const data = JSON.parse(savedRsvp);
       
-      document.getElementById('guestName').value = data.name;
-      document.getElementById('guestEmail').value = data.email;
+      const guestNameInput = document.getElementById('guestName');
+      const guestEmailInput = document.getElementById('guestEmail');
+      if (guestNameInput) guestNameInput.value = data.name;
+      if (guestEmailInput) guestEmailInput.value = data.email;
       
       const attendanceRadio = document.querySelector(`input[name="attendance"][value="${data.attendance}"]`);
       if (attendanceRadio) {
         attendanceRadio.checked = true;
-        if (data.attendance === 'yes') {
-          mealGroup.style.display = 'block';
-          document.getElementById('mealPreference').value = data.meal || 'beef';
-        } else {
-          mealGroup.style.display = 'none';
+        if (mealGroup) {
+          if (data.attendance === 'yes') {
+            mealGroup.style.display = 'block';
+            const mealPreferenceSelect = document.getElementById('mealPreference');
+            if (mealPreferenceSelect) mealPreferenceSelect.value = data.meal || 'beef';
+          } else {
+            mealGroup.style.display = 'none';
+          }
         }
       }
       
-      if (data.attendance === 'yes') {
-        successMessage.innerHTML = `${data.name}, your presence is gratefully confirmed for November 28th.`;
-      } else {
-        successMessage.innerHTML = `${data.name}, we have received your regrets. You will be missed.`;
+      if (successMessage) {
+        if (data.attendance === 'yes') {
+          successMessage.innerHTML = `${data.name}, your presence is gratefully confirmed for November 28th.`;
+        } else {
+          successMessage.innerHTML = `${data.name}, we have received your regrets. You will be missed.`;
+        }
       }
       
-      rsvpForm.style.display = 'none';
-      rsvpSuccess.style.display = 'block';
+      if (rsvpForm) rsvpForm.style.display = 'none';
+      if (rsvpSuccess) rsvpSuccess.style.display = 'block';
     }
   }
 
   checkExistingRsvp();
   
-  rsvpForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const name = document.getElementById('guestName').value;
-    const email = document.getElementById('guestEmail').value;
-    const attendance = document.querySelector('input[name="attendance"]:checked').value;
-    const meal = attendance === 'yes' ? document.getElementById('mealPreference').value : '';
-    
-    const rsvpData = { name, email, attendance, meal, timestamp: new Date().getTime() };
-    
-    localStorage.setItem('weddingRsvp_V2', JSON.stringify(rsvpData));
-    checkExistingRsvp();
-  });
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const guestNameInput = document.getElementById('guestName');
+      const guestEmailInput = document.getElementById('guestEmail');
+      const attendanceInput = document.querySelector('input[name="attendance"]:checked');
+      const mealPreferenceSelect = document.getElementById('mealPreference');
+
+      const name = guestNameInput ? guestNameInput.value : '';
+      const email = guestEmailInput ? guestEmailInput.value : '';
+      const attendance = attendanceInput ? attendanceInput.value : 'yes';
+      const meal = (attendance === 'yes' && mealPreferenceSelect) ? mealPreferenceSelect.value : '';
+      
+      const rsvpData = { name, email, attendance, meal, timestamp: new Date().getTime() };
+      
+      localStorage.setItem('weddingRsvp_V2', JSON.stringify(rsvpData));
+      checkExistingRsvp();
+    });
+  }
   
-  btnEditRsvp.addEventListener('click', () => {
-    rsvpSuccess.style.display = 'none';
-    rsvpForm.style.display = 'block';
-  });
+  if (btnEditRsvp) {
+    btnEditRsvp.addEventListener('click', () => {
+      if (rsvpSuccess) rsvpSuccess.style.display = 'none';
+      if (rsvpForm) rsvpForm.style.display = 'block';
+    });
+  }
 
   /* ==========================================
      5. NEW UPGRADED COMPONENTS LOGIC

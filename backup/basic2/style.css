@@ -3,27 +3,38 @@
    ========================================================================== */
 :root {
     /* Color Palette */
-    --color-bg-primary: #FFFFFF;     /* Pure White */
-    --color-bg-secondary: #F9F9F9;   /* Studio Light Grey */
-    --color-bg-dark: #000000;        /* Solid Black */
-    
-    --color-text-main: #000000;      /* Contrast Black */
-    --color-text-muted: #666666;     /* Neutral Muted Grey */
-    --color-text-light: #8E8E93;     /* Light Silver Grey */
-    --color-text-inverse: #FFFFFF;   /* Clean White */
-    
+    --color-bg-primary: #FFFFFF;
+    /* Pure White */
+    --color-bg-secondary: #F9F9F9;
+    /* Studio Light Grey */
+    --color-bg-dark: #000000;
+    /* Solid Black */
+
+    --color-text-main: #000000;
+    /* Contrast Black */
+    --color-text-muted: #666666;
+    /* Neutral Muted Grey */
+    --color-text-light: #8E8E93;
+    /* Light Silver Grey */
+    --color-text-inverse: #FFFFFF;
+    /* Clean White */
+
     --color-border-dark: #000000;
-    --color-border-light: #E5E5EA;    /* Thin Light Grey */
-    --color-accent-sand: #E5E0DA;     /* Subtle Luxury Sand Highlight */
-    
+    --color-border-light: #E5E5EA;
+    /* Thin Light Grey */
+    --color-accent-sand: #E5E0DA;
+    /* Subtle Luxury Sand Highlight */
+
     /* Typography */
     --font-serif: 'Prata', Georgia, serif;
     --font-sans: 'Space Grotesk', Helvetica, Arial, sans-serif;
-    
+
     /* Layout Constants */
     --container-width: 960px;
-    --border-radius-none: 0px;        /* Strict geometric layouts */
-    --border-radius-sm: 2px;          /* Minimal rounding for form blocks */
+    --border-radius-none: 0px;
+    /* Strict geometric layouts */
+    --border-radius-sm: 2px;
+    /* Minimal rounding for form blocks */
     --transition-fast: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -52,7 +63,10 @@ body {
 /* ==========================================================================
    TYPOGRAPHY & GLOBAL LAYOUTS
    ========================================================================== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-serif);
     font-weight: 400;
     color: var(--color-text-main);
@@ -84,7 +98,8 @@ a {
 /* Editorial Minimalist Section Header */
 .section-header {
     margin-bottom: 40px;
-    text-align: left; /* Left-aligned for high fashion look */
+    text-align: left;
+    /* Left-aligned for high fashion look */
 }
 
 .section-header .editorial-label {
@@ -311,47 +326,11 @@ a {
 }
 
 .mobile-menu-btn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 4px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    z-index: 100;
-    pointer-events: auto;
-}
-
-.mobile-menu-btn .bar {
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-text-main);
-    transition: var(--transition-fast);
+    display: none !important;
 }
 
 #nav-menu {
-    display: block;
-    position: fixed;
-    top: calc(75px + env(safe-area-inset-top));
-    left: 0;
-    width: 100%;
-    background-color: var(--color-bg-primary);
-    border-bottom: 1px solid var(--color-glass-border);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    z-index: 95;
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#nav-menu.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: none !important;
 }
 
 /* Hamburger bar transformations */
@@ -408,7 +387,7 @@ a {
     opacity: 0;
     pointer-events: none;
     z-index: 99;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
     transition: var(--transition-fast);
 }
 
@@ -428,7 +407,8 @@ a {
    ========================================================================== */
 .couple-section {
     background-color: var(--color-bg-primary);
-    margin-top: 75px; /* Offset header */
+    margin-top: 75px;
+    /* Offset header */
 }
 
 .couple-grid {
@@ -456,13 +436,15 @@ a {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1); /* High fashion black & white styling */
+    filter: grayscale(1);
+    /* High fashion black & white styling */
     transition: var(--transition-slow);
 }
 
 .couple-card:hover .editorial-img-container img {
     transform: scale(1.04);
-    filter: grayscale(0); /* Subtle reveal to color on hover */
+    filter: grayscale(0);
+    /* Subtle reveal to color on hover */
 }
 
 .couple-details {
@@ -537,7 +519,7 @@ a {
 
 .event-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
 }
 
 .event-header {
@@ -620,7 +602,8 @@ a {
 }
 
 .countdown-box:not(:last-child)::after {
-    display: none; /* remove separator colons on small screens */
+    display: none;
+    /* remove separator colons on small screens */
 }
 
 .time-digit {
@@ -836,7 +819,8 @@ a {
     border-bottom: 1px solid var(--color-text-light);
     background-color: transparent;
     font-family: var(--font-sans);
-    font-size: 16px; /* iOS Safari zoom fix */
+    font-size: 16px;
+    /* iOS Safari zoom fix */
     color: var(--color-text-main);
     outline: none;
     transition: var(--transition-fast);
@@ -866,10 +850,10 @@ a {
 }
 
 /* Floating input focus / placeholder-shown transformations */
-.input-block input:focus ~ label,
-.input-block input:not(:placeholder-shown) ~ label,
-.input-block select:focus ~ label,
-.input-block select:not([value=""]) ~ label {
+.input-block input:focus~label,
+.input-block input:not(:placeholder-shown)~label,
+.input-block select:focus~label,
+.input-block select:not([value=""])~label {
     top: -12px;
     font-size: 0.65rem;
     color: var(--color-text-main);
@@ -885,8 +869,8 @@ a {
     transition: var(--transition-fast);
 }
 
-.input-block input:focus ~ .input-focus-line,
-.input-block select:focus ~ .input-focus-line {
+.input-block input:focus~.input-focus-line,
+.input-block select:focus~.input-focus-line {
     width: 100%;
 }
 
@@ -938,7 +922,8 @@ a {
     user-select: none;
     padding-left: 28px;
     height: 20px;
-    min-height: 44px; /* Touch friendly click target */
+    min-height: 44px;
+    /* Touch friendly click target */
 }
 
 .radio-btn-container input {
@@ -949,7 +934,8 @@ a {
 
 .checkmark {
     position: absolute;
-    top: 13px; /* align with touch height */
+    top: 13px;
+    /* align with touch height */
     left: 0;
     height: 18px;
     width: 18px;
@@ -972,7 +958,7 @@ a {
     transition: transform 0.2s ease;
 }
 
-.radio-btn-container input:checked ~ .checkmark::after {
+.radio-btn-container input:checked~.checkmark::after {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -1201,8 +1187,13 @@ footer {
     transform: scale(1.1);
 }
 
-.lightbox-nav-btn.prev { left: 10px; }
-.lightbox-nav-btn.next { right: 10px; }
+.lightbox-nav-btn.prev {
+    left: 10px;
+}
+
+.lightbox-nav-btn.next {
+    right: 10px;
+}
 
 .lightbox-content-wrapper {
     max-width: 90%;
@@ -1256,18 +1247,39 @@ footer {
    KEYFRAME ANIMATIONS
    ========================================================================== */
 @keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .animate-bounce {
@@ -1283,9 +1295,10 @@ footer {
     .welcome-title {
         font-size: 2.2rem;
     }
-    
+
     .gallery-minimal-grid {
-        grid-template-columns: 1fr; /* Stack images single file */
+        grid-template-columns: 1fr;
+        /* Stack images single file */
     }
 }
 
@@ -1294,39 +1307,36 @@ footer {
     .section-padding {
         padding: 100px 0;
     }
-    
+
     .section-header {
         margin-bottom: 60px;
     }
-    
+
     /* Header menu resets to horizontal */
     .mobile-menu-btn {
-        display: none !important;
+        display: none;
     }
-    
+
     #nav-menu {
-        display: block !important;
         position: static;
         width: auto;
         background-color: transparent;
         border-bottom: none;
         box-shadow: none;
         transform: none;
-        opacity: 1;
-        pointer-events: auto;
     }
-    
+
     #nav-menu ul {
         flex-direction: row;
         gap: 35px;
         padding: 0;
     }
-    
+
     #nav-menu .nav-link {
         padding: 10px 0;
         font-size: 0.75rem;
     }
-    
+
     #nav-menu .nav-link::after {
         content: '';
         position: absolute;
@@ -1337,41 +1347,41 @@ footer {
         background-color: var(--color-text-main);
         transition: var(--transition-fast);
     }
-    
+
     #nav-menu .nav-link.active::after,
     #nav-menu .nav-link:hover::after {
         width: 100%;
     }
-    
+
     .mobile-menu-btn.active .bar:nth-child(1) {
         transform: none;
     }
-    
+
     .mobile-menu-btn.active .bar:nth-child(2) {
         transform: none;
     }
-    
+
     /* Biography cards row */
     .couple-grid {
         flex-direction: row;
         gap: 40px;
     }
-    
+
     .couple-card {
         flex: 1;
     }
-    
+
     /* Event cards side-by-side */
     .events-grid {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
     }
-    
+
     /* Countdown spacing reset */
     .countdown-grid-minimal {
         gap: 30px;
     }
-    
+
     .countdown-box:not(:last-child)::after {
         content: ':';
         position: absolute;
@@ -1383,73 +1393,78 @@ footer {
         line-height: 1;
         display: block;
     }
-    
+
     /* Venue layout upgrade */
     .venue-grid {
         grid-template-columns: 1fr 1.2fr;
         gap: 40px;
     }
-    
+
     .venue-card-details {
         padding-right: 20px;
     }
-    
+
     .venue-map-wrapper iframe {
         min-height: 350px;
     }
-    
+
     /* Gallery upgrade to 4 columns */
     .gallery-minimal-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
     }
-    
+
     /* Form fields double column row */
     .form-grid {
         grid-template-columns: 1fr 1fr;
         gap: 30px;
     }
-    
+
     .radio-group {
         flex-direction: row;
         gap: 30px;
     }
-    
+
     .radio-btn-container {
         padding-left: 28px;
         height: 20px;
     }
-    
+
     .checkmark {
         top: 0;
     }
-    
+
     /* Contacts layout upgrade */
     .contacts-grid {
         flex-direction: row;
         gap: 40px;
     }
-    
+
     .contact-card {
         flex: 1;
         padding: 35px 30px;
     }
-    
+
     /* Lightbox modal offsets styling */
     .lightbox-close-btn {
         top: 30px;
         right: 30px;
         font-size: 2.5rem;
     }
-    
+
     .lightbox-nav-btn {
         width: 50px;
         height: 50px;
     }
-    
-    .lightbox-nav-btn.prev { left: 20px; }
-    .lightbox-nav-btn.next { right: 20px; }
-    
+
+    .lightbox-nav-btn.prev {
+        left: 20px;
+    }
+
+    .lightbox-nav-btn.next {
+        right: 20px;
+    }
+
     .lightbox-content-wrapper {
         max-width: 80%;
     }
@@ -1460,11 +1475,11 @@ footer {
     .container {
         padding: 0 30px;
     }
-    
+
     .countdown-grid-minimal {
         gap: 50px;
     }
-    
+
     .countdown-box:not(:last-child)::after {
         right: -25px;
     }

@@ -51,7 +51,6 @@
                         <li><a href="#events" class="nav-link">Events</a></li>
                         <li><a href="#venue" class="nav-link">Venue</a></li>
                         <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                        <li><a href="#rsvp" class="nav-link">RSVP</a></li>
                     </ul>
                 </nav>
             </div>
@@ -293,79 +292,7 @@
             </div>
         </section>
 
-        <!-- ==================== SECTION 6: RSVP ==================== -->
-        <section id="rsvp" class="section-padding rsvp-section">
-            <div class="container">
-                <div class="rsvp-container reveal">
-                    <div class="rsvp-title-block">
-                        <span class="editorial-label">CONFIRMATION</span>
-                        <h2>ATTENDANCE</h2>
-                        <p>Please submit your response before August 15, 2026.</p>
-                        <div class="thin-divider"></div>
-                    </div>
 
-                    <form id="rsvp-form" class="minimal-rsvp-form">
-                        <div class="form-grid">
-                            <div class="input-block">
-                                <input type="text" id="guest-name" name="name" placeholder=" " required>
-                                <label for="guest-name">FULL NAME</label>
-                                <span class="input-focus-line"></span>
-                                <span class="error-msg" id="name-error">Please enter your name.</span>
-                            </div>
-                            <div class="input-block">
-                                <input type="tel" id="guest-phone" name="phone" placeholder=" " required>
-                                <label for="guest-phone">PHONE NUMBER</label>
-                                <span class="input-focus-line"></span>
-                                <span class="error-msg" id="phone-error">Please enter a valid phone number.</span>
-                            </div>
-                        </div>
-
-                        <div class="radio-input-block">
-                            <span class="radio-section-label">ATTENDANCE</span>
-                            <div class="radio-group">
-                                <label class="radio-btn-container">
-                                    <input type="radio" name="attendance" value="attending" checked required>
-                                    <span class="checkmark"></span>
-                                    <span class="lbl-text">ACCEPT WITH PLEASURE</span>
-                                </label>
-                                <label class="radio-btn-container">
-                                    <input type="radio" name="attendance" value="declined" required>
-                                    <span class="checkmark"></span>
-                                    <span class="lbl-text">DECLINE WITH REGRET</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="guests-count-wrapper" class="input-block">
-                            <select id="guests-count" name="guests">
-                                <option value="1">1 GUEST</option>
-                                <option value="2">2 GUESTS</option>
-                                <option value="3">3 GUESTS</option>
-                                <option value="4">4 GUESTS</option>
-                            </select>
-                            <label for="guests-count">TOTAL ATTENDEES</label>
-                            <span class="input-focus-line"></span>
-                        </div>
-
-                        <button type="submit" id="btn-submit" class="btn-minimal-invert btn-block">
-                            SUBMIT RSVP
-                        </button>
-                    </form>
-
-                    <!-- Success State -->
-                    <div id="rsvp-success" class="rsvp-success-overlay modal-hidden">
-                        <div class="success-card-minimal">
-                            <div class="check-icon-box">
-                                <i class="fa-solid fa-check"></i>
-                            </div>
-                            <h3>RESPONSE RECEIVED</h3>
-                            <p id="success-message">Thank you. Your RSVP details have been recorded.</p>
-                            <button id="btn-close-success" class="btn-minimal-outline btn-small">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ==================== SECTION 7: CONTACTS ==================== -->
         <section id="contacts" class="section-padding contacts-section">

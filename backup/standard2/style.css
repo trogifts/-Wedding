@@ -3,48 +3,62 @@
    ========================================================================== */
 :root {
     /* Rich Cultural Color Palette */
-    --color-bg-primary: #FAF7F0;     /* Warm Ivory / Sandalwood tint */
-    --color-bg-secondary: #FDFBF7;   /* TraditionalKasavu Cream */
+    --color-bg-primary: #FAF7F0;
+    /* Warm Ivory / Sandalwood tint */
+    --color-bg-secondary: #FDFBF7;
+    /* TraditionalKasavu Cream */
     --color-bg-white: #FFFFFF;
-    
-    --color-gold-light: #F9E7B9;     /* Soft Champagne Gold */
-    --color-gold: #D4AF37;           /* Vibrant Kerala Gold */
-    --color-gold-dark: #B38728;      /* Rich Antique Gold */
-    --color-gold-accent: #AA771C;    /* Sandalwood Metallic Gold */
-    
-    --color-maroon: #6B1D2F;         /* Royal Temple Maroon / Vermillion */
-    --color-maroon-light: #8A2E44;   /* Crimson Accent */
-    --color-emerald: #1A4329;        /* Banana Leaf / Mango Grove Green */
-    --color-emerald-light: #2E6342;  /* Fresh Grass / Leaf Green */
-    
-    --color-text-main: #2C2523;      /* Deep Charcoal Sandal */
-    --color-text-muted: #615653;     /* Earthy Muted Grey */
-    --color-text-gold: #8C6F3D;      /* Golden-Bronze Text */
-    
+
+    --color-gold-light: #F9E7B9;
+    /* Soft Champagne Gold */
+    --color-gold: #D4AF37;
+    /* Vibrant Kerala Gold */
+    --color-gold-dark: #B38728;
+    /* Rich Antique Gold */
+    --color-gold-accent: #AA771C;
+    /* Sandalwood Metallic Gold */
+
+    --color-maroon: #6B1D2F;
+    /* Royal Temple Maroon / Vermillion */
+    --color-maroon-light: #8A2E44;
+    /* Crimson Accent */
+    --color-emerald: #1A4329;
+    /* Banana Leaf / Mango Grove Green */
+    --color-emerald-light: #2E6342;
+    /* Fresh Grass / Leaf Green */
+
+    --color-text-main: #2C2523;
+    /* Deep Charcoal Sandal */
+    --color-text-muted: #615653;
+    /* Earthy Muted Grey */
+    --color-text-gold: #8C6F3D;
+    /* Golden-Bronze Text */
+
     /* Typography Fonts */
     --font-serif-decorative: 'Cinzel Decorative', Georgia, serif;
     --font-serif: 'Cinzel', Georgia, serif;
     --font-cursive: 'Great Vibes', cursive, sans-serif;
     --font-sans: 'Montserrat', Helvetica, Arial, sans-serif;
-    
+
     /* Gold Metallic Gradients */
     --gold-gradient: linear-gradient(90deg, #b38728 0%, #f9e7b9 30%, #d4af37 70%, #aa771c 100%);
     --gold-gradient-hover: linear-gradient(90deg, #ebd09b 0%, #d4af37 50%, #b38728 100%);
     --maroon-gradient: linear-gradient(135deg, #6b1d2f 0%, #3d0a15 100%);
-    
+
     /* Layout Tokens */
     --container-width: 900px;
-    --border-radius-sm: 4px;          /* Minimal crisp curves for heritage feel */
+    --border-radius-sm: 4px;
+    /* Minimal crisp curves for heritage feel */
     --border-radius-md: 12px;
     --border-radius-lg: 20px;
-    
+
     /* Shadows & Glows */
     --shadow-soft: 0 10px 30px rgba(44, 37, 35, 0.04);
     --shadow-premium: 0 15px 40px rgba(170, 119, 28, 0.12);
     --shadow-maroon: 0 8px 25px rgba(107, 29, 47, 0.25);
     --shadow-gold: 0 8px 25px rgba(212, 175, 55, 0.35);
     --glow-flame: 0 0 20px rgba(253, 184, 19, 0.8), 0 0 40px rgba(253, 184, 19, 0.4);
-    
+
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     --transition-fast: all 0.3s ease;
 }
@@ -90,7 +104,10 @@ body {
 /* ==========================================================================
    TYPOGRAPHY & GLOBAL LAYOUT PARTS
    ========================================================================== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-serif);
     font-weight: 600;
     color: var(--color-maroon);
@@ -464,63 +481,11 @@ a {
 }
 
 .mobile-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--color-maroon);
-    z-index: 100;
-    pointer-events: auto;
+    display: none !important;
 }
 
 #nav-menu {
-    display: block;
-    position: fixed;
-    top: calc(70px + env(safe-area-inset-top));
-    left: 0;
-    width: 100%;
-    background-color: var(--color-bg-primary);
-    border-bottom: 1.5px solid var(--color-gold-light);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    z-index: 95;
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#nav-menu.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-#nav-menu ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 20px 0;
-    text-align: center;
-}
-
-#nav-menu .nav-link {
-    display: block;
-    padding: 15px 0;
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-muted);
-}
-
-#nav-menu .nav-link:hover,
-#nav-menu .nav-link.active {
-    color: var(--color-gold);
+    display: none !important;
 }
 
 /* ==========================================================================
@@ -768,7 +733,7 @@ a {
 
 .urli-basket-btn .jasmine-pile {
     fill: #FFFDF9;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.06));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
 }
 
 .urli-basket-btn .marigold-pile {
@@ -1079,7 +1044,8 @@ a {
 .profile-img-container {
     width: 100%;
     position: relative;
-    padding-top: 100%; /* square ratio */
+    padding-top: 100%;
+    /* square ratio */
     background-color: var(--color-gold-light);
 }
 
@@ -1349,7 +1315,8 @@ a {
 .gallery-card::after {
     content: '';
     display: block;
-    padding-bottom: 75px; /* Aspect ratio */
+    padding-bottom: 75px;
+    /* Aspect ratio */
 }
 
 .gallery-card img {
@@ -1474,8 +1441,13 @@ a {
     background: rgba(255, 255, 255, 0.3);
 }
 
-.lightbox-nav-btn.prev { left: -55px; }
-.lightbox-nav-btn.next { right: -55px; }
+.lightbox-nav-btn.prev {
+    left: -55px;
+}
+
+.lightbox-nav-btn.next {
+    right: -55px;
+}
 
 /* ==========================================================================
    VIDEO SECTION
@@ -1490,7 +1462,8 @@ a {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect */
+    padding-bottom: 56.25%;
+    /* 16:9 aspect */
     height: 0;
     background-color: #000;
 }
@@ -1546,7 +1519,8 @@ a {
     background-color: var(--color-bg-primary);
     color: var(--color-text-main);
     font-family: var(--font-sans);
-    font-size: 1rem; /* iOS zoom prevention */
+    font-size: 1rem;
+    /* iOS zoom prevention */
     border-radius: var(--border-radius-sm);
     transition: var(--transition-fast);
     outline: none;
@@ -1856,29 +1830,76 @@ a {
    ANIMATIONS & KEYFRAMES
    ========================================================================== */
 @keyframes flickerAnimation {
-    0% { transform: scale(1) rotate(-1deg); opacity: 0.9; }
-    20% { transform: scale(0.95) rotate(1deg); opacity: 0.85; }
-    40% { transform: scale(1.05) rotate(-0.5deg); opacity: 1; }
-    60% { transform: scale(1.02) rotate(0.5deg); opacity: 0.95; }
-    80% { transform: scale(0.98) rotate(-1deg); opacity: 0.9; }
-    100% { transform: scale(1.04) rotate(1deg); opacity: 1; }
+    0% {
+        transform: scale(1) rotate(-1deg);
+        opacity: 0.9;
+    }
+
+    20% {
+        transform: scale(0.95) rotate(1deg);
+        opacity: 0.85;
+    }
+
+    40% {
+        transform: scale(1.05) rotate(-0.5deg);
+        opacity: 1;
+    }
+
+    60% {
+        transform: scale(1.02) rotate(0.5deg);
+        opacity: 0.95;
+    }
+
+    80% {
+        transform: scale(0.98) rotate(-1deg);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: scale(1.04) rotate(1deg);
+        opacity: 1;
+    }
 }
 
 @keyframes rotateMusicDisc {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulseGlow {
-    0% { transform: scale(1); opacity: 0.7; }
-    50% { transform: scale(1.15); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.7; }
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
 }
 
 @keyframes pulseButtonGlow {
-    0% { box-shadow: 0 0 0 0 rgba(107, 29, 47, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(107, 29, 47, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(107, 29, 47, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(107, 29, 47, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(107, 29, 47, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(107, 29, 47, 0);
+    }
 }
 
 @keyframes fallPetal {
@@ -1886,6 +1907,7 @@ a {
         transform: translateY(-50px) rotate(0deg) translateX(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(105vh) rotate(720deg) translateX(100px);
         opacity: 0;
@@ -1897,6 +1919,7 @@ a {
         opacity: 0;
         transform: translateY(25px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1904,8 +1927,13 @@ a {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Scroll Animation classes */
@@ -1929,11 +1957,11 @@ a {
     .section-padding {
         padding: 80px 0;
     }
-    
+
     .section-header {
         margin-bottom: 50px;
     }
-    
+
     /* Sticky Header restores horizontal structure on desktop */
     #main-header {
         display: block;
@@ -1949,51 +1977,23 @@ a {
         transition: var(--transition-smooth);
         pointer-events: none;
     }
-    
+
     .header-container {
         padding: 0 24px;
     }
-    
-    .mobile-menu-btn {
-        display: none !important;
-    }
-    
-    #nav-menu {
-        display: block !important;
-        position: static;
-        width: auto;
-        background-color: transparent;
-        border-bottom: none;
-        box-shadow: none;
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
-    }
-    
-    #nav-menu ul {
-        flex-direction: row;
-        gap: 30px;
-        padding: 0;
-        text-align: left;
-    }
-    
-    #nav-menu .nav-link {
-        padding: 8px 0;
-        font-size: 0.8rem;
-        position: relative;
-    }
-    
+
     /* Dynamic Side-by-Side Profiles */
     .profile-card {
         flex-direction: row;
         align-items: stretch;
     }
-    
+
     .profile-img-container {
         width: 45%;
-        padding-top: 0; /* reset */
+        padding-top: 0;
+        /* reset */
     }
-    
+
     .profile-info {
         width: 55%;
         display: flex;
@@ -2002,52 +2002,52 @@ a {
         text-align: left;
         padding: 40px;
     }
-    
+
     /* Double column family lists */
     .family-grid {
         grid-template-columns: 1fr 1fr;
         gap: 30px;
     }
-    
+
     /* Double column gallery grid */
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
-    
+
     /* Double column contact grids */
     .contact-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
-    
+
     /* Horizontal Event timelines details */
     .event-details-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
     }
-    
+
     .event-detail-item {
         border-right: 1px solid var(--color-gold-light);
     }
-    
+
     .event-detail-item:last-child {
         border-right: none;
     }
-    
+
     /* Double column timeline journey */
     .timeline-card {
         max-width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     /* Side-by-side elements on interactive widgets */
     .lamp-ceremony-box {
         padding: 45px 30px;
     }
-    
+
     .quiz-widget-box {
         padding: 40px 30px;
     }
@@ -2058,7 +2058,7 @@ a {
     .gallery-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     /* Wishes display double column */
     .wishes-display-board {
         grid-template-columns: 1fr 1fr;

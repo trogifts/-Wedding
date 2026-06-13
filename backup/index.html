@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation Templates Portal</title>
+    <meta name="description" content="Explore and select premium static wedding invitation templates.">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --color-bg: #FAF7F0;
+            --color-card-bg: #FFFFFF;
+            --color-primary: #6B1D2F;
+            --color-gold: #D4AF37;
+            --color-gold-dark: #AA771C;
+            --color-text-main: #2C2523;
+            --color-text-muted: #615653;
+            --font-serif: 'Cinzel', Georgia, serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(107, 29, 47, 0.03) 0%, transparent 40%);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 700px;
+        }
+
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 60px;
+        }
+
+        .template-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(44, 37, 35, 0.03);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-gold));
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(44, 37, 35, 0.08);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .template-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--color-gold);
+            margin-bottom: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .template-card:hover .card-icon {
+            transform: scale(1.1);
+            color: var(--color-primary);
+        }
+
+        .card-title {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        .btn-open {
+            display: inline-block;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--color-primary) 0%, #3d0a15 100%);
+            color: #FFFFFF;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(107, 29, 47, 0.2);
+        }
+
+        .btn-open:hover {
+            background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(170, 119, 28, 0.3);
+        }
+
+        .template-card.featured {
+            border-color: var(--color-gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.08);
+        }
+
+        .template-card.featured::before {
+            opacity: 1;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--color-gold);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            header {
+                margin-bottom: 35px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            header p {
+                font-size: 0.85rem;
+            }
+
+            .portal-grid {
+                gap: 20px;
+            }
+
+            .template-card {
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            .card-icon {
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            .card-title {
+                font-size: 1.15rem;
+                margin-bottom: 8px;
+            }
+
+            .card-desc {
+                font-size: 0.8rem;
+                margin-bottom: 20px;
+            }
+
+            .btn-open {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Wedding Invitations</h1>
+        <p>Select a template below to view the premium interactive wedding invitation designs.</p>
+    </header>
+
+    <div class="portal-grid">
+        <!-- Kerala Style -->
+        <div class="template-card featured">
+            <span class="badge">Featured</span>
+            <div class="card-icon"><i class="fa-solid fa-tree"></i></div>
+            <h2 class="card-title">Kerala Style</h2>
+            <p class="card-desc">Traditional Kasavu cream & gold theme featuring virtual lamp lighting, jasmine showers, and Kochi backwater aesthetics.</p>
+            <a href="kerala/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Celestial Luxury -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-star-and-crescent"></i></div>
+            <h2 class="card-title">Celestial Luxury</h2>
+            <p class="card-desc">Dark-mode editorial design featuring midnight blue, liquid gold accents, and astronomical layouts.</p>
+            <a href="celestial/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Standard 2 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+            <h2 class="card-title">Standard 2</h2>
+            <p class="card-desc">Traditional temple styling with interactive virtual lamp, memory tree timelines, and couple quiz game.</p>
+            <a href="standard2/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Standard 1 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
+            <h2 class="card-title">Standard 1</h2>
+            <p class="card-desc">Elegant standard invitation template with custom background music control and responsive navigation.</p>
+            <a href="standard1/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Standard 3 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h2 class="card-title">Standard 3</h2>
+            <p class="card-desc">Premium standard layout featuring pastel color palettes and custom typography transitions.</p>
+            <a href="standard3/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Standard 4 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-feather"></i></div>
+            <h2 class="card-title">Standard 4</h2>
+            <p class="card-desc">Clean modern design with simple scroll action layouts and minimal interface accents.</p>
+            <a href="standard4/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Basic 1 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-envelope"></i></div>
+            <h2 class="card-title">Basic 1</h2>
+            <p class="card-desc">Minimalist classic wedding card layout with clean responsive mobile drawer menu.</p>
+            <a href="basic1/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Basic 2 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+            <h2 class="card-title">Basic 2</h2>
+            <p class="card-desc">Modern minimalist layout with mobile drawer navigation and refined margins.</p>
+            <a href="basic2/index.html" class="btn-open">View Invitation</a>
+        </div>
+
+        <!-- Basic 3 -->
+        <div class="template-card">
+            <div class="card-icon"><i class="fa-solid fa-ring"></i></div>
+            <h2 class="card-title">Basic 3</h2>
+            <p class="card-desc">Charming light aesthetic layout with simple navigation controls and responsive styling.</p>
+            <a href="basic3/index.html" class="btn-open">View Invitation</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

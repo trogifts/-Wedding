@@ -3,26 +3,38 @@
    ========================================================================== */
 :root {
     /* Color Palette */
-    --color-bg-paper: #FAF3E0;        /* Aged Parchment Cream */
-    --color-bg-sand: #EADDC9;         /* Warm Vintage Sand */
-    --color-bg-navy: #14283B;         /* Deep Passport Navy Blue */
-    --color-bg-card: #FAF9F6;         /* Off-white Ticket Board */
-    
-    --color-text-dark: #3E2723;       /* Espresso Brown */
-    --color-text-muted: #6D4C41;      /* Cocoa Muted Brown */
-    --color-text-navy: #1D3557;       /* Airline Navy Blue */
-    --color-text-gold: #B8860B;       /* Antique Golden Brown */
-    --color-gold-foil: #D4AF37;       /* Metallic Embossing Gold */
-    
-    --color-stamp-red: #A93226;       /* Faded Crimson Stamp Ink */
-    --color-stamp-blue: #2471A3;      /* Faded Navy Stamp Ink */
-    --color-stamp-green: #229954;     /* Faded Olive Stamp Ink */
-    
+    --color-bg-paper: #FAF3E0;
+    /* Aged Parchment Cream */
+    --color-bg-sand: #EADDC9;
+    /* Warm Vintage Sand */
+    --color-bg-navy: #14283B;
+    /* Deep Passport Navy Blue */
+    --color-bg-card: #FAF9F6;
+    /* Off-white Ticket Board */
+
+    --color-text-dark: #3E2723;
+    /* Espresso Brown */
+    --color-text-muted: #6D4C41;
+    /* Cocoa Muted Brown */
+    --color-text-navy: #1D3557;
+    /* Airline Navy Blue */
+    --color-text-gold: #B8860B;
+    /* Antique Golden Brown */
+    --color-gold-foil: #D4AF37;
+    /* Metallic Embossing Gold */
+
+    --color-stamp-red: #A93226;
+    /* Faded Crimson Stamp Ink */
+    --color-stamp-blue: #2471A3;
+    /* Faded Navy Stamp Ink */
+    --color-stamp-green: #229954;
+    /* Faded Olive Stamp Ink */
+
     /* Typography */
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-mono: 'Courier Prime', Courier, monospace;
     --font-sans: 'Space Grotesk', sans-serif;
-    
+
     /* Layout Constants */
     --container-width: 960px;
     --transition-paper: all 0.8s cubic-bezier(0.76, 0, 0.24, 1);
@@ -61,7 +73,7 @@ body::before {
     width: 100vw;
     height: 100vh;
     background-image: radial-gradient(circle, transparent 70%, rgba(62, 39, 35, 0.06) 100%),
-                      url("data:image/svg+xml;utf8,<svg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' result='noise'/><feColorMatrix type='matrix' values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.03 0'/></filter><rect width='100' height='100' filter='url(%23noise)' fill='none'/></svg>");
+        url("data:image/svg+xml;utf8,<svg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='1' result='noise'/><feColorMatrix type='matrix' values='0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.03 0'/></filter><rect width='100' height='100' filter='url(%23noise)' fill='none'/></svg>");
     pointer-events: none;
     z-index: 9998;
 }
@@ -69,7 +81,10 @@ body::before {
 /* ==========================================================================
    TYPOGRAPHY & GLOBAL LAYOUTS
    ========================================================================== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-serif);
     font-weight: 700;
     color: var(--color-text-dark);
@@ -199,7 +214,7 @@ p {
     width: 50.5vw;
     height: 100%;
     background-color: var(--color-bg-navy);
-    background-image: radial-gradient(circle, transparent 60%, rgba(0,0,0,0.4) 100%);
+    background-image: radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
     top: 0;
     z-index: 1;
     transition: transform 1.4s cubic-bezier(0.76, 0, 0.24, 1);
@@ -229,7 +244,8 @@ p {
     width: 320px;
     height: 480px;
     background-color: var(--color-bg-navy);
-    background-image: url("data:image/svg+xml;utf8,<svg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'><path d='M60 0l60 60-60 60L0 60z' fill='%23ffffff' fill-opacity='0.01'/></svg>"); /* Leather pattern mock */
+    background-image: url("data:image/svg+xml;utf8,<svg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'><path d='M60 0l60 60-60 60L0 60z' fill='%23ffffff' fill-opacity='0.01'/></svg>");
+    /* Leather pattern mock */
     border: 3px double var(--color-gold-foil);
     box-shadow: var(--shadow-passport);
     display: flex;
@@ -286,7 +302,7 @@ p {
     font-weight: 700;
     color: var(--color-gold-foil);
     margin-bottom: 15px;
-    text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
 }
 
 .passport-sub-emboss {
@@ -365,38 +381,11 @@ p {
 }
 
 .mobile-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--color-text-navy);
-    z-index: 100;
-    pointer-events: auto;
+    display: none !important;
 }
 
 #nav-menu {
-    display: block;
-    position: fixed;
-    top: calc(70px + env(safe-area-inset-top));
-    left: 0;
-    width: 100%;
-    background-color: var(--color-bg-paper);
-    border-bottom: 1px solid var(--color-text-gold);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    z-index: 95;
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-#nav-menu.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: none !important;
 }
 
 #nav-menu ul {
@@ -439,7 +428,7 @@ p {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(62,39,35,0.1);
+    box-shadow: 0 4px 12px rgba(62, 39, 35, 0.1);
     opacity: 0;
     pointer-events: none;
     z-index: 99;
@@ -455,7 +444,8 @@ p {
     background-color: var(--color-text-navy);
     color: var(--color-bg-paper);
     border-color: var(--color-text-navy);
-    transform: rotate(360deg); /* Compass spinning trigger */
+    transform: rotate(360deg);
+    /* Compass spinning trigger */
 }
 
 /* ==========================================================================
@@ -752,7 +742,8 @@ p {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: sepia(0.65) contrast(1.1) brightness(0.9); /* Vintage photo filter */
+    filter: sepia(0.65) contrast(1.1) brightness(0.9);
+    /* Vintage photo filter */
     transition: var(--transition-paper);
 }
 
@@ -1079,7 +1070,7 @@ p {
     padding: 8px 12px;
     border-radius: 4px;
     line-height: 1;
-    box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .board-label {
@@ -1096,7 +1087,8 @@ p {
     font-weight: 700;
     color: var(--color-gold-foil);
     margin-top: -20px;
-    display: none; /* remove separator dots in mobile */
+    display: none;
+    /* remove separator dots in mobile */
 }
 
 /* ==========================================================================
@@ -1225,8 +1217,13 @@ p {
     transform: rotate(var(--rot-factor, 0deg));
 }
 
-.polaroid-item:nth-child(even) { --rot-factor: 2deg; }
-.polaroid-item:nth-child(odd) { --rot-factor: -2deg; }
+.polaroid-item:nth-child(even) {
+    --rot-factor: 2deg;
+}
+
+.polaroid-item:nth-child(odd) {
+    --rot-factor: -2deg;
+}
 
 .polaroid-item:hover {
     transform: scale(1.03) translateY(-8px) rotate(0deg);
@@ -1344,7 +1341,8 @@ p {
     border-bottom: 1.5px solid var(--color-text-gold);
     background-color: transparent;
     font-family: var(--font-mono);
-    font-size: 16px; /* iOS Safari zoom fix */
+    font-size: 16px;
+    /* iOS Safari zoom fix */
     color: var(--color-text-dark);
     outline: none;
     transition: var(--transition-paper);
@@ -1369,8 +1367,8 @@ p {
     transition: var(--transition-paper);
 }
 
-.stamp-form-element input:focus ~ .stamp-border-line,
-.stamp-form-element select:focus ~ .stamp-border-line {
+.stamp-form-element input:focus~.stamp-border-line,
+.stamp-form-element select:focus~.stamp-border-line {
     width: 100%;
 }
 
@@ -1420,7 +1418,8 @@ p {
     font-weight: 700;
     padding-left: 28px;
     height: 20px;
-    min-height: 44px; /* Touch target */
+    min-height: 44px;
+    /* Touch target */
 }
 
 .stamp-radio-container input {
@@ -1431,7 +1430,8 @@ p {
 
 .custom-stamp-box {
     position: absolute;
-    top: 13px; /* centered on touch targets */
+    top: 13px;
+    /* centered on touch targets */
     left: 0;
     height: 18px;
     width: 18px;
@@ -1452,7 +1452,7 @@ p {
     transition: transform 0.2s ease;
 }
 
-.stamp-radio-container input:checked ~ .custom-stamp-box::after {
+.stamp-radio-container input:checked~.custom-stamp-box::after {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -1473,7 +1473,7 @@ p {
     letter-spacing: 2px;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: var(--transition-paper);
     display: flex;
     justify-content: center;
@@ -1577,7 +1577,7 @@ p {
 
 .consular-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(62,39,35,0.1);
+    box-shadow: 0 12px 30px rgba(62, 39, 35, 0.1);
 }
 
 .consular-title {
@@ -1728,8 +1728,13 @@ footer h3 {
     transform: scale(1.1);
 }
 
-.lightbox-nav-btn.prev { left: 5px; }
-.lightbox-nav-btn.next { right: 5px; }
+.lightbox-nav-btn.prev {
+    left: 5px;
+}
+
+.lightbox-nav-btn.next {
+    right: 5px;
+}
 
 .lightbox-content-wrapper {
     max-width: 90%;
@@ -1783,29 +1788,65 @@ footer h3 {
    KEYFRAME ANIMATIONS
    ========================================================================== */
 @keyframes rotateGoldCircle {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulseLogo {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.85; }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
 }
 
 @keyframes pulseButtonGlow {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-    70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
 }
 
 @keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.92); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
 }
 
 .animate-bounce {
@@ -1821,13 +1862,14 @@ footer h3 {
     .board-digit {
         font-size: 1.8rem;
     }
-    
+
     .countdown-itinerary-board {
         gap: 10px;
     }
-    
+
     .polaroid-gallery-grid {
-        grid-template-columns: 1fr; /* stack polaroid images single file */
+        grid-template-columns: 1fr;
+        /* stack polaroid images single file */
     }
 }
 
@@ -1836,41 +1878,38 @@ footer h3 {
     .section-padding {
         padding: 95px 0;
     }
-    
+
     .section-header {
         margin-bottom: 60px;
     }
-    
+
     /* Header menu resets to horizontal */
     .mobile-menu-btn {
-        display: none !important;
+        display: none;
     }
-    
+
     #nav-menu {
-        display: block !important;
         position: static;
         width: auto;
         background-color: transparent;
         border-bottom: none;
         box-shadow: none;
         transform: none;
-        opacity: 1;
-        pointer-events: auto;
     }
-    
+
     #nav-menu ul {
         flex-direction: row;
         gap: 30px;
         padding: 0;
         text-align: left;
     }
-    
+
     #nav-menu .nav-link {
         padding: 8px 0;
         font-size: 0.75rem;
         position: relative;
     }
-    
+
     #nav-menu .nav-link::after {
         content: '';
         position: absolute;
@@ -1881,46 +1920,46 @@ footer h3 {
         background-color: var(--color-text-navy);
         transition: var(--transition-paper);
     }
-    
+
     #nav-menu .nav-link.active::after,
     #nav-menu .nav-link:hover::after {
         width: 100%;
     }
-    
+
     /* Passport Cover card scale up to desktop size */
     .passport-cover-card {
         width: 380px;
         height: 540px;
         padding: 40px 30px;
     }
-    
+
     .passport-crest-gold {
         width: 120px;
         height: 120px;
         margin: 45px 0;
     }
-    
+
     /* Boarding Pass layout reset to horizontal */
     .boarding-pass-card {
         flex-direction: row;
         border-bottom: none;
     }
-    
+
     .boarding-pass-card::before {
         width: 6px;
         height: 100%;
     }
-    
+
     .pass-main-stub {
         flex: 1.3;
         padding: 35px 40px;
     }
-    
+
     .pass-details-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px 30px;
     }
-    
+
     /* Perforated Divider vertical reset */
     .pass-perforated-divider {
         width: 25px;
@@ -1928,148 +1967,153 @@ footer h3 {
         flex-direction: column;
         margin: 0 -12px;
     }
-    
+
     .tear-circle {
         width: 24px;
         height: 12px;
     }
-    
+
     .tear-circle.top {
         border-radius: 0 0 12px 12px;
         border-top: none;
         margin-top: -1px;
         margin-left: 0;
     }
-    
+
     .tear-circle.bottom {
         border-radius: 12px 12px 0 0;
         border-bottom: none;
         margin-bottom: -1px;
         margin-right: 0;
     }
-    
+
     .dashed-line {
         width: 1px;
         height: 100%;
         border-left: 1.5px dashed var(--color-text-gold);
         border-top: none;
     }
-    
+
     .pass-side-stub {
         flex: 0.7;
         border-left: 1px solid rgba(197, 168, 128, 0.2);
         border-top: none;
         padding: 35px 30px;
     }
-    
+
     /* Postcard destinations row */
     .destination-card {
         flex-direction: row;
     }
-    
+
     .postcard-img-box {
         flex: 1;
         height: 300px;
         border-right: 1px solid var(--color-border-light);
         border-bottom: none;
     }
-    
+
     .postcard-content {
         flex: 1.2;
         padding: 40px;
     }
-    
+
     /* Crew card grid row */
     .couple-grid {
         flex-direction: row;
         gap: 35px;
     }
-    
+
     .crew-card {
         flex: 1;
         padding: 40px;
     }
-    
+
     /* Itinerary cards layout */
     .itinerary-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 30px;
     }
-    
+
     /* Countdown itinerary digit board elements */
     .board-digit {
         font-size: 2.2rem;
     }
-    
+
     .board-colon {
         display: block;
     }
-    
+
     /* Polaroid gallery columns 4 */
     .polaroid-gallery-grid {
         grid-template-columns: repeat(4, 1fr);
         gap: 20px;
     }
-    
+
     /* RSVP page layout scale up */
     .rsvp-card-passport {
         padding: 50px;
     }
-    
+
     .form-row-2 {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
-    
+
     .radio-options {
         flex-direction: row;
         gap: 20px;
     }
-    
+
     .custom-stamp-box {
         top: 0;
     }
-    
+
     .stamp-radio-container {
         padding-left: 28px;
         height: 20px;
     }
-    
+
     /* Contacts side-by-side row */
     .contacts-grid {
         flex-direction: row;
         gap: 30px;
     }
-    
+
     .consular-card {
         flex: 1;
         padding: 35px 30px;
     }
-    
+
     .consular-actions {
         flex-direction: row;
         gap: 15px;
     }
-    
+
     .consular-actions .btn-passport-outline {
         flex: 1;
     }
-    
+
     /* Lightbox modal resets */
     .lightbox-close-btn {
         top: 25px;
         right: 25px;
         font-size: 3rem;
     }
-    
+
     .lightbox-nav-btn {
         width: 50px;
         height: 50px;
     }
-    
-    .lightbox-nav-btn.prev { left: 25px; }
-    .lightbox-nav-btn.next { right: 25px; }
-    
+
+    .lightbox-nav-btn.prev {
+        left: 25px;
+    }
+
+    .lightbox-nav-btn.next {
+        right: 25px;
+    }
+
     .lightbox-content-wrapper {
         max-width: 85%;
         padding: 0;
@@ -2082,16 +2126,16 @@ footer h3 {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-    
+
     .venue-grid {
         grid-template-columns: 1fr;
         gap: 35px;
     }
-    
+
     .destination-itinerary-box {
         padding: 30px;
     }
-    
+
     .map-embed-card iframe {
         height: 320px !important;
     }
@@ -2102,7 +2146,7 @@ footer h3 {
         grid-template-columns: 1fr 1.2fr;
         gap: 40px;
     }
-    
+
     .map-embed-card iframe {
         min-height: 360px;
     }

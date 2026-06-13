@@ -3,44 +3,55 @@
    ========================================================================== */
 :root {
     /* Baseline Light Theme Colors */
-    --color-bg-primary: #FAF6F0;       /* Alabaster Luxury Cream */
-    --color-bg-secondary: #FDFBF7;     /* Pure Soft Ivory */
+    --color-bg-primary: #FAF6F0;
+    /* Alabaster Luxury Cream */
+    --color-bg-secondary: #FDFBF7;
+    /* Pure Soft Ivory */
     --color-bg-white: #FFFFFF;
-    
-    --color-gold-light: #E5D3B3;       /* Champagne Gold Accent */
-    --color-gold: #C5A880;             /* Classic Matt Gold */
-    --color-gold-dark: #A88B5D;        /* Antique Bronze Gold */
-    --color-gold-accent: #D4AF37;      /* Vivid Gold Accent */
-    
-    --color-green-dark: #1E352F;       /* Deep Imperial Sage Green */
-    --color-green-light: #2C4A40;      /* Emerald Sage Accent */
-    
-    --color-text-main: #2C2A29;        /* Warm Dark Charcoal */
-    --color-text-muted: #6B6967;       /* Soft Taupe Grey */
-    --color-text-gold: #8A765D;        /* Golden-Bronze Text */
-    
+
+    --color-gold-light: #E5D3B3;
+    /* Champagne Gold Accent */
+    --color-gold: #C5A880;
+    /* Classic Matt Gold */
+    --color-gold-dark: #A88B5D;
+    /* Antique Bronze Gold */
+    --color-gold-accent: #D4AF37;
+    /* Vivid Gold Accent */
+
+    --color-green-dark: #1E352F;
+    /* Deep Imperial Sage Green */
+    --color-green-light: #2C4A40;
+    /* Emerald Sage Accent */
+
+    --color-text-main: #2C2A29;
+    /* Warm Dark Charcoal */
+    --color-text-muted: #6B6967;
+    /* Soft Taupe Grey */
+    --color-text-gold: #8A765D;
+    /* Golden-Bronze Text */
+
     /* Layout Tokens */
     --container-width: 960px;
     --border-radius-sm: 8px;
     --border-radius-md: 16px;
     --border-radius-lg: 24px;
-    
+
     /* Glassmorphism Accents */
     --color-glass-bg: rgba(255, 255, 255, 0.7);
     --color-glass-border: rgba(197, 168, 128, 0.2);
     --color-glass-shadow: rgba(138, 118, 93, 0.08);
-    
+
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.03);
     --shadow-medium: 0 15px 40px rgba(138, 118, 93, 0.12);
     --shadow-gold: 0 5px 20px rgba(212, 175, 55, 0.15);
     --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    
+
     /* Typography Font stacks */
     --font-serif-decorative: 'Cinzel Decorative', Georgia, serif;
     --font-serif: 'Cinzel', Georgia, serif;
     --font-cursive: 'Great Vibes', cursive, sans-serif;
     --font-sans: 'Montserrat', Helvetica, Arial, sans-serif;
-    
+
     --gold-gradient: linear-gradient(135deg, #ebd09b 0%, #c5a880 50%, #b19263 100%);
     --gold-gradient-hover: linear-gradient(135deg, #f5dfb2 0%, #d4af37 50%, #c5a880 100%);
     --cream-gradient: linear-gradient(180deg, #FDFBF7 0%, #FAF6F0 100%);
@@ -48,26 +59,29 @@
 
 /* Dark Theme Variables */
 body[data-theme="dark"] {
-    --color-bg-primary: #121E1B;       /* Very Dark Sage Green */
-    --color-bg-secondary: #0A1311;     /* Midnight Sage Green */
-    --color-bg-white: #172622;         /* Dark Studio Sage Box */
-    
+    --color-bg-primary: #121E1B;
+    /* Very Dark Sage Green */
+    --color-bg-secondary: #0A1311;
+    /* Midnight Sage Green */
+    --color-bg-white: #172622;
+    /* Dark Studio Sage Box */
+
     --color-gold-light: #8C7554;
     --color-gold: #C5A880;
     --color-gold-dark: #E5D3B3;
     --color-gold-accent: #E9D295;
-    
+
     --color-green-dark: #E5D3B3;
     --color-green-light: #C5A880;
-    
+
     --color-text-main: #FAF6F0;
     --color-text-muted: #A6A4A0;
     --color-text-gold: #C5A880;
-    
+
     --color-glass-bg: rgba(23, 38, 34, 0.85);
     --color-glass-border: rgba(197, 168, 128, 0.25);
     --color-glass-shadow: rgba(0, 0, 0, 0.25);
-    
+
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.2);
     --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.35);
     --shadow-gold: 0 5px 20px rgba(233, 210, 149, 0.15);
@@ -99,7 +113,10 @@ body {
 /* ==========================================================================
    TYPOGRAPHY & GLOBAL UTILITY STYLES
    ========================================================================== */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: var(--font-serif);
     font-weight: 600;
     letter-spacing: 1px;
@@ -161,7 +178,8 @@ a {
 }
 
 .section-divider::after {
-    content: "\f005"; /* FontAwesome star indicator representing octagram design */
+    content: "\f005";
+    /* FontAwesome star indicator representing octagram design */
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     position: absolute;
@@ -435,7 +453,8 @@ body[data-theme="dark"] .monogram-letters {
    ========================================================================== */
 .floating-widgets-container {
     position: fixed;
-    bottom: 95px; /* High enough to float clear of the mobile bottom dock */
+    bottom: 95px;
+    /* High enough to float clear of the mobile bottom dock */
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -486,9 +505,17 @@ body[data-theme="dark"] .monogram-letters {
     transform-origin: bottom;
 }
 
-.music-btn.playing .music-waves span:nth-child(1) { animation-delay: 0.1s; }
-.music-btn.playing .music-waves span:nth-child(2) { animation-delay: 0.4s; }
-.music-btn.playing .music-waves span:nth-child(3) { animation-delay: 0.2s; }
+.music-btn.playing .music-waves span:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.music-btn.playing .music-waves span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.music-btn.playing .music-waves span:nth-child(3) {
+    animation-delay: 0.2s;
+}
 
 .music-btn.muted .music-waves span {
     animation: none;
@@ -586,7 +613,8 @@ body[data-theme="dark"] .monogram-letters {
     font-size: 0.65rem;
     font-weight: 500;
     transition: var(--transition-smooth);
-    min-height: 44px; /* Touch friendly height */
+    min-height: 44px;
+    /* Touch friendly height */
     justify-content: center;
 }
 
@@ -1190,7 +1218,8 @@ body[data-theme="dark"] .monogram-letters {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(30, 53, 47, 0.85); /* deep emerald semi-transparent */
+    background-color: rgba(30, 53, 47, 0.85);
+    /* deep emerald semi-transparent */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1249,7 +1278,8 @@ body[data-theme="dark"] .monogram-letters {
     top: 10px;
     left: 10px;
     right: 10px;
-    bottom: 50px; /* offset standard controls height */
+    bottom: 50px;
+    /* offset standard controls height */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1447,7 +1477,7 @@ body[data-theme="dark"] .monogram-letters {
     opacity: 0;
     pointer-events: none;
     transition: var(--transition-smooth);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     white-space: nowrap;
     z-index: 10;
 }
@@ -1550,7 +1580,8 @@ body[data-theme="dark"] .monogram-letters {
     background-color: var(--color-bg-primary);
     border-radius: var(--border-radius-sm);
     font-family: var(--font-sans);
-    font-size: 16px; /* iOS Safari zoom fix */
+    font-size: 16px;
+    /* iOS Safari zoom fix */
     color: var(--color-text-main);
     transition: var(--transition-smooth);
     outline: none;
@@ -1628,7 +1659,7 @@ body[data-theme="dark"] .monogram-letters {
     transition: transform 0.2s ease;
 }
 
-.radio-label input:checked ~ .custom-radio::after {
+.radio-label input:checked~.custom-radio::after {
     transform: translate(-50%, -50%) scale(1);
 }
 
@@ -1647,8 +1678,13 @@ body[data-theme="dark"] .monogram-letters {
     gap: 6px;
 }
 
-.text-green { color: #2C5E43; }
-.text-red { color: #C0392B; }
+.text-green {
+    color: #2C5E43;
+}
+
+.text-red {
+    color: #C0392B;
+}
 
 #guests-count-container {
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -2033,7 +2069,8 @@ body[data-theme="dark"] .monogram-letters {
 footer {
     background-color: var(--color-green-dark);
     color: #FAF6F0;
-    padding: 60px 20px 85px; /* bottom padding compensates for mobile dock */
+    padding: 60px 20px 85px;
+    /* bottom padding compensates for mobile dock */
     text-align: center;
 }
 
@@ -2158,8 +2195,13 @@ body[data-theme="dark"] footer {
     border-color: var(--color-gold);
 }
 
-.lightbox-nav-btn.prev { left: 25px; }
-.lightbox-nav-btn.next { right: 25px; }
+.lightbox-nav-btn.prev {
+    left: 25px;
+}
+
+.lightbox-nav-btn.next {
+    right: 25px;
+}
 
 .lightbox-content-wrapper {
     max-width: 85%;
@@ -2174,8 +2216,8 @@ body[data-theme="dark"] footer {
     max-height: 72vh;
     object-fit: contain;
     border-radius: var(--border-radius-sm);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .lightbox-caption {
@@ -2215,44 +2257,99 @@ body[data-theme="dark"] footer {
    KEYFRAME ANIMATIONS
    ========================================================================== */
 @keyframes rotateGoldCircle {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes pulseLogo {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.05); opacity: 0.85; }
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
 }
 
 @keyframes pulseButtonGlow {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-    70% { box-shadow: 0 0 0 12px rgba(212, 175, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 12px rgba(212, 175, 55, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    }
 }
 
 @keyframes spinDisc {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes bounceWave {
-    0%, 100% { transform: scaleY(1); }
-    50% { transform: scaleY(4.5); }
+
+    0%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(4.5);
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes zoomIn {
-    from { opacity: 0; transform: scale(0.85); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
 }
 
 .animate-bounce {
@@ -2266,26 +2363,38 @@ body[data-theme="dark"] footer {
 /* Very narrow smartphones */
 @media screen and (max-width: 380px) {
     .gallery-masonry-wrapper {
-        column-count: 1; /* stack masonry gallery */
+        column-count: 1;
+        /* stack masonry gallery */
     }
+
     #mobile-dock-menu {
         padding: 8px 15px;
     }
+
     #mobile-dock-menu ul {
         gap: 15px;
     }
+
     .lightbox-close-btn {
         top: 15px;
         right: 15px;
         font-size: 2.5rem;
     }
+
     .lightbox-nav-btn {
         width: 40px;
         height: 40px;
         font-size: 1rem;
     }
-    .lightbox-nav-btn.prev { left: 10px; }
-    .lightbox-nav-btn.next { right: 10px; }
+
+    .lightbox-nav-btn.prev {
+        left: 10px;
+    }
+
+    .lightbox-nav-btn.next {
+        right: 10px;
+    }
+
     .lightbox-content-wrapper {
         max-width: 90%;
     }
@@ -2296,11 +2405,11 @@ body[data-theme="dark"] footer {
     .section-padding {
         padding: 80px 0;
     }
-    
+
     .section-header {
         margin-bottom: 50px;
     }
-    
+
     /* Header menu resets to horizontal visible */
     #main-header {
         display: block;
@@ -2318,46 +2427,39 @@ body[data-theme="dark"] footer {
         transition: var(--transition-smooth);
         pointer-events: none;
     }
-    
+
     body[data-theme="dark"] #main-header {
         background-color: transparent;
         border-bottom: none;
     }
-    
+
     #main-header.scrolled {
         box-shadow: none;
         border-bottom: none;
         background-color: transparent;
     }
-    
+
     .header-container {
         padding: 0 24px;
     }
-    
+
     #nav-menu {
-        display: block !important;
-        position: static;
-        width: auto;
-        background-color: transparent;
-        border-bottom: none;
-        box-shadow: none;
-        transform: none;
-        pointer-events: auto;
+        display: none !important;
     }
-    
+
     #nav-menu ul {
         flex-direction: row;
         gap: 30px;
         padding: 0;
         text-align: left;
     }
-    
+
     #nav-menu .nav-link {
         padding: 8px 0;
         font-size: 0.8rem;
         position: relative;
     }
-    
+
     #nav-menu .nav-link::after {
         content: '';
         position: absolute;
@@ -2368,22 +2470,22 @@ body[data-theme="dark"] footer {
         background-color: var(--color-gold);
         transition: var(--transition-smooth);
     }
-    
+
     #nav-menu .nav-link.active::after,
     #nav-menu .nav-link:hover::after {
         width: 100%;
     }
-    
+
     /* Hide mobile bottom navigation dock on desktop */
     #mobile-dock-menu {
         display: none;
     }
-    
+
     /* Reset floating widgets position for desktop */
     .floating-widgets-container {
         bottom: 30px;
     }
-    
+
     /* Couple Profiles side-by-side row */
     .couple-grid {
         flex-direction: row;
@@ -2391,200 +2493,205 @@ body[data-theme="dark"] footer {
         align-items: center;
         gap: 20px;
     }
-    
+
     .couple-card {
         flex: 1;
         padding: 40px 30px;
     }
-    
+
     .couple-ampersand {
         margin: 0;
     }
-    
+
     /* Story Timeline alternating layout */
     .story-timeline::after {
         left: 50%;
         transform: translateX(-50%);
     }
-    
+
     .timeline-item {
         width: 50% !important;
         padding-left: 0;
         margin-bottom: 35px;
     }
-    
+
     .timeline-item:nth-child(odd) {
         left: 0;
         padding-right: 40px;
         text-align: right;
         align-items: flex-end;
     }
-    
+
     .timeline-item:nth-child(even) {
         left: 50%;
         padding-left: 40px;
         text-align: left;
         align-items: flex-start;
     }
-    
+
     .timeline-item .timeline-badge {
         top: 0;
     }
-    
+
     .timeline-item:nth-child(odd) .timeline-badge {
         right: -18px;
         left: auto;
     }
-    
+
     .timeline-item:nth-child(even) .timeline-badge {
         left: -18px;
         right: auto;
     }
-    
+
     .timeline-img {
         height: 250px;
     }
-    
+
     /* Events timeline column display resets */
     .events-timeline-vertical {
         padding-left: 50px;
     }
-    
+
     .events-timeline-vertical::after {
         left: 20px;
     }
-    
+
     .event-timeline-marker {
         left: -50px;
         width: 40px;
         height: 40px;
     }
-    
+
     .marker-circle {
         font-size: 1.15rem;
     }
-    
+
     .event-timeline-card {
         padding: 35px;
     }
-    
+
     /* Masonry column spans */
     .gallery-masonry-wrapper {
         column-count: 3;
     }
-    
+
     /* Family grids horizontal row */
     .family-grid {
         flex-direction: row;
         gap: 30px;
     }
-    
+
     .family-card {
         flex: 1;
         padding: 40px;
     }
-    
+
     /* Venue layouts double columns */
     .venue-container {
         grid-template-columns: 1fr 1.2fr;
         gap: 40px;
     }
-    
+
     .venue-info-box {
         padding: 45px;
     }
-    
+
     .map-embed-wrapper iframe {
         min-height: 350px;
     }
-    
+
     /* RSVP spacing */
     .rsvp-wrapper {
         padding: 50px 45px;
     }
-    
+
     .form-row-2 {
         grid-template-columns: 1fr 1fr;
         gap: 20px;
     }
-    
+
     .rsvp-radio-options {
         flex-direction: row;
         gap: 20px;
     }
-    
+
     .radio-label {
         width: auto;
     }
-    
+
     /* Wishes Guestbook masonry grids 3 cols */
     .wishes-cards-wall {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     .wishes-form-box {
         padding: 35px;
     }
-    
+
     .btn-send-wish {
         width: auto;
         padding: 12px 30px;
     }
-    
+
     /* Gift details row layouts */
     .gift-card-wrapper {
         grid-template-columns: 1.2fr 1fr;
         gap: 40px;
         padding: 45px;
     }
-    
+
     .gift-qr-code-box {
         border-left: 1px dashed var(--color-glass-border);
         border-top: none;
         padding-left: 40px;
         padding-top: 0;
     }
-    
+
     /* Contacts side-by-side row */
     .contacts-grid {
         flex-direction: row;
         gap: 30px;
     }
-    
+
     .contact-card {
         flex: 1;
         padding: 35px 30px;
     }
-    
+
     .contact-methods {
         flex-direction: row;
         gap: 15px;
     }
-    
+
     .contact-link {
         flex: 1;
     }
-    
+
     /* Footer bottom dock padding compensate reset */
     footer {
         padding: 60px 20px 40px;
     }
-    
+
     /* Lightbox modal offsets resets */
     .lightbox-close-btn {
         top: 25px;
         right: 25px;
         font-size: 3rem;
     }
-    
+
     .lightbox-nav-btn {
         width: 50px;
         height: 50px;
     }
-    
-    .lightbox-nav-btn.prev { left: 25px; }
-    .lightbox-nav-btn.next { right: 25px; }
-    
+
+    .lightbox-nav-btn.prev {
+        left: 25px;
+    }
+
+    .lightbox-nav-btn.next {
+        right: 25px;
+    }
+
     .lightbox-content-wrapper {
         max-width: 85%;
     }
@@ -2595,12 +2702,12 @@ body[data-theme="dark"] footer {
     .wishes-cards-wall {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .gift-card-wrapper {
         grid-template-columns: 1.2fr 1fr;
         padding: 30px;
     }
-    
+
     .venue-container {
         grid-template-columns: 1fr;
         gap: 30px;

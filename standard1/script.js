@@ -420,66 +420,72 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     
     // Toggle guests dropdown depending on accept/decline attendance
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            if (e.target.value === "declined") {
-                guestsContainer.classList.add("input-hidden");
-                guestsSelect.disabled = true;
-            } else {
-                guestsContainer.classList.remove("input-hidden");
-                guestsSelect.disabled = false;
+    if (attendanceRadios && attendanceRadios.length > 0 && guestsContainer && guestsSelect) {
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                if (e.target.value === "declined") {
+                    guestsContainer.classList.add("input-hidden");
+                    guestsSelect.disabled = true;
+                } else {
+                    guestsContainer.classList.remove("input-hidden");
+                    guestsSelect.disabled = false;
+                }
+            });
+        });
+    }
+
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById("guest-name").value.trim();
+            const phone = document.getElementById("guest-phone").value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const extraGuests = attendance === "attending" && guestsSelect ? parseInt(guestsSelect.value) : 0;
+            const msg = document.getElementById("guest-msg").value.trim();
+            
+            const responseData = {
+                name,
+                phone,
+                attendance,
+                guestCountTotal: extraGuests + 1,
+                wishes: msg,
+                time: new Date().toISOString()
+            };
+            
+            // Save locally to local storage
+            localStorage.setItem("rsvp_" + phone, JSON.stringify(responseData));
+            
+            // Append user to guestbook board automatically if they wrote wishes
+            if (msg) {
+                postNewWish(name, msg);
+            }
+            
+            // Render success modal message
+            if (attendance === "attending" && successMsgText) {
+                successMsgText.innerText = `Jazakallah Khair, ${name}! We have registered you and ${extraGuests} guest(s). Looking forward to welcoming you on this blessed occasion!`;
+            } else if (successMsgText) {
+                successMsgText.innerText = `Jazakallah Khair, ${name}! Your response has been received. We are sorry you won't be joining, but we appreciate your warm prayers and wishes!`;
+            }
+            
+            if (rsvpSuccessModal) rsvpSuccessModal.classList.remove("modal-hidden");
+            rsvpForm.reset();
+            if (guestsContainer) guestsContainer.classList.remove("input-hidden");
+            if (guestsSelect) guestsSelect.disabled = false;
+        });
+    }
+
+    if (btnCloseSuccess && rsvpSuccessModal) {
+        btnCloseSuccess.addEventListener("click", () => {
+            rsvpSuccessModal.classList.add("modal-hidden");
+        });
+
+        rsvpSuccessModal.addEventListener("click", (e) => {
+            if (e.target === rsvpSuccessModal) {
+                rsvpSuccessModal.classList.add("modal-hidden");
             }
         });
-    });
-
-    rsvpForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const name = document.getElementById("guest-name").value.trim();
-        const phone = document.getElementById("guest-phone").value.trim();
-        const attendance = document.querySelector('input[name="attendance"]:checked').value;
-        const extraGuests = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
-        const msg = document.getElementById("guest-msg").value.trim();
-        
-        const responseData = {
-            name,
-            phone,
-            attendance,
-            guestCountTotal: extraGuests + 1,
-            wishes: msg,
-            time: new Date().toISOString()
-        };
-        
-        // Save locally to local storage
-        localStorage.setItem("rsvp_" + phone, JSON.stringify(responseData));
-        
-        // Append user to guestbook board automatically if they wrote wishes
-        if (msg) {
-            postNewWish(name, msg);
-        }
-        
-        // Render success modal message
-        if (attendance === "attending") {
-            successMsgText.innerText = `Jazakallah Khair, ${name}! We have registered you and ${extraGuests} guest(s). Looking forward to welcoming you on this blessed occasion!`;
-        } else {
-            successMsgText.innerText = `Jazakallah Khair, ${name}! Your response has been received. We are sorry you won't be joining, but we appreciate your warm prayers and wishes!`;
-        }
-        
-        rsvpSuccessModal.classList.remove("modal-hidden");
-        rsvpForm.reset();
-        guestsContainer.classList.remove("input-hidden");
-        guestsSelect.disabled = false;
-    });
-
-    btnCloseSuccess.addEventListener("click", () => {
-        rsvpSuccessModal.classList.add("modal-hidden");
-    });
-
-    rsvpSuccessModal.addEventListener("click", (e) => {
-        if (e.target === rsvpSuccessModal) {
-            rsvpSuccessModal.classList.add("modal-hidden");
-        }
-    });
+    }
 
     // ==========================================
     // 10. GUEST WISHES BOARD BOARD (LOCAL STORAGE)
@@ -493,6 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     function loadWishesBoard() {
+        if (!wishesBoard) return;
         wishesBoard.innerHTML = "";
         let savedWishes = JSON.parse(localStorage.getItem("wedding_wishes_board")) || [];
         
@@ -535,15 +542,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Direct submit on wishes board form
-    wishesForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const author = document.getElementById("wish-author").value.trim();
-        const text = document.getElementById("wish-text").value.trim();
-        
-        postNewWish(author, text);
-        
-        wishesForm.reset();
-    });
+    if (wishesForm) {
+        wishesForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const author = document.getElementById("wish-author").value.trim();
+            const text = document.getElementById("wish-text").value.trim();
+            
+            postNewWish(author, text);
+            
+            wishesForm.reset();
+        });
+    }
 
     function escapeHtml(unsafe) {
         return unsafe
@@ -554,7 +563,9 @@ document.addEventListener("DOMContentLoaded", () => {
              .replace(/'/g, "&#039;");
     }
 
-    loadWishesBoard(); // Initial Guestbook render
+    if (wishesBoard) {
+        loadWishesBoard(); // Initial Guestbook render
+    }
 
     // ==========================================
     // 11. PHOTO GALLERY LIGHTBOX SYSTEM

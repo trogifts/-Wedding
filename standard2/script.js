@@ -457,10 +457,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.handleRSVPSubmit = function (event) {
         event.preventDefault();
 
-        const name = document.getElementById("rsvp-name").value.trim();
-        const phone = document.getElementById("rsvp-phone").value.trim();
-        const attendees = document.getElementById("rsvp-attendees").value;
-        const status = document.querySelector('input[name="attendance-status"]:checked').value;
+        if (!rsvpForm) return;
+
+        const nameEl = document.getElementById("rsvp-name");
+        const phoneEl = document.getElementById("rsvp-phone");
+        const attendeesEl = document.getElementById("rsvp-attendees");
+        const statusEl = document.querySelector('input[name="attendance-status"]:checked');
+
+        const name = nameEl ? nameEl.value.trim() : "";
+        const phone = phoneEl ? phoneEl.value.trim() : "";
+        const attendees = attendeesEl ? attendeesEl.value : "1";
+        const status = statusEl ? statusEl.value : "yes";
 
         if (name === "" || phone === "") {
             alert("Please fill out all required fields.");
@@ -472,28 +479,31 @@ document.addEventListener("DOMContentLoaded", () => {
         const modalDesc = document.getElementById("rsvp-success-desc");
 
         if (status === "yes") {
-            modalTitle.innerText = "Swagatham! 🌸";
-            modalDesc.innerText = `Thank you, ${name}! Your presence (with ${attendees} attendee/s) is confirmed. Ponmangalashamsakal!`;
+            if (modalTitle) modalTitle.innerText = "Swagatham! 🌸";
+            if (modalDesc) modalDesc.innerText = `Thank you, ${name}! Your presence (with ${attendees} attendee/s) is confirmed. Ponmangalashamsakal!`;
             triggerFlowerShower(25);
         } else {
-            modalTitle.innerText = "Regrets Accepted 🌿";
-            modalDesc.innerText = `Thank you for letting us know, ${name}. You will be missed in our prayers.`;
+            if (modalTitle) modalTitle.innerText = "Regrets Accepted 🌿";
+            if (modalDesc) modalDesc.innerText = `Thank you for letting us know, ${name}. You will be missed in our prayers.`;
         }
 
-        rsvpSuccessModal.style.display = "flex";
-        document.body.style.overflow = "hidden";
+        if (rsvpSuccessModal) {
+            rsvpSuccessModal.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
     };
 
     window.closeRSVPSuccess = function () {
-        rsvpSuccessModal.style.display = "none";
+        if (rsvpSuccessModal) rsvpSuccessModal.style.display = "none";
         document.body.style.overflow = "auto";
-        rsvpForm.reset();
+        if (rsvpForm) rsvpForm.reset();
     };
 
     // ==========================================
     // 14. LOCAL STORAGE WISHES WALL
     // ==========================================
     function loadWishes() {
+        if (!wishesBoard) return;
         let wishes = [];
         try {
             const rawWishes = localStorage.getItem("kerala_wishes");
@@ -517,6 +527,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderWishes(wishes) {
+        if (!wishesBoard) return;
         wishesBoard.innerHTML = "";
 
         // Reverse array to display most recent wishes first
@@ -535,6 +546,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.handleWishSubmit = function (event) {
         event.preventDefault();
+
+        if (!wishSender || !wishText) return;
 
         const sender = wishSender.value.trim();
         const text = wishText.value.trim();
@@ -567,7 +580,9 @@ document.addEventListener("DOMContentLoaded", () => {
         showFlowerToast("Blessing Posted! Thank you! ❤️");
     };
 
-    loadWishes();
+    if (wishesBoard) {
+        loadWishes();
+    }
 
     // ==========================================
     // 15. VENUE COORDINATION REDIRECTS

@@ -233,102 +233,116 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     
     // Show/hide guest count based on attendance selection
-    attendanceRadios.forEach(radio => {
-        radio.addEventListener("change", (e) => {
-            if (e.target.value === "declined") {
-                guestsWrapper.classList.add("input-hidden");
-                guestsSelect.disabled = true;
-            } else {
-                guestsWrapper.classList.remove("input-hidden");
-                guestsSelect.disabled = false;
-            }
+    if (attendanceRadios && attendanceRadios.length > 0 && guestsWrapper && guestsSelect) {
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                if (e.target.value === "declined") {
+                    guestsWrapper.classList.add("input-hidden");
+                    guestsSelect.disabled = true;
+                } else {
+                    guestsWrapper.classList.remove("input-hidden");
+                    guestsSelect.disabled = false;
+                }
+            });
         });
-    });
+    }
 
     // Submitting and validating the form
-    rsvpForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        
-        const nameInputBlock = document.getElementById("guest-name").parentElement;
-        const phoneInputBlock = document.getElementById("guest-phone").parentElement;
-        
-        const name = document.getElementById("guest-name").value.trim();
-        const phone = document.getElementById("guest-phone").value.trim();
-        const attendance = document.querySelector('input[name="attendance"]:checked').value;
-        const guestCount = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
-        
-        let isValid = true;
-        
-        // Validation Check 1: Name field must not be empty
-        if (!name) {
-            nameInputBlock.classList.add("error");
-            isValid = false;
-        } else {
-            nameInputBlock.classList.remove("error");
-        }
-        
-        // Validation Check 2: Phone number check
-        const phoneRegex = /^[+]?[0-9\s-]{7,15}$/;
-        if (!phone || !phoneRegex.test(phone)) {
-            phoneInputBlock.classList.add("error");
-            isValid = false;
-        } else {
-            phoneInputBlock.classList.remove("error");
-        }
-        
-        if (!isValid) return; // Exit if invalid inputs
-        
-        // Submit response data to LocalStorage
-        const rsvpMinimalResponse = {
-            name,
-            phone,
-            attendance,
-            guestCountTotal: guestCount,
-            submittedAt: new Date().toISOString()
-        };
-        localStorage.setItem("rsvp_minimal_" + phone, JSON.stringify(rsvpMinimalResponse));
-        
-        // Configure Success Modal Message
-        if (attendance === "attending") {
-            successMessageText.innerText = `Thank you, ${name}. We look forward to celebrating with you and your guests.`;
-        } else {
-            successMessageText.innerText = `Thank you, ${name}. Your response has been received. We appreciate your warm wishes.`;
-        }
-        
-        // Open Modal
-        rsvpSuccessModal.classList.remove("modal-hidden");
-        
-        // Reset inputs
-        rsvpForm.reset();
-        guestsWrapper.classList.remove("input-hidden");
-        guestsSelect.disabled = false;
-    });
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            
+            const nameInputBlock = document.getElementById("guest-name").parentElement;
+            const phoneInputBlock = document.getElementById("guest-phone").parentElement;
+            
+            const name = document.getElementById("guest-name").value.trim();
+            const phone = document.getElementById("guest-phone").value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const guestCount = attendance === "attending" && guestsSelect ? parseInt(guestsSelect.value) : 0;
+            
+            let isValid = true;
+            
+            // Validation Check 1: Name field must not be empty
+            if (!name) {
+                nameInputBlock.classList.add("error");
+                isValid = false;
+            } else {
+                nameInputBlock.classList.remove("error");
+            }
+            
+            // Validation Check 2: Phone number check
+            const phoneRegex = /^[+]?[0-9\s-]{7,15}$/;
+            if (!phone || !phoneRegex.test(phone)) {
+                phoneInputBlock.classList.add("error");
+                isValid = false;
+            } else {
+                phoneInputBlock.classList.remove("error");
+            }
+            
+            if (!isValid) return; // Exit if invalid inputs
+            
+            // Submit response data to LocalStorage
+            const rsvpMinimalResponse = {
+                name,
+                phone,
+                attendance,
+                guestCountTotal: guestCount,
+                submittedAt: new Date().toISOString()
+            };
+            localStorage.setItem("rsvp_minimal_" + phone, JSON.stringify(rsvpMinimalResponse));
+            
+            // Configure Success Modal Message
+            if (attendance === "attending" && successMessageText) {
+                successMessageText.innerText = `Thank you, ${name}. We look forward to celebrating with you and your guests.`;
+            } else if (successMessageText) {
+                successMessageText.innerText = `Thank you, ${name}. Your response has been received. We appreciate your warm wishes.`;
+            }
+            
+            // Open Modal
+            if (rsvpSuccessModal) {
+                rsvpSuccessModal.classList.remove("modal-hidden");
+            }
+            
+            // Reset inputs
+            rsvpForm.reset();
+            if (guestsWrapper) guestsWrapper.classList.remove("input-hidden");
+            if (guestsSelect) guestsSelect.disabled = false;
+        });
 
-    // Clear validation errors instantly on keystrokes
-    document.getElementById("guest-name").addEventListener("keyup", (e) => {
-        if (e.target.value.trim()) {
-            document.getElementById("guest-name").parentElement.classList.remove("error");
+        // Clear validation errors instantly on keystrokes
+        const guestNameEl = document.getElementById("guest-name");
+        if (guestNameEl) {
+            guestNameEl.addEventListener("keyup", (e) => {
+                if (e.target.value.trim()) {
+                    guestNameEl.parentElement.classList.remove("error");
+                }
+            });
         }
-    });
 
-    document.getElementById("guest-phone").addEventListener("keyup", (e) => {
-        const val = e.target.value.trim();
-        const regex = /^[+]?[0-9\s-]{7,15}$/;
-        if (val && regex.test(val)) {
-            document.getElementById("guest-phone").parentElement.classList.remove("error");
+        const guestPhoneEl = document.getElementById("guest-phone");
+        if (guestPhoneEl) {
+            guestPhoneEl.addEventListener("keyup", (e) => {
+                const val = e.target.value.trim();
+                const regex = /^[+]?[0-9\s-]{7,15}$/;
+                if (val && regex.test(val)) {
+                    guestPhoneEl.parentElement.classList.remove("error");
+                }
+            });
         }
-    });
+    }
 
     // Close success state modal
-    btnCloseSuccess.addEventListener("click", () => {
-        rsvpSuccessModal.classList.add("modal-hidden");
-    });
-
-    rsvpSuccessModal.addEventListener("click", (e) => {
-        if (e.target === rsvpSuccessModal) {
+    if (btnCloseSuccess && rsvpSuccessModal) {
+        btnCloseSuccess.addEventListener("click", () => {
             rsvpSuccessModal.classList.add("modal-hidden");
-        }
-    });
+        });
+
+        rsvpSuccessModal.addEventListener("click", (e) => {
+            if (e.target === rsvpSuccessModal) {
+                rsvpSuccessModal.classList.add("modal-hidden");
+            }
+        });
+    }
 
     // ==========================================
     // 6. PHOTO GALLERY EXPANDABLE LIGHTBOX
