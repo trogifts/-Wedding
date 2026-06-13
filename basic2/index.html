@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ryan & Sophia — The Wedding Invitation</title>
+    <title id="metaTitle">Wedding Invitation</title>
     
     <!-- SEO Meta Descriptions -->
     <meta name="description" content="You are cordially invited to celebrate the wedding of Ryan and Sophia. Discover event details, countdown, gallery, and submit RSVP online.">
@@ -25,9 +25,9 @@
     <!-- ==================== WELCOME / COVER SCREEN ==================== -->
     <div id="welcome-screen" class="welcome-overlay">
         <div class="welcome-inner">
-            <span class="editorial-subtitle">THE WEDDING INVITATION</span>
-            <h1 class="welcome-title">RYAN & SOPHIA</h1>
-            <span class="welcome-date-label">10 . 10 . 2026</span>
+            <span class="editorial-subtitle" id="welcomeSubtitle">THE WEDDING INVITATION</span>
+            <h1 class="welcome-title" id="welcomeTitle">RYAN & SOPHIA</h1>
+            <span class="welcome-date-label" id="welcomeDate">10 . 10 . 2026</span>
             <button id="btn-view-invite" class="btn-minimal-invert">
                 VIEW INVITATION
             </button>
@@ -40,7 +40,7 @@
         <!-- ==================== STICKY HEADER ==================== -->
         <header id="main-header">
             <div class="header-container">
-                <a href="#welcome-screen" class="logo-branding">R & S</a>
+                <a href="#welcome-screen" class="logo-branding" id="headerLogo">R & S</a>
                 <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Menu">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -65,9 +65,9 @@
         <section id="couple" class="section-padding couple-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="editorial-label">THE UNION</span>
-                    <h2 class="section-title">RYAN & SOPHIA</h2>
-                    <p class="section-intro">Two paths crossing, creating a single modern narrative of love and partnership.</p>
+                    <span class="editorial-label" id="unionLabel">THE UNION</span>
+                    <h2 class="section-title" id="unionTitle">RYAN & SOPHIA</h2>
+                    <p class="section-intro" id="unionIntro">Two paths crossing, creating a single modern narrative of love and partnership.</p>
                     <div class="thin-divider"></div>
                 </div>
 
@@ -75,17 +75,17 @@
                     <!-- Groom Biography Card -->
                     <div class="couple-card reveal reveal-left">
                         <div class="editorial-img-container">
-                            <img src="images/groom.png" alt="Ryan - The Groom" loading="lazy">
+                            <img src="images/groom.png" alt="Groom" loading="lazy">
                         </div>
                         <div class="couple-details">
-                            <h3 class="couple-name">Ryan Alexander</h3>
-                            <span class="couple-role">THE GROOM</span>
-                            <p class="couple-bio">
+                            <h3 class="couple-name" id="groomName">Ryan Alexander</h3>
+                            <span class="couple-role" id="groomRole">THE GROOM</span>
+                            <p class="couple-bio" id="groomBio">
                                 Architect and modernist designer. Ryan believes that elegance lies in simplicity, clean lines, and intentionality. He is thrilled to embark on this next design of life hand-in-hand with Sophia.
                             </p>
                             <div class="parents-meta">
                                 <span>Son of</span>
-                                <strong>Robert & Margaret Alexander</strong>
+                                <strong id="groomParents">Robert & Margaret Alexander</strong>
                             </div>
                         </div>
                     </div>
@@ -93,17 +93,17 @@
                     <!-- Bride Biography Card -->
                     <div class="couple-card reveal reveal-right">
                         <div class="editorial-img-container">
-                            <img src="images/bride.png" alt="Sophia - The Bride" loading="lazy">
+                            <img src="images/bride.png" alt="Bride" loading="lazy">
                         </div>
                         <div class="couple-details">
-                            <h3 class="couple-name">Sophia Elizabeth</h3>
-                            <span class="couple-role">THE BRIDE</span>
-                            <p class="couple-bio">
+                            <h3 class="couple-name" id="brideName">Sophia Elizabeth</h3>
+                            <span class="couple-role" id="brideRole">THE BRIDE</span>
+                            <p class="couple-bio" id="brideBio">
                                 Creative director and photographer. Sophia captures beauty in raw moments and minimalist perspectives. She looks forward to framing a beautiful, shared future alongside Ryan.
                             </p>
                             <div class="parents-meta">
                                 <span>Daughter of</span>
-                                <strong>David & Evelyn Harrison</strong>
+                                <strong id="brideParents">David & Evelyn Harrison</strong>
                             </div>
                         </div>
                     </div>
@@ -115,63 +115,13 @@
         <section id="events" class="section-padding events-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="editorial-label">THE CELEBRATION</span>
-                    <h2 class="section-title">EVENT SCHEDULE</h2>
+                    <span class="editorial-label" id="scheduleLabel">THE CELEBRATION</span>
+                    <h2 class="section-title" id="scheduleTitle">EVENT SCHEDULE</h2>
                     <div class="thin-divider"></div>
                 </div>
 
-                <div class="events-grid">
-                    <!-- Card 1: Ceremony -->
-                    <div class="event-card reveal">
-                        <div class="event-header">
-                            <span class="event-num">01</span>
-                            <h3>THE CEREMONY</h3>
-                        </div>
-                        <div class="event-body">
-                            <div class="meta-row">
-                                <span class="meta-label">DATE</span>
-                                <span class="meta-value">Saturday, October 10, 2026</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">TIME</span>
-                                <span class="meta-value">04:30 PM (Vows exchange at 5:00 PM)</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">VENUE</span>
-                                <span class="meta-value">The Glass Pavilion, 12 Park Avenue, NY</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">DRESS CODE</span>
-                                <span class="meta-value">Black Tie / Formal Monochrome</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card 2: Reception -->
-                    <div class="event-card reveal">
-                        <div class="event-header">
-                            <span class="event-num">02</span>
-                            <h3>THE RECEPTION</h3>
-                        </div>
-                        <div class="event-body">
-                            <div class="meta-row">
-                                <span class="meta-label">DATE</span>
-                                <span class="meta-value">Saturday, October 10, 2026</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">TIME</span>
-                                <span class="meta-value">07:00 PM onwards (Dinner & Dance)</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">VENUE</span>
-                                <span class="meta-value">The Concrete Hall, 12 Park Avenue, NY</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">DRESS CODE</span>
-                                <span class="meta-value">Black Tie / Formal Monochrome</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="events-grid" id="eventsGrid">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -180,7 +130,7 @@
         <section class="section-padding countdown-section">
             <div class="container">
                 <div class="countdown-wrapper reveal">
-                    <span class="countdown-title">TIME UNTIL THE UNION</span>
+                    <span class="countdown-title" id="countdownTitle">TIME UNTIL THE UNION</span>
                     <div id="countdown-timer" class="countdown-grid-minimal">
                         <div class="countdown-box">
                             <span id="days" class="time-digit">00</span>
@@ -207,41 +157,31 @@
         <section id="venue" class="section-padding venue-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="editorial-label">THE LOCATION</span>
-                    <h2 class="section-title">THE VENUE</h2>
+                    <span class="editorial-label" id="locationLabel">THE LOCATION</span>
+                    <h2 class="section-title" id="locationTitle">THE VENUE</h2>
                     <div class="thin-divider"></div>
                 </div>
 
                 <div class="venue-grid reveal">
                     <div class="venue-card-details">
-                        <h3>THE GLASS PAVILION & HALL</h3>
-                        <p class="venue-address">12 Park Avenue, Crescent Heights, New York, NY 10016</p>
-                        <p class="venue-directions-text">
+                        <h3 id="venueName">THE GLASS PAVILION & HALL</h3>
+                        <p class="venue-address" id="venueAddress">12 Park Avenue, Crescent Heights, New York, NY 10016</p>
+                        <p class="venue-directions-text" id="directionsText">
                             Situated in the heart of Manhattan, the venue offers indoor valet parking. Entry gates open 45 minutes prior to the vows ceremony.
                         </p>
                         <div class="venue-buttons">
-                            <a href="https://maps.google.com/?q=12+Park+Avenue+New+York" 
-                               target="_blank" rel="noopener noreferrer" class="btn-minimal-invert">
-                                GET DIRECTIONS <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            <a href="#" id="navigateBtn" target="_blank" rel="noopener noreferrer" class="btn-minimal-invert">
+                                <span id="getDirectionsLabel">GET DIRECTIONS</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </a>
                             <button id="btn-copy-address" class="btn-minimal-outline">
-                                COPY ADDRESS <i class="fa-solid fa-copy"></i>
+                                <span id="copyAddressLabel">COPY ADDRESS</span> <i class="fa-solid fa-copy"></i>
                             </button>
                         </div>
                         <div id="copy-toast" class="toast-hidden">Address copied to clipboard.</div>
                     </div>
 
-                    <div class="venue-map-wrapper">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.617540455486!2d-73.98685368459392!3d40.74844047932828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1684340000000!5m2!1sen!2sus" 
-                            width="100%" 
-                            height="380" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Wedding Location Map">
-                        </iframe>
+                    <div class="venue-map-wrapper" id="mapEmbedWrapper">
+                        <!-- Populated dynamically from data.js -->
                     </div>
                 </div>
             </div>
@@ -251,78 +191,28 @@
         <section id="gallery" class="section-padding gallery-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="editorial-label">MOMENTS</span>
-                    <h2 class="section-title">THE GALLERY</h2>
+                    <span class="editorial-label" id="galleryLabel">MOMENTS</span>
+                    <h2 class="section-title" id="galleryTitle">THE GALLERY</h2>
                     <div class="thin-divider"></div>
                 </div>
 
-                <div class="gallery-minimal-grid">
-                    <!-- Photo 1 -->
-                    <div class="gallery-item reveal" data-index="0">
-                        <img src="images/gallery1.png" alt="Minimalist platinum rings" loading="lazy">
-                        <div class="img-overlay">
-                            <span class="img-caption">THE PROMISE</span>
-                        </div>
-                    </div>
-
-                    <!-- Photo 2 -->
-                    <div class="gallery-item reveal" data-index="1">
-                        <img src="images/gallery2.png" alt="Modern concrete architecture" loading="lazy">
-                        <div class="img-overlay">
-                            <span class="img-caption">THE STRUCTURE</span>
-                        </div>
-                    </div>
-
-                    <!-- Photo 3 -->
-                    <div class="gallery-item reveal" data-index="2">
-                        <img src="images/gallery3.png" alt="Minimalist black and white envelopes" loading="lazy">
-                        <div class="img-overlay">
-                            <span class="img-caption">THE DESIGN</span>
-                        </div>
-                    </div>
-
-                    <!-- Photo 4 -->
-                    <div class="gallery-item reveal" data-index="3">
-                        <img src="images/gallery4.png" alt="Close up of intertwined hands" loading="lazy">
-                        <div class="img-overlay">
-                            <span class="img-caption">THE TOUCH</span>
-                        </div>
-                    </div>
+                <div class="gallery-minimal-grid" id="galleryGrid">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
-
-
 
         <!-- ==================== SECTION 7: CONTACTS ==================== -->
         <section id="contacts" class="section-padding contacts-section">
             <div class="container">
                 <div class="section-header reveal">
-                    <span class="editorial-label">INFORMATION</span>
-                    <h2 class="section-title">CONTACT DETAILS</h2>
+                    <span class="editorial-label" id="contactsLabel">INFORMATION</span>
+                    <h2 class="section-title" id="contactsTitle">CONTACT DETAILS</h2>
                     <div class="thin-divider"></div>
                 </div>
 
-                <div class="contacts-grid">
-                    <!-- Groom Coordinator -->
-                    <div class="contact-card reveal">
-                        <span class="contact-title">GROOM'S REPRESENTATIVE</span>
-                        <h3 class="contact-name">Arthur Alexander</h3>
-                        <div class="contact-actions">
-                            <a href="tel:+1234567890" class="btn-minimal-outline"><i class="fa-solid fa-phone"></i> CALL</a>
-                            <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="btn-minimal-outline"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
-                        </div>
-                    </div>
-
-                    <!-- Bride Coordinator -->
-                    <div class="contact-card reveal">
-                        <span class="contact-title">BRIDE'S REPRESENTATIVE</span>
-                        <h3 class="contact-name">Victoria Harrison</h3>
-                        <div class="contact-actions">
-                            <a href="tel:+0987654321" class="btn-minimal-outline"><i class="fa-solid fa-phone"></i> CALL</a>
-                            <a href="https://wa.me/0987654321" target="_blank" rel="noopener noreferrer" class="btn-minimal-outline"><i class="fa-brands fa-whatsapp"></i> WHATSAPP</a>
-                        </div>
-                    </div>
+                <div class="contacts-grid" id="contactsGrid">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -330,10 +220,10 @@
         <!-- ==================== FOOTER ==================== -->
         <footer>
             <div class="footer-container">
-                <h2 class="footer-monogram">R + S</h2>
-                <p class="footer-announcement">RYAN & SOPHIA ARE GETTING MARRIED</p>
+                <h2 class="footer-monogram" id="footerLogo">R + S</h2>
+                <p class="footer-announcement" id="footerAnnouncement">RYAN & SOPHIA ARE GETTING MARRIED</p>
                 <div class="thin-divider dark"></div>
-                <p class="copyright-text">&copy; 2026 RYAN & SOPHIA. ALL RIGHTS RESERVED.</p>
+                <p class="copyright-text" id="copyrightText">&copy; 2026 RYAN & SOPHIA. ALL RIGHTS RESERVED.</p>
             </div>
         </footer>
 
@@ -358,6 +248,7 @@
     </div>
 
     <!-- Main JavaScript Link -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
