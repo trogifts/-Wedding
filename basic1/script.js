@@ -1,99 +1,325 @@
 /**
  * Wedding of Zayn & Aara - Modern Client-Side JavaScript
- * Fully client-side, zero external libraries except FontAwesome (CSS-only).
+ * Fully client-side, dynamic data-driven template.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("basic1 template DOM Loaded - Processing data...");
     
-    // ==========================================
-    // CONFIGURATION & STATE
-    // ==========================================
-    
-    // Set wedding date to September 4, 2026 at 2:00 PM EST (Islamic date: 11 Rabi' al-Awwal 1448 AH)
-    const weddingDate = new Date("September 4, 2026 14:00:00").getTime();
-    
-    // Gallery data for the Lightbox
-    const galleryItems = [
-        { src: "images/gallery1.png", caption: "The Promise - Wedding Rings" },
-        { src: "images/gallery2.png", caption: "The Sanctuary - Reception Stage" },
-        { src: "images/gallery3.png", caption: "The Invitation - Bismillah Calligraphy" },
-        { src: "images/gallery4.png", caption: "The Tradition - Bridal Mehndi" }
-    ];
-    let currentGalleryIndex = 0;
-    
-    // ==========================================
-    // DOM ELEMENTS
-    // ==========================================
+    // 1. Process date/time simple configurations
+    processWeddingData();
+
+    // 2. Render all texts, schedules, and maps dynamically
+    renderData();
+
+    // 3. Initialize audio, menus, lightbox, and animations
+    initAudio();
+    initNavigationMenu();
+    initCountdown();
+    initAddressCopyButton();
+    initLightboxGallery();
+    setupScrollAnimations();
+});
+
+/* ==========================================
+   DATE & TIME PRE-PROCESSOR
+   ========================================== */
+function processWeddingData() {
+  const data = window.weddingData;
+  if (!data || !data.event) return;
+
+  const dateVal = data.event.date || "2026-09-04";
+  const timeVal = data.event.time || "02:00 PM";
+
+  // Helper to convert 12h time ("02:00 PM") to 24h format ("14:00:00")
+  function parseTime24h(t) {
+    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+    if (!match) return "14:00:00";
+    let hr = parseInt(match[1]);
+    const min = match[2];
+    const ampm = match[3].toUpperCase();
+    if (ampm === "PM" && hr < 12) hr += 12;
+    if (ampm === "AM" && hr === 12) hr = 0;
+    return `${String(hr).padStart(2, '0')}:${min}:00`;
+  }
+
+  // Helper to format date to human readable form
+  function formatLocalDate(dStr) {
+    const dateObj = new Date(dStr + "T00:00:00");
+    if (isNaN(dateObj)) return "Friday, September 4, 2026";
+    return dateObj.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  const time24h = parseTime24h(timeVal);
+
+  // Auto-fill calculated fields for countdown and calendar invites
+  data.event.dateTimeString = `${dateVal}T${time24h}`;
+  data.event.dateFormatted = formatLocalDate(dateVal);
+}
+
+/* ==========================================
+   DYNAMIC DATA RENDERING
+   ========================================== */
+function renderData() {
+  const data = window.weddingData;
+  if (!data) return;
+
+  // Title
+  const metaTitle = document.getElementById('metaTitle');
+  if (metaTitle) metaTitle.innerText = `Wedding of ${data.couple.groom} & ${data.couple.bride}`;
+
+  // Monograms
+  ['loadingMonogram', 'headerMonogram', 'footerMonogram'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = data.couple.monogram;
+  });
+
+  // Names
+  const coverNames = document.getElementById('coverNames');
+  if (coverNames) coverNames.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
+
+  const heroNames = document.getElementById('heroNames');
+  if (heroNames) heroNames.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
+
+  const footerNames = document.getElementById('footerNames');
+  if (footerNames) footerNames.innerHTML = `${data.couple.groom} &amp; ${data.couple.bride}`;
+
+  // Bios
+  const groomName = document.getElementById('groomName');
+  if (groomName) groomName.innerText = data.couple.groomFull;
+
+  const groomBio = document.getElementById('groomBio');
+  if (groomBio) groomBio.innerText = data.couple.groomBio;
+
+  const groomParents = document.getElementById('groomParents');
+  if (groomParents) groomParents.innerText = data.couple.groomParents;
+
+  const brideName = document.getElementById('brideName');
+  if (brideName) brideName.innerText = data.couple.brideFull;
+
+  const brideBio = document.getElementById('brideBio');
+  if (brideBio) brideBio.innerText = data.couple.brideBio;
+
+  const brideParents = document.getElementById('brideParents');
+  if (brideParents) brideParents.innerText = data.couple.brideParents;
+
+  // Event Venue details
+  const venueName = document.getElementById('venueName');
+  if (venueName) venueName.innerText = data.event.venueName;
+
+  const venueAddress = document.getElementById('venueAddress');
+  if (venueAddress) venueAddress.innerText = data.event.venueAddress;
+
+  // WhatsApp Floating Button Link
+  const whatsappBtn = document.getElementById('whatsappBtn');
+  if (whatsappBtn) {
+    whatsappBtn.href = `https://wa.me/${data.event.whatsappNumber}?text=Salam!%20I%20have%20a%20question%20regarding%20${data.couple.groom}%20and%20${data.couple.bride}'s%20wedding.`;
+  }
+
+  // Navigation Links
+  const navigateBtn = document.getElementById('navigateBtn');
+  if (navigateBtn) navigateBtn.href = data.event.mapDirectionsUrl;
+
+  // Map Iframe Embed
+  const mapEmbedWrapper = document.getElementById('mapEmbedWrapper');
+  if (mapEmbedWrapper) {
+    mapEmbedWrapper.innerHTML = `
+      <iframe 
+          src="${data.event.mapEmbedUrl}" 
+          width="100%" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Wedding Venue Map">
+      </iframe>
+    `;
+  }
+
+  // Render Itinerary Grid
+  const eventsGrid = document.getElementById('eventsGrid');
+  if (eventsGrid && data.itinerary) {
+    eventsGrid.innerHTML = data.itinerary.map(item => `
+      <div class="event-card reveal ${item.highlight ? 'highlight' : ''}">
+          <div class="event-card-inner">
+              <div class="event-icon">
+                  <i class="fa-solid ${item.title.toLowerCase().includes('nikah') ? 'fa-feather-pointed' : item.title.toLowerCase().includes('walima') ? 'fa-handshake-angle' : 'fa-chess-king'}"></i>
+              </div>
+              ${item.highlight ? '<div class="badge-gold">Main Event</div>' : ''}
+              <h3 class="event-name">${item.title}</h3>
+              <div class="event-time-line">
+                  <p><i class="fa-regular fa-calendar-days"></i> ${item.dateFormatted}</p>
+                  <p><i class="fa-regular fa-clock"></i> ${item.time}</p>
+              </div>
+              <div class="event-venue">
+                  <strong>${item.venue}</strong>
+                  <p>${item.address}</p>
+              </div>
+              <div class="event-actions">
+                  <a href="#venue" class="btn-outline-gold"><i class="fa-solid fa-location-dot"></i> View Venue</a>
+              </div>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Render Gallery
+  const galleryGrid = document.getElementById('galleryGrid');
+  if (galleryGrid && data.gallery) {
+    galleryGrid.innerHTML = data.gallery.map((item, index) => `
+      <div class="gallery-item reveal" data-index="${index}">
+          <div class="gallery-item-inner">
+              <img src="${item.src}" alt="${item.caption}" loading="lazy">
+              <div class="gallery-overlay">
+                  <div class="overlay-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                  <span>${item.caption.split(' - ')[0]}</span>
+              </div>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Render Contacts
+  const contactsGrid = document.getElementById('contactsGrid');
+  if (contactsGrid && data.contacts) {
+    contactsGrid.innerHTML = data.contacts.map((contact, idx) => `
+      <div class="contact-card reveal ${idx % 2 === 0 ? 'reveal-left' : 'reveal-right'}">
+          <h4>${contact.side}</h4>
+          <span class="contact-name">${contact.name}</span>
+          <span class="contact-relation">${contact.relation}</span>
+          <div class="contact-methods">
+              <a href="tel:${contact.phone.replace(/[\s()-]/g, '')}" class="contact-link"><i class="fa-solid fa-phone"></i> ${contact.phone}</a>
+              <a href="https://wa.me/${contact.whatsapp}" target="_blank" rel="noopener noreferrer" class="contact-link wa"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Render labels
+  if (data.labels) {
+    const announcement = document.getElementById('announcement');
+    if (announcement) announcement.innerText = data.labels.announcement;
+
+    const heroDate = document.getElementById('heroDate');
+    if (heroDate) heroDate.innerText = data.event.dateFormatted;
+
+    const islamicDate = document.getElementById('islamicDate');
+    if (islamicDate) islamicDate.innerText = data.event.islamicDate;
+
+    const scrollHint = document.getElementById('scrollHint');
+    if (scrollHint) scrollHint.innerText = data.labels.scrollHint;
+
+    const introducingSub = document.getElementById('introducingSub');
+    if (introducingSub) introducingSub.innerText = data.labels.introducingSub;
+
+    const introducingTitle = document.getElementById('introducingTitle');
+    if (introducingTitle) introducingTitle.innerText = data.labels.introducingTitle;
+
+    const quranQuote = document.getElementById('quranQuote');
+    if (quranQuote) quranQuote.innerText = data.labels.quranQuote;
+
+    const quranSource = document.getElementById('quranSource');
+    if (quranSource) quranSource.innerText = data.labels.quranSource;
+
+    const scheduleSub = document.getElementById('scheduleSub');
+    if (scheduleSub) scheduleSub.innerText = data.labels.scheduleSub;
+
+    const scheduleTitle = document.getElementById('scheduleTitle');
+    if (scheduleTitle) scheduleTitle.innerText = data.labels.scheduleTitle;
+
+    const locationSub = document.getElementById('locationSub');
+    if (locationSub) locationSub.innerText = data.labels.locationSub;
+
+    const locationTitle = document.getElementById('locationTitle');
+    if (locationTitle) locationTitle.innerText = data.labels.locationTitle;
+
+    const primaryVenueHeading = document.getElementById('primaryVenueHeading');
+    if (primaryVenueHeading) primaryVenueHeading.innerHTML = `<i class="fa-solid fa-map-location-dot"></i> ${data.labels.primaryVenueHeading}`;
+
+    const valetParkingText = document.getElementById('valetParkingText');
+    if (valetParkingText) valetParkingText.innerText = data.labels.valetParkingText;
+
+    const navigateButtonLabel = document.getElementById('navigateButtonLabel');
+    if (navigateButtonLabel) navigateButtonLabel.innerText = data.labels.navigateButton;
+
+    const copyAddressButtonLabel = document.getElementById('copyAddressButtonLabel');
+    if (copyAddressButtonLabel) copyAddressButtonLabel.innerText = data.labels.copyAddressButton;
+
+    const toastCopiedText = document.getElementById('copy-success-toast');
+    if (toastCopiedText) toastCopiedText.innerText = data.labels.toastCopiedText;
+
+    const gallerySub = document.getElementById('gallerySub');
+    if (gallerySub) gallerySub.innerText = data.labels.gallerySub;
+
+    const galleryTitle = document.getElementById('galleryTitle');
+    if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
+
+    const helpSub = document.getElementById('helpSub');
+    if (helpSub) helpSub.innerText = data.labels.helpSub;
+
+    const helpTitle = document.getElementById('helpTitle');
+    if (helpTitle) helpTitle.innerText = data.labels.helpTitle;
+
+    const helpIntro = document.getElementById('helpIntro');
+    if (helpIntro) helpIntro.innerText = data.labels.helpIntro;
+
+    const footerBlessing = document.getElementById('footerBlessing');
+    if (footerBlessing) footerBlessing.innerText = data.labels.footerBlessing;
+  }
+}
+
+/* ==========================================
+   1. COVER / OPEN INVITATION FLOW & AUDIO
+   ========================================== */
+let isPlaying = false;
+
+function initAudio() {
     const loaderScreen = document.getElementById("loading-screen");
     const mainContent = document.getElementById("main-content");
     const btnOpenInvite = document.getElementById("btn-open-invite");
     const bgMusic = document.getElementById("bg-music");
     const musicToggle = document.getElementById("music-toggle");
-    const musicIcon = document.getElementById("music-icon");
-    
-    const menuToggle = document.getElementById("menu-toggle");
-    const navMenu = document.getElementById("nav-menu");
-    const header = document.getElementById("main-header");
-    const navLinks = document.querySelectorAll(".nav-link");
-    
-    const btnCopyAddress = document.getElementById("btn-copy-address");
-    const copyToast = document.getElementById("copy-success-toast");
-    
-    const rsvpForm = document.getElementById("rsvp-form");
-    const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
-    const guestsContainer = document.getElementById("guests-count-container");
-    const guestsSelect = document.getElementById("guests-count");
-    const rsvpSuccessModal = document.getElementById("rsvp-success");
-    const btnCloseSuccess = document.getElementById("btn-close-success");
-    const successMsgText = document.getElementById("success-msg-text");
-    
-    const galleryItemElements = document.querySelectorAll(".gallery-item");
-    const lightboxModal = document.getElementById("lightbox-modal");
-    const lightboxImg = document.getElementById("lightbox-img");
-    const lightboxCaption = document.getElementById("lightbox-caption");
-    const lightboxClose = document.getElementById("lightbox-close");
-    const lightboxPrev = document.getElementById("lightbox-prev");
-    const lightboxNext = document.getElementById("lightbox-next");
 
-    // ==========================================
-    // 1. COVER / OPEN INVITATION FLOW
-    // ==========================================
+    if (!btnOpenInvite) return;
+
     btnOpenInvite.addEventListener("click", () => {
-        // Fade out cover/loading screen
-        loaderScreen.classList.add("fade-out");
-        
-        // Show main website content wrapper
-        mainContent.classList.remove("content-hidden");
-        // Force reflow for opacity transition
-        void mainContent.offsetWidth;
-        mainContent.classList.add("fade-in");
-        
-        // Enable body scrolling (was prevented while loading)
+        if (loaderScreen) loaderScreen.classList.add("fade-out");
+        if (mainContent) {
+            mainContent.classList.remove("content-hidden");
+            void mainContent.offsetWidth; // force reflow
+            mainContent.classList.add("fade-in");
+        }
         document.body.style.overflow = "auto";
-        
-        // Play audio & set classes
         playAudio();
-        
-        // Initial call to reveal elements that are already in view
-        revealOnScroll();
     });
     
-    // Prevent scrolling while cover screen is active
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; // block scroll initially
 
-    // ==========================================
-    // 2. BACKGROUND MUSIC AUDIO CONTROLLER
-    // ==========================================
-    let isPlaying = false;
-    
+    if (musicToggle) {
+        musicToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                pauseAudio();
+            } else {
+                playAudio();
+            }
+        });
+    }
+
     function playAudio() {
+        if (!bgMusic || !musicToggle) return;
         bgMusic.play().then(() => {
             isPlaying = true;
             musicToggle.classList.add("playing");
             musicToggle.classList.remove("muted");
-            musicToggle.setAttribute("aria-label", "Mute Background Music");
         }).catch(err => {
-            console.log("Autoplay was blocked by browser. Music will wait for user interaction.", err);
+            console.log("Autoplay blocked. Waiting for interaction.", err);
             isPlaying = false;
             musicToggle.classList.remove("playing");
             musicToggle.classList.add("muted");
@@ -101,27 +327,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     function pauseAudio() {
+        if (!bgMusic || !musicToggle) return;
         bgMusic.pause();
         isPlaying = false;
         musicToggle.classList.remove("playing");
         musicToggle.classList.add("muted");
-        musicToggle.setAttribute("aria-label", "Play Background Music");
     }
-    
-    musicToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (isPlaying) {
-            pauseAudio();
-        } else {
-            playAudio();
-        }
-    });
+}
 
-    // ==========================================
-    // 3. NAVIGATION MENU (STICKY & RESPONSIVE)
-    // ==========================================
-    
-    // Sticky Header Scroll effect
+/* ==========================================
+   2. STICKY NAV MENU
+   ========================================== */
+function initNavigationMenu() {
+    const header = document.getElementById("main-header");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    if (!header) return;
+
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
             header.classList.add("scrolled");
@@ -129,33 +353,30 @@ document.addEventListener("DOMContentLoaded", () => {
             header.classList.remove("scrolled");
         }
     });
-    
-    // Toggle mobile menu slide-down
-    menuToggle.addEventListener("click", (e) => {
-        e.stopPropagation();
-        navMenu.classList.toggle("active");
-        
-        // Toggle menu bar icon
-        const icon = menuToggle.querySelector("i");
-        if (navMenu.classList.contains("active")) {
-            icon.classList.remove("fa-bars");
-            icon.classList.add("fa-xmark");
-        } else {
-            icon.classList.remove("fa-xmark");
-            icon.classList.add("fa-bars");
-        }
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", (e) => {
-        if (navMenu.classList.contains("active") && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
-            navMenu.classList.remove("active");
-            menuToggle.querySelector("i").classList.remove("fa-xmark");
-            menuToggle.querySelector("i").classList.add("fa-bars");
-        }
-    });
-    
-    // Smooth scrolling nav links
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle("active");
+            const icon = menuToggle.querySelector("i");
+            if (icon) {
+                icon.classList.toggle("fa-bars");
+                icon.classList.toggle("fa-xmark");
+            }
+        });
+
+        document.addEventListener("click", (e) => {
+            if (navMenu.classList.contains("active") && !navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove("active");
+                const icon = menuToggle.querySelector("i");
+                if (icon) {
+                    icon.classList.add("fa-bars");
+                    icon.classList.remove("fa-xmark");
+                }
+            }
+        });
+    }
+
     navLinks.forEach(link => {
         link.addEventListener("click", function(e) {
             e.preventDefault();
@@ -163,12 +384,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                // Close menu if mobile view
-                navMenu.classList.remove("active");
-                menuToggle.querySelector("i").classList.remove("fa-xmark");
-                menuToggle.querySelector("i").classList.add("fa-bars");
+                if (navMenu) navMenu.classList.remove("active");
+                const icon = menuToggle ? menuToggle.querySelector("i") : null;
+                if (icon) {
+                    icon.classList.add("fa-bars");
+                    icon.classList.remove("fa-xmark");
+                }
                 
-                // Header offset spacing
                 const headerHeight = header.offsetHeight;
                 const targetPos = targetSection.offsetTop - headerHeight;
                 
@@ -179,286 +401,223 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+}
 
-    // Highlight menu items on scroll
-    function updateActiveNavOnScroll() {
-        const scrollPosition = window.scrollY + header.offsetHeight + 100;
-        
-        document.querySelectorAll("section").forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute("id");
-            
-            if (scrollPosition >= top && scrollPosition < top + height) {
-                navLinks.forEach(link => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href") === `#${id}`) {
-                        link.classList.add("active");
-                    }
-                });
-            }
-        });
-    }
-    window.addEventListener("scroll", updateActiveNavOnScroll);
-
-    // ==========================================
-    // 4. COUNTDOWN TIMER
-    // ==========================================
+/* ==========================================
+   3. COUNTDOWN TIMER
+   ========================================== */
+function initCountdown() {
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
+
+    const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "2026-09-04T14:00:00";
+    let targetDate = new Date(dateStr).getTime();
+
+    // Fallback for older browsers
+    if (isNaN(targetDate)) {
+        const cleaned = dateStr.replace(/-/g, '/').replace('T', ' ');
+        targetDate = new Date(cleaned).getTime();
+    }
+    if (isNaN(targetDate)) {
+        targetDate = new Date(2026, 8, 4, 14, 0, 0).getTime();
+    }
     
     function updateCountdown() {
         const now = new Date().getTime();
-        const difference = weddingDate - now;
+        const difference = targetDate - now;
         
         if (difference <= 0) {
-            // Time is up
-            daysEl.innerText = "00";
-            hoursEl.innerText = "00";
-            minutesEl.innerText = "00";
-            secondsEl.innerText = "00";
+            if (daysEl) daysEl.innerText = "00";
+            if (hoursEl) hoursEl.innerText = "00";
+            if (minutesEl) minutesEl.innerText = "00";
+            if (secondsEl) secondsEl.innerText = "00";
             return;
         }
         
-        // Calculations
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
         
-        // Output formatting (adds leading zero)
-        daysEl.innerText = days < 10 ? "0" + days : days;
-        hoursEl.innerText = hours < 10 ? "0" + hours : hours;
-        minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
-        secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+        if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
     }
     
-    // Initial run and repeat every second
     updateCountdown();
     setInterval(updateCountdown, 1000);
+}
 
-    // ==========================================
-    // 5. VENUE ADDRESS COPY
-    // ==========================================
-    if (btnCopyAddress) {
-        btnCopyAddress.addEventListener("click", () => {
-            const addressText = "The Palace Ballroom, 789 Golden Gate Blvd, Astoria Garden, New York, NY 11102";
-            
-            // Clipboard API
-            navigator.clipboard.writeText(addressText).then(() => {
+/* ==========================================
+   4. COPY ADDRESS BUTTON
+   ========================================== */
+function initAddressCopyButton() {
+    const btnCopyAddress = document.getElementById("btn-copy-address");
+    const copyToast = document.getElementById("copy-success-toast");
+
+    if (!btnCopyAddress) return;
+
+    btnCopyAddress.addEventListener("click", () => {
+        const addressText = (window.weddingData && window.weddingData.event && window.weddingData.event.venueAddress) || "789 Golden Gate Blvd, Astoria Garden, New York, NY 11102";
+        
+        navigator.clipboard.writeText(addressText).then(() => {
+            showToast();
+        }).catch(err => {
+            const textArea = document.createElement("textarea");
+            textArea.value = addressText;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
                 showToast();
-            }).catch(err => {
-                // Fallback for older/unsupported devices
-                const textArea = document.createElement("textarea");
-                textArea.value = addressText;
-                textArea.style.position = "fixed"; // prevent scrolling
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    showToast();
-                } catch (err) {
-                    console.error('Fallback copy failed', err);
-                }
-                document.body.removeChild(textArea);
-            });
+            } catch (copyErr) {
+                console.error('Copy fallback failed', copyErr);
+            }
+            document.body.removeChild(textArea);
         });
-    }
-    
+    });
+
     function showToast() {
+        if (!copyToast) return;
         copyToast.classList.add("toast-visible");
         copyToast.classList.remove("toast-hidden");
         
-        // Hide after 2.5s
         setTimeout(() => {
             copyToast.classList.remove("toast-visible");
             copyToast.classList.add("toast-hidden");
         }, 2500);
     }
+}
 
-    // ==========================================
-    // 6. PHOTO GALLERY LIGHTBOX VIEW
-    // ==========================================
-    
+/* ==========================================
+   5. LIGHTBOX GALLERY
+   ========================================== */
+function initLightboxGallery() {
+    const lightboxModal = document.getElementById("lightbox-modal");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const lightboxClose = document.getElementById("lightbox-close");
+    const lightboxPrev = document.getElementById("lightbox-prev");
+    const lightboxNext = document.getElementById("lightbox-next");
+
+    let currentGalleryIndex = 0;
+
+    // Use event delegation on the grid container
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (!galleryGrid) return;
+
+    galleryGrid.addEventListener('click', (e) => {
+        const item = e.target.closest('.gallery-item');
+        if (item) {
+            const index = item.getAttribute('data-index');
+            openLightbox(index);
+        }
+    });
+
     function openLightbox(index) {
+        const data = window.weddingData;
+        if (!data || !data.gallery) return;
+
         currentGalleryIndex = parseInt(index);
-        const item = galleryItems[currentGalleryIndex];
+        const item = data.gallery[currentGalleryIndex];
         
-        lightboxImg.src = item.src;
-        lightboxCaption.innerText = item.caption;
+        if (lightboxImg) {
+            lightboxImg.src = item.src;
+            lightboxImg.style.opacity = 1;
+        }
+        if (lightboxCaption) lightboxCaption.innerText = item.caption;
         
-        lightboxModal.classList.remove("modal-hidden");
-        lightboxModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden"; // Lock scroll
+        if (lightboxModal) {
+            lightboxModal.classList.remove("modal-hidden");
+            lightboxModal.setAttribute("aria-hidden", "false");
+        }
+        document.body.style.overflow = "hidden";
     }
     
     function closeLightbox() {
-        lightboxModal.classList.add("modal-hidden");
-        lightboxModal.setAttribute("aria-hidden", "true");
-        // Re-enable scrolling only if cover is already opened
-        if (loaderScreen.classList.contains("fade-out")) {
-            document.body.style.overflow = "auto";
+        if (lightboxModal) {
+            lightboxModal.classList.add("modal-hidden");
+            lightboxModal.setAttribute("aria-hidden", "true");
         }
+        document.body.style.overflow = "auto";
     }
     
     function showNextImage() {
-        currentGalleryIndex = (currentGalleryIndex + 1) % galleryItems.length;
-        const item = galleryItems[currentGalleryIndex];
-        lightboxImg.style.opacity = 0;
-        setTimeout(() => {
-            lightboxImg.src = item.src;
-            lightboxCaption.innerText = item.caption;
-            lightboxImg.style.opacity = 1;
-        }, 150);
+        const data = window.weddingData;
+        if (!data || !data.gallery) return;
+
+        currentGalleryIndex = (currentGalleryIndex + 1) % data.gallery.length;
+        const item = data.gallery[currentGalleryIndex];
+        if (lightboxImg) {
+            lightboxImg.style.opacity = 0;
+            setTimeout(() => {
+                lightboxImg.src = item.src;
+                lightboxImg.style.opacity = 1;
+            }, 150);
+        }
+        if (lightboxCaption) lightboxCaption.innerText = item.caption;
     }
     
     function showPrevImage() {
-        currentGalleryIndex = (currentGalleryIndex - 1 + galleryItems.length) % galleryItems.length;
-        const item = galleryItems[currentGalleryIndex];
-        lightboxImg.style.opacity = 0;
-        setTimeout(() => {
-            lightboxImg.src = item.src;
-            lightboxCaption.innerText = item.caption;
-            lightboxImg.style.opacity = 1;
-        }, 150);
+        const data = window.weddingData;
+        if (!data || !data.gallery) return;
+
+        currentGalleryIndex = (currentGalleryIndex - 1 + data.gallery.length) % data.gallery.length;
+        const item = data.gallery[currentGalleryIndex];
+        if (lightboxImg) {
+            lightboxImg.style.opacity = 0;
+            setTimeout(() => {
+                lightboxImg.src = item.src;
+                lightboxImg.style.opacity = 1;
+            }, 150);
+        }
+        if (lightboxCaption) lightboxCaption.innerText = item.caption;
     }
     
-    // Bind click events on grid images
-    galleryItemElements.forEach(item => {
-        item.addEventListener("click", () => {
-            const index = item.getAttribute("data-index");
-            openLightbox(index);
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightboxNext) lightboxNext.addEventListener("click", showNextImage);
+    if (lightboxPrev) lightboxPrev.addEventListener("click", showPrevImage);
+    
+    if (lightboxModal) {
+        lightboxModal.addEventListener("click", (e) => {
+            if (e.target === lightboxModal || e.target.classList.contains("lightbox-content-wrapper")) {
+                closeLightbox();
+            }
         });
-    });
+    }
     
-    // Close / Next / Prev click handlers
-    lightboxClose.addEventListener("click", closeLightbox);
-    lightboxNext.addEventListener("click", showNextImage);
-    lightboxPrev.addEventListener("click", showPrevImage);
-    
-    // Close lightbox on click outside the image
-    lightboxModal.addEventListener("click", (e) => {
-        if (e.target === lightboxModal || e.target.classList.contains("lightbox-content-wrapper")) {
-            closeLightbox();
-        }
-    });
-    
-    // Key bindings (ESC, Arrow Left, Arrow Right)
     document.addEventListener("keydown", (e) => {
-        if (!lightboxModal.classList.contains("modal-hidden")) {
+        if (lightboxModal && !lightboxModal.classList.contains("modal-hidden")) {
             if (e.key === "Escape") closeLightbox();
             if (e.key === "ArrowRight") showNextImage();
             if (e.key === "ArrowLeft") showPrevImage();
         }
     });
+}
 
-    // ==========================================
-    // 7. RSVP FORM SUBMISSION (LOCAL STORAGE)
-    // ==========================================
-    
-    // Toggle guest count dropdown based on RSVP selection
-    if (attendanceRadios && attendanceRadios.length > 0 && guestsContainer && guestsSelect) {
-        attendanceRadios.forEach(radio => {
-            radio.addEventListener("change", (e) => {
-                if (e.target.value === "declined") {
-                    guestsContainer.classList.add("input-hidden");
-                    guestsSelect.disabled = true;
-                } else {
-                    guestsContainer.classList.remove("input-hidden");
-                    guestsSelect.disabled = false;
-                }
-            });
-        });
-    }
-    
-    // RSVP submit
-    if (rsvpForm) {
-        rsvpForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            
-            const name = document.getElementById("guest-name").value.trim();
-            const phone = document.getElementById("guest-phone").value.trim();
-            const attendance = document.querySelector('input[name="attendance"]:checked').value;
-            const additionalGuests = attendance === "attending" ? parseInt(guestsSelect.value) : 0;
-            const message = document.getElementById("guest-msg").value.trim();
-            
-            // Save details to LocalStorage to simulate a working db/server submission
-            const rsvpResponse = {
-                name,
-                phone,
-                attendance,
-                guestsCount: additionalGuests + 1, // Include guest themselves
-                message,
-                timestamp: new Date().toISOString()
-            };
-            
-            localStorage.setItem("wedding_rsvp_" + phone, JSON.stringify(rsvpResponse));
-            
-            // Customize success message
-            if (attendance === "attending" && successMsgText) {
-                successMsgText.innerText = `Jazakallah Khair, ${name}! We have registered you and ${additionalGuests} guest(s). Looking forward to celebrating this blessed occasion together!`;
-            } else if (successMsgText) {
-                successMsgText.innerText = `Jazakallah Khair, ${name}! Your response has been received. We are sorry you won't be able to join us, and we appreciate your warm prayers and wishes.`;
-            }
-            
-            // Show success modal
-            if (rsvpSuccessModal) {
-                rsvpSuccessModal.classList.remove("modal-hidden");
-            }
-            
-            // Reset Form
-            rsvpForm.reset();
-            if (guestsContainer) guestsContainer.classList.remove("input-hidden");
-            if (guestsSelect) guestsSelect.disabled = false;
-        });
-    }
-    
-    // Close success state modal
-    if (btnCloseSuccess && rsvpSuccessModal) {
-        btnCloseSuccess.addEventListener("click", () => {
-            rsvpSuccessModal.classList.add("modal-hidden");
-        });
-        
-        rsvpSuccessModal.addEventListener("click", (e) => {
-            if (e.target === rsvpSuccessModal) {
-                rsvpSuccessModal.classList.add("modal-hidden");
-            }
-        });
-    }
-
-    // ==========================================
-    // 8. SCROLL REVEAL (INTERSECTION OBSERVER)
-    // ==========================================
+/* ==========================================
+   6. SCROLL REVEAL TRIGGERS
+   ========================================== */
+function setupScrollAnimations() {
     const revealElements = document.querySelectorAll(".reveal");
     
-    function revealOnScroll() {
-        const triggerBottom = (window.innerHeight / 10) * 8.5; // Reveal when 85% in viewport
-        
-        revealElements.forEach(el => {
-            const elTop = el.getBoundingClientRect().top;
-            
-            if (elTop < triggerBottom) {
-                el.classList.add("revealed");
-            }
-        });
-    }
-    
-    // Using IntersectionObserver if supported (fallback to scroll event)
     if ("IntersectionObserver" in window) {
         const observerOptions = {
-            root: null, // use viewport
-            rootMargin: "0px 0px -100px 0px", // triggers slightly before entering
-            threshold: 0.1 // 10% visible
+            root: null,
+            rootMargin: "0px 0px -100px 0px",
+            threshold: 0.1
         };
         
         const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("revealed");
-                    observer.unobserve(entry.target); // Stop observing once revealed
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -468,6 +627,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     } else {
         // Fallback for older browsers
+        const triggerBottom = (window.innerHeight / 10) * 8.5;
+        function revealOnScroll() {
+            revealElements.forEach(el => {
+                const elTop = el.getBoundingClientRect().top;
+                if (elTop < triggerBottom) {
+                    el.classList.add("revealed");
+                }
+            });
+        }
         window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
     }
-});
+}

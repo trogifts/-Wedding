@@ -11,7 +11,7 @@ window.weddingData = {
     title: "Wedding Function",
     venueName: "Bhaskareeyam Lake View",
     venueAddress: "Elamakkara, Kochi, Kerala, India",
-    date: "2027-01-20", // Wedding Date (Format: YYYY-MM-DD)
+    date: "2026-06-16", // Wedding Date (Format: YYYY-MM-DD)
     time: "10:00 AM",   // Start Time (Format: HH:MM AM/PM)
     attireTitle: "Dress Code",
     attireDetails: "We invite you to dress in light, comfortable festive wear. Traditional Kerala handloom ivory/cream, gold accents, or soft pastel shades are highly welcome."
