@@ -68,7 +68,7 @@ function renderData() {
 
   // Render attire suggestions
   const attireTitle = document.getElementById('attireTitle');
-  if (attireTitle) attireTitle.innerText = data.event.attireTitle || "Attire Suggestions";
+  if (attireTitle) attireTitle.innerText = data.event.attireTitle || "Dress Code";
 
   const attireDetails = document.getElementById('attireDetails');
   if (attireDetails) attireDetails.innerText = data.event.attireDetails;
@@ -92,6 +92,33 @@ function renderData() {
   // Render footer
   const footerText = document.getElementById('footerText');
   if (footerText) footerText.innerHTML = `${data.couple.bride} &amp; ${data.couple.groom} — Kochi, 2027`;
+
+  // Render labels
+  if (data.labels) {
+    const scrollPrompt = document.getElementById('scrollPrompt');
+    if (scrollPrompt) scrollPrompt.innerText = data.labels.scrollPrompt;
+
+    const keepScrolling = document.getElementById('keepScrolling');
+    if (keepScrolling) keepScrolling.innerText = data.labels.keepScrolling;
+
+    const countdownTag = document.getElementById('countdownTag');
+    if (countdownTag) countdownTag.innerText = data.labels.countdownTag;
+
+    const countdownHeading = document.getElementById('countdownHeading');
+    if (countdownHeading) countdownHeading.innerText = data.labels.countdownHeading;
+
+    const sectionTag = document.getElementById('sectionTag');
+    if (sectionTag) sectionTag.innerText = data.labels.eventTag;
+
+    const itineraryTitle = document.getElementById('itineraryTitle');
+    if (itineraryTitle) itineraryTitle.innerText = data.labels.itineraryTitle;
+
+    const faqTag = document.getElementById('faqTag');
+    if (faqTag) faqTag.innerText = data.labels.faqTag;
+
+    const faqTitle = document.getElementById('faqTitle');
+    if (faqTitle) faqTitle.innerText = data.labels.faqTitle;
+  }
 }
 
 /* ==========================================
