@@ -259,42 +259,34 @@
             cursor: pointer;
         }
 
-        .wishes-section {
-            margin-bottom: 80px;
-        }
-
-        .wishes-input {
+        /* Wishes Greeting Banner */
+        .wishes-banner {
+            max-width: 800px;
             width: 100%;
-            max-width: 600px;
-            padding: 15px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 4px;
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            margin-bottom: 25px;
-            resize: none;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            transition: var(--transition-smooth);
+            text-align: center;
+            margin: 0 auto 60px auto;
+            padding: 30px 20px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.3);
+            position: relative;
+            z-index: 10;
         }
 
-        .wishes-input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 10px rgba(197, 160, 89, 0.1);
+        .wishes-banner-title {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            letter-spacing: 2px;
         }
 
-        .wishes-btn {
-            background-color: var(--text-color);
-            color: var(--card-bg);
-            border: 1px solid var(--text-color);
-        }
-
-        .wishes-btn:hover {
-            background-color: transparent;
-            color: var(--text-color);
-            border-color: var(--text-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        .wishes-banner-text {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--muted-color);
+            line-height: 1.6;
+            font-weight: 300;
         }
 
         @media (max-width: 768px) {
@@ -325,16 +317,10 @@
         <p class="subtitle">Curated digital invitation templates</p>
     </header>
 
-    <!-- Congratulate & Give Wishes Section -->
-    <div class="cta-section wishes-section">
-        <h2 class="cta-title">Give Wishes</h2>
-        <p class="cta-desc">Type your congratulations and warm wishes below to give them to the couple.</p>
-        <textarea id="wishesInput" class="wishes-input" placeholder="Write your congratulations and wedding wishes here..." rows="3"></textarea>
-        <div>
-            <button onclick="sendWishes()" class="cta-btn wishes-btn">
-                <i class="fa-brands fa-whatsapp"></i> Give Wishes
-            </button>
-        </div>
+    <!-- Congratulations from TRO Wedding Banner -->
+    <div class="wishes-banner">
+        <h2 class="wishes-banner-title">Warmest Congratulations</h2>
+        <p class="wishes-banner-text">To all the beautiful couples beginning their sacred journey of love and togetherness: May your union be filled with lifelong happiness, peace, and eternal blessings.</p>
     </div>
 
     <div class="grid">
@@ -463,18 +449,7 @@
         <div class="footer-copy">&copy; 2026 TRO Wedding. All Rights Reserved.</div>
     </footer>
 
-    <script>
-        function sendWishes() {
-            const wishes = document.getElementById('wishesInput').value.trim();
-            if (!wishes) {
-                alert('Please type your wishes before sending.');
-                return;
-            }
-            const encodedWishes = encodeURIComponent(wishes);
-            const whatsappUrl = `https://wa.me/918078759252?text=${encodedWishes}`;
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
+
 
 </body>
 </html>
