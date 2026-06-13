@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation of Zayn & Aara - Traditional Kerala Wedding</title>
+    <title id="metaTitle">Wedding Invitation of Zayn & Aara - Traditional Kerala Wedding</title>
     
     <!-- Meta Descriptions for SEO -->
-    <meta name="description" content="You are cordially invited to celebrate the union of Zayn and Aara in traditional Kerala style. Join the virtual ceremony, light the Nilavilakku, shower flowers, and RSVP online.">
-    <meta name="keywords" content="Zayn and Aara Wedding, Traditional Kerala Wedding, Kasavu theme, Online Wedding Invitation, Nikah, Sadhya, RSVP">
+    <meta name="description" content="You are cordially invited to celebrate the union in traditional Kerala style.">
+    <meta name="keywords" content="Wedding Invitation, Traditional Kerala Wedding, Kasavu theme, Online Wedding Invitation, Nikah, Sadhya, RSVP">
     
     <!-- Google Fonts: Elegant Serif (Cinzel), Calligraphy (Great Vibes), Sans-serif (Montserrat) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,20 +32,20 @@
         <div class="envelope-container">
             <div class="kerala-border-frame">
                 <!-- Decorative Top Border Pattern -->
-                <div class="envelope-logo">Z&A</div>
+                <div class="envelope-logo" id="envelopeLogo">Z&A</div>
                 
-                <h2 class="cover-title">Zayn & Aara</h2>
-                <div class="cover-announcement">Wedding Invitation</div>
+                <h2 class="cover-title" id="coverTitle">Zayn & Aara</h2>
+                <div class="cover-announcement" id="coverAnnouncement">Wedding Invitation</div>
                 
                 <!-- Personalized Guest Greeting Card -->
                 <div class="cover-guest-greeting">
-                    <span class="dear">Dear</span>
+                    <span class="dear" id="guestGreetingDear">Dear</span>
                     <div id="guest-name-display" class="guest-name">Beloved Guest</div>
-                    <span class="invite-phrase">Your presence will make our celebration complete</span>
+                    <span class="invite-phrase" id="guestInvitePhrase">Your presence will make our celebration complete</span>
                 </div>
                 
                 <button id="btn-open-invite" class="btn-open-invite">
-                    <i class="fa-solid fa-envelope-open"></i> Open Invitation
+                    <i class="fa-solid fa-envelope-open"></i> <span id="openInviteButtonText">Open Invitation</span>
                 </button>
             </div>
         </div>
@@ -53,7 +53,6 @@
 
     <!-- Traditional Kerala Instrumental Background Music -->
     <audio id="bg-music" loop preload="auto">
-        <!-- Relaxing Traditional Flute / Nadaswaram Instrumental -->
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -68,8 +67,7 @@
                 <i id="music-icon" class="fa-solid fa-music"></i>
             </button>
             <!-- WhatsApp Floating Coordination -->
-            <a href="https://wa.me/1234567890?text=Assalamu%20Alaikum!%20I%20have%20an%20inquiry%20regarding%20Zayn%20and%20Aara's%20wedding%20celebration." 
-               class="floating-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+            <a href="#" id="whatsappFloatingLink" class="floating-btn whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>
@@ -77,16 +75,16 @@
         <!-- ==================== STICKY HEADER ==================== -->
         <header id="main-header">
             <div class="header-container">
-                <a href="#hero" class="brand-monogram">Z&A</a>
+                <a href="#hero" class="brand-monogram" id="headerLogo">Z&A</a>
                 <button id="menu-toggle" class="mobile-menu-btn" aria-label="Toggle Navigation Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
                 <nav id="nav-menu">
                     <ul>
-                        <li><a href="#hero" class="nav-link active">Home</a></li>
-                        <li><a href="#story" class="nav-link">Story</a></li>
-                        <li><a href="#interactive" class="nav-link">Ceremonies</a></li>
-                        <li><a href="#events" class="nav-link">Events</a></li>
+                        <li><a href="#hero" class="nav-link active" id="navLinkHome">Home</a></li>
+                        <li><a href="#story" class="nav-link" id="navLinkStory">Story</a></li>
+                        <li><a href="#interactive" class="nav-link" id="navLinkCeremonies">Ceremonies</a></li>
+                        <li><a href="#events" class="nav-link" id="navLinkEvents">Events</a></li>
                     </ul>
                 </nav>
             </div>
@@ -105,13 +103,13 @@
                     </svg>
                 </div>
                 
-                <span class="hero-wedding-header">The Union of Hearts</span>
-                <h1 class="hero-names">Zayn & Aara</h1>
-                <div class="hero-traditional-slogan">Save The Date</div>
+                <span class="hero-wedding-header" id="heroWeddingHeader">The Union of Hearts</span>
+                <h1 class="hero-names" id="heroNames">Zayn & Aara</h1>
+                <div class="hero-traditional-slogan" id="heroSlogan">Save The Date</div>
                 
                 <div class="hero-details-box">
-                    <div class="hero-date">September 10, 2026</div>
-                    <div class="hero-kerala-date">Kollavarsham 1202 Chingam 25</div>
+                    <div class="hero-date" id="heroDate">September 10, 2026</div>
+                    <div class="hero-kerala-date" id="heroKeralaDate">Kollavarsham 1202 Chingam 25</div>
                 </div>
                 
                 <div class="deco-separator">
@@ -125,8 +123,8 @@
         <!-- ==================== BRIDE & GROOM PROFILE STORY ==================== -->
         <section id="story" class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Sneha Bandham</span>
-                <h2 class="section-title">The Couple</h2>
+                <span class="sub-title" id="storySubTitle">Sneha Bandham</span>
+                <h2 class="section-title" id="storyTitle">The Couple</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-om"></i>
@@ -136,12 +134,12 @@
             
             <div class="profile-card reveal">
                 <div class="profile-img-container">
-                    <img src="images/groom.png" alt="Groom Zayn Malik">
+                    <img src="images/groom.png" id="groomImg" alt="Groom">
                 </div>
                 <div class="profile-info">
-                    <span class="profile-role">Groom</span>
-                    <h3 class="profile-name">Zayn Malik</h3>
-                    <p class="profile-bio">
+                    <span class="profile-role" id="groomRole">Groom</span>
+                    <h3 class="profile-name" id="groomName">Zayn Malik</h3>
+                    <p class="profile-bio" id="groomBio">
                         An architect with deep love for tradition, culture, and Kerala's historic heritage. Zayn is excited to embark on this lifelong journey of love, companionship, and shared dreams with Aara.
                     </p>
                 </div>
@@ -149,12 +147,12 @@
 
             <div class="profile-card reveal">
                 <div class="profile-img-container">
-                    <img src="images/bride.png" alt="Bride Aara Variar">
+                    <img src="images/bride.png" id="brideImg" alt="Bride">
                 </div>
                 <div class="profile-info">
-                    <span class="profile-role">Bride</span>
-                    <h3 class="profile-name">Aara Variar</h3>
-                    <p class="profile-bio">
+                    <span class="profile-role" id="brideRole">Bride</span>
+                    <h3 class="profile-name" id="brideName">Aara Variar</h3>
+                    <p class="profile-bio" id="brideBio">
                         A classical dancer who finds harmony in beats, expression, and standard kasavu handlooms. She brings grace, melody, and infinite joy into Zayn's life.
                     </p>
                 </div>
@@ -164,8 +162,8 @@
         <!-- ==================== FAMILY INTRODUCTION ==================== -->
         <section class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Kudumba Bandham</span>
-                <h2 class="section-title">Our Parents</h2>
+                <span class="sub-title" id="parentsSubTitle">Kudumba Bandham</span>
+                <h2 class="section-title" id="parentsTitle">Our Parents</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-users"></i>
@@ -175,22 +173,22 @@
             
             <div class="family-grid reveal">
                 <div class="family-card">
-                    <span class="family-title">Groom's Family</span>
+                    <span class="family-title" id="groomFamilyTitle">Groom's Family</span>
                     <div class="family-names-list">
-                        <div class="family-member-name">Mr. Yusuf Malik</div>
-                        <span class="family-member-role">Father of the Groom</span>
-                        <div class="family-member-name">Mrs. Aisha Yusuf</div>
-                        <span class="family-member-role">Mother of the Groom</span>
+                        <div class="family-member-name" id="groomFatherName">Mr. Yusuf Malik</div>
+                        <span class="family-member-role" id="groomFatherRole">Father of the Groom</span>
+                        <div class="family-member-name" id="groomMotherName">Mrs. Aisha Yusuf</div>
+                        <span class="family-member-role" id="groomMotherRole">Mother of the Groom</span>
                     </div>
                 </div>
                 
                 <div class="family-card">
-                    <span class="family-title">Bride's Family</span>
+                    <span class="family-title" id="brideFamilyTitle">Bride's Family</span>
                     <div class="family-names-list">
-                        <div class="family-member-name">Mr. Madhavan Variar</div>
-                        <span class="family-member-role">Father of the Bride</span>
-                        <div class="family-member-name">Mrs. Lakshmi Madhavan</div>
-                        <span class="family-member-role">Mother of the Bride</span>
+                        <div class="family-member-name" id="brideFatherName">Mr. Madhavan Variar</div>
+                        <span class="family-member-role" id="brideFatherRole">Father of the Bride</span>
+                        <div class="family-member-name" id="brideMotherName">Mrs. Lakshmi Madhavan</div>
+                        <span class="family-member-role" id="brideMotherRole">Mother of the Bride</span>
                     </div>
                 </div>
             </div>
@@ -201,8 +199,8 @@
             
             <!-- 1. Nilavilakku Ceremony -->
             <div class="section-header reveal">
-                <span class="sub-title">Virtual Mangala Deepam</span>
-                <h2 class="section-title">Light The Nilavilakku</h2>
+                <span class="sub-title" id="lampSubTitle">Virtual Mangala Deepam</span>
+                <h2 class="section-title" id="lampTitle">Light The Nilavilakku</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-sun"></i>
@@ -211,7 +209,7 @@
             </div>
             
             <div class="lamp-ceremony-box reveal">
-                <p class="lamp-instruction">
+                <p class="lamp-instruction" id="lampInstruction">
                     It is an auspicious tradition in Kerala to light the Nilavilakku. Please touch each of the 5 wicks to light the flames and shower your blessings upon us.
                 </p>
                 
@@ -294,8 +292,8 @@
                 
                 <!-- Dynamic Ceremony Blessing Wall Reveal -->
                 <div id="lamp-blessing-card" class="lamp-blessing-card">
-                    <h4>Ponmangalashamsakal</h4>
-                    <p>May the divine light guide the couple with love, prosperity, and endless blessings. Thank you for lighting our path!</p>
+                    <h4 id="lampBlessingTitle">Ponmangalashamsakal</h4>
+                    <p id="lampBlessingText">May the divine light guide the couple with love, prosperity, and endless blessings. Thank you for lighting our path!</p>
                 </div>
             </div>
 
@@ -303,8 +301,8 @@
 
             <!-- 2. Flower Shower Blessing -->
             <div class="section-header reveal">
-                <span class="sub-title">Pushpabhishekam</span>
-                <h2 class="section-title">Flower Shower Blessing</h2>
+                <span class="sub-title" id="flowerSubTitle">Pushpabhishekam</span>
+                <h2 class="section-title" id="flowerTitle">Flower Shower Blessing</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-seedling"></i>
@@ -313,7 +311,7 @@
             </div>
             
             <div class="flower-shower-widget reveal">
-                <p class="lamp-instruction">
+                <p class="lamp-instruction" id="flowerInstruction">
                     Tap the traditional Urli basket to shower Aara and Zayn with fresh jasmine, rose, and marigold flower petals.
                 </p>
                 
@@ -335,7 +333,7 @@
                         <circle cx="85" cy="51" r="7" fill="#C2185B" />
                         <circle cx="92" cy="49" r="6" fill="#F44336" />
                     </svg>
-                    <div class="btn-flower-label">Shower Flowers</div>
+                    <div class="btn-flower-label" id="flowerButtonLabel">Shower Flowers</div>
                 </button>
             </div>
             
@@ -348,8 +346,8 @@
 
             <!-- 3. Wedding Memory Tree -->
             <div class="section-header reveal">
-                <span class="sub-title">Madhura Smrithikal</span>
-                <h2 class="section-title">The Memory Tree</h2>
+                <span class="sub-title" id="treeSubTitle">Madhura Smrithikal</span>
+                <h2 class="section-title" id="treeTitle">The Memory Tree</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-tree"></i>
@@ -358,7 +356,7 @@
             </div>
             
             <div class="memory-tree-box reveal">
-                <p class="lamp-instruction">
+                <p class="lamp-instruction" id="treeInstruction">
                     Click each golden hanging leaf on the memory tree to discover a beautiful story or fact from our journey together.
                 </p>
                 
@@ -422,8 +420,8 @@
 
             <!-- 4. Couple Quiz Cards -->
             <div class="section-header reveal">
-                <span class="sub-title">Kauthuka Chodyangal</span>
-                <h2 class="section-title">How well do you know us?</h2>
+                <span class="sub-title" id="quizSubTitle">Kauthuka Chodyangal</span>
+                <h2 class="section-title" id="quizTitle">How well do you know us?</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-circle-question"></i>
@@ -432,48 +430,8 @@
             </div>
             
             <div class="quiz-widget-box reveal">
-                <div class="quiz-container">
-                    
-                    <!-- Question 1 -->
-                    <div id="q-1" class="quiz-question-card active">
-                        <div class="quiz-q-num">Question 1 of 3</div>
-                        <h4 class="quiz-q-text">What food item represents our shared culinary obsession?</h4>
-                        <div class="quiz-options-list">
-                            <button class="quiz-opt-btn" onclick="checkAnswer(1, 0, false)">Malabar Biriyani</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(1, 1, true)">Kerala Sadhya Feast</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(1, 2, false)">Fort Kochi Seafood</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Question 2 -->
-                    <div id="q-2" class="quiz-question-card">
-                        <div class="quiz-q-num">Question 2 of 3</div>
-                        <h4 class="quiz-q-text">Where did Zayn propose to Aara?</h4>
-                        <div class="quiz-options-list">
-                            <button class="quiz-opt-btn" onclick="checkAnswer(2, 0, false)">Athirappilly Waterfalls</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(2, 1, false)">Munnar Tea Hills</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(2, 2, true)">Kovalam Beach Sunset</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Question 3 -->
-                    <div id="q-3" class="quiz-question-card">
-                        <div class="quiz-q-num">Question 3 of 3</div>
-                        <h4 class="quiz-q-text">What traditional dance form does Aara practice?</h4>
-                        <div class="quiz-options-list">
-                            <button class="quiz-opt-btn" onclick="checkAnswer(3, 0, true)">Mohiniyattam</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(3, 1, false)">Kathakali</button>
-                            <button class="quiz-opt-btn" onclick="checkAnswer(3, 2, false)">Bharatanatyam</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Result Card -->
-                    <div id="quiz-result" class="quiz-result-card">
-                        <div id="score-badge" class="quiz-score-badge">0/3</div>
-                        <h4 class="quiz-q-text" id="quiz-feedback-title">Great Try!</h4>
-                        <p class="lamp-instruction" id="quiz-feedback-desc">You scored 0 out of 3. Restart and try again!</p>
-                        <button class="btn-restart-quiz" onclick="restartQuiz()">Play Again</button>
-                    </div>
+                <div class="quiz-container" id="quizContainer">
+                    <!-- Populated dynamically from data.js -->
                 </div>
             </div>
         </section>
@@ -481,8 +439,8 @@
         <!-- ==================== WEDDING EVENTS ==================== -->
         <section id="events" class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Mangala Muhurtham</span>
-                <h2 class="section-title">Wedding Ceremonies</h2>
+                <span class="sub-title" id="eventsSubTitle">Mangala Muhurtham</span>
+                <h2 class="section-title" id="eventsTitle">Wedding Ceremonies</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-gopuram"></i>
@@ -490,112 +448,31 @@
                 </div>
             </div>
             
-            <!-- Event 1 -->
-            <div class="event-card reveal">
-                <div class="event-top-banner"></div>
-                <div class="event-content">
-                    <h3 class="event-name">The Nikah</h3>
-                    <div class="event-details-grid">
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span class="lbl">Date</span>
-                            <span class="val">Thursday, Sept 10, 2026</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span class="lbl">Time</span>
-                            <span class="val">10:30 AM - 11:30 AM</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span class="lbl">Venue</span>
-                            <span class="val">Grand Durbar Hall, Cochin</span>
-                        </div>
-                    </div>
-                    <!-- Navigation map trigger -->
-                    <button class="btn-venue-nav" onclick="openMap('https://maps.google.com')">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Navigate Venue
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Event 2 -->
-            <div class="event-card reveal">
-                <div class="event-top-banner"></div>
-                <div class="event-content">
-                    <h3 class="event-name">Traditional Sadhya</h3>
-                    <div class="event-details-grid">
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span class="lbl">Date</span>
-                            <span class="val">Thursday, Sept 10, 2026</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span class="lbl">Time</span>
-                            <span class="val">12:00 PM - 02:00 PM</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span class="lbl">Venue</span>
-                            <span class="val">The Sadhya Pavilion, Durbar Pavilions</span>
-                        </div>
-                    </div>
-                    <button class="btn-venue-nav" onclick="openMap('https://maps.google.com')">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Navigate Venue
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Event 3 -->
-            <div class="event-card reveal">
-                <div class="event-top-banner"></div>
-                <div class="event-content">
-                    <h3 class="event-name">The Reception</h3>
-                    <div class="event-details-grid">
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span class="lbl">Date</span>
-                            <span class="val">Saturday, Sept 12, 2026</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-clock"></i>
-                            <span class="lbl">Time</span>
-                            <span class="val">06:00 PM - 10:00 PM</span>
-                        </div>
-                        <div class="event-detail-item">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span class="lbl">Venue</span>
-                            <span class="val">Royal Palms Resort Garden, Ernakulam</span>
-                        </div>
-                    </div>
-                    <button class="btn-venue-nav" onclick="openMap('https://maps.google.com')">
-                        <i class="fa-solid fa-diamond-turn-right"></i> Navigate Venue
-                    </button>
-                </div>
+            <div id="eventsListContainer">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
         <!-- ==================== COUNTDOWN TIMER ==================== -->
         <section class="section-padding container">
             <div class="countdown-box-wrapper reveal">
-                <h3 class="hero-wedding-header" style="color:#FFF;">Counting Down to the Muhurtham</h3>
+                <h3 class="hero-wedding-header" style="color:#FFF;" id="countdownHeading">Counting Down to the Muhurtham</h3>
                 <div id="countdown-timer" class="countdown-flex-container">
                     <div class="countdown-unit-box">
                         <span id="days" class="countdown-number">00</span>
-                        <span class="countdown-label">Days</span>
+                        <span class="countdown-label" id="daysLabel">Days</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="hours" class="countdown-number">00</span>
-                        <span class="countdown-label">Hrs</span>
+                        <span class="countdown-label" id="hoursLabel">Hrs</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="minutes" class="countdown-number">00</span>
-                        <span class="countdown-label">Mins</span>
+                        <span class="countdown-label" id="minutesLabel">Mins</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="seconds" class="countdown-number">00</span>
-                        <span class="countdown-label">Secs</span>
+                        <span class="countdown-label" id="secondsLabel">Secs</span>
                     </div>
                 </div>
             </div>
@@ -604,8 +481,8 @@
         <!-- ==================== PREMIUM GALLERY ==================== -->
         <section class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Madhura Nimishangal</span>
-                <h2 class="section-title">Gallery</h2>
+                <span class="sub-title" id="gallerySubTitle">Madhura Nimishangal</span>
+                <h2 class="section-title" id="galleryTitle">Gallery</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-camera-retro"></i>
@@ -613,25 +490,8 @@
                 </div>
             </div>
             
-            <div class="gallery-grid reveal">
-                <div class="gallery-card" onclick="openLightbox(0)">
-                    <img src="images/gallery1.png" alt="The Promise">
-                    <div class="gallery-card-overlay">
-                        <span class="gallery-card-title">The Promise</span>
-                    </div>
-                </div>
-                <div class="gallery-card" onclick="openLightbox(1)">
-                    <img src="images/gallery2.png" alt="The Mundu Ceremony">
-                    <div class="gallery-card-overlay">
-                        <span class="gallery-card-title">The Mundu Ceremony</span>
-                    </div>
-                </div>
-                <div class="gallery-card" onclick="openLightbox(2)">
-                    <img src="images/gallery3.png" alt="Sneha Walk">
-                    <div class="gallery-card-overlay">
-                        <span class="gallery-card-title">Sneha Walk</span>
-                    </div>
-                </div>
+            <div class="gallery-grid reveal" id="galleryGrid">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
@@ -641,7 +501,6 @@
                 <button class="lightbox-close-btn" onclick="closeLightbox()">&times;</button>
                 <button class="lightbox-nav-btn prev" onclick="navigateLightbox(-1)"><i class="fa-solid fa-angle-left"></i></button>
                 
-                <!-- Instead of external images, we render responsive placeholder SVGs dynamically in JS -->
                 <div id="lightbox-media-container" style="width:100%; display:flex; justify-content:center;"></div>
                 
                 <div id="lightbox-caption-text" class="lightbox-caption">Loading...</div>
@@ -652,8 +511,8 @@
         <!-- ==================== TEASER VIDEO SECTION ==================== -->
         <section class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Pre-Wedding Teaser</span>
-                <h2 class="section-title">Our Video</h2>
+                <span class="sub-title" id="videoSubTitle">Pre-Wedding Teaser</span>
+                <h2 class="section-title" id="videoTitle">Our Video</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-film"></i>
@@ -663,22 +522,19 @@
             
             <div class="video-widget-box reveal">
                 <div class="video-container">
-                    <!-- Sample royalty-free pre-wedding cinematic video placeholder -->
-                    <video controls poster="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=600">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    <video id="teaser-video" controls poster="">
+                        <source id="videoSource" src="" type="video/mp4">
                         Your browser does not support HTML5 video player.
                     </video>
                 </div>
             </div>
         </section>
 
-
-
         <!-- ==================== FAMILY CONTACTS ==================== -->
         <section class="section-padding container">
             <div class="section-header reveal">
-                <span class="sub-title">Bandhapeduka</span>
-                <h2 class="section-title">Family Contacts</h2>
+                <span class="sub-title" id="contactsSubTitle">Bandhapeduka</span>
+                <h2 class="section-title" id="contactsTitle">Family Contacts</h2>
                 <div class="deco-separator">
                     <span class="line"></span>
                     <i class="fa-solid fa-address-book"></i>
@@ -686,38 +542,23 @@
                 </div>
             </div>
             
-            <div class="contact-grid reveal">
-                <div class="contact-card-box">
-                    <h3 class="contact-name">Yusuf Malik</h3>
-                    <span class="contact-relation">Father of the Groom</span>
-                    <div class="contact-action-flex">
-                        <a href="tel:1234567890" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                        <a href="https://wa.me/1234567890" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
-                
-                <div class="contact-card-box">
-                    <h3 class="contact-name">Madhavan Variar</h3>
-                    <span class="contact-relation">Father of the Bride</span>
-                    <div class="contact-action-flex">
-                        <a href="tel:0987654321" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                        <a href="https://wa.me/0987654321" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
+            <div class="contact-grid reveal" id="contactsGrid">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
         <!-- ==================== FOOTER ==================== -->
         <footer class="footer-section">
-            <div class="footer-monogram">Z&A</div>
-            <div class="footer-names">Zayn & Aara</div>
-            <div class="footer-dhanyavadham">Dhanyavadham</div>
-            <p class="footer-copyright">&copy; 2026 Zayn & Aara. All Rights Reserved.</p>
+            <div class="footer-monogram" id="footerMonogram">Z&A</div>
+            <div class="footer-names" id="footerNames">Zayn & Aara</div>
+            <div class="footer-dhanyavadham" id="footerDhanyavadham">Dhanyavadham</div>
+            <p class="footer-copyright" id="footerCopyright">&copy; 2026 Zayn & Aara. All Rights Reserved.</p>
         </footer>
 
     </div>
 
     <!-- Custom Client Logic Script -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
