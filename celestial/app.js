@@ -209,15 +209,17 @@ function initUnboxingScene() {
   
   // Setup Camera (Adjust default z based on mobile)
   // Setup Camera (Adjust default z based on mobile)
-  console.log("canvas3dDiv dimensions:", canvas3dDiv.clientWidth, "x", canvas3dDiv.clientHeight);
-  camera = new THREE.PerspectiveCamera(45, canvas3dDiv.clientWidth / canvas3dDiv.clientHeight, 0.1, 100);
+  const width = canvas3dDiv.clientWidth || window.innerWidth;
+  const height = canvas3dDiv.clientHeight || window.innerHeight;
+  console.log("canvas3dDiv dimensions:", width, "x", height);
+  camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
   adjustCameraZoom();
   
   // Setup Renderer
   renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(canvas3dDiv.clientWidth, canvas3dDiv.clientHeight);
-  console.log("Renderer size set to:", canvas3dDiv.clientWidth, "x", canvas3dDiv.clientHeight);
+  renderer.setSize(width, height);
+  console.log("Renderer size set to:", width, "x", height);
   canvas3dDiv.appendChild(renderer.domElement);
   
   // Lighting
@@ -381,9 +383,11 @@ function adjustEnvelopeScale() {
 function handleResize() {
   const canvas3dDiv = document.getElementById('canvas3d');
   if (!camera || !renderer || !canvas3dDiv) return;
-  camera.aspect = canvas3dDiv.clientWidth / canvas3dDiv.clientHeight;
+  const width = canvas3dDiv.clientWidth || window.innerWidth;
+  const height = canvas3dDiv.clientHeight || window.innerHeight;
+  camera.aspect = width / height;
   camera.updateProjectionMatrix();
-  renderer.setSize(canvas3dDiv.clientWidth, canvas3dDiv.clientHeight);
+  renderer.setSize(width, height);
   adjustCameraZoom();
   adjustEnvelopeScale();
 }

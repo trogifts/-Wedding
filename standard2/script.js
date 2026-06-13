@@ -6,7 +6,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("standard2 template DOM Loaded - Processing data...");
-    
+
     // 1. Process date/time configurations
     processWeddingData();
 
@@ -30,297 +30,297 @@ document.addEventListener("DOMContentLoaded", () => {
    DATE & TIME PRE-PROCESSOR
    ========================================== */
 function processWeddingData() {
-  const data = window.weddingData;
-  if (!data || !data.event) return;
+    const data = window.weddingData;
+    if (!data || !data.event) return;
 
-  const dateVal = data.event.date || "2026-09-10";
-  const timeVal = data.event.time || "10:30 AM";
+    const dateVal = data.event.date || "2026-09-10";
+    const timeVal = data.event.time || "10:30 AM";
 
-  // Helper to convert 12h time ("10:30 AM") to 24h format ("10:30:00")
-  function parseTime24h(t) {
-    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
-    if (!match) return "10:30:00";
-    let hr = parseInt(match[1]);
-    const min = match[2];
-    const ampm = match[3].toUpperCase();
-    if (ampm === "PM" && hr < 12) hr += 12;
-    if (ampm === "AM" && hr === 12) hr = 0;
-    return `${String(hr).padStart(2, '0')}:${min}:00`;
-  }
+    // Helper to convert 12h time ("10:30 AM") to 24h format ("10:30:00")
+    function parseTime24h(t) {
+        const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+        if (!match) return "10:30:00";
+        let hr = parseInt(match[1]);
+        const min = match[2];
+        const ampm = match[3].toUpperCase();
+        if (ampm === "PM" && hr < 12) hr += 12;
+        if (ampm === "AM" && hr === 12) hr = 0;
+        return `${String(hr).padStart(2, '0')}:${min}:00`;
+    }
 
-  // Helper to format date to human readable form
-  function formatLocalDate(dStr) {
-    const dateObj = new Date(dStr + "T00:00:00");
-    if (isNaN(dateObj)) return "Thursday, September 10, 2026";
-    return dateObj.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  }
+    // Helper to format date to human readable form
+    function formatLocalDate(dStr) {
+        const dateObj = new Date(dStr + "T00:00:00");
+        if (isNaN(dateObj)) return "Thursday, September 10, 2026";
+        return dateObj.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
 
-  const time24h = parseTime24h(timeVal);
+    const time24h = parseTime24h(timeVal);
 
-  data.event.dateTimeString = `${dateVal}T${time24h}`;
-  data.event.dateFormatted = formatLocalDate(dateVal);
+    data.event.dateTimeString = `${dateVal}T${time24h}`;
+    data.event.dateFormatted = formatLocalDate(dateVal);
 }
 
 /* ==========================================
    DYNAMIC DATA RENDERING
    ========================================== */
 function renderData() {
-  const data = window.weddingData;
-  if (!data) return;
+    const data = window.weddingData;
+    if (!data) return;
 
-  // Title
-  const metaTitle = document.getElementById('metaTitle');
-  if (metaTitle) metaTitle.innerText = `Wedding Invitation of ${data.couple.groom} & ${data.couple.bride} - Traditional Kerala Wedding`;
+    // Title
+    const metaTitle = document.getElementById('metaTitle');
+    if (metaTitle) metaTitle.innerText = `Wedding Invitation of ${data.couple.groom} & ${data.couple.bride} - Traditional Kerala Wedding`;
 
-  // Cover Envelope
-  const envelopeLogo = document.getElementById('envelopeLogo');
-  if (envelopeLogo) envelopeLogo.innerText = data.couple.monogram;
+    // Cover Envelope
+    const envelopeLogo = document.getElementById('envelopeLogo');
+    if (envelopeLogo) envelopeLogo.innerText = data.couple.monogram;
 
-  const coverTitle = document.getElementById('coverTitle');
-  if (coverTitle) coverTitle.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+    const coverTitle = document.getElementById('coverTitle');
+    if (coverTitle) coverTitle.innerText = `${data.couple.groom} & ${data.couple.bride}`;
 
-  const coverAnnouncement = document.getElementById('coverAnnouncement');
-  if (coverAnnouncement) coverAnnouncement.innerText = data.labels.coverAnnouncement;
+    const coverAnnouncement = document.getElementById('coverAnnouncement');
+    if (coverAnnouncement) coverAnnouncement.innerText = data.labels.coverAnnouncement;
 
-  const guestGreetingDear = document.getElementById('guestGreetingDear');
-  if (guestGreetingDear) guestGreetingDear.innerText = data.labels.dear;
+    const guestGreetingDear = document.getElementById('guestGreetingDear');
+    if (guestGreetingDear) guestGreetingDear.innerText = data.labels.dear;
 
-  const guestInvitePhrase = document.getElementById('guestInvitePhrase');
-  if (guestInvitePhrase) guestInvitePhrase.innerText = data.labels.invitePhrase;
+    const guestInvitePhrase = document.getElementById('guestInvitePhrase');
+    if (guestInvitePhrase) guestInvitePhrase.innerText = data.labels.invitePhrase;
 
-  const openInviteButtonText = document.getElementById('openInviteButtonText');
-  if (openInviteButtonText) openInviteButtonText.innerText = data.labels.openInviteButton;
+    const openInviteButtonText = document.getElementById('openInviteButtonText');
+    if (openInviteButtonText) openInviteButtonText.innerText = data.labels.openInviteButton;
 
-  // Background Music URL
-  const bgMusic = document.getElementById('bg-music');
-  if (bgMusic) {
-    bgMusic.src = data.event.bgMusicUrl;
-    bgMusic.load();
-  }
+    // Background Music URL
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic) {
+        bgMusic.src = data.event.bgMusicUrl;
+        bgMusic.load();
+    }
 
-  // Floating WhatsApp Link
-  const whatsappFloatingLink = document.getElementById('whatsappFloatingLink');
-  if (whatsappFloatingLink) {
-    whatsappFloatingLink.href = `https://wa.me/${data.event.whatsappNumber}?text=Assalamu%20Alaikum!%20I%20have%20an%20inquiry%20regarding%20${data.couple.groom}%20and%20${data.couple.bride}'s%20wedding%20celebration.`;
-  }
+    // Floating WhatsApp Link
+    const whatsappFloatingLink = document.getElementById('whatsappFloatingLink');
+    if (whatsappFloatingLink) {
+        whatsappFloatingLink.href = `https://wa.me/${data.event.whatsappNumber}?text=Assalamu%20Alaikum!%20I%20have%20an%20inquiry%20regarding%20${data.couple.groom}%20and%20${data.couple.bride}'s%20wedding%20celebration.`;
+    }
 
-  // Header
-  const headerLogo = document.getElementById('headerLogo');
-  if (headerLogo) headerLogo.innerText = data.couple.monogram;
+    // Header
+    const headerLogo = document.getElementById('headerLogo');
+    if (headerLogo) headerLogo.innerText = data.couple.monogram;
 
-  const navLinkHome = document.getElementById('navLinkHome');
-  if (navLinkHome) navLinkHome.innerText = data.labels.home;
+    const navLinkHome = document.getElementById('navLinkHome');
+    if (navLinkHome) navLinkHome.innerText = data.labels.home;
 
-  const navLinkStory = document.getElementById('navLinkStory');
-  if (navLinkStory) navLinkStory.innerText = data.labels.story;
+    const navLinkStory = document.getElementById('navLinkStory');
+    if (navLinkStory) navLinkStory.innerText = data.labels.story;
 
-  const navLinkCeremonies = document.getElementById('navLinkCeremonies');
-  if (navLinkCeremonies) navLinkCeremonies.innerText = data.labels.ceremonies;
+    const navLinkCeremonies = document.getElementById('navLinkCeremonies');
+    if (navLinkCeremonies) navLinkCeremonies.innerText = data.labels.ceremonies;
 
-  const navLinkEvents = document.getElementById('navLinkEvents');
-  if (navLinkEvents) navLinkEvents.innerText = data.labels.events;
+    const navLinkEvents = document.getElementById('navLinkEvents');
+    if (navLinkEvents) navLinkEvents.innerText = data.labels.events;
 
-  // Hero Section
-  const heroWeddingHeader = document.getElementById('heroWeddingHeader');
-  if (heroWeddingHeader) heroWeddingHeader.innerText = data.labels.heroWeddingHeader;
+    // Hero Section
+    const heroWeddingHeader = document.getElementById('heroWeddingHeader');
+    if (heroWeddingHeader) heroWeddingHeader.innerText = data.labels.heroWeddingHeader;
 
-  const heroNames = document.getElementById('heroNames');
-  if (heroNames) heroNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+    const heroNames = document.getElementById('heroNames');
+    if (heroNames) heroNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
 
-  const heroSlogan = document.getElementById('heroSlogan');
-  if (heroSlogan) heroSlogan.innerText = data.labels.heroSlogan;
+    const heroSlogan = document.getElementById('heroSlogan');
+    if (heroSlogan) heroSlogan.innerText = data.labels.heroSlogan;
 
-  const heroDate = document.getElementById('heroDate');
-  if (heroDate) heroDate.innerText = data.event.dateFormatted;
+    const heroDate = document.getElementById('heroDate');
+    if (heroDate) heroDate.innerText = data.event.dateFormatted;
 
-  const heroKeralaDate = document.getElementById('heroKeralaDate');
-  if (heroKeralaDate) heroKeralaDate.innerText = data.event.keralaDate;
+    const heroKeralaDate = document.getElementById('heroKeralaDate');
+    if (heroKeralaDate) heroKeralaDate.innerText = data.event.keralaDate;
 
-  // Story Section headings
-  const storySubTitle = document.getElementById('storySubTitle');
-  if (storySubTitle) storySubTitle.innerText = data.labels.storySubTitle;
+    // Story Section headings
+    const storySubTitle = document.getElementById('storySubTitle');
+    if (storySubTitle) storySubTitle.innerText = data.labels.storySubTitle;
 
-  const storyTitle = document.getElementById('storyTitle');
-  if (storyTitle) storyTitle.innerText = data.labels.storyTitle;
+    const storyTitle = document.getElementById('storyTitle');
+    if (storyTitle) storyTitle.innerText = data.labels.storyTitle;
 
-  // Profiles
-  const groomRole = document.getElementById('groomRole');
-  if (groomRole) groomRole.innerText = data.labels.groomRole;
+    // Profiles
+    const groomRole = document.getElementById('groomRole');
+    if (groomRole) groomRole.innerText = data.labels.groomRole;
 
-  const groomName = document.getElementById('groomName');
-  if (groomName) groomName.innerText = data.couple.groomFull;
+    const groomName = document.getElementById('groomName');
+    if (groomName) groomName.innerText = data.couple.groomFull;
 
-  const groomBio = document.getElementById('groomBio');
-  if (groomBio) groomBio.innerText = data.coupleDetails.groomBio;
+    const groomBio = document.getElementById('groomBio');
+    if (groomBio) groomBio.innerText = data.coupleDetails.groomBio;
 
-  const brideRole = document.getElementById('brideRole');
-  if (brideRole) brideRole.innerText = data.labels.brideRole;
+    const brideRole = document.getElementById('brideRole');
+    if (brideRole) brideRole.innerText = data.labels.brideRole;
 
-  const brideName = document.getElementById('brideName');
-  if (brideName) brideName.innerText = data.couple.brideFull;
+    const brideName = document.getElementById('brideName');
+    if (brideName) brideName.innerText = data.couple.brideFull;
 
-  const brideBio = document.getElementById('brideBio');
-  if (brideBio) brideBio.innerText = data.coupleDetails.brideBio;
+    const brideBio = document.getElementById('brideBio');
+    if (brideBio) brideBio.innerText = data.coupleDetails.brideBio;
 
-  // Parents Section headings
-  const parentsSubTitle = document.getElementById('parentsSubTitle');
-  if (parentsSubTitle) parentsSubTitle.innerText = data.labels.parentsSubTitle;
+    // Parents Section headings
+    const parentsSubTitle = document.getElementById('parentsSubTitle');
+    if (parentsSubTitle) parentsSubTitle.innerText = data.labels.parentsSubTitle;
 
-  const parentsTitle = document.getElementById('parentsTitle');
-  if (parentsTitle) parentsTitle.innerText = data.labels.parentsTitle;
+    const parentsTitle = document.getElementById('parentsTitle');
+    if (parentsTitle) parentsTitle.innerText = data.labels.parentsTitle;
 
-  // Parents Details
-  const groomFamilyTitle = document.getElementById('groomFamilyTitle');
-  if (groomFamilyTitle) groomFamilyTitle.innerText = data.labels.groomFamilyTitle;
+    // Parents Details
+    const groomFamilyTitle = document.getElementById('groomFamilyTitle');
+    if (groomFamilyTitle) groomFamilyTitle.innerText = data.labels.groomFamilyTitle;
 
-  const groomFatherName = document.getElementById('groomFatherName');
-  if (groomFatherName) groomFatherName.innerText = data.coupleDetails.groomParentsFather;
+    const groomFatherName = document.getElementById('groomFatherName');
+    if (groomFatherName) groomFatherName.innerText = data.coupleDetails.groomParentsFather;
 
-  const groomFatherRole = document.getElementById('groomFatherRole');
-  if (groomFatherRole) groomFatherRole.innerText = data.coupleDetails.groomParentsFatherRole;
+    const groomFatherRole = document.getElementById('groomFatherRole');
+    if (groomFatherRole) groomFatherRole.innerText = data.coupleDetails.groomParentsFatherRole;
 
-  const groomMotherName = document.getElementById('groomMotherName');
-  if (groomMotherName) groomMotherName.innerText = data.coupleDetails.groomParentsMother;
+    const groomMotherName = document.getElementById('groomMotherName');
+    if (groomMotherName) groomMotherName.innerText = data.coupleDetails.groomParentsMother;
 
-  const groomMotherRole = document.getElementById('groomMotherRole');
-  if (groomMotherRole) groomMotherRole.innerText = data.coupleDetails.groomParentsMotherRole;
+    const groomMotherRole = document.getElementById('groomMotherRole');
+    if (groomMotherRole) groomMotherRole.innerText = data.coupleDetails.groomParentsMotherRole;
 
-  const brideFamilyTitle = document.getElementById('brideFamilyTitle');
-  if (brideFamilyTitle) brideFamilyTitle.innerText = data.labels.brideFamilyTitle;
+    const brideFamilyTitle = document.getElementById('brideFamilyTitle');
+    if (brideFamilyTitle) brideFamilyTitle.innerText = data.labels.brideFamilyTitle;
 
-  const brideFatherName = document.getElementById('brideFatherName');
-  if (brideFatherName) brideFatherName.innerText = data.coupleDetails.brideParentsFather;
+    const brideFatherName = document.getElementById('brideFatherName');
+    if (brideFatherName) brideFatherName.innerText = data.coupleDetails.brideParentsFather;
 
-  const brideFatherRole = document.getElementById('brideFatherRole');
-  if (brideFatherRole) brideFatherRole.innerText = data.coupleDetails.brideParentsFatherRole;
+    const brideFatherRole = document.getElementById('brideFatherRole');
+    if (brideFatherRole) brideFatherRole.innerText = data.coupleDetails.brideParentsFatherRole;
 
-  const brideMotherName = document.getElementById('brideMotherName');
-  if (brideMotherName) brideMotherName.innerText = data.coupleDetails.brideParentsMother;
+    const brideMotherName = document.getElementById('brideMotherName');
+    if (brideMotherName) brideMotherName.innerText = data.coupleDetails.brideParentsMother;
 
-  const brideMotherRole = document.getElementById('brideMotherRole');
-  if (brideMotherRole) brideMotherRole.innerText = data.coupleDetails.brideParentsMotherRole;
+    const brideMotherRole = document.getElementById('brideMotherRole');
+    if (brideMotherRole) brideMotherRole.innerText = data.coupleDetails.brideParentsMotherRole;
 
-  // Nilavilakku Section headings
-  const lampSubTitle = document.getElementById('lampSubTitle');
-  if (lampSubTitle) lampSubTitle.innerText = data.labels.lampSubTitle;
+    // Nilavilakku Section headings
+    const lampSubTitle = document.getElementById('lampSubTitle');
+    if (lampSubTitle) lampSubTitle.innerText = data.labels.lampSubTitle;
 
-  const lampTitle = document.getElementById('lampTitle');
-  if (lampTitle) lampTitle.innerText = data.labels.lampTitle;
+    const lampTitle = document.getElementById('lampTitle');
+    if (lampTitle) lampTitle.innerText = data.labels.lampTitle;
 
-  const lampInstruction = document.getElementById('lampInstruction');
-  if (lampInstruction) lampInstruction.innerText = data.labels.lampInstruction;
+    const lampInstruction = document.getElementById('lampInstruction');
+    if (lampInstruction) lampInstruction.innerText = data.labels.lampInstruction;
 
-  const lampBlessingTitle = document.getElementById('lampBlessingTitle');
-  if (lampBlessingTitle) lampBlessingTitle.innerText = data.interactiveCeremonies.lampBlessingTitle;
+    const lampBlessingTitle = document.getElementById('lampBlessingTitle');
+    if (lampBlessingTitle) lampBlessingTitle.innerText = data.interactiveCeremonies.lampBlessingTitle;
 
-  const lampBlessingText = document.getElementById('lampBlessingText');
-  if (lampBlessingText) lampBlessingText.innerText = data.interactiveCeremonies.lampBlessingText;
+    const lampBlessingText = document.getElementById('lampBlessingText');
+    if (lampBlessingText) lampBlessingText.innerText = data.interactiveCeremonies.lampBlessingText;
 
-  // Flower Section headings
-  const flowerSubTitle = document.getElementById('flowerSubTitle');
-  if (flowerSubTitle) flowerSubTitle.innerText = data.labels.flowerSubTitle;
+    // Flower Section headings
+    const flowerSubTitle = document.getElementById('flowerSubTitle');
+    if (flowerSubTitle) flowerSubTitle.innerText = data.labels.flowerSubTitle;
 
-  const flowerTitle = document.getElementById('flowerTitle');
-  if (flowerTitle) flowerTitle.innerText = data.labels.flowerTitle;
+    const flowerTitle = document.getElementById('flowerTitle');
+    if (flowerTitle) flowerTitle.innerText = data.labels.flowerTitle;
 
-  const flowerInstruction = document.getElementById('flowerInstruction');
-  if (flowerInstruction) flowerInstruction.innerText = data.labels.flowerInstruction;
+    const flowerInstruction = document.getElementById('flowerInstruction');
+    if (flowerInstruction) flowerInstruction.innerText = data.labels.flowerInstruction;
 
-  const flowerButtonLabel = document.getElementById('flowerButtonLabel');
-  if (flowerButtonLabel) flowerButtonLabel.innerText = data.labels.flowerButtonLabel;
+    const flowerButtonLabel = document.getElementById('flowerButtonLabel');
+    if (flowerButtonLabel) flowerButtonLabel.innerText = data.labels.flowerButtonLabel;
 
-  // Memory Tree Section headings
-  const treeSubTitle = document.getElementById('treeSubTitle');
-  if (treeSubTitle) treeSubTitle.innerText = data.labels.treeSubTitle;
+    // Memory Tree Section headings
+    const treeSubTitle = document.getElementById('treeSubTitle');
+    if (treeSubTitle) treeSubTitle.innerText = data.labels.treeSubTitle;
 
-  const treeTitle = document.getElementById('treeTitle');
-  if (treeTitle) treeTitle.innerText = data.labels.treeTitle;
+    const treeTitle = document.getElementById('treeTitle');
+    if (treeTitle) treeTitle.innerText = data.labels.treeTitle;
 
-  const treeInstruction = document.getElementById('treeInstruction');
-  if (treeInstruction) treeInstruction.innerText = data.labels.treeInstruction;
+    const treeInstruction = document.getElementById('treeInstruction');
+    if (treeInstruction) treeInstruction.innerText = data.labels.treeInstruction;
 
-  // Quiz Section headings
-  const quizSubTitle = document.getElementById('quizSubTitle');
-  if (quizSubTitle) quizSubTitle.innerText = data.labels.quizSubTitle;
+    // Quiz Section headings
+    const quizSubTitle = document.getElementById('quizSubTitle');
+    if (quizSubTitle) quizSubTitle.innerText = data.labels.quizSubTitle;
 
-  const quizTitle = document.getElementById('quizTitle');
-  if (quizTitle) quizTitle.innerText = data.labels.quizTitle;
+    const quizTitle = document.getElementById('quizTitle');
+    if (quizTitle) quizTitle.innerText = data.labels.quizTitle;
 
-  // Events Section headings
-  const eventsSubTitle = document.getElementById('eventsSubTitle');
-  if (eventsSubTitle) eventsSubTitle.innerText = data.labels.eventsSubTitle;
+    // Events Section headings
+    const eventsSubTitle = document.getElementById('eventsSubTitle');
+    if (eventsSubTitle) eventsSubTitle.innerText = data.labels.eventsSubTitle;
 
-  const eventsTitle = document.getElementById('eventsTitle');
-  if (eventsTitle) eventsTitle.innerText = data.labels.eventsTitle;
+    const eventsTitle = document.getElementById('eventsTitle');
+    if (eventsTitle) eventsTitle.innerText = data.labels.eventsTitle;
 
-  // Countdown heading
-  const countdownHeading = document.getElementById('countdownHeading');
-  if (countdownHeading) countdownHeading.innerText = data.labels.countdownHeading;
+    // Countdown heading
+    const countdownHeading = document.getElementById('countdownHeading');
+    if (countdownHeading) countdownHeading.innerText = data.labels.countdownHeading;
 
-  const daysLabel = document.getElementById('daysLabel');
-  if (daysLabel) daysLabel.innerText = data.labels.days;
+    const daysLabel = document.getElementById('daysLabel');
+    if (daysLabel) daysLabel.innerText = data.labels.days;
 
-  const hoursLabel = document.getElementById('hoursLabel');
-  if (hoursLabel) hoursLabel.innerText = data.labels.hours;
+    const hoursLabel = document.getElementById('hoursLabel');
+    if (hoursLabel) hoursLabel.innerText = data.labels.hours;
 
-  const minutesLabel = document.getElementById('minutesLabel');
-  if (minutesLabel) minutesLabel.innerText = data.labels.minutes;
+    const minutesLabel = document.getElementById('minutesLabel');
+    if (minutesLabel) minutesLabel.innerText = data.labels.minutes;
 
-  const secondsLabel = document.getElementById('secondsLabel');
-  if (secondsLabel) secondsLabel.innerText = data.labels.seconds;
+    const secondsLabel = document.getElementById('secondsLabel');
+    if (secondsLabel) secondsLabel.innerText = data.labels.seconds;
 
-  // Gallery Section headings
-  const gallerySubTitle = document.getElementById('gallerySubTitle');
-  if (gallerySubTitle) gallerySubTitle.innerText = data.labels.gallerySubTitle;
+    // Gallery Section headings
+    const gallerySubTitle = document.getElementById('gallerySubTitle');
+    if (gallerySubTitle) gallerySubTitle.innerText = data.labels.gallerySubTitle;
 
-  const galleryTitle = document.getElementById('galleryTitle');
-  if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
+    const galleryTitle = document.getElementById('galleryTitle');
+    if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
 
-  // Video Section headings
-  const videoSubTitle = document.getElementById('videoSubTitle');
-  if (videoSubTitle) videoSubTitle.innerText = data.labels.videoSubTitle;
+    // Video Section headings
+    const videoSubTitle = document.getElementById('videoSubTitle');
+    if (videoSubTitle) videoSubTitle.innerText = data.labels.videoSubTitle;
 
-  const videoTitle = document.getElementById('videoTitle');
-  if (videoTitle) videoTitle.innerText = data.labels.videoTitle;
+    const videoTitle = document.getElementById('videoTitle');
+    if (videoTitle) videoTitle.innerText = data.labels.videoTitle;
 
-  // Video source loading
-  const teaserVideo = document.getElementById('teaser-video');
-  const videoSource = document.getElementById('videoSource');
-  if (teaserVideo && videoSource) {
-    if (data.event.teaserVideoPoster) teaserVideo.poster = data.event.teaserVideoPoster;
-    videoSource.src = data.event.teaserVideoUrl;
-    teaserVideo.load();
-  }
+    // Video source loading
+    const teaserVideo = document.getElementById('teaser-video');
+    const videoSource = document.getElementById('videoSource');
+    if (teaserVideo && videoSource) {
+        if (data.event.teaserVideoPoster) teaserVideo.poster = data.event.teaserVideoPoster;
+        videoSource.src = data.event.teaserVideoUrl;
+        teaserVideo.load();
+    }
 
-  // Contacts Section headings
-  const contactsSubTitle = document.getElementById('contactsSubTitle');
-  if (contactsSubTitle) contactsSubTitle.innerText = data.labels.contactsSubTitle;
+    // Contacts Section headings
+    const contactsSubTitle = document.getElementById('contactsSubTitle');
+    if (contactsSubTitle) contactsSubTitle.innerText = data.labels.contactsSubTitle;
 
-  const contactsTitle = document.getElementById('contactsTitle');
-  if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
+    const contactsTitle = document.getElementById('contactsTitle');
+    if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
 
-  // Footer Details
-  const footerMonogram = document.getElementById('footerMonogram');
-  if (footerMonogram) footerMonogram.innerText = data.couple.monogram;
+    // Footer Details
+    const footerMonogram = document.getElementById('footerMonogram');
+    if (footerMonogram) footerMonogram.innerText = data.couple.monogram;
 
-  const footerNames = document.getElementById('footerNames');
-  if (footerNames) footerNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+    const footerNames = document.getElementById('footerNames');
+    if (footerNames) footerNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
 
-  const footerDhanyavadham = document.getElementById('footerDhanyavadham');
-  if (footerDhanyavadham) footerDhanyavadham.innerText = data.couple.tagline;
+    const footerDhanyavadham = document.getElementById('footerDhanyavadham');
+    if (footerDhanyavadham) footerDhanyavadham.innerText = data.couple.tagline;
 
-  const footerCopyright = document.getElementById('footerCopyright');
-  if (footerCopyright) footerCopyright.innerText = `© 2026 ${data.couple.groom} & ${data.couple.bride}. All Rights Reserved.`;
+    const footerCopyright = document.getElementById('footerCopyright');
+    if (footerCopyright) footerCopyright.innerText = `© 2026 ${data.couple.groom} & ${data.couple.bride}. All Rights Reserved.`;
 
-  // Render Itinerary Events
-  const eventsListContainer = document.getElementById('eventsListContainer');
-  if (eventsListContainer && data.itinerary) {
-    eventsListContainer.innerHTML = data.itinerary.map(item => `
+    // Render Itinerary Events
+    const eventsListContainer = document.getElementById('eventsListContainer');
+    if (eventsListContainer && data.itinerary) {
+        eventsListContainer.innerHTML = data.itinerary.map(item => `
       <div class="event-card reveal">
           <div class="event-top-banner"></div>
           <div class="event-content">
@@ -348,12 +348,12 @@ function renderData() {
           </div>
       </div>
     `).join('');
-  }
+    }
 
-  // Render Gallery items
-  const galleryGrid = document.getElementById('galleryGrid');
-  if (galleryGrid && data.gallery) {
-    galleryGrid.innerHTML = data.gallery.map((item, index) => `
+    // Render Gallery items
+    const galleryGrid = document.getElementById('galleryGrid');
+    if (galleryGrid && data.gallery) {
+        galleryGrid.innerHTML = data.gallery.map((item, index) => `
       <div class="gallery-card" onclick="openLightbox(${index})">
           <img src="${item.src}" alt="${item.title}">
           <div class="gallery-card-overlay">
@@ -361,12 +361,12 @@ function renderData() {
           </div>
       </div>
     `).join('');
-  }
+    }
 
-  // Render Contacts
-  const contactsGrid = document.getElementById('contactsGrid');
-  if (contactsGrid && data.contacts) {
-    contactsGrid.innerHTML = data.contacts.map(contact => `
+    // Render Contacts
+    const contactsGrid = document.getElementById('contactsGrid');
+    if (contactsGrid && data.contacts) {
+        contactsGrid.innerHTML = data.contacts.map(contact => `
       <div class="contact-card-box">
           <h3 class="contact-name">${contact.name}</h3>
           <span class="contact-relation">${contact.relation}</span>
@@ -376,7 +376,7 @@ function renderData() {
           </div>
       </div>
     `).join('');
-  }
+    }
 }
 
 /* ==========================================
@@ -501,11 +501,11 @@ function initScrollProgress() {
 
     // Anchor smooth scrolling
     navLinks.forEach(link => {
-        link.addEventListener("click", function(e) {
+        link.addEventListener("click", function (e) {
             e.preventDefault();
             const targetId = this.getAttribute("href");
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection && header) {
                 const headerHeight = header.offsetHeight;
                 const targetPos = targetSection.offsetTop - headerHeight + 5;
@@ -525,7 +525,7 @@ function initNilavilakkuCeremony() {
     const wickSpots = document.querySelectorAll(".wick-spot");
     const lampBlessingCard = document.getElementById("lamp-blessing-card");
     const lampBox = document.querySelector(".lamp-ceremony-box");
-    
+
     if (!lampBox || wickSpots.length === 0) return;
 
     let hasStartedLighting = false;
@@ -543,14 +543,14 @@ function initNilavilakkuCeremony() {
 
     function lightWicksSequentially() {
         let currentWickIdx = 0;
-        
+
         function lightNext() {
             if (currentWickIdx < wickSpots.length) {
                 const wick = wickSpots[currentWickIdx];
                 wick.classList.add("lit");
                 showFlowerToast("Auspicious flame lit! 🕯️");
                 currentWickIdx++;
-                
+
                 if (currentWickIdx === wickSpots.length) {
                     setTimeout(() => {
                         if (lampBlessingCard) lampBlessingCard.style.display = "block";
@@ -562,7 +562,7 @@ function initNilavilakkuCeremony() {
                 }
             }
         }
-        
+
         setTimeout(lightNext, 500);
     }
 }
@@ -578,7 +578,7 @@ function initFlowerShower() {
         setTimeout(() => {
             triggerFlowerShower(6);
         }, 3000);
-        
+
         flowerInterval = setInterval(() => {
             triggerFlowerShower(4);
         }, 5000);
@@ -593,7 +593,7 @@ function initFlowerShower() {
                 if (entry.isIntersecting && !hasTriggeredScrollShower) {
                     hasTriggeredScrollShower = true;
                     triggerFlowerShower(20);
-                    
+
                     const data = window.weddingData;
                     const blessingSayings = (data && data.interactiveCeremonies && data.interactiveCeremonies.flowerBlessingSayings) || [
                         "May their life be as fragrant as jasmine! 🌸",
@@ -662,7 +662,7 @@ function initMemoryTree() {
     const memoryRevealBox = document.getElementById("memory-reveal-box");
     const memoryRevealTitle = document.getElementById("memory-reveal-title");
     const memoryRevealDesc = document.getElementById("memory-reveal-desc");
-    
+
     if (treeLeaves.length === 0) return;
 
     let activeLeafIdx = 0;
@@ -705,7 +705,7 @@ function initMemoryTree() {
                 if (entry.isIntersecting && !hasStartedSlideshow) {
                     hasStartedSlideshow = true;
                     showLeafFact(0);
-                    
+
                     treeInterval = setInterval(() => {
                         activeLeafIdx = (activeLeafIdx + 1) % treeLeaves.length;
                         showLeafFact(activeLeafIdx);

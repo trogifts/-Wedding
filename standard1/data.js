@@ -176,3 +176,4 @@ window.weddingData = {
     contactsWhatsappLabel: "WhatsApp Chat"
   }
 };
+};

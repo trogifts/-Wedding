@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wedding Atelier — Your Preview Suite</title>
-    <meta name="description" content="Explore and preview your exclusive collection of custom digital wedding invitations.">
+    <title>Premium Wedding Invitation Templates</title>
+    <meta name="description" content="Explore and preview our exclusive collection of luxury digital wedding invitations.">
     
-    <!-- Google Fonts: Editorial Serif & Minimalist Sans -->
+    <!-- Google Fonts: Editorial & Modern Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -29,11 +29,11 @@
             --text-muted: #8e94a5;       /* Stellar Slate */
             --text-gold: #dfb07a;        
             
-            --glass-bg: rgba(13, 16, 27, 0.45);
-            --glass-border: rgba(223, 176, 122, 0.12);
+            --glass-bg: rgba(13, 16, 27, 0.65);
+            --glass-border: rgba(223, 176, 122, 0.15);
             --glass-border-hover: rgba(223, 176, 122, 0.45);
-            --shadow-glow: 0 0 25px rgba(223, 176, 122, 0.05);
-            --shadow-glow-intense: 0 0 40px rgba(223, 176, 122, 0.15);
+            --shadow-glow: 0 0 20px rgba(223, 176, 122, 0.08);
+            --shadow-glow-intense: 0 0 35px rgba(223, 176, 122, 0.18);
             
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Montserrat', sans-serif;
@@ -69,9 +69,9 @@
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(223, 176, 122, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 20% 30%, rgba(223, 176, 122, 0.03) 0%, transparent 40%),
                 radial-gradient(circle at 80% 70%, rgba(107, 29, 47, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(13, 16, 27, 0.6) 0%, transparent 100%);
+                radial-gradient(circle at 50% 50%, rgba(13, 16, 27, 0.5) 0%, transparent 100%);
             z-index: -2;
             pointer-events: none;
             animation: nebulaDrift 60s infinite alternate ease-in-out;
@@ -98,8 +98,8 @@
            ========================================================================== */
         header {
             text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 900px;
+            padding: 60px 20px 40px;
+            max-width: 800px;
             width: 100%;
             position: relative;
             z-index: 5;
@@ -107,11 +107,11 @@
 
         .header-logo {
             font-family: var(--font-serif);
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 7px;
+            letter-spacing: 6px;
             color: var(--color-gold);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -120,7 +120,7 @@
 
         .header-logo::before, .header-logo::after {
             content: '';
-            width: 40px;
+            width: 30px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--color-gold));
         }
@@ -131,10 +131,10 @@
 
         .main-title {
             font-family: var(--font-serif);
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 300;
             line-height: 1.1;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             letter-spacing: 1px;
         }
 
@@ -148,25 +148,12 @@
         }
 
         .subtitle {
-            font-family: var(--font-serif);
-            font-size: 1.3rem;
-            font-style: italic;
+            font-size: 0.95rem;
             font-weight: 300;
             color: var(--text-muted);
-            letter-spacing: 1px;
-            max-width: 720px;
+            letter-spacing: 2.5px;
+            max-width: 600px;
             margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .studio-desc {
-            font-size: 0.9rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 1.5px;
-            max-width: 650px;
-            margin: 20px auto 0;
-            line-height: 1.8;
         }
 
         /* ==========================================================================
@@ -176,8 +163,8 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 30px 0 55px;
+            gap: 12px;
+            margin: 20px 0 45px;
             z-index: 5;
         }
 
@@ -185,7 +172,7 @@
             background: rgba(13, 16, 27, 0.4);
             border: 1px solid var(--glass-border);
             color: var(--text-muted);
-            padding: 12px 28px;
+            padding: 10px 24px;
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -206,7 +193,7 @@
             border-color: var(--color-gold);
             color: var(--bg-darker);
             font-weight: 600;
-            box-shadow: 0 4px 20px rgba(223, 176, 122, 0.3);
+            box-shadow: 0 4px 15px rgba(223, 176, 122, 0.3);
         }
 
         /* ==========================================================================
@@ -214,12 +201,12 @@
            ========================================================================== */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
             width: 100%;
             max-width: 1200px;
             padding: 0 24px;
-            margin-bottom: 100px;
+            margin-bottom: 80px;
             z-index: 5;
         }
 
@@ -227,7 +214,7 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 16px;
-            padding: 45px 35px;
+            padding: 40px 30px;
             text-align: center;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
             transition: var(--transition-smooth);
@@ -236,7 +223,7 @@
             justify-content: space-between;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
         }
 
         /* Glow Aura behind card */
@@ -247,7 +234,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(223, 176, 122, 0.04) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(223, 176, 122, 0.03) 0%, transparent 70%);
             opacity: 0;
             transition: var(--transition-smooth);
             pointer-events: none;
@@ -269,7 +256,7 @@
         .template-card:hover {
             transform: translateY(-8px);
             border-color: var(--glass-border-hover);
-            box-shadow: var(--shadow-glow-intense), 0 20px 45px rgba(0, 0, 0, 0.6);
+            box-shadow: var(--shadow-glow-intense), 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         .template-card:hover::after {
@@ -283,9 +270,9 @@
         /* Card Icon */
         .card-icon-wrapper {
             position: relative;
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 28px;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 25px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -298,44 +285,44 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            background: rgba(223, 176, 122, 0.04);
-            border: 1px solid rgba(223, 176, 122, 0.08);
+            background: rgba(223, 176, 122, 0.05);
+            border: 1px solid rgba(223, 176, 122, 0.1);
             transition: var(--transition-smooth);
         }
 
         .card-icon {
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: var(--color-gold);
             z-index: 2;
             transition: var(--transition-smooth);
         }
 
         .template-card:hover .card-icon-bg {
-            background: rgba(223, 176, 122, 0.1);
-            border-color: rgba(223, 176, 122, 0.35);
+            background: rgba(223, 176, 122, 0.12);
+            border-color: rgba(223, 176, 122, 0.4);
             transform: scale(1.1);
             box-shadow: var(--shadow-glow);
         }
 
         .template-card:hover .card-icon {
-            transform: scale(1.12) rotate(4deg);
+            transform: scale(1.15) rotate(5deg);
             color: var(--color-gold-light);
         }
 
         /* Card Text */
         .card-title {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--text-main);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
             font-weight: 400;
         }
 
         .card-desc {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             line-height: 1.7;
             flex-grow: 1;
         }
@@ -347,7 +334,7 @@
             background: transparent;
             color: var(--color-gold);
             border: 1px solid var(--color-gold);
-            padding: 14px 30px;
+            padding: 12px 28px;
             border-radius: 6px;
             font-weight: 500;
             font-size: 0.8rem;
@@ -363,7 +350,7 @@
             background: var(--color-gold);
             color: var(--bg-darker);
             font-weight: 600;
-            box-shadow: 0 6px 22px rgba(223, 176, 122, 0.35);
+            box-shadow: 0 6px 20px rgba(223, 176, 122, 0.35);
             transform: translateY(-2px);
         }
 
@@ -397,7 +384,7 @@
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 70px 20px 50px;
+            padding: 60px 20px 40px;
             width: 100%;
             border-top: 1px solid var(--glass-border);
             background: var(--bg-darker);
@@ -407,19 +394,16 @@
 
         .footer-logo {
             font-family: var(--font-serif);
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--color-gold);
-            letter-spacing: 5px;
-            margin-bottom: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
         }
 
         .footer-copy {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            letter-spacing: 1.5px;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
+            letter-spacing: 1px;
         }
 
         /* ==========================================================================
@@ -427,25 +411,26 @@
            ========================================================================== */
         @media (max-width: 768px) {
             header {
-                padding: 60px 15px 35px;
+                padding: 40px 15px 30px;
             }
 
             .main-title {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
 
             .subtitle {
-                font-size: 1.1rem;
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
             }
 
             .portal-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
+                gap: 20px;
                 padding: 0 15px;
             }
 
             .template-card {
-                padding: 35px 25px;
+                padding: 30px 20px;
             }
         }
     </style>
@@ -456,45 +441,44 @@
     <canvas id="starfield-canvas"></canvas>
 
     <header>
-        <div class="header-logo">The Wedding Atelier</div>
-        <h1 class="main-title">Your Custom <span class="gold-gradient-text">Preview Suite</span></h1>
-        <p class="subtitle">Welcome to your private invitation design studio.</p>
-        <p class="studio-desc">We have curated a collection of bespoke digital invitations for your celebration. Explore the concepts below, test their interactive details, and choose the perfect visual style for your wedding.</p>
+        <div class="header-logo">Antigravity Collection</div>
+        <h1 class="main-title">Premium <span class="gold-gradient-text">Wedding Invitations</span></h1>
+        <p class="subtitle">Experience our curated portfolio of hand-crafted digital invite templates.</p>
     </header>
 
     <!-- Interactive Category Filter Tabs -->
     <div class="filter-container">
-        <button class="filter-btn active" data-category="all">All Concepts</button>
+        <button class="filter-btn active" data-category="all">All Styles</button>
         <button class="filter-btn" data-category="luxury">Celestial & Luxury</button>
-        <button class="filter-btn" data-category="traditional">Traditional Heritage</button>
+        <button class="filter-btn" data-category="traditional">Traditional & Cultural</button>
         <button class="filter-btn" data-category="minimalist">Modern Minimalist</button>
     </div>
 
     <!-- Templates Portal Catalog -->
     <div class="portal-grid" id="portal-grid">
-        <!-- Celestial Luxury (Luxury) -->
-        <div class="template-card featured" data-tags="luxury">
+        <!-- Kerala Style (Traditional) -->
+        <div class="template-card featured" data-tags="traditional">
             <div class="card-border-top"></div>
-            <span class="badge">Atelier Choice</span>
+            <span class="badge">Featured</span>
+            <div class="card-icon-wrapper">
+                <div class="card-icon-bg"></div>
+                <div class="card-icon"><i class="fa-solid fa-om"></i></div>
+            </div>
+            <h2 class="card-title">Kerala Style</h2>
+            <p class="card-desc">Traditional Kasavu cream & gold theme featuring automated oil lamp lighting, falling jasmine flower showers, and Kochi backwater aesthetics.</p>
+            <a href="kerala/index.html" class="btn-open">View Template</a>
+        </div>
+
+        <!-- Celestial Luxury (Luxury) -->
+        <div class="template-card" data-tags="luxury">
+            <div class="card-border-top"></div>
             <div class="card-icon-wrapper">
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-moon"></i></div>
             </div>
             <h2 class="card-title">Celestial Luxury</h2>
-            <p class="card-desc">An immersive midnight sky experience. Features a breathtaking 3D wax seal unboxing flow, rich obsidian materials, and a sophisticated editorial timeline map.</p>
-            <a href="celestial/index.html" class="btn-open">Live Preview</a>
-        </div>
-
-        <!-- Kerala Style (Traditional) -->
-        <div class="template-card" data-tags="traditional">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-om"></i></div>
-            </div>
-            <h2 class="card-title">Kerala Heritage</h2>
-            <p class="card-desc">A beautiful tribute to cultural roots. Hand-woven gold Kasavu borders paired with automated Nilavilakku lighting wicks, falling jasmine showers, and backwater aesthetics.</p>
-            <a href="kerala/index.html" class="btn-open">Live Preview</a>
+            <p class="card-desc">Dark-mode editorial design featuring cosmic midnight blue, luxury liquid gold elements, wax seal unboxing, and sophisticated star schedule maps.</p>
+            <a href="celestial/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Rose Gold (Minimalist) -->
@@ -504,9 +488,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
             </div>
-            <h2 class="card-title">Rose Gold Contemporary</h2>
-            <p class="card-desc">Refined modern romance. Combines delicate metallic rose-gold trims with premium editorial serif typography and soft scroll-reveal fading animations.</p>
-            <a href="rose-gold/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Rose Gold</h2>
+            <p class="card-desc">Elegant contemporary layout featuring delicate rose gold trims, premium editorial serif typography, and soft scroll-reveal fading animations.</p>
+            <a href="rose-gold/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Standard 2 (Traditional) -->
@@ -516,9 +500,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
             </div>
-            <h2 class="card-title">Standard Heritage</h2>
-            <p class="card-desc">Traditional temple styling with automated golden oil lamp lighting ceremonies, family slideshow galleries, and clean facts checklists.</p>
-            <a href="standard2/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Standard 2</h2>
+            <p class="card-desc">Traditional temple layout with automated wick lighting, memory tree slide loops, and clean fact checklist lists.</p>
+            <a href="standard2/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Standard 3 (Luxury) -->
@@ -528,9 +512,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
             </div>
-            <h2 class="card-title">Watercolor Elegance</h2>
-            <p class="card-desc">Chic artistic luxury design. Beautiful soft pastel watercolor cards detailed with background music, and floating canvas butterflies.</p>
-            <a href="standard3/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Standard 3</h2>
+            <p class="card-desc">Chic luxury design featuring pastel watercolor boards, interactive floating canvas butterflies, and fluid typography headers.</p>
+            <a href="standard3/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Standard 4 (Minimalist) -->
@@ -540,9 +524,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-feather"></i></div>
             </div>
-            <h2 class="card-title">Stardust Minimalist</h2>
-            <p class="card-desc">Sleek dark layout with clean borders, automated background shooting stars, a starfield gallery, and smooth mobile contacts.</p>
-            <a href="standard4/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Standard 4</h2>
+            <p class="card-desc">Sleek modern minimalist layout featuring background meteor showers, star-hunting timelines, and fluid contacts.</p>
+            <a href="standard4/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Standard 1 (Minimalist) -->
@@ -552,9 +536,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
             </div>
-            <h2 class="card-title">Standard Editorial</h2>
-            <p class="card-desc">Sophisticated classic card format incorporating a live background stardust engine, simple audio controller, and clean RSVP styling.</p>
-            <a href="standard1/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Standard 1</h2>
+            <p class="card-desc">Elegant standard card template incorporating background stardust particle engines, sound toggles, and responsive drawers.</p>
+            <a href="standard1/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Basic 1 (Minimalist) -->
@@ -564,9 +548,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
             </div>
-            <h2 class="card-title">Classic Slate</h2>
-            <p class="card-desc">High-contrast classic digital wedding card with responsive layout adjustments, neat spacing, and clean mobile menus.</p>
-            <a href="basic1/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Basic 1</h2>
+            <p class="card-desc">High-contrast classic wedding card layout with simple mobile drawer navigation links and static information blocks.</p>
+            <a href="basic1/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Basic 2 (Minimalist) -->
@@ -576,9 +560,9 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
             </div>
-            <h2 class="card-title">Minimal Modern</h2>
-            <p class="card-desc">A structured layout focusing on typography and grid symmetry. Excellent for a high-fashion, print-like digital card.</p>
-            <a href="basic2/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Basic 2</h2>
+            <p class="card-desc">Minimalist layout with clean alignments, mobile drawer navigation menus, and clean slate margins.</p>
+            <a href="basic2/index.html" class="btn-open">View Template</a>
         </div>
 
         <!-- Basic 3 (Minimalist) -->
@@ -588,15 +572,15 @@
                 <div class="card-icon-bg"></div>
                 <div class="card-icon"><i class="fa-solid fa-ring"></i></div>
             </div>
-            <h2 class="card-title">Passport Ticket</h2>
-            <p class="card-desc">Whimsical boarding-pass design concept complete with airline ticket themes, guest name greeting lines, and itinerary blocks.</p>
-            <a href="basic3/index.html" class="btn-open">Live Preview</a>
+            <h2 class="card-title">Basic 3</h2>
+            <p class="card-desc">Charming flight passport boarding layout with dynamic custom guest greeting and static console directories.</p>
+            <a href="basic3/index.html" class="btn-open">View Template</a>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">✦ The Atelier ✦</div>
-        <div class="footer-copy">Once you have selected your preferred design concept, please share your selection along with your personalized details to begin customization.</div>
+        <div class="footer-logo">✦ A ✦</div>
+        <div class="footer-copy">&copy; 2026 Antigravity. All Rights Reserved.</div>
     </footer>
 
     <!-- Script logic for filtering & animated background starfield -->
