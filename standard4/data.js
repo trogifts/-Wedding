@@ -97,7 +97,6 @@ window.weddingData = {
       { title: "Unending Wonders", quote: "Wishing you a lifetime of stargazing, hand-holding, and deep galactic laughter." },
       { title: "Divine Guidance", quote: "May the light of a thousand stars always illuminate your paths during darker phases." }
     ],
-    constellationGameQuote: "In all the universes, throughout all the timelines, our paths were destined to meet.",
     shootingStarWishes: [
       "Your wish has been carried to the stars.",
       "Thank you for sending your blessings.",
@@ -145,8 +144,6 @@ window.weddingData = {
     galleryTitle: "Celestial Gallery",
     interactiveSubTitle: "Interact with the Cosmos",
     interactiveTitle: "Celestial Blessings",
-    gameSubTitle: "Connect the Stars",
-    gameTitle: "Constellation Creator",
     contactsSubTitle: "Reach Our Orbit",
     contactsTitle: "Contact & Help",
     contactsCallLabel: "Call",

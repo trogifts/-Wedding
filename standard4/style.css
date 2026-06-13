@@ -1206,69 +1206,7 @@ a {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ==========================================================================
-   11. SPECIAL INTERACTIVE FEATURE 2: CONSTELLATION CREATOR GAME
-   ========================================================================== */
-.constellation-game-box {
-    background-color: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: 30px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    backdrop-filter: blur(10px);
-}
 
-.game-canvas-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    height: 320px;
-    background-color: rgba(10, 14, 26, 0.8);
-    border: 1.5px dashed rgba(245, 158, 11, 0.3);
-    border-radius: 8px;
-    margin: 20px 0;
-    overflow: hidden;
-    touch-action: none; /* Prevent browser scrolling on drag */
-}
-
-.constellation-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-
-.constellation-quote-bubble {
-    display: none;
-    background-color: rgba(30, 27, 75, 0.95);
-    border: 1.5px solid var(--color-gold);
-    color: var(--color-text-white);
-    padding: 15px;
-    border-radius: 8px;
-    max-width: 290px;
-    box-shadow: var(--shadow-glow);
-    animation: bounceReveal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    margin-top: 15px;
-}
-
-.constellation-quote-bubble i {
-    color: var(--color-text-gold);
-    font-size: 1.3rem;
-    margin-bottom: 5px;
-}
-
-.constellation-quote-text {
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-    font-style: italic;
-    line-height: 1.5;
-}
 
 /* ==========================================================================
    12. RSVP FORM SECTION
