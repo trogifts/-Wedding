@@ -72,8 +72,8 @@
 
     <!-- Entrance Overlay Text -->
     <div class="overlay-text">
-      <span class="reveal-subtitle">A Secular Kerala Union</span>
-      <h1 class="reveal-title gold-gradient-text">Anjali &amp; Madhav</h1>
+      <span class="reveal-subtitle" id="revealSubtitle">A Secular Kerala Union</span>
+      <h1 class="reveal-title gold-gradient-text" id="revealTitle">Anjali &amp; Madhav</h1>
       <div class="scroll-prompt">
         <span>Scroll down to part the palm leaves</span>
         <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
@@ -84,8 +84,8 @@
   <!-- SECTION 2: FIXED HERO COVER (Revealed behind the parting leaves) -->
   <section class="hero-cover">
     <div class="hero-inner">
-      <span class="hero-subtitle">Welcome to the Wedding of</span>
-      <h2 class="hero-title gold-gradient-text">Anjali &amp; Madhav</h2>
+      <span class="hero-subtitle" id="heroSubtitle">Welcome to the Wedding of</span>
+      <h2 class="hero-title" id="heroTitle">Anjali &amp; Madhav</h2>
       
       <!-- Arched Photo Frame containing traditional couple image -->
       <div class="photo-frame-container">
@@ -97,7 +97,7 @@
         <div class="decorative-ring"></div>
       </div>
       
-      <p class="hero-date">January 18, 2027 &bull; Kochi, Kerala</p>
+      <p class="hero-date" id="heroDate">January 18, 2027 &bull; Kochi, Kerala</p>
       <div class="bounce-indicator">
         <i class="fas fa-arrow-down"></i>
         <span>Keep Scrolling</span>
@@ -117,7 +117,7 @@
       <!-- COUNTDOWN SECTION -->
       <section class="journal-section countdown-box">
         <h3 class="box-tag">Auspicious Countdown</h3>
-        <h4 class="box-heading gold-gradient-text">Days of Anticipation</h4>
+        <h4 class="box-heading">Days of Anticipation</h4>
         <div class="countdown-row">
           <div class="countdown-block">
             <span id="days">00</span>
@@ -144,96 +144,46 @@
       <!-- ITINERARY & VENUE -->
       <section class="journal-section">
         <span class="section-tag">Destination &amp; Timing</span>
-        <h2 class="journal-section-title">The Gathering</h2>
+        <h2 class="journal-section-title" id="sectionTitle">The Gathering</h2>
         
         <div class="venue-card">
           <div class="card-outline"></div>
-          <h3>Bhaskareeyam Lake View</h3>
-          <p class="location-text">Elamakkara, Kochi, Kerala, India</p>
-          <p class="date-text">Monday, January 18, 2027</p>
+          <h3 id="venueName">Bhaskareeyam Lake View</h3>
+          <p class="location-text" id="venueAddress">Elamakkara, Kochi, Kerala, India</p>
+          <p class="date-text" id="venueDate">Monday, January 18, 2027</p>
           <button class="btn-outline" id="btnSaveDate">Add to Calendar</button>
         </div>
 
         <h3 class="itinerary-title">Itinerary of the Day</h3>
-        <div class="cruise-timeline">
-          
-          <div class="timeline-stop">
-            <div class="stop-marker"></div>
-            <div class="stop-time">10:00 AM</div>
-            <div class="stop-info">
-              <h4>The Garlands &amp; Vows</h4>
-              <p>A secular ceremony celebrating companionship, featuring the exchange of fresh jasmine garlands and personal vows with family and friends.</p>
-            </div>
-          </div>
-
-          <div class="timeline-stop">
-            <div class="stop-marker"></div>
-            <div class="stop-time">12:30 PM</div>
-            <div class="stop-info">
-              <h4>The Traditional Feast</h4>
-              <p>An extensive lunch showcasing Kerala's culinary spectrum. Guests can choose between the traditional vegetarian Sadhya served on banana leaves or a coastal seafood &amp; fusion buffet.</p>
-            </div>
-          </div>
-
-          <div class="timeline-stop">
-            <div class="stop-marker"></div>
-            <div class="stop-time">6:00 PM</div>
-            <div class="stop-info">
-              <h4>The Sunset Lawn Social</h4>
-              <p>Winding down with tea, local live instrumental fusion, and catching the sunset over the waterside gardens.</p>
-            </div>
-          </div>
-
+        <div class="cruise-timeline" id="timelineContainer">
+          <!-- Populated dynamically from data.js -->
         </div>
 
         <div class="dress-guidelines">
-          <h4>Attire Suggestions</h4>
-          <p>We invite you to dress in light, comfortable festive wear. Traditional Kerala handloom ivory/cream, gold accents, or soft pastel shades are highly welcome.</p>
+          <h4 id="attireTitle">Attire Suggestions</h4>
+          <p id="attireDetails">We invite you to dress in light, comfortable festive wear. Traditional Kerala handloom ivory/cream, gold accents, or soft pastel shades are highly welcome.</p>
         </div>
       </section>
-
-
 
       <!-- FAQs -->
       <section class="journal-section">
         <span class="section-tag">Important Details</span>
         <h2 class="journal-section-title">Common Questions</h2>
 
-        <div class="faq-deck">
-          <div class="faq-card">
-            <button class="faq-question">
-              <span>What is a traditional Sadhya?</span>
-              <i class="fas fa-plus"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Sadhya is a multi-course vegetarian banquet traditionally served on a fresh banana leaf. It includes over 20 unique curries, pickles, rice, and sweet payasams. We will also have a coastal seafood buffet for guests wanting other local delicacies.</p>
-            </div>
-          </div>
-
-          <div class="faq-card">
-            <button class="faq-question">
-              <span>Where should I fly into?</span>
-              <i class="fas fa-plus"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Cochin International Airport (COK) is the closest airport (about 45 minutes from the venue). Taxis and ride-shares are readily available at the terminal.</p>
-            </div>
-          </div>
-
-
+        <div class="faq-deck" id="faqsContainer">
+          <!-- Populated dynamically from data.js -->
         </div>
       </section>
 
-
-
       <!-- Footer -->
       <footer class="journal-footer">
-        <p>Anjali &amp; Madhav — Kochi, 2027</p>
+        <p id="footerText">Anjali &amp; Madhav — Kochi, 2027</p>
       </footer>
 
     </div>
   </div>
 
+  <script src="data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

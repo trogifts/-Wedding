@@ -3,7 +3,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log("DOM Loaded - Initializing modules...");
+  console.log("DOM Loaded - Rendering data & initializing modules...");
+  renderData();
   initAudio();
   initCoconutReveal();
   initCountdown();
@@ -15,7 +16,86 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================
-   AUDIO CONTROLLER (Melodic Flute)
+   0. DYNAMIC DATA RENDERING
+   ========================================== */
+function renderData() {
+  const data = window.weddingData;
+  if (!data) return;
+
+  // Render couple names & subtitle
+  const revealSubtitle = document.getElementById('revealSubtitle');
+  if (revealSubtitle) revealSubtitle.innerText = data.couple.unionText;
+
+  const revealTitle = document.getElementById('revealTitle');
+  if (revealTitle) revealTitle.innerHTML = `${data.couple.bride} &amp; ${data.couple.groom}`;
+
+  const heroSubtitle = document.getElementById('heroSubtitle');
+  if (heroSubtitle) heroSubtitle.innerText = `Welcome to the Wedding of`;
+
+  const heroTitle = document.getElementById('heroTitle');
+  if (heroTitle) heroTitle.innerHTML = `${data.couple.bride} &amp; ${data.couple.groom}`;
+
+  const heroDate = document.getElementById('heroDate');
+  if (heroDate) heroDate.innerHTML = `${data.event.dateFormatted} &bull; Kochi, Kerala`;
+
+  // Render event details
+  const sectionTitle = document.getElementById('sectionTitle');
+  if (sectionTitle) sectionTitle.innerText = data.event.title;
+
+  const venueName = document.getElementById('venueName');
+  if (venueName) venueName.innerText = data.event.venueName;
+
+  const venueAddress = document.getElementById('venueAddress');
+  if (venueAddress) venueAddress.innerText = data.event.venueAddress;
+
+  const venueDate = document.getElementById('venueDate');
+  if (venueDate) venueDate.innerText = data.event.dateFormatted;
+
+  // Render itinerary
+  const timelineContainer = document.getElementById('timelineContainer');
+  if (timelineContainer && data.itinerary) {
+    timelineContainer.innerHTML = data.itinerary.map(item => `
+      <div class="timeline-stop">
+        <div class="stop-marker"></div>
+        <div class="stop-time">${item.time}</div>
+        <div class="stop-info">
+          <h4>${item.title}</h4>
+          <p>${item.description}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Render attire suggestions
+  const attireTitle = document.getElementById('attireTitle');
+  if (attireTitle) attireTitle.innerText = data.event.attireTitle || "Attire Suggestions";
+
+  const attireDetails = document.getElementById('attireDetails');
+  if (attireDetails) attireDetails.innerText = data.event.attireDetails;
+
+  // Render FAQs
+  const faqsContainer = document.getElementById('faqsContainer');
+  if (faqsContainer && data.faqs) {
+    faqsContainer.innerHTML = data.faqs.map(faq => `
+      <div class="faq-card">
+        <button class="faq-question">
+          <span>${faq.question}</span>
+          <i class="fas fa-plus"></i>
+        </button>
+        <div class="faq-answer">
+          <p>${faq.answer}</p>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Render footer
+  const footerText = document.getElementById('footerText');
+  if (footerText) footerText.innerHTML = `${data.couple.bride} &amp; ${data.couple.groom} — Kochi, 2027`;
+}
+
+/* ==========================================
+   1. AUDIO CONTROLLER (Melodic Flute)
    ========================================== */
 const bgMusic = document.getElementById('bgMusic');
 const audioToggle = document.getElementById('audioToggle');
@@ -85,7 +165,7 @@ function pauseMusic() {
 }
 
 /* ==========================================
-   SCROLL REVEAL CURTAIN ENGINE
+   2. SCROLL REVEAL CURTAIN ENGINE
    ========================================== */
 function initCoconutReveal() {
   const overlay = document.getElementById('coconut-overlay');
@@ -97,7 +177,6 @@ function initCoconutReveal() {
 
   function onScroll() {
     const scrollY = window.scrollY;
-    const winHeight = window.innerHeight;
     
     // Calculate scroll progress (0 to 1) over a small scroll distance
     const revealDistance = window.innerWidth < 600 ? 180 : 320;
@@ -131,11 +210,11 @@ function initCoconutReveal() {
 }
 
 /* ==========================================
-   COUNTDOWN TIMER
+   3. COUNTDOWN TIMER
    ========================================== */
 function initCountdown() {
-  // Target date: January 18, 2027 at 9:00 AM
-  const targetDate = new Date("January 18, 2027 09:00:00").getTime();
+  const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "January 18, 2027 09:00:00";
+  const targetDate = new Date(dateStr).getTime();
 
   function update() {
     const now = new Date().getTime();
@@ -171,23 +250,32 @@ function initCountdown() {
 }
 
 /* ==========================================
-   SAVE THE DATE CALENDAR (.ICS GENERATION)
+   4. SAVE THE DATE CALENDAR (.ICS GENERATION)
    ========================================== */
 function initSaveDate() {
   const btn = document.getElementById('btnSaveDate');
   if (!btn) return;
 
   btn.addEventListener('click', () => {
+    const data = window.weddingData || {
+      couple: { bride: "Anjali", groom: "Madhav" },
+      event: {
+        venueName: "Bhaskareeyam Lake View",
+        venueAddress: "Elamakkara, Kochi, Kerala, India",
+        calendarStart: "20270118T100000",
+        calendarEnd: "20270118T180000"
+      }
+    };
     const calendarEvent = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
       'URL:' + window.location.href,
-      'DTSTART:20270118T033000Z', // UTC start: 9:00 AM IST (Jan 18, 2027)
-      'DTEND:20270118T103000Z',   // UTC end: 4:00 PM IST (Jan 18, 2027)
-      'SUMMARY:Anjali & Madhav Wedding Celebration',
-      'DESCRIPTION:Wedding Celebration of Anjali & Madhav at Bhaskareeyam Lake View.',
-      'LOCATION:Bhaskareeyam Lake View, Elamakkara, Kochi, Kerala, India',
+      `DTSTART:${data.event.calendarStart}`,
+      `DTEND:${data.event.calendarEnd}`,
+      `SUMMARY:${data.couple.bride} & ${data.couple.groom} Wedding Celebration`,
+      `DESCRIPTION:Wedding Celebration of ${data.couple.bride} & ${data.couple.groom} at ${data.event.venueName}.`,
+      `LOCATION:${data.event.venueName}, ${data.event.venueAddress}`,
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\r\n');
@@ -195,7 +283,7 @@ function initSaveDate() {
     const blob = new Blob([calendarEvent], { type: 'text/calendar;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.setAttribute('download', 'Anjali_Madhav_Wedding.ics');
+    link.setAttribute('download', `${data.couple.bride}_${data.couple.groom}_Wedding.ics`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -203,7 +291,7 @@ function initSaveDate() {
 }
 
 /* ==========================================
-   GIFT REGISTRY CONTRIBUTION ACTION
+   5. GIFT REGISTRY CONTRIBUTION ACTION (Defensive placeholder)
    ========================================== */
 function initRegistry() {
   const buttons = document.querySelectorAll('.registry-btn');
@@ -235,7 +323,7 @@ function showToastNotification(message) {
 }
 
 /* ==========================================
-   FAQ ACCORDIONS
+   6. FAQ ACCORDIONS
    ========================================== */
 function initFaqs() {
   const questions = document.querySelectorAll('.faq-question');
@@ -260,66 +348,14 @@ function initFaqs() {
 }
 
 /* ==========================================
-   RSVP STATE MANAGEMENT (LOCAL STORAGE)
+   7. RSVP STATE MANAGEMENT (Defensive fallback if needed)
    ========================================== */
 function initRsvp() {
-  const form = document.getElementById('rsvpForm');
-  const successBlock = document.getElementById('rsvpSuccess');
-  const successMsg = document.getElementById('successMessage');
-  const editBtn = document.getElementById('btnEditRsvp');
-
-  // Check if RSVP is already saved in LocalStorage
-  const savedRsvp = localStorage.getItem('keralaWeddingRsvp');
-  if (savedRsvp && form) {
-    const data = JSON.parse(savedRsvp);
-    showSuccessState(data.name, data.attendance);
-  }
-
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const nameEl = document.getElementById('guestName');
-      const emailEl = document.getElementById('guestEmail');
-      const mealEl = document.getElementById('mealPreference');
-
-      const name = nameEl ? nameEl.value : '';
-      const email = emailEl ? emailEl.value : '';
-      const attendance = form.elements['attendance'] ? form.elements['attendance'].value : 'yes';
-      const meal = mealEl ? mealEl.value : '';
-
-      const rsvpData = { name, email, attendance, meal };
-      localStorage.setItem('keralaWeddingRsvp', JSON.stringify(rsvpData));
-
-      showSuccessState(name, attendance);
-    });
-  }
-
-  if (editBtn) {
-    editBtn.addEventListener('click', () => {
-      if (form && successBlock) {
-        successBlock.style.display = 'none';
-        form.style.display = 'block';
-      }
-    });
-  }
-
-  function showSuccessState(name, attendance) {
-    if (!form || !successBlock || !successMsg) return;
-
-    form.style.display = 'none';
-    successBlock.style.display = 'block';
-
-    if (attendance === 'yes') {
-      successMsg.innerText = `Thank you, ${name}! We are honored and joyed to have you join us at our celebration. See you in Kochi!`;
-    } else {
-      successMsg.innerText = `Thank you, ${name}. We are sorry that you cannot attend the celebration, but we appreciate your warm thoughts from afar.`;
-    }
-  }
+  // Purged to keep template static
 }
 
 /* ==========================================
-   SCROLL TRIGGERS (FADE-UP ANIMATIONS)
+   8. SCROLL TRIGGERS (FADE-UP ANIMATIONS)
    ========================================== */
 function setupScrollAnimations() {
   const elements = document.querySelectorAll('.journal-section');

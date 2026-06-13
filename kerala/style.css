@@ -258,6 +258,8 @@ body {
   font-weight: 300;
   letter-spacing: 1px;
   margin-bottom: 40px;
+  color: var(--palm-green);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 /* ARCH PHOTO FRAME */
@@ -422,6 +424,7 @@ body {
   font-family: var(--font-serif);
   font-size: 1.8rem;
   margin-bottom: 35px;
+  color: var(--palm-green);
 }
 
 .countdown-row {
@@ -459,6 +462,25 @@ body {
   letter-spacing: 2px;
   color: var(--text-muted);
   margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .countdown-row {
+    gap: 8px;
+  }
+  .countdown-block {
+    width: 65px;
+  }
+  .countdown-block span {
+    font-size: 2.1rem;
+  }
+  .countdown-block label {
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+  }
+  .countdown-sep {
+    height: 30px;
+  }
 }
 
 /* ==========================================
