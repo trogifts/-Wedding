@@ -12,7 +12,7 @@ window.weddingData = {
     venueName: "Bhaskareeyam Lake View",
     venueAddress: "Elamakkara, Kochi, Kerala, India",
     dateFormatted: "Monday, January 18, 2027",
-    dateTimeString: "January 18, 2027 10:00:00", // Target countdown date
+    dateTimeString: "2027-01-18T10:00:00", // Target countdown date
     calendarStart: "20270118T100000",
     calendarEnd: "20270118T180000",
     attireTitle: "Dress Code",

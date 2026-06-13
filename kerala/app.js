@@ -240,8 +240,20 @@ function initCoconutReveal() {
    3. COUNTDOWN TIMER
    ========================================== */
 function initCountdown() {
-  const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "January 18, 2027 09:00:00";
-  const targetDate = new Date(dateStr).getTime();
+  const dateStr = (window.weddingData && window.weddingData.event && window.weddingData.event.dateTimeString) || "2027-01-18T10:00:00";
+  
+  let targetDate = new Date(dateStr).getTime();
+  
+  // Fallback for older browsers or Safari parsing differences
+  if (isNaN(targetDate)) {
+    const cleaned = dateStr.replace(/-/g, '/').replace('T', ' ');
+    targetDate = new Date(cleaned).getTime();
+  }
+  
+  // Hard fallback to Jan 18, 2027
+  if (isNaN(targetDate)) {
+    targetDate = new Date(2027, 0, 18, 10, 0, 0).getTime();
+  }
 
   function update() {
     const now = new Date().getTime();
