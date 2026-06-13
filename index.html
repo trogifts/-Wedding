@@ -3,578 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Wedding Invitation Templates</title>
-    <meta name="description" content="Explore and preview our exclusive collection of luxury digital wedding invitations.">
+    <title>Wedding Invitation Collection</title>
+    <meta name="description" content="Browse our curated collection of luxury digital wedding invitation templates.">
     
-    <!-- Google Fonts: Editorial & Modern Sans -->
+    <!-- Google Fonts: Editorial Serif & Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* ==========================================================================
-           1. CORE DESIGN SYSTEM & VARIABLES
-           ========================================================================== */
         :root {
-            --bg-dark: #07080e;          /* Space Obsidian */
-            --bg-darker: #020306;        /* Deep Cosmos Black */
-            --color-gold: #dfb07a;       /* Champagne Gold */
-            --color-gold-light: #f7dfbe; /* Cream Gold */
-            --color-gold-dark: #b3854e;  /* Antique Gold */
-            
-            --text-main: #f5f6fa;        /* Ivory Pearl */
-            --text-muted: #8e94a5;       /* Stellar Slate */
-            --text-gold: #dfb07a;        
-            
-            --glass-bg: rgba(13, 16, 27, 0.65);
-            --glass-border: rgba(223, 176, 122, 0.15);
-            --glass-border-hover: rgba(223, 176, 122, 0.45);
-            --shadow-glow: 0 0 20px rgba(223, 176, 122, 0.08);
-            --shadow-glow-intense: 0 0 35px rgba(223, 176, 122, 0.18);
-            
+            --bg-color: #07080a;
+            --text-color: #f5f6fa;
+            --muted-color: #8e94a5;
+            --accent-gold: #dfb07a;
+            --border-color: rgba(223, 176, 122, 0.15);
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Montserrat', sans-serif;
-            --transition-smooth: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: var(--font-sans);
-            background-color: var(--bg-dark);
-            color: var(--text-main);
             line-height: 1.6;
-            min-height: 100vh;
+            padding: 80px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-x: hidden;
-            position: relative;
+            min-height: 100vh;
         }
 
-        /* Ambient Cosmic Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(223, 176, 122, 0.03) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(107, 29, 47, 0.02) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(13, 16, 27, 0.5) 0%, transparent 100%);
-            z-index: -2;
-            pointer-events: none;
-            animation: nebulaDrift 60s infinite alternate ease-in-out;
-        }
-
-        @keyframes nebulaDrift {
-            0% { transform: rotate(0deg) scale(1); }
-            100% { transform: rotate(4deg) scale(1.05); }
-        }
-
-        /* Live Starfield Canvas */
-        #starfield-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* ==========================================================================
-           2. HEADER SECTION
-           ========================================================================== */
         header {
             text-align: center;
-            padding: 60px 20px 40px;
-            max-width: 800px;
-            width: 100%;
-            position: relative;
-            z-index: 5;
+            max-width: 600px;
+            margin-bottom: 70px;
         }
 
-        .header-logo {
+        .logo {
             font-family: var(--font-serif);
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 6px;
-            color: var(--color-gold);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
         }
 
-        .header-logo::before, .header-logo::after {
-            content: '';
-            width: 30px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--color-gold));
-        }
-
-        .header-logo::after {
-            background: linear-gradient(90deg, var(--color-gold), transparent);
-        }
-
-        .main-title {
+        .title {
             font-family: var(--font-serif);
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 300;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 1px;
-        }
-
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #ffffff 0%, var(--color-gold-light) 40%, var(--color-gold) 70%, var(--color-gold-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
         }
 
         .subtitle {
-            font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--text-muted);
-            letter-spacing: 2.5px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* ==========================================================================
-           3. PORTAL CATEGORY FILTERS
-           ========================================================================== */
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 20px 0 45px;
-            z-index: 5;
-        }
-
-        .filter-btn {
-            background: rgba(13, 16, 27, 0.4);
-            border: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            padding: 10px 24px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--muted-color);
             letter-spacing: 2px;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            font-weight: 500;
+            font-weight: 300;
         }
 
-        .filter-btn:hover {
-            border-color: var(--color-gold);
-            color: var(--color-gold-light);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .filter-btn.active {
-            background: var(--color-gold);
-            border-color: var(--color-gold);
-            color: var(--bg-darker);
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(223, 176, 122, 0.3);
-        }
-
-        /* ==========================================================================
-           4. TEMPLATES CATALOG GRID
-           ========================================================================== */
-        .portal-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 45px 35px;
+            max-width: 1000px;
             width: 100%;
-            max-width: 1200px;
-            padding: 0 24px;
-            margin-bottom: 80px;
-            z-index: 5;
+            margin-bottom: 90px;
         }
 
-        .template-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: var(--transition-smooth);
+        .card {
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 5px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-        }
-
-        /* Glow Aura behind card */
-        .template-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(223, 176, 122, 0.03) 0%, transparent 70%);
-            opacity: 0;
-            transition: var(--transition-smooth);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Gradient Highlight Border Top */
-        .card-border-top {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-            transform: scaleX(0);
             transition: var(--transition-smooth);
         }
 
-        .template-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--glass-border-hover);
-            box-shadow: var(--shadow-glow-intense), 0 20px 40px rgba(0, 0, 0, 0.6);
+        .card:hover {
+            border-bottom-color: var(--accent-gold);
         }
 
-        .template-card:hover::after {
-            opacity: 1;
+        .card-header {
+            margin-bottom: 15px;
         }
 
-        .template-card:hover .card-border-top {
-            transform: scaleX(1);
-        }
-
-        /* Card Icon */
-        .card-icon-wrapper {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card-icon-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: rgba(223, 176, 122, 0.05);
-            border: 1px solid rgba(223, 176, 122, 0.1);
-            transition: var(--transition-smooth);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            color: var(--color-gold);
-            z-index: 2;
-            transition: var(--transition-smooth);
-        }
-
-        .template-card:hover .card-icon-bg {
-            background: rgba(223, 176, 122, 0.12);
-            border-color: rgba(223, 176, 122, 0.4);
-            transform: scale(1.1);
-            box-shadow: var(--shadow-glow);
-        }
-
-        .template-card:hover .card-icon {
-            transform: scale(1.15) rotate(5deg);
-            color: var(--color-gold-light);
-        }
-
-        /* Card Text */
         .card-title {
             font-family: var(--font-serif);
-            font-size: 1.6rem;
-            color: var(--text-main);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            font-weight: 400;
+            font-size: 1.7rem;
+            font-weight: 300;
+            color: var(--text-color);
+            letter-spacing: 0.5px;
         }
 
         .card-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            line-height: 1.7;
-            flex-grow: 1;
+            font-size: 0.8rem;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-weight: 300;
         }
 
-        /* Action Buttons */
-        .btn-open {
-            display: inline-block;
-            text-decoration: none;
-            background: transparent;
-            color: var(--color-gold);
-            border: 1px solid var(--color-gold);
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.8rem;
+        .card-link {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             transition: var(--transition-smooth);
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            width: 100%;
         }
 
-        .btn-open:hover {
-            background: var(--color-gold);
-            color: var(--bg-darker);
-            font-weight: 600;
-            box-shadow: 0 6px 20px rgba(223, 176, 122, 0.35);
-            transform: translateY(-2px);
+        .card-link:hover {
+            gap: 12px;
+            color: var(--text-color);
         }
 
-        /* Featured Badge Styles */
-        .template-card.featured {
-            border-color: rgba(223, 176, 122, 0.45);
-        }
-
-        .template-card.featured .card-border-top {
-            transform: scaleX(1);
-        }
-
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-dark) 100%);
-            color: var(--bg-darker);
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 20px;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 10px rgba(223, 176, 122, 0.2);
-        }
-
-        /* ==========================================================================
-           5. FOOTER
-           ========================================================================== */
         footer {
             margin-top: auto;
             text-align: center;
-            padding: 60px 20px 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
             width: 100%;
-            border-top: 1px solid var(--glass-border);
-            background: var(--bg-darker);
-            z-index: 5;
-            position: relative;
+            max-width: 1000px;
         }
 
         .footer-logo {
             font-family: var(--font-serif);
-            font-size: 1.8rem;
-            color: var(--color-gold);
+            font-size: 1.1rem;
             letter-spacing: 4px;
-            margin-bottom: 15px;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
         }
 
         .footer-copy {
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            font-size: 0.7rem;
+            color: var(--muted-color);
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        /* ==========================================================================
-           6. RESPONSIVE DESIGN ADJUSTMENTS
-           ========================================================================== */
-        @media (max-width: 768px) {
-            header {
-                padding: 40px 15px 30px;
+        @media (max-width: 600px) {
+            body {
+                padding: 50px 20px;
             }
-
-            .main-title {
-                font-size: 2.5rem;
+            .title {
+                font-size: 2.4rem;
             }
-
-            .subtitle {
-                font-size: 0.85rem;
-                letter-spacing: 1.5px;
-            }
-
-            .portal-grid {
+            .grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 0 15px;
-            }
-
-            .template-card {
-                padding: 30px 20px;
+                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Stardust Particles Background Canvas -->
-    <canvas id="starfield-canvas"></canvas>
-
     <header>
-        <div class="header-logo">Antigravity Collection</div>
-        <h1 class="main-title">Premium <span class="gold-gradient-text">Wedding Invitations</span></h1>
-        <p class="subtitle">Experience our curated portfolio of hand-crafted digital invite templates.</p>
+        <div class="logo">✦ The Atelier ✦</div>
+        <h1 class="title">Design Collection</h1>
+        <p class="subtitle">Curated premium digital invitation templates.</p>
     </header>
 
-    <!-- Interactive Category Filter Tabs -->
-    <div class="filter-container">
-        <button class="filter-btn active" data-category="all">All Styles</button>
-        <button class="filter-btn" data-category="luxury">Celestial & Luxury</button>
-        <button class="filter-btn" data-category="traditional">Traditional & Cultural</button>
-        <button class="filter-btn" data-category="minimalist">Modern Minimalist</button>
-    </div>
-
-    <!-- Templates Portal Catalog -->
-    <div class="portal-grid" id="portal-grid">
-        <!-- Kerala Style (Traditional) -->
-        <div class="template-card featured" data-tags="traditional">
-            <div class="card-border-top"></div>
-            <span class="badge">Featured</span>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-om"></i></div>
+    <div class="grid">
+        <!-- Kerala Style -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Kerala Style</h2>
             </div>
-            <h2 class="card-title">Kerala Style</h2>
             <p class="card-desc">Traditional Kasavu cream & gold theme featuring automated oil lamp lighting, falling jasmine flower showers, and Kochi backwater aesthetics.</p>
-            <a href="kerala/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="kerala/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Celestial Luxury (Luxury) -->
-        <div class="template-card" data-tags="luxury">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-moon"></i></div>
+        <!-- Celestial Luxury -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Celestial Luxury</h2>
             </div>
-            <h2 class="card-title">Celestial Luxury</h2>
-            <p class="card-desc">Dark-mode editorial design featuring cosmic midnight blue, luxury liquid gold elements, wax seal unboxing, and sophisticated star schedule maps.</p>
-            <a href="celestial/index.html" class="btn-open">View Template</a>
+            <p class="card-desc">Cosmic dark-mode editorial layout featuring 3D envelope unboxing, liquid gold details, and elegant celestial schedules.</p>
+            <div>
+                <a href="celestial/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Rose Gold (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-leaf"></i></div>
+        <!-- Rose Gold -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Rose Gold</h2>
             </div>
-            <h2 class="card-title">Rose Gold</h2>
             <p class="card-desc">Elegant contemporary layout featuring delicate rose gold trims, premium editorial serif typography, and soft scroll-reveal fading animations.</p>
-            <a href="rose-gold/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="rose-gold/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Standard 2 (Traditional) -->
-        <div class="template-card" data-tags="traditional">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-umbrella-beach"></i></div>
+        <!-- Standard 2 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Standard 2</h2>
             </div>
-            <h2 class="card-title">Standard 2</h2>
             <p class="card-desc">Traditional temple layout with automated wick lighting, memory tree slide loops, and clean fact checklist lists.</p>
-            <a href="standard2/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="standard2/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Standard 3 (Luxury) -->
-        <div class="template-card" data-tags="luxury">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <!-- Standard 3 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Standard 3</h2>
             </div>
-            <h2 class="card-title">Standard 3</h2>
             <p class="card-desc">Chic luxury design featuring pastel watercolor boards, interactive floating canvas butterflies, and fluid typography headers.</p>
-            <a href="standard3/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="standard3/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Standard 4 (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-feather"></i></div>
+        <!-- Standard 4 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Standard 4</h2>
             </div>
-            <h2 class="card-title">Standard 4</h2>
             <p class="card-desc">Sleek modern minimalist layout featuring background meteor showers, star-hunting timelines, and fluid contacts.</p>
-            <a href="standard4/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="standard4/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Standard 1 (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
+        <!-- Standard 1 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Standard 1</h2>
             </div>
-            <h2 class="card-title">Standard 1</h2>
             <p class="card-desc">Elegant standard card template incorporating background stardust particle engines, sound toggles, and responsive drawers.</p>
-            <a href="standard1/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="standard1/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Basic 1 (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+        <!-- Basic 1 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Basic 1</h2>
             </div>
-            <h2 class="card-title">Basic 1</h2>
             <p class="card-desc">High-contrast classic wedding card layout with simple mobile drawer navigation links and static information blocks.</p>
-            <a href="basic1/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="basic1/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Basic 2 (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+        <!-- Basic 2 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Basic 2</h2>
             </div>
-            <h2 class="card-title">Basic 2</h2>
             <p class="card-desc">Minimalist layout with clean alignments, mobile drawer navigation menus, and clean slate margins.</p>
-            <a href="basic2/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="basic2/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
 
-        <!-- Basic 3 (Minimalist) -->
-        <div class="template-card" data-tags="minimalist">
-            <div class="card-border-top"></div>
-            <div class="card-icon-wrapper">
-                <div class="card-icon-bg"></div>
-                <div class="card-icon"><i class="fa-solid fa-ring"></i></div>
+        <!-- Basic 3 -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Basic 3</h2>
             </div>
-            <h2 class="card-title">Basic 3</h2>
             <p class="card-desc">Charming flight passport boarding layout with dynamic custom guest greeting and static console directories.</p>
-            <a href="basic3/index.html" class="btn-open">View Template</a>
+            <div>
+                <a href="basic3/index.html" class="card-link">View Template &rarr;</a>
+            </div>
         </div>
     </div>
 
@@ -583,102 +295,5 @@
         <div class="footer-copy">&copy; 2026 Antigravity. All Rights Reserved.</div>
     </footer>
 
-    <!-- Script logic for filtering & animated background starfield -->
-    <script>
-        // ==========================================
-        // 1. FILTER TABS CONTROLLER
-        // ==========================================
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const templateCards = document.querySelectorAll('.template-card');
-
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all
-                filterButtons.forEach(b => b.classList.remove('active'));
-                // Add active to current
-                btn.classList.add('active');
-
-                const category = btn.getAttribute('data-category');
-
-                templateCards.forEach(card => {
-                    if (category === 'all') {
-                        card.style.display = 'flex';
-                        // Tiny delay for entrance animation
-                        setTimeout(() => card.style.opacity = '1', 50);
-                    } else {
-                        const tags = card.getAttribute('data-tags');
-                        if (tags && tags.includes(category)) {
-                            card.style.display = 'flex';
-                            setTimeout(() => card.style.opacity = '1', 50);
-                        } else {
-                            card.style.opacity = '0';
-                            // Wait for transition before hiding
-                            setTimeout(() => card.style.display = 'none', 300);
-                        }
-                    }
-                });
-            });
-        });
-
-        // ==========================================
-        // 2. DYNAMIC CANVAS STARDUST BACKGROUND
-        // ==========================================
-        const canvas = document.getElementById('starfield-canvas');
-        const ctx = canvas.getContext('2d');
-
-        let stars = [];
-        const starCount = 80;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            initStars();
-        }
-
-        function initStars() {
-            stars = [];
-            for (let i = 0; i < starCount; i++) {
-                stars.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5 + 0.5,
-                    speed: Math.random() * 0.05 + 0.01,
-                    alpha: Math.random() * 0.5 + 0.1,
-                    direction: Math.random() > 0.5 ? 1 : -1
-                });
-            }
-        }
-
-        function drawStars() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#dfb07a';
-
-            stars.forEach(star => {
-                ctx.globalAlpha = star.alpha;
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Slow vertical movement
-                star.y -= star.speed;
-                // Soft twinkle
-                star.alpha += (Math.random() * 0.04 - 0.02) * star.direction;
-                if (star.alpha > 0.8) star.direction = -1;
-                if (star.alpha < 0.1) star.direction = 1;
-
-                // Reset star at bottom if it goes off screen
-                if (star.y < 0) {
-                    star.y = canvas.height;
-                    star.x = Math.random() * canvas.width;
-                }
-            });
-
-            requestAnimationFrame(drawStars);
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-        drawStars();
-    </script>
 </body>
 </html>
