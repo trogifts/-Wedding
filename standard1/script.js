@@ -1018,4 +1018,3 @@ function setupScrollAnimations() {
         revealOnScroll();
     }
 }
-}
