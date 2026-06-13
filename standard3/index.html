@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding of Zayn & Aara - Romantic Watercolor Art Invitation</title>
+    <title id="metaTitle">Wedding of Zayn & Aara - Romantic Watercolor Art Invitation</title>
     
     <!-- Meta Descriptions for SEO -->
-    <meta name="description" content="Join us in celebrating the union of Zayn and Aara. Discover their romantic watercolor scrapbook timeline, explore event venues, play with the paint palette, and RSVP online.">
-    <meta name="keywords" content="Zayn and Aara Wedding, Watercolor Wedding Invitation, Hand-painted wedding card, Online RSVP, Polaroid Wedding Gallery">
+    <meta name="description" content="Join us in celebrating the union. Discover their romantic watercolor scrapbook timeline, explore event venues, play with the paint palette, and view the gallery.">
+    <meta name="keywords" content="Watercolor Wedding Invitation, Hand-painted wedding card, Polaroid Wedding Gallery">
     
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,20 +33,20 @@
             </div>
             
             <div class="cover-frame">
-                <span class="cover-lettering-top">Save the Date</span>
-                <h2 class="cover-names">Zayn & Aara</h2>
+                <span class="cover-lettering-top" id="coverLetteringTop">Save the Date</span>
+                <h2 class="cover-names" id="coverTitle">Zayn & Aara</h2>
                 <div class="cover-divider"></div>
-                <span class="cover-subtitle">Are Getting Married</span>
+                <span class="cover-subtitle" id="coverSubtitle">Are Getting Married</span>
                 
                 <!-- Personalized welcome box based on URL guest parameter -->
                 <div class="cover-personalized-box">
-                    <span class="cover-dear">Dear</span>
+                    <span class="cover-dear" id="coverDear">Dear</span>
                     <div id="guest-name-display" class="cover-guest-name">Beloved Guest</div>
-                    <span class="cover-welcome-phrase">We would be honored to celebrate with you.</span>
+                    <span class="cover-welcome-phrase" id="coverWelcomePhrase">We would be honored to celebrate with you.</span>
                 </div>
                 
                 <button id="btn-open-invite" class="btn-open-watercolor">
-                    <i class="fa-solid fa-paint-brush"></i> Enter Invitation
+                    <i class="fa-solid fa-paint-brush"></i> <span id="enterInviteButtonText">Enter Invitation</span>
                 </button>
             </div>
         </div>
@@ -66,8 +66,7 @@
             <button id="music-toggle" class="floating-widget-btn music-toggle-btn muted" aria-label="Toggle Background Music">
                 <i id="music-icon" class="fa-solid fa-music"></i>
             </button>
-            <a href="https://wa.me/1234567890?text=Hi%20Zayn%20and%20Aara!%20I%20have%20an%20inquiry%20about%20the%20wedding%20celebrations." 
-               class="floating-widget-btn floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
+            <a href="#" id="whatsappFloatingLink" class="floating-widget-btn floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Contact via WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </a>
         </div>
@@ -75,7 +74,7 @@
         <!-- ==================== STICKY HEADER ==================== -->
         <header id="main-header">
             <div class="header-container">
-                <a href="#hero" class="brand-monogram">Z&A</a>
+                <a href="#hero" class="brand-monogram" id="headerLogo">Z&A</a>
             </div>
         </header>
 
@@ -88,13 +87,13 @@
             </div>
             
             <div class="hero-card">
-                <span class="hero-intro-script">Wedding Invitation</span>
-                <h1 class="hero-names">Zayn Malik<br>& Aara Variar</h1>
-                <span class="hero-invite-line">Together with their families invite you</span>
+                <span class="hero-intro-script" id="heroIntroScript">Wedding Invitation</span>
+                <h1 class="hero-names" id="heroNames">Zayn Malik<br>& Aara Variar</h1>
+                <span class="hero-invite-line" id="heroInviteLine">Together with their families invite you</span>
                 
                 <div class="hero-details-frame">
-                    <div class="hero-date-text">September 10, 2026</div>
-                    <div class="hero-venue-text">Grand Durbar Pavilions, Cochin</div>
+                    <div class="hero-date-text" id="heroDate">September 10, 2026</div>
+                    <div class="hero-venue-text" id="heroVenue">Grand Durbar Pavilions, Cochin</div>
                 </div>
                 
                 <div class="watercolor-separator">
@@ -108,8 +107,8 @@
         <!-- ==================== COUPLE PROFILE DETAILS ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">The Couple</span>
-                <h2 class="section-title">Zayn & Aara</h2>
+                <span class="sub-title" id="coupleSubTitle">The Couple</span>
+                <h2 class="section-title" id="coupleTitle">Zayn & Aara</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-heart"></i>
@@ -123,17 +122,17 @@
                     <div class="watercolor-frame-container">
                         <div class="watercolor-bg-shape"></div>
                         <div class="portrait-photo-mask">
-                            <img src="images/groom.png" alt="Groom Zayn Malik">
+                            <img src="images/groom.png" id="groomImg" alt="Groom">
                         </div>
                     </div>
-                    <span class="profile-role-tag">The Groom</span>
-                    <h3 class="profile-name-text">Zayn Malik</h3>
-                    <p class="profile-bio-description">
+                    <span class="profile-role-tag" id="groomRoleTag">The Groom</span>
+                    <h3 class="profile-name-text" id="groomName">Zayn Malik</h3>
+                    <p class="profile-bio-description" id="groomBio">
                         An architect who finds beauty in historical structural traditions. Zayn is excited to embark on this beautiful adventure of life and creation alongside Aara.
                     </p>
                     <div class="family-card-box">
-                        <span class="family-role-label">Son of</span>
-                        <div class="family-member-names">Mr. Yusuf Malik<br>& Mrs. Aisha Yusuf</div>
+                        <span class="family-role-label" id="groomParentsLabel">Son of</span>
+                        <div class="family-member-names" id="groomParentsNames">Mr. Yusuf Malik<br>& Mrs. Aisha Yusuf</div>
                     </div>
                 </div>
                 
@@ -142,17 +141,17 @@
                     <div class="watercolor-frame-container">
                         <div class="watercolor-bg-shape"></div>
                         <div class="portrait-photo-mask">
-                            <img src="images/bride.png" alt="Bride Aara Variar">
+                            <img src="images/bride.png" id="brideImg" alt="Bride">
                         </div>
                     </div>
-                    <span class="profile-role-tag">The Bride</span>
-                    <h3 class="profile-name-text">Aara Variar</h3>
-                    <p class="profile-bio-description">
+                    <span class="profile-role-tag" id="brideRoleTag">The Bride</span>
+                    <h3 class="profile-name-text" id="brideName">Aara Variar</h3>
+                    <p class="profile-bio-description" id="brideBio">
                         A classical dancer who weaves harmony and artistic steps. Aara is excited to dance through the rest of her life hand-in-hand with Zayn.
                     </p>
                     <div class="family-card-box">
-                        <span class="family-role-label">Daughter of</span>
-                        <div class="family-member-names">Mr. Madhavan Variar<br>& Mrs. Lakshmi Madhavan</div>
+                        <span class="family-role-label" id="brideParentsLabel">Daughter of</span>
+                        <div class="family-member-names" id="brideParentsNames">Mr. Madhavan Variar<br>& Mrs. Lakshmi Madhavan</div>
                     </div>
                 </div>
             </div>
@@ -161,8 +160,8 @@
         <!-- ==================== OUR LOVE STORY SCRAPBOOK TIMELINE ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Our Story</span>
-                <h2 class="section-title">The Scrapbook of Love</h2>
+                <span class="sub-title" id="storySubTitle">Our Story</span>
+                <h2 class="section-title" id="storyTitle">The Scrapbook of Love</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-book-open"></i>
@@ -170,62 +169,16 @@
                 </div>
             </div>
             
-            <div class="scrapbook-timeline-container">
-                <!-- Timeline 1 -->
-                <div class="timeline-scrap-item">
-                    <div class="washi-tape-deco"></div>
-                    <div class="timeline-scrap-card">
-                        <span class="timeline-date-label">September 2024</span>
-                        <h4 class="timeline-title-text">First Glimpse 🎨</h4>
-                        <p class="timeline-desc-text">
-                            We first met at the Kochi-Muziris Biennale gallery, both standing in front of the same pastel watercolor portrait. A small conversation blossomed into a beautiful friendship.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Timeline 2 -->
-                <div class="timeline-scrap-item">
-                    <div class="washi-tape-deco"></div>
-                    <div class="timeline-scrap-card">
-                        <span class="timeline-date-label">May 2025</span>
-                        <h4 class="timeline-title-text">The Sweet Proposal 🌅</h4>
-                        <p class="timeline-desc-text">
-                            Zayn prepared a surprise picnic on the hills of Munnar, proposing with a hand-painted watercolor diary where every page detailed a milestone of our love.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Timeline 3 -->
-                <div class="timeline-scrap-item">
-                    <div class="washi-tape-deco"></div>
-                    <div class="timeline-scrap-card">
-                        <span class="timeline-date-label">December 2025</span>
-                        <h4 class="timeline-title-text">The Rings Exchange 💍</h4>
-                        <p class="timeline-desc-text">
-                            Surrounded by our families and soft floral arrangements in Thrissur, we exchanged rings and promised to paint our lives with colors of mutual trust and joy.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Timeline 4 -->
-                <div class="timeline-scrap-item">
-                    <div class="washi-tape-deco"></div>
-                    <div class="timeline-scrap-card">
-                        <span class="timeline-date-label">September 2026</span>
-                        <h4 class="timeline-title-text">The Big Day ✨</h4>
-                        <p class="timeline-desc-text">
-                            The union of our hearts, where we take our vows under a canopy of fresh blooms and watercolors, ready to begin our infinite journey.
-                        </p>
-                    </div>
-                </div>
+            <div class="scrapbook-timeline-container" id="timelineContainer">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
         <!-- ==================== WEDDING EVENTS SCHEDULE ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Ceremonies</span>
-                <h2 class="section-title">Wedding Schedule</h2>
+                <span class="sub-title" id="eventsSubTitle">Ceremonies</span>
+                <h2 class="section-title" id="eventsTitle">Wedding Schedule</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-calendar-check"></i>
@@ -233,104 +186,31 @@
                 </div>
             </div>
             
-            <div class="events-cards-grid">
-                <!-- Event 1 -->
-                <div class="event-schedule-card">
-                    <div class="event-header-backdrop"></div>
-                    <div class="event-card-content">
-                        <h3 class="event-card-title">Mehendi Art</h3>
-                        <div class="event-details-vertical-list">
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-calendar"></i>
-                                <span class="row-label">Date</span>
-                                <span class="row-value">Wednesday, Sept 9, 2026</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-clock"></i>
-                                <span class="row-label">Time</span>
-                                <span class="row-value">04:00 PM onwards</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                                <span class="row-label">Venue</span>
-                                <span class="row-value">The Lotus Hall, Ernakulam</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 2 -->
-                <div class="event-schedule-card">
-                    <div class="event-header-backdrop"></div>
-                    <div class="event-card-content">
-                        <h3 class="event-card-title">The Nikah</h3>
-                        <div class="event-details-vertical-list">
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-calendar"></i>
-                                <span class="row-label">Date</span>
-                                <span class="row-value">Thursday, Sept 10, 2026</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-clock"></i>
-                                <span class="row-label">Time</span>
-                                <span class="row-value">10:30 AM - 11:30 AM</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                                <span class="row-label">Venue</span>
-                                <span class="row-value">Grand Durbar Pavilions, Cochin</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Event 3 -->
-                <div class="event-schedule-card">
-                    <div class="event-header-backdrop"></div>
-                    <div class="event-card-content">
-                        <h3 class="event-card-title">The Reception</h3>
-                        <div class="event-details-vertical-list">
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-calendar"></i>
-                                <span class="row-label">Date</span>
-                                <span class="row-value">Saturday, Sept 12, 2026</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-clock"></i>
-                                <span class="row-label">Time</span>
-                                <span class="row-value">06:00 PM - 09:30 PM</span>
-                            </div>
-                            <div class="event-info-row">
-                                <i class="fa-solid fa-map-location-dot"></i>
-                                <span class="row-label">Venue</span>
-                                <span class="row-value">Palms Lakeview Garden, Cochin</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="events-cards-grid" id="eventsContainer">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
         <!-- ==================== COUNTDOWN TIMER ==================== -->
         <section class="section-padding container">
             <div class="countdown-box-wrapper">
-                <h3 class="countdown-timer-title">Counting Down to the Muhurtham</h3>
+                <h3 class="countdown-timer-title" id="countdownTitle">Counting Down to the Muhurtham</h3>
                 <div id="countdown-timer" class="countdown-flex-grid">
                     <div class="countdown-unit-box">
                         <span id="days" class="countdown-numeric-value">00</span>
-                        <span class="countdown-label-value">Days</span>
+                        <span class="countdown-label-value" id="daysLabel">Days</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="hours" class="countdown-numeric-value">00</span>
-                        <span class="countdown-label-value">Hrs</span>
+                        <span class="countdown-label-value" id="hoursLabel">Hrs</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="minutes" class="countdown-numeric-value">00</span>
-                        <span class="countdown-label-value">Mins</span>
+                        <span class="countdown-label-value" id="minutesLabel">Mins</span>
                     </div>
                     <div class="countdown-unit-box">
                         <span id="seconds" class="countdown-numeric-value">00</span>
-                        <span class="countdown-label-value">Secs</span>
+                        <span class="countdown-label-value" id="secondsLabel">Secs</span>
                     </div>
                 </div>
             </div>
@@ -339,8 +219,8 @@
         <!-- ==================== VENUE LOCATIONS MAP ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Location</span>
-                <h2 class="section-title">The Wedding Venue</h2>
+                <span class="sub-title" id="venueSubTitle">Location</span>
+                <h2 class="section-title" id="venueTitle">The Wedding Venue</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-map-pin"></i>
@@ -349,17 +229,15 @@
             </div>
             
             <div class="venue-widget-box">
-                <div class="map-iframe-container">
+                <div class="map-iframe-container" id="mapEmbedWrapper">
                     <!-- Embedded Google Map Frame pointer -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.6225574519965!2d76.26258907572704!3d9.965773173617342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080d3cd6e257eb%3A0xc154cbb64b8bb26d!2sDurbar%20Hall%20Art%20Gallery!5e0!3m2!1sen!2sin!4v1718029000000!5m2!1sen!2sin" 
-                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="venue-address-text">
+                <div class="venue-address-text" id="venueAddress">
                     <strong>Grand Durbar Pavilions</strong><br>
                     Durbar Hall Road, Marine Drive, Ernakulam, Cochin, Kerala 682016
                 </div>
-                <button class="btn-directions-link" onclick="window.open('https://maps.app.goo.gl/yQJ4CqYjF5z23u8d8', '_blank')">
-                    <i class="fa-solid fa-location-arrow"></i> Get Directions
+                <button class="btn-directions-link" id="btnDirections">
+                    <i class="fa-solid fa-location-arrow"></i> <span id="directionsButtonText">Get Directions</span>
                 </button>
             </div>
         </section>
@@ -367,8 +245,8 @@
         <!-- ==================== POLAROID MEMORY GALLERY ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Moments</span>
-                <h2 class="section-title">Memory Gallery</h2>
+                <span class="sub-title" id="gallerySubTitle">Moments</span>
+                <h2 class="section-title" id="galleryTitle">Memory Gallery</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-images"></i>
@@ -376,33 +254,13 @@
                 </div>
             </div>
             
-            <p class="palette-instructions">
+            <p class="palette-instructions" id="galleryInstructions">
                 Swipe the Polaroids left/right or click the arrows to browse through the pages of our artist journal. Click the photo to enlarge.
             </p>
             
             <!-- Polaroid Stack Cards deck container -->
             <div id="polaroid-deck" class="polaroid-gallery-wrapper">
-                <!-- Polaroid 1 -->
-                <div class="polaroid-slide-card active-stack" data-index="0" onclick="openLightbox(0)">
-                    <div class="polaroid-img-frame">
-                        <img src="images/gallery1.png" alt="The Promise">
-                    </div>
-                    <div class="polaroid-caption-title">The Promise</div>
-                </div>
-                <!-- Polaroid 2 -->
-                <div class="polaroid-slide-card stack-2" data-index="1" onclick="openLightbox(1)">
-                    <div class="polaroid-img-frame">
-                        <img src="images/gallery2.png" alt="Our Story">
-                    </div>
-                    <div class="polaroid-caption-title">Our Story</div>
-                </div>
-                <!-- Polaroid 3 -->
-                <div class="polaroid-slide-card stack-3" data-index="2" onclick="openLightbox(2)">
-                    <div class="polaroid-img-frame">
-                        <img src="images/gallery3.png" alt="Sneha Walk">
-                    </div>
-                    <div class="polaroid-caption-title">Sneha Walk</div>
-                </div>
+                <!-- Populated dynamically from data.js -->
             </div>
             
             <div class="gallery-nav-controls">
@@ -427,8 +285,8 @@
         <!-- ==================== SPECIAL INTERACTIVE FEATURE 1: PAINT PALETTE ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Paint Palette</span>
-                <h2 class="section-title">Bless Us With Colors</h2>
+                <span class="sub-title" id="paintSubTitle">Paint Palette</span>
+                <h2 class="section-title" id="paintTitle">Bless Us With Colors</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-palette"></i>
@@ -437,7 +295,7 @@
             </div>
             
             <div class="paint-palette-box">
-                <p class="palette-instructions">
+                <p class="palette-instructions" id="paintInstructions">
                     Tap the watercolor wells on the palette to shower Zayn and Aara with colorful paint splashes and read our wedding thank-you wishes.
                 </p>
                 
@@ -482,13 +340,11 @@
             <div id="paint-toast" class="paint-splat-toast">Thank you for painting our world with love! 🎨</div>
         </section>
 
-
-
         <!-- ==================== FAMILY CONTACTS COORDINATION ==================== -->
         <section class="section-padding container">
             <div class="section-header">
-                <span class="sub-title">Coordination</span>
-                <h2 class="section-title">Family Contacts</h2>
+                <span class="sub-title" id="contactsSubTitle">Coordination</span>
+                <h2 class="section-title" id="contactsTitle">Family Contacts</h2>
                 <div class="watercolor-separator">
                     <span class="leaf-line"></span>
                     <i class="fa-solid fa-phone-volume"></i>
@@ -496,39 +352,23 @@
                 </div>
             </div>
             
-            <div class="contact-grid">
-                <!-- Groom Family Call Action -->
-                <div class="contact-card-box">
-                    <h3 class="contact-card-name">Mr. Yusuf Malik</h3>
-                    <span class="contact-card-role">Father of the Groom</span>
-                    <div class="contact-action-flex">
-                        <a href="tel:1234567890" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                        <a href="https://wa.me/1234567890" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
-                <!-- Bride Family Call Action -->
-                <div class="contact-card-box">
-                    <h3 class="contact-card-name">Mr. Madhavan Variar</h3>
-                    <span class="contact-card-role">Father of the Bride</span>
-                    <div class="contact-action-flex">
-                        <a href="tel:0987654321" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> Call</a>
-                        <a href="https://wa.me/0987654321" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> Chat</a>
-                    </div>
-                </div>
+            <div class="contact-grid" id="contactsContainer">
+                <!-- Populated dynamically from data.js -->
             </div>
         </section>
 
         <!-- ==================== FOOTER ==================== -->
         <footer class="footer-section">
-            <div class="footer-monogram">Z&A</div>
-            <div class="footer-names">Zayn & Aara</div>
-            <div class="footer-thank-you">Thank You</div>
-            <p class="footer-copyright">&copy; 2026 Zayn & Aara. All Rights Reserved.</p>
+            <div class="footer-monogram" id="footerMonogram">Z&A</div>
+            <div class="footer-names" id="footerNames">Zayn & Aara</div>
+            <div class="footer-thank-you" id="footerThankYou">Thank You</div>
+            <p class="footer-copyright" id="footerCopyright">&copy; 2026 Zayn & Aara. All Rights Reserved.</p>
         </footer>
 
     </div>
 
     <!-- Custom Client Script -->
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

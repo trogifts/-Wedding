@@ -1,113 +1,401 @@
 /**
  * standard3 - Watercolor Art Wedding Invitation Template Client Logic
  * Handles reveal cover, personalized guest welcoming, music player toggles,
- * swipeable polaroid decks, canvas paint palette splats, local wishes,
+ * swipeable polaroid decks, canvas paint palette splats,
  * and a canvas/HTML butterfly flutter generator.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    // ==========================================
-    // 1. CONFIGURATION & CORE STATE
-    // ==========================================
+    console.log("standard3 template DOM Loaded - Processing data...");
     
-    // Target Wedding Date: September 10, 2026 at 10:30 AM IST
-    const weddingDate = new Date("September 10, 2026 10:30:00").getTime();
-    
-    // Polaroid Gallery Metadata
-    const galleryItems = [
-        { title: "The Promise", desc: "Two hearts bound by a promise of a lifetime." },
-        { title: "Our Story", desc: "A journey of shared dreams, laughter, and sunsets." },
-        { title: "Sneha Walk", desc: "Walking side-by-side along the peaceful waters." }
-    ];
-    
-    // Wishes Sticky Notes Default Seeds
-    const defaultWishes = [
-        { sender: "Anjali & Rohit", text: "May your lives be painted with the most vibrant colors of love and happiness! Congratulations!" },
-        { sender: "Siddharth", text: "Wishing Zayn and Aara a beautiful scrapbook of lifetime memories. Can't wait to celebrate!" },
-        { sender: "Meera Nair", text: "Such a beautiful handcrafted invitation. Wishing the lovely couple a golden future together! 🌸" }
-    ];
+    // 1. Process date/time configurations
+    processWeddingData();
 
-    // Paint Splat Color Palette Mapping
-    const colorSplats = {
-        "well-blush": "#FFD1DC",
-        "well-lavender": "#E8DFF5",
-        "well-blue": "#E2ECEF",
-        "well-green": "#D7E7DE",
-        "well-peach": "#FCE1D4",
-        "well-gold": "#D4AF37"
-    };
+    // 2. Render all dynamic elements
+    renderData();
 
-    const paletteQuotes = [
-        "Thank you for painting our world with love! 🎨",
-        "May our wedding day be as vibrant as this splash! 🌸",
-        "Blessings of joy, color, and laughter received! ✨",
-        "A canvas of shared memories is what we build! 🖌",
-        "Wishing you a beautiful path painted in gold! 💛",
-        "Your color blessing makes our day more artistic! 🎨"
-    ];
+    // 3. Initialize Interactive Features
+    parseGuestGreeting();
+    initInviteOpener();
+    initMusicControls();
+    initScrollProgress();
+    initPaintPalette();
+    initPolaroidRotator();
+    initCountdown();
+});
 
-    // ==========================================
-    // 2. DOM ELEMENT SELECTORS
-    // ==========================================
+/* ==========================================
+   DATE & TIME PRE-PROCESSOR
+   ========================================== */
+function processWeddingData() {
+  const data = window.weddingData;
+  if (!data || !data.event) return;
+
+  const dateVal = data.event.date || "2026-09-10";
+  const timeVal = data.event.time || "10:30 AM";
+
+  // Helper to convert 12h time ("10:30 AM") to 24h format ("10:30:00")
+  function parseTime24h(t) {
+    const match = t.match(/^(\d+):(\d+)\s*(AM|PM)$/i);
+    if (!match) return "10:30:00";
+    let hr = parseInt(match[1]);
+    const min = match[2];
+    const ampm = match[3].toUpperCase();
+    if (ampm === "PM" && hr < 12) hr += 12;
+    if (ampm === "AM" && hr === 12) hr = 0;
+    return `${String(hr).padStart(2, '0')}:${min}:00`;
+  }
+
+  // Helper to format date to human readable form
+  function formatLocalDate(dStr) {
+    const dateObj = new Date(dStr + "T00:00:00");
+    if (isNaN(dateObj)) return "Thursday, September 10, 2026";
+    return dateObj.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  const time24h = parseTime24h(timeVal);
+
+  data.event.dateTimeString = `${dateVal}T${time24h}`;
+  data.event.dateFormatted = formatLocalDate(dateVal);
+}
+
+/* ==========================================
+   DYNAMIC DATA RENDERING
+   ========================================== */
+function renderData() {
+  const data = window.weddingData;
+  if (!data) return;
+
+  // Title
+  const metaTitle = document.getElementById('metaTitle');
+  if (metaTitle) metaTitle.innerText = `Wedding of ${data.couple.groom} & ${data.couple.bride} - Romantic Watercolor Art Invitation`;
+
+  // Cover Envelope
+  const coverLetteringTop = document.getElementById('coverLetteringTop');
+  if (coverLetteringTop) coverLetteringTop.innerText = data.labels.coverLetteringTop;
+
+  const coverTitle = document.getElementById('coverTitle');
+  if (coverTitle) coverTitle.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+
+  const coverSubtitle = document.getElementById('coverSubtitle');
+  if (coverSubtitle) coverSubtitle.innerText = data.labels.coverSubtitle;
+
+  const coverDear = document.getElementById('coverDear');
+  if (coverDear) coverDear.innerText = data.labels.dear;
+
+  const coverWelcomePhrase = document.getElementById('coverWelcomePhrase');
+  if (coverWelcomePhrase) coverWelcomePhrase.innerText = data.labels.welcomePhrase;
+
+  const enterInviteButtonText = document.getElementById('enterInviteButtonText');
+  if (enterInviteButtonText) enterInviteButtonText.innerText = data.labels.enterInviteButton;
+
+  // Background Music URL
+  const bgMusic = document.getElementById('bg-music');
+  if (bgMusic) {
+    const src = bgMusic.querySelector('source');
+    if (src) src.src = data.event.bgMusicUrl;
+    bgMusic.load();
+  }
+
+  // Floating WhatsApp Link
+  const whatsappFloatingLink = document.getElementById('whatsappFloatingLink');
+  if (whatsappFloatingLink) {
+    whatsappFloatingLink.href = `https://wa.me/${data.event.whatsappNumber}?text=Hi%20${data.couple.groom}%20and%20${data.couple.bride}!%20I%20have%20an%20inquiry%20about%20the%20wedding%20celebrations.`;
+  }
+
+  // Header
+  const headerLogo = document.getElementById('headerLogo');
+  if (headerLogo) headerLogo.innerText = data.couple.monogram;
+
+  // Hero Section
+  const heroIntroScript = document.getElementById('heroIntroScript');
+  if (heroIntroScript) heroIntroScript.innerText = data.labels.heroIntroScript;
+
+  const heroNames = document.getElementById('heroNames');
+  if (heroNames) heroNames.innerHTML = `${data.couple.groomFull}<br>& ${data.couple.brideFull}`;
+
+  const heroInviteLine = document.getElementById('heroInviteLine');
+  if (heroInviteLine) heroInviteLine.innerText = data.labels.heroInviteLine;
+
+  const heroDate = document.getElementById('heroDate');
+  if (heroDate) heroDate.innerText = data.event.dateFormatted;
+
+  const heroVenue = document.getElementById('heroVenue');
+  if (heroVenue) heroVenue.innerText = data.event.venueName;
+
+  // Couple Section headings
+  const coupleSubTitle = document.getElementById('coupleSubTitle');
+  if (coupleSubTitle) coupleSubTitle.innerText = data.labels.coupleSubTitle;
+
+  const coupleTitle = document.getElementById('coupleTitle');
+  if (coupleTitle) coupleTitle.innerText = data.labels.coupleTitle;
+
+  // Groom Biography details
+  const groomRoleTag = document.getElementById('groomRoleTag');
+  if (groomRoleTag) groomRoleTag.innerText = data.labels.groomRoleTag;
+
+  const groomName = document.getElementById('groomName');
+  if (groomName) groomName.innerText = data.couple.groomFull;
+
+  const groomBio = document.getElementById('groomBio');
+  if (groomBio) groomBio.innerText = data.coupleDetails.groomBio;
+
+  const groomParentsLabel = document.getElementById('groomParentsLabel');
+  if (groomParentsLabel) groomParentsLabel.innerText = data.labels.groomParentsLabel;
+
+  const groomParentsNames = document.getElementById('groomParentsNames');
+  if (groomParentsNames) groomParentsNames.innerHTML = data.coupleDetails.groomParentsFather + "<br>& " + data.coupleDetails.groomParentsMother;
+
+  // Bride Biography details
+  const brideRoleTag = document.getElementById('brideRoleTag');
+  if (brideRoleTag) brideRoleTag.innerText = data.labels.brideRoleTag;
+
+  const brideName = document.getElementById('brideName');
+  if (brideName) brideName.innerText = data.couple.brideFull;
+
+  const brideBio = document.getElementById('brideBio');
+  if (brideBio) brideBio.innerText = data.coupleDetails.brideBio;
+
+  const brideParentsLabel = document.getElementById('brideParentsLabel');
+  if (brideParentsLabel) brideParentsLabel.innerText = data.labels.brideParentsLabel;
+
+  const brideParentsNames = document.getElementById('brideParentsNames');
+  if (brideParentsNames) brideParentsNames.innerHTML = data.coupleDetails.brideParentsFather + "<br>& " + data.coupleDetails.brideParentsMother;
+
+  // Story Section headings
+  const storySubTitle = document.getElementById('storySubTitle');
+  if (storySubTitle) storySubTitle.innerText = data.labels.storySubTitle;
+
+  const storyTitle = document.getElementById('storyTitle');
+  if (storyTitle) storyTitle.innerText = data.labels.storyTitle;
+
+  // Timeline Stories
+  const timelineContainer = document.getElementById('timelineContainer');
+  if (timelineContainer && data.story) {
+    timelineContainer.innerHTML = data.story.map(item => `
+      <div class="timeline-scrap-item">
+          <div class="washi-tape-deco"></div>
+          <div class="timeline-scrap-card">
+              <span class="timeline-date-label">${item.date}</span>
+              <h4 class="timeline-title-text">${item.title}</h4>
+              <p class="timeline-desc-text">${item.text}</p>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Events Section headings
+  const eventsSubTitle = document.getElementById('eventsSubTitle');
+  if (eventsSubTitle) eventsSubTitle.innerText = data.labels.eventsSubTitle;
+
+  const eventsTitle = document.getElementById('eventsTitle');
+  if (eventsTitle) eventsTitle.innerText = data.labels.eventsTitle;
+
+  // Events List
+  const eventsContainer = document.getElementById('eventsContainer');
+  if (eventsContainer && data.itinerary) {
+    eventsContainer.innerHTML = data.itinerary.map(item => `
+      <div class="event-schedule-card">
+          <div class="event-header-backdrop"></div>
+          <div class="event-card-content">
+              <h3 class="event-card-title">${item.title}</h3>
+              <div class="event-details-vertical-list">
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-calendar"></i>
+                      <span class="row-label">Date</span>
+                      <span class="row-value">${item.date}</span>
+                  </div>
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-clock"></i>
+                      <span class="row-label">Time</span>
+                      <span class="row-value">${item.time}</span>
+                  </div>
+                  <div class="event-info-row">
+                      <i class="fa-solid fa-map-location-dot"></i>
+                      <span class="row-label">Venue</span>
+                      <span class="row-value">${item.venue}</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Countdown Heading
+  const countdownTitle = document.getElementById('countdownTitle');
+  if (countdownTitle) countdownTitle.innerText = data.labels.countdownTitle;
+
+  const daysLabel = document.getElementById('daysLabel');
+  if (daysLabel) daysLabel.innerText = data.labels.days;
+
+  const hoursLabel = document.getElementById('hoursLabel');
+  if (hoursLabel) hoursLabel.innerText = data.labels.hours;
+
+  const minutesLabel = document.getElementById('minutesLabel');
+  if (minutesLabel) minutesLabel.innerText = data.labels.minutes;
+
+  const secondsLabel = document.getElementById('secondsLabel');
+  if (secondsLabel) secondsLabel.innerText = data.labels.seconds;
+
+  // Venue Section headings
+  const venueSubTitle = document.getElementById('venueSubTitle');
+  if (venueSubTitle) venueSubTitle.innerText = data.labels.venueSubTitle;
+
+  const venueTitle = document.getElementById('venueTitle');
+  if (venueTitle) venueTitle.innerText = data.labels.venueTitle;
+
+  const venueAddress = document.getElementById('venueAddress');
+  if (venueAddress) venueAddress.innerHTML = `<strong>${data.event.venueName}</strong><br>${data.event.venueAddress}`;
+
+  const directionsButtonText = document.getElementById('directionsButtonText');
+  if (directionsButtonText) directionsButtonText.innerText = data.labels.directionsButtonText;
+
+  const btnDirections = document.getElementById('btnDirections');
+  if (btnDirections) {
+    btnDirections.onclick = () => window.open(data.event.mapDirectionsUrl, '_blank');
+  }
+
+  // Map Embed Frame
+  const mapEmbedWrapper = document.getElementById('mapEmbedWrapper');
+  if (mapEmbedWrapper) {
+    mapEmbedWrapper.innerHTML = `
+      <iframe src="${data.event.mapEmbedUrl}" 
+              width="100%" height="100%" style="border:0;"
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              title="Wedding Venue Map Location"></iframe>
+    `;
+  }
+
+  // Gallery Section headings
+  const gallerySubTitle = document.getElementById('gallerySubTitle');
+  if (gallerySubTitle) gallerySubTitle.innerText = data.labels.gallerySubTitle;
+
+  const galleryTitle = document.getElementById('galleryTitle');
+  if (galleryTitle) galleryTitle.innerText = data.labels.galleryTitle;
+
+  const galleryInstructions = document.getElementById('galleryInstructions');
+  if (galleryInstructions) galleryInstructions.innerText = data.labels.galleryInstructions;
+
+  // Polaroid Gallery images render
+  const polaroidDeck = document.getElementById('polaroid-deck');
+  if (polaroidDeck && data.gallery) {
+    polaroidDeck.innerHTML = data.gallery.map((item, idx) => `
+      <div class="polaroid-slide-card ${idx === 0 ? 'active-stack' : (idx === 1 ? 'stack-2' : 'stack-3')}" data-index="${idx}" onclick="openLightbox(${idx})">
+          <div class="polaroid-img-frame">
+              <img src="${item.src}" alt="${item.title}">
+          </div>
+          <div class="polaroid-caption-title">${item.title}</div>
+      </div>
+    `).join('');
+  }
+
+  // Paint Palette headings
+  const paintSubTitle = document.getElementById('paintSubTitle');
+  if (paintSubTitle) paintSubTitle.innerText = data.labels.paintSubTitle;
+
+  const paintTitle = document.getElementById('paintTitle');
+  if (paintTitle) paintTitle.innerText = data.labels.paintTitle;
+
+  const paintInstructions = document.getElementById('paintInstructions');
+  if (paintInstructions) paintInstructions.innerText = data.labels.paintInstructions;
+
+  // Family Contacts Section headings
+  const contactsSubTitle = document.getElementById('contactsSubTitle');
+  if (contactsSubTitle) contactsSubTitle.innerText = data.labels.contactsSubTitle;
+
+  const contactsTitle = document.getElementById('contactsTitle');
+  if (contactsTitle) contactsTitle.innerText = data.labels.contactsTitle;
+
+  // Contacts
+  const contactsContainer = document.getElementById('contactsContainer');
+  if (contactsContainer && data.contacts) {
+    contactsContainer.innerHTML = data.contacts.map(contact => `
+      <div class="contact-card-box">
+          <h3 class="contact-card-name">${contact.name}</h3>
+          <span class="contact-card-role">${contact.relation}</span>
+          <div class="contact-action-flex">
+              <a href="tel:${contact.phone.replace(/[\s()-]/g, '')}" class="contact-action-btn call"><i class="fa-solid fa-phone"></i> ${data.labels.contactsCallLabel}</a>
+              <a href="https://wa.me/${contact.whatsapp}" class="contact-action-btn chat"><i class="fa-brands fa-whatsapp"></i> ${data.labels.contactsChatLabel}</a>
+          </div>
+      </div>
+    `).join('');
+  }
+
+  // Footer Details
+  const footerMonogram = document.getElementById('footerMonogram');
+  if (footerMonogram) footerMonogram.innerText = data.couple.monogram;
+
+  const footerNames = document.getElementById('footerNames');
+  if (footerNames) footerNames.innerText = `${data.couple.groom} & ${data.couple.bride}`;
+
+  const footerThankYou = document.getElementById('footerThankYou');
+  if (footerThankYou) footerThankYou.innerText = data.couple.tagline;
+
+  const footerCopyright = document.getElementById('footerCopyright');
+  if (footerCopyright) footerCopyright.innerText = `© 2026 ${data.couple.groom} & ${data.couple.bride}. All Rights Reserved.`;
+}
+
+/* ==========================================
+   PERSONALIZED WELCOME PARSER
+   ========================================== */
+function parseGuestGreeting() {
+    const guestNameDisplay = document.getElementById("guest-name-display");
+    if (!guestNameDisplay) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let name = urlParams.get("guest");
+    if (name) {
+        name = name.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        guestNameDisplay.innerText = name;
+    } else {
+        guestNameDisplay.innerText = (window.weddingData && window.weddingData.labels.defaultGuestName) || "Beloved Guest";
+    }
+}
+
+/* ==========================================
+   OPEN COVERS AND REVEAL SYSTEM
+   ========================================== */
+function initInviteOpener() {
+    const btnOpenInvite = document.getElementById("btn-open-invite");
     const loaderOverlay = document.getElementById("loading-screen");
     const mainContent = document.getElementById("main-content");
-    const btnOpenInvite = document.getElementById("btn-open-invite");
     const bgMusic = document.getElementById("bg-music");
     const musicToggle = document.getElementById("music-toggle");
-    const musicIcon = document.getElementById("music-icon");
-    
-    const guestNameDisplay = document.getElementById("guest-name-display");
-    
-    const scrollBar = document.getElementById("scroll-bar");
-    
-    const rsvpForm = document.getElementById("rsvp-form");
-    const rsvpSuccessModal = document.getElementById("rsvp-success");
-    const rsvpSuccessTitle = document.getElementById("rsvp-success-title");
-    const rsvpSuccessDesc = document.getElementById("rsvp-success-desc");
-    
-    const wishesForm = document.getElementById("wishes-form");
-    const wishesBoard = document.getElementById("wishes-board");
-    const wishText = document.getElementById("wish-text");
-    const wishSender = document.getElementById("wish-sender");
 
-    // ==========================================
-    // 3. PERSONALIZED WELCOME PARSER
-    // ==========================================
-    function parseGuestGreeting() {
-        const urlParams = new URLSearchParams(window.location.search);
-        let name = urlParams.get("guest");
-        if (name) {
-            // Sanitize input
-            name = name.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            guestNameDisplay.innerText = name;
-        } else {
-            guestNameDisplay.innerText = "Beloved Guest";
-        }
-    }
-    parseGuestGreeting();
+    if (!btnOpenInvite) return;
 
-    // ==========================================
-    // 4. OPEN COVERS AND REVEAL SYSTEM
-    // ==========================================
     btnOpenInvite.addEventListener("click", () => {
         // Play soft piano track
-        playAudioTrack();
+        if (bgMusic && musicToggle) {
+            bgMusic.play().then(() => {
+                musicToggle.classList.add("playing");
+                musicToggle.classList.remove("muted");
+                musicToggle.setAttribute("aria-label", "Mute Piano Track");
+            }).catch(err => {
+                console.log("Autoplay blocked by browser. Awaiting user interaction.", err);
+            });
+        }
         
         // Hide cover with scale reveal
-        loaderOverlay.classList.add("fade-out");
+        if (loaderOverlay) loaderOverlay.classList.add("fade-out");
         
         // Unhide main page content
-        mainContent.classList.remove("content-hidden");
-        // Force reflow
-        void mainContent.offsetWidth;
-        mainContent.classList.add("fade-in");
+        if (mainContent) {
+            mainContent.classList.remove("content-hidden");
+            void mainContent.offsetWidth; // Force reflow
+            mainContent.classList.add("fade-in");
+        }
         
         // Unlock browser scroll
         document.body.style.overflow = "auto";
         
         // Initialize timer countdown
-        initializeCountdown();
+        window.dispatchEvent(new Event('scroll'));
         
         // Start butterfly fluttering scheduler
         startButterflyScheduler();
@@ -115,175 +403,112 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Lock page scroll initially while cover is up
     document.body.style.overflow = "hidden";
+}
 
-    // ==========================================
-    // 5. PIANO INSTRUMENTAL CONTROLLER
-    // ==========================================
-    let isPlaying = false;
-
-    function playAudioTrack() {
-        bgMusic.play().then(() => {
-            isPlaying = true;
-            musicToggle.classList.add("playing");
-            musicToggle.classList.remove("muted");
-            musicToggle.setAttribute("aria-label", "Mute Piano Track");
-        }).catch(err => {
-            console.log("Autoplay blocked by browser. Awaiting user interaction.", err);
-            isPlaying = false;
-            musicToggle.classList.remove("playing");
-            musicToggle.classList.add("muted");
-        });
-    }
-
-    function pauseAudioTrack() {
-        bgMusic.pause();
-        isPlaying = false;
-        musicToggle.classList.remove("playing");
-        musicToggle.classList.add("muted");
-        musicToggle.setAttribute("aria-label", "Play Piano Track");
-    }
+/* ==========================================
+   PIANO INSTRUMENTAL CONTROLLER
+   ========================================== */
+function initMusicControls() {
+    const bgMusic = document.getElementById("bg-music");
+    const musicToggle = document.getElementById("music-toggle");
+    if (!bgMusic || !musicToggle) return;
 
     musicToggle.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (isPlaying) {
-            pauseAudioTrack();
+        if (!bgMusic.paused) {
+            bgMusic.pause();
+            musicToggle.classList.remove("playing");
+            musicToggle.classList.add("muted");
+            musicToggle.setAttribute("aria-label", "Play Piano Track");
         } else {
-            playAudioTrack();
+            bgMusic.play().then(() => {
+                musicToggle.classList.add("playing");
+                musicToggle.classList.remove("muted");
+                musicToggle.setAttribute("aria-label", "Mute Piano Track");
+            }).catch(err => {
+                console.log("Autoplay blocked", err);
+            });
         }
     });
+}
 
-    // ==========================================
-    // 6. SCROLL PROGRESS
-    // ==========================================
+/* ==========================================
+   SCROLL PROGRESS
+   ========================================== */
+function initScrollProgress() {
+    const scrollBar = document.getElementById("scroll-bar");
     window.addEventListener("scroll", () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
-        scrollBar.style.width = scrolled + "%";
+        if (scrollBar) scrollBar.style.width = scrolled + "%";
     });
+}
 
-    // ==========================================
-    // 7. WATERCOLOR BUTTERFLY GENERATOR
-    // ==========================================
-    let butterflyTimer;
+/* ==========================================
+   WATERCOLOR BUTTERFLY GENERATOR
+   ========================================== */
+let butterflyTimer;
+function startButterflyScheduler() {
+    butterflyTimer = setInterval(spawnButterfly, 12000);
+    setTimeout(spawnButterfly, 3000);
+}
+
+function spawnButterfly() {
+    const flyer = document.createElement("div");
+    flyer.className = "butterfly-flyer";
     
-    function startButterflyScheduler() {
-        // Trigger a butterfly occasionally (every 10-14 seconds)
-        butterflyTimer = setInterval(spawnButterfly, 12000);
-        // Spawn first butterfly after 3 seconds
-        setTimeout(spawnButterfly, 3000);
+    const colors = ["", "color-alt1", "color-alt2"];
+    const randomColorClass = colors[Math.floor(Math.random() * colors.length)];
+    if (randomColorClass) {
+        flyer.classList.add(randomColorClass);
     }
     
-    function spawnButterfly() {
-        const flyer = document.createElement("div");
-        flyer.className = "butterfly-flyer";
-        
-        // Color variation seeds
-        const colors = ["", "color-alt1", "color-alt2"];
-        const randomColorClass = colors[Math.floor(Math.random() * colors.length)];
-        if (randomColorClass) {
-            flyer.classList.add(randomColorClass);
-        }
-        
-        // Assemble wings
-        const wingPair = document.createElement("div");
-        wingPair.className = "butterfly-wing-pair";
-        
-        const leftWing = document.createElement("div");
-        leftWing.className = "wing-half left";
-        
-        const rightWing = document.createElement("div");
-        rightWing.className = "wing-half right";
-        
-        wingPair.appendChild(leftWing);
-        wingPair.appendChild(rightWing);
-        flyer.appendChild(wingPair);
-        
-        // Randomized vertical flight start (viewport height percentage)
-        const randomY = 30 + Math.random() * 50; 
-        // Randomized sizing scale
-        const scale = 0.6 + Math.random() * 0.5;
-        // Randomized animation speed
-        const duration = 14 + Math.random() * 6;
-        
-        flyer.style.top = `${randomY}vh`;
-        flyer.style.transform = `scale(${scale})`;
-        flyer.style.animationDuration = `${duration}s`;
-        
-        document.body.appendChild(flyer);
-        
-        // Clean up node when animation finishes
-        setTimeout(() => {
-            flyer.remove();
-        }, duration * 1000);
-    }
-
-    // ==========================================
-    // 8. POLAROID JOURNAL GALLERY ROTATOR
-    // ==========================================
-    let activeIndex = 0;
-    let isAnimating = false;
-    const cards = Array.from(document.querySelectorAll(".polaroid-slide-card"));
+    const wingPair = document.createElement("div");
+    wingPair.className = "butterfly-wing-pair";
     
+    const leftWing = document.createElement("div");
+    leftWing.className = "wing-half left";
+    
+    const rightWing = document.createElement("div");
+    rightWing.className = "wing-half right";
+    
+    wingPair.appendChild(leftWing);
+    wingPair.appendChild(rightWing);
+    flyer.appendChild(wingPair);
+    
+    const randomY = 30 + Math.random() * 50; 
+    const scale = 0.6 + Math.random() * 0.5;
+    const duration = 14 + Math.random() * 6;
+    
+    flyer.style.top = `${randomY}vh`;
+    flyer.style.transform = `scale(${scale})`;
+    flyer.style.animationDuration = `${duration}s`;
+    
+    document.body.appendChild(flyer);
+    
+    setTimeout(() => {
+        flyer.remove();
+    }, duration * 1000);
+}
+
+/* ==========================================
+   POLAROID JOURNAL GALLERY ROTATOR
+   ========================================== */
+let activeIndex = 0;
+let isAnimating = false;
+
+function initPolaroidRotator() {
     const btnPrev = document.getElementById("gallery-prev");
     const btnNext = document.getElementById("gallery-next");
     const polaroidDeck = document.getElementById("polaroid-deck");
-    
-    function updatePolaroidStack() {
-        cards.forEach((card, idx) => {
-            // Remove previous stack and swipe classes
-            card.className = "polaroid-slide-card";
-            
-            // Calculate index relative to the active card
-            let relativeIdx = (idx - activeIndex + cards.length) % cards.length;
-            
-            if (relativeIdx === 0) {
-                card.classList.add("active-stack");
-            } else if (relativeIdx === 1) {
-                card.classList.add("stack-2");
-            } else {
-                card.classList.add("stack-3");
-            }
-        });
-    }
-    
-    function rotateNext() {
-        if (isAnimating) return;
-        isAnimating = true;
-        
-        const activeCard = cards[activeIndex];
-        activeCard.classList.add("swipe-left");
-        
-        setTimeout(() => {
-            activeIndex = (activeIndex + 1) % cards.length;
-            updatePolaroidStack();
-            isAnimating = false;
-        }, 500);
-    }
-    
-    function rotatePrev() {
-        if (isAnimating) return;
-        isAnimating = true;
-        
-        const nextActiveIdx = (activeIndex - 1 + cards.length) % cards.length;
-        const nextActiveCard = cards[nextActiveIdx];
-        
-        // Move target card to the front visually but swiped right
-        nextActiveCard.style.zIndex = "10";
-        nextActiveCard.classList.add("swipe-right");
-        
-        setTimeout(() => {
-            activeIndex = nextActiveIdx;
-            updatePolaroidStack();
-            nextActiveCard.style.zIndex = "";
-            isAnimating = false;
-        }, 500);
-    }
-    
+
+    if (!btnPrev || !btnNext || !polaroidDeck) return;
+
     btnNext.addEventListener("click", rotateNext);
     btnPrev.addEventListener("click", rotatePrev);
-    
-    // Swipe Gestures Support (Touch handlers)
+
+    // Swipe Gestures
     let startX = 0;
     let endX = 0;
     
@@ -302,284 +527,227 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (Math.abs(deltaX) > threshold) {
             if (deltaX < 0) {
-                rotateNext(); // Swipe Left
+                rotateNext();
             } else {
-                rotatePrev(); // Swipe Right
+                rotatePrev();
             }
         }
     }
+
+    updatePolaroidStack();
+}
+
+function updatePolaroidStack() {
+    const cards = Array.from(document.querySelectorAll(".polaroid-slide-card"));
+    cards.forEach((card, idx) => {
+        card.className = "polaroid-slide-card";
+        let relativeIdx = (idx - activeIndex + cards.length) % cards.length;
+        
+        if (relativeIdx === 0) {
+            card.classList.add("active-stack");
+        } else if (relativeIdx === 1) {
+            card.classList.add("stack-2");
+        } else {
+            card.classList.add("stack-3");
+        }
+    });
+}
+
+function rotateNext() {
+    if (isAnimating) return;
+    const cards = Array.from(document.querySelectorAll(".polaroid-slide-card"));
+    if (cards.length === 0) return;
+
+    isAnimating = true;
+    const activeCard = cards[activeIndex];
+    activeCard.classList.add("swipe-left");
     
-    // Lightbox Modal functions
+    setTimeout(() => {
+        activeIndex = (activeIndex + 1) % cards.length;
+        updatePolaroidStack();
+        isAnimating = false;
+    }, 500);
+}
+
+function rotatePrev() {
+    if (isAnimating) return;
+    const cards = Array.from(document.querySelectorAll(".polaroid-slide-card"));
+    if (cards.length === 0) return;
+
+    isAnimating = true;
+    const nextActiveIdx = (activeIndex - 1 + cards.length) % cards.length;
+    const nextActiveCard = cards[nextActiveIdx];
+    
+    nextActiveCard.style.zIndex = "10";
+    nextActiveCard.classList.add("swipe-right");
+    
+    setTimeout(() => {
+        activeIndex = nextActiveIdx;
+        updatePolaroidStack();
+        nextActiveCard.style.zIndex = "";
+        isAnimating = false;
+    }, 500);
+}
+
+// Lightbox Modal triggers
+window.openLightbox = function(index) {
+    if (index !== activeIndex) return;
+    
     const lightboxModal = document.getElementById("gallery-lightbox");
     const lightboxImgSource = document.getElementById("lightbox-img-source");
     const lightboxCaptionText = document.getElementById("lightbox-caption-text");
-    
-    window.openLightbox = function(index) {
-        // Only open if the clicked card is currently the active one at the top of the stack
-        if (index !== activeIndex) return;
-        
-        const item = galleryItems[index];
-        lightboxImgSource.src = `images/gallery${index + 1}.png`;
-        lightboxCaptionText.innerText = item.desc;
-        
-        lightboxModal.style.display = "flex";
-        document.body.style.overflow = "hidden"; // Lock scroll
-    };
-    
-    window.closeLightbox = function() {
-        lightboxModal.style.display = "none";
-        document.body.style.overflow = "auto"; // Unlock scroll
-    };
-    
-    // Close lightbox on click outside the image card container
-    lightboxModal.addEventListener("click", (e) => {
-        if (e.target === lightboxModal) {
-            closeLightbox();
-        }
-    });
+    if (!lightboxModal || !lightboxImgSource || !lightboxCaptionText) return;
 
-    // ==========================================
-    // 9. INTERACTIVE WATERCOLOR PAINT PALETTE
-    // ==========================================
-    const paletteBlobs = document.querySelectorAll(".color-well-blob");
-    const splatContainer = document.getElementById("splat-container");
-    const paintToast = document.getElementById("paint-toast");
-    let toastTimer;
+    const data = window.weddingData;
+    const item = data && data.gallery && data.gallery[index];
+    if (!item) return;
+
+    lightboxImgSource.src = item.src;
+    lightboxCaptionText.innerText = item.desc;
     
+    lightboxModal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+};
+
+window.closeLightbox = function() {
+    const lightboxModal = document.getElementById("gallery-lightbox");
+    if (lightboxModal) lightboxModal.style.display = "none";
+    document.body.style.overflow = "auto";
+};
+
+/* ==========================================
+   INTERACTIVE WATERCOLOR PAINT PALETTE
+   ========================================== */
+let toastTimer;
+function initPaintPalette() {
+    const paletteBlobs = document.querySelectorAll(".color-well-blob");
     paletteBlobs.forEach(blob => {
         blob.addEventListener("click", (e) => {
             e.stopPropagation();
+            const data = window.weddingData;
+            
+            const colorMap = (data && data.paintPalette && data.paintPalette.colors) || {
+                "well-blush": "#FFD1DC",
+                "well-lavender": "#E8DFF5",
+                "well-blue": "#E2ECEF",
+                "well-green": "#D7E7DE",
+                "well-peach": "#FCE1D4",
+                "well-gold": "#D4AF37"
+            };
+
             const wellId = blob.id;
-            const color = colorSplats[wellId] || "#FFD1DC";
+            const color = colorMap[wellId] || "#FFD1DC";
             
-            // Calculate screen splatter position (random viewport coordinates)
-            const randomX = 10 + Math.random() * 80; // percent width
-            const randomY = 10 + Math.random() * 80; // percent height
+            const randomX = 10 + Math.random() * 80;
+            const randomY = 10 + Math.random() * 80;
             
-            // Spawn splash particle
             spawnPaintSplat(randomX, randomY, color);
             
-            // Highlight color well blob scale trigger
             blob.style.transform = "scale(1.2)";
             setTimeout(() => { blob.style.transform = ""; }, 300);
             
-            // Show randomly selected thank you quote
             showPaintToast();
         });
     });
+}
+
+function spawnPaintSplat(x, y, color) {
+    const splatContainer = document.getElementById("splat-container");
+    if (!splatContainer) return;
+
+    const splat = document.createElement("div");
+    splat.className = "screen-paint-splat";
     
-    function spawnPaintSplat(x, y, color) {
-        const splat = document.createElement("div");
-        splat.className = "screen-paint-splat";
-        
-        // Random organic liquid borders
-        const r1 = 30 + Math.random() * 30;
-        const r2 = 30 + Math.random() * 30;
-        const r3 = 30 + Math.random() * 30;
-        const r4 = 30 + Math.random() * 30;
-        splat.style.borderRadius = `${r1}% ${100-r1}% ${r2}% ${100-r2}% / ${r3}% ${r4}% ${100-r4}% ${100-r3}%`;
-        
-        splat.style.left = `${x}vw`;
-        splat.style.top = `${y}vh`;
-        splat.style.backgroundColor = color;
-        splat.style.boxShadow = `inset 0 0 20px rgba(0,0,0,0.05), 0 5px 15px ${color}44`;
-        
-        splatContainer.appendChild(splat);
-        
-        // Auto remove splat node after animation finishes
-        setTimeout(() => {
-            splat.remove();
-        }, 1500);
-    }
+    const r1 = 30 + Math.random() * 30;
+    const r2 = 30 + Math.random() * 30;
+    const r3 = 30 + Math.random() * 30;
+    const r4 = 30 + Math.random() * 30;
+    splat.style.borderRadius = `${r1}% ${100-r1}% ${r2}% ${100-r2}% / ${r3}% ${r4}% ${100-r4}% ${100-r3}%`;
     
-    function showPaintToast() {
-        clearTimeout(toastTimer);
-        const quote = paletteQuotes[Math.floor(Math.random() * paletteQuotes.length)];
-        paintToast.innerText = quote;
-        paintToast.classList.add("show");
-        
-        toastTimer = setTimeout(() => {
-            paintToast.classList.remove("show");
-        }, 3000);
+    splat.style.left = `${x}vw`;
+    splat.style.top = `${y}vh`;
+    splat.style.backgroundColor = color;
+    splat.style.boxShadow = `inset 0 0 20px rgba(0,0,0,0.05), 0 5px 15px ${color}44`;
+    
+    splatContainer.appendChild(splat);
+    
+    setTimeout(() => {
+        splat.remove();
+    }, 1500);
+}
+
+function showPaintToast() {
+    const paintToast = document.getElementById("paint-toast");
+    if (!paintToast) return;
+
+    clearTimeout(toastTimer);
+    const data = window.weddingData;
+    const quotes = (data && data.paintPalette && data.paintPalette.quotes) || [
+        "Thank you for painting our world with love! 🎨",
+        "May our wedding day be as vibrant as this splash! 🌸",
+        "Blessings of joy, color, and laughter received! ✨",
+        "A canvas of shared memories is what we build! 🖌",
+        "Wishing you a beautiful path painted in gold! 💛",
+        "Your color blessing makes our day more artistic! 🎨"
+    ];
+
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    paintToast.innerText = quote;
+    paintToast.classList.add("show");
+    
+    toastTimer = setTimeout(() => {
+        paintToast.classList.remove("show");
+    }, 3000);
+}
+
+/* ==========================================
+   WEDDING TIMER COUNTDOWN Muhurtham
+   ========================================== */
+let timerInterval;
+function initCountdown() {
+    clearInterval(timerInterval);
+    
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    
+    const data = window.weddingData;
+    const dateStr = (data && data.event && data.event.dateTimeString) || "2026-09-10T10:30:00";
+    let weddingDate = new Date(dateStr).getTime();
+
+    if (isNaN(weddingDate)) {
+        const cleaned = dateStr.replace(/-/g, '/').replace('T', ' ');
+        weddingDate = new Date(cleaned).getTime();
+    }
+    if (isNaN(weddingDate)) {
+        weddingDate = new Date(2026, 8, 10, 10, 30, 0).getTime();
     }
 
-    // ==========================================
-    // 10. RSVP SUBMISSION & FRONTEND CHECKS
-    // ==========================================
-    window.handleRSVPSubmit = function(event) {
-        event.preventDefault();
+    function updateTimer() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
         
-        if (!rsvpForm) return;
-
-        const nameEl = document.getElementById("rsvp-name");
-        const phoneEl = document.getElementById("rsvp-phone");
-        const attendeesEl = document.getElementById("rsvp-attendees");
-        const statusEl = document.querySelector('input[name="attendance-status"]:checked');
-
-        const name = nameEl ? nameEl.value.trim() : "";
-        const phone = phoneEl ? phoneEl.value.trim() : "";
-        const attendees = attendeesEl ? attendeesEl.value : "1";
-        const status = statusEl ? statusEl.value : "yes";
-        
-        if (name === "" || phone === "") {
-            alert("Please fill out all required fields.");
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            if (daysEl) daysEl.innerText = "00";
+            if (hoursEl) hoursEl.innerText = "00";
+            if (minutesEl) minutesEl.innerText = "00";
+            if (secondsEl) secondsEl.innerText = "00";
             return;
         }
         
-        // Update modal success displays
-        if (status === "yes") {
-            if (rsvpSuccessTitle) rsvpSuccessTitle.innerText = "Honored to Welcome You! 🌸";
-            if (rsvpSuccessDesc) rsvpSuccessDesc.innerText = `Dear ${name}, your attendance (total ${attendees} guest/s) has been successfully confirmed. We look forward to celebrating with you!`;
-            // Trigger color splashes celebration
-            for (let i = 0; i < 4; i++) {
-                setTimeout(() => {
-                    const colors = Object.values(colorSplats);
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    spawnPaintSplat(15 + Math.random() * 70, 15 + Math.random() * 70, randomColor);
-                }, i * 300);
-            }
-        } else {
-            if (rsvpSuccessTitle) rsvpSuccessTitle.innerText = "Regrets Recorded 🌿";
-            if (rsvpSuccessDesc) rsvpSuccessDesc.innerText = `Thank you for letting us know, ${name}. We appreciate your blessings and prayers from afar.`;
-        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-        if (rsvpSuccessModal) {
-            rsvpSuccessModal.style.display = "flex";
-            document.body.style.overflow = "hidden"; // lock scroll
-        }
-    };
-    
-    window.closeRSVPSuccess = function() {
-        if (rsvpSuccessModal) rsvpSuccessModal.style.display = "none";
-        document.body.style.overflow = "auto"; // unlock scroll
-        if (rsvpForm) rsvpForm.reset();
-    };
-
-    // ==========================================
-    // 11. LOCAL STORAGE GUEST CANVAS BOARD
-    // ==========================================
-    function loadWishes() {
-        if (!wishesBoard) return;
-        let wishes = [];
-        try {
-            const rawWishes = localStorage.getItem("watercolor_wishes");
-            if (rawWishes) {
-                wishes = JSON.parse(rawWishes);
-            }
-        } catch (e) {
-            console.error("Failed to load wishes database from storage.", e);
-        }
-        
-        // Seed default wishes if database empty
-        if (wishes.length === 0) {
-            wishes = [...defaultWishes];
-            localStorage.setItem("watercolor_wishes", JSON.stringify(wishes));
-        }
-        
-        renderWishes(wishes);
+        if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+        if (minutesEl) minutesEl.innerText = String(minutes).padStart(2, '0');
+        if (secondsEl) secondsEl.innerText = String(seconds).padStart(2, '0');
     }
     
-    function renderWishes(wishes) {
-        if (!wishesBoard) return;
-        wishesBoard.innerHTML = "";
-        
-        // Reverse wishes to display the most recent blessing first
-        const sortedWishes = [...wishes].reverse();
-        
-        sortedWishes.forEach(wish => {
-            const card = document.createElement("div");
-            card.className = "wish-sticky-note";
-            card.innerHTML = `
-                <div class="wish-note-washi"></div>
-                <p class="wish-note-text">"${wish.text}"</p>
-                <div class="wish-note-sender">- ${wish.sender}</div>
-            `;
-            wishesBoard.appendChild(card);
-        });
-    }
-    
-    window.handleWishSubmit = function(event) {
-        event.preventDefault();
-        
-        if (!wishSender || !wishText) return;
-
-        const sender = wishSender.value.trim();
-        const text = wishText.value.trim();
-        
-        if (sender === "" || text === "") {
-            return;
-        }
-        
-        let wishes = [];
-        try {
-            const rawWishes = localStorage.getItem("watercolor_wishes");
-            if (rawWishes) {
-                wishes = JSON.parse(rawWishes);
-            }
-        } catch (e) {
-            console.error("Failed to append wish to local storage database.", e);
-        }
-        
-        // Append new blessing
-        wishes.push({ sender, text });
-        localStorage.setItem("watercolor_wishes", JSON.stringify(wishes));
-        
-        // Re-render wishes
-        renderWishes(wishes);
-        
-        // Clear input form fields
-        wishText.value = "";
-        wishSender.value = "";
-        
-        // Trigger a gold paint splash near the wall area to confirm posting
-        spawnPaintSplat(30 + Math.random() * 40, 40 + Math.random() * 30, "#D4AF37");
-    };
-    
-    if (wishesBoard) {
-        loadWishes();
-    }
-
-    // ==========================================
-    // 12. WEDDING TIMER COUNTDOWN Muhurtham
-    // ==========================================
-    let timerInterval;
-    
-    function initializeCountdown() {
-        clearInterval(timerInterval);
-        
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-        
-        function updateTimer() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            
-            if (distance < 0) {
-                clearInterval(timerInterval);
-                daysEl.innerText = "00";
-                hoursEl.innerText = "00";
-                minutesEl.innerText = "00";
-                secondsEl.innerText = "00";
-                return;
-            }
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            daysEl.innerText = days < 10 ? "0" + days : days;
-            hoursEl.innerText = hours < 10 ? "0" + hours : hours;
-            minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
-            secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
-        }
-        
-        updateTimer();
-        timerInterval = setInterval(updateTimer, 1000);
-    }
-    
-    // Force initial stack offsets setting
-    updatePolaroidStack();
-});
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
+}
