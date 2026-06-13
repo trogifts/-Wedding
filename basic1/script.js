@@ -640,4 +640,3 @@ function setupScrollAnimations() {
         revealOnScroll();
     }
 }
-}
