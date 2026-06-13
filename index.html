@@ -9,18 +9,19 @@
     <!-- Google Fonts: Editorial Serif & Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #07080a;
-            --text-color: #f5f6fa;
-            --muted-color: #8e94a5;
-            --accent-gold: #dfb07a;
-            --border-color: rgba(223, 176, 122, 0.15);
+            --bg-color: #faf9f6;          /* Elegant Warm Ivory/White */
+            --card-bg: #ffffff;           /* Clean Paper White */
+            --text-color: #1a1a1a;        /* Deep Obsidian Charcoal */
+            --muted-color: #5a6065;       /* Modern Slate */
+            --accent-gold: #c5a059;       /* Champagne Gold */
+            --border-color: rgba(197, 160, 89, 0.2); /* Soft Gold Inset */
             --font-serif: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Montserrat', sans-serif;
-            --transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * {
@@ -34,83 +35,125 @@
             color: var(--text-color);
             font-family: var(--font-sans);
             line-height: 1.6;
-            padding: 80px 24px;
+            padding: 100px 24px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* Gold Framed Inset Border */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+            z-index: 100;
         }
 
         header {
             text-align: center;
             max-width: 600px;
-            margin-bottom: 70px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
         }
 
         .logo {
             font-family: var(--font-serif);
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 7px;
             color: var(--accent-gold);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
 
         .title {
             font-family: var(--font-serif);
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 300;
             line-height: 1.1;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
         }
 
         .subtitle {
             font-size: 0.85rem;
             color: var(--muted-color);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             font-weight: 300;
+            text-transform: uppercase;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 45px 35px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 40px;
+            max-width: 1050px;
             width: 100%;
-            margin-bottom: 90px;
+            margin-bottom: 100px;
+            position: relative;
+            z-index: 10;
         }
 
         .card {
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px 5px 30px;
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 45px 35px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             transition: var(--transition-smooth);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            position: relative;
         }
 
         .card:hover {
-            border-bottom-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+            box-shadow: 0 20px 50px rgba(197, 160, 89, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* Top Accent Line on Hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-gold);
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
         }
 
         .card-header {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .card-title {
             font-family: var(--font-serif);
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             font-weight: 300;
             color: var(--text-color);
             letter-spacing: 0.5px;
         }
 
         .card-desc {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--muted-color);
-            margin-bottom: 25px;
-            line-height: 1.6;
+            margin-bottom: 30px;
+            line-height: 1.7;
             font-weight: 300;
         }
 
@@ -120,7 +163,7 @@
             letter-spacing: 2px;
             color: var(--accent-gold);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -135,33 +178,42 @@
         footer {
             margin-top: auto;
             text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-color);
+            padding-top: 50px;
+            border-top: 1px solid rgba(0, 0, 0, 0.04);
             width: 100%;
-            max-width: 1000px;
+            max-width: 1050px;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-logo {
             font-family: var(--font-serif);
-            font-size: 1.1rem;
-            letter-spacing: 4px;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
             color: var(--accent-gold);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-weight: 400;
         }
 
         .footer-copy {
             font-size: 0.7rem;
             color: var(--muted-color);
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             body {
-                padding: 50px 20px;
+                padding: 60px 24px;
+            }
+            body::after {
+                top: 12px;
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
             }
             .title {
-                font-size: 2.4rem;
+                font-size: 2.6rem;
             }
             .grid {
                 grid-template-columns: 1fr;
@@ -175,7 +227,7 @@
     <header>
         <div class="logo">✦ The Atelier ✦</div>
         <h1 class="title">Design Collection</h1>
-        <p class="subtitle">Curated premium digital invitation templates.</p>
+        <p class="subtitle">Curated digital invitation templates</p>
     </header>
 
     <div class="grid">
@@ -186,7 +238,7 @@
             </div>
             <p class="card-desc">Traditional Kasavu cream & gold theme featuring automated oil lamp lighting, falling jasmine flower showers, and Kochi backwater aesthetics.</p>
             <div>
-                <a href="kerala/index.html" class="card-link">View Template &rarr;</a>
+                <a href="kerala/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -197,7 +249,7 @@
             </div>
             <p class="card-desc">Cosmic dark-mode editorial layout featuring 3D envelope unboxing, liquid gold details, and elegant celestial schedules.</p>
             <div>
-                <a href="celestial/index.html" class="card-link">View Template &rarr;</a>
+                <a href="celestial/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -208,7 +260,7 @@
             </div>
             <p class="card-desc">Elegant contemporary layout featuring delicate rose gold trims, premium editorial serif typography, and soft scroll-reveal fading animations.</p>
             <div>
-                <a href="rose-gold/index.html" class="card-link">View Template &rarr;</a>
+                <a href="rose-gold/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -219,7 +271,7 @@
             </div>
             <p class="card-desc">Traditional temple layout with automated wick lighting, memory tree slide loops, and clean fact checklist lists.</p>
             <div>
-                <a href="standard2/index.html" class="card-link">View Template &rarr;</a>
+                <a href="standard2/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -230,7 +282,7 @@
             </div>
             <p class="card-desc">Chic luxury design featuring pastel watercolor boards, interactive floating canvas butterflies, and fluid typography headers.</p>
             <div>
-                <a href="standard3/index.html" class="card-link">View Template &rarr;</a>
+                <a href="standard3/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -241,7 +293,7 @@
             </div>
             <p class="card-desc">Sleek modern minimalist layout featuring background meteor showers, star-hunting timelines, and fluid contacts.</p>
             <div>
-                <a href="standard4/index.html" class="card-link">View Template &rarr;</a>
+                <a href="standard4/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -252,7 +304,7 @@
             </div>
             <p class="card-desc">Elegant standard card template incorporating background stardust particle engines, sound toggles, and responsive drawers.</p>
             <div>
-                <a href="standard1/index.html" class="card-link">View Template &rarr;</a>
+                <a href="standard1/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -263,7 +315,7 @@
             </div>
             <p class="card-desc">High-contrast classic wedding card layout with simple mobile drawer navigation links and static information blocks.</p>
             <div>
-                <a href="basic1/index.html" class="card-link">View Template &rarr;</a>
+                <a href="basic1/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -274,7 +326,7 @@
             </div>
             <p class="card-desc">Minimalist layout with clean alignments, mobile drawer navigation menus, and clean slate margins.</p>
             <div>
-                <a href="basic2/index.html" class="card-link">View Template &rarr;</a>
+                <a href="basic2/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
 
@@ -285,7 +337,7 @@
             </div>
             <p class="card-desc">Charming flight passport boarding layout with dynamic custom guest greeting and static console directories.</p>
             <div>
-                <a href="basic3/index.html" class="card-link">View Template &rarr;</a>
+                <a href="basic3/index.html" class="card-link">Explore Collection &rarr;</a>
             </div>
         </div>
     </div>
