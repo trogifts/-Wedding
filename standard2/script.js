@@ -519,58 +519,96 @@ function initScrollProgress() {
 }
 
 /* ==========================================
-   VIRTUAL NILAVILAKKU CEREMONY
+   VIRTUAL NILAVILAKKU CEREMONY (AUTOMATED)
    ========================================== */
 function initNilavilakkuCeremony() {
     const wickSpots = document.querySelectorAll(".wick-spot");
     const lampBlessingCard = document.getElementById("lamp-blessing-card");
-    let totalLitWicks = 0;
+    const lampBox = document.querySelector(".lamp-ceremony-box");
+    
+    if (!lampBox || wickSpots.length === 0) return;
 
-    wickSpots.forEach(wick => {
-        wick.addEventListener("click", () => {
-            if (!wick.classList.contains("lit")) {
-                wick.classList.add("lit");
-                totalLitWicks++;
+    let hasStartedLighting = false;
 
-                // Show floating confirmation toast
-                showFlowerToast("Auspicious flame lit! 🕯️");
-
-                // When all 5 wicks are lit, trigger blessing card & special automatic flower rain
-                if (totalLitWicks === 5) {
-                    setTimeout(() => {
-                        if (lampBlessingCard) lampBlessingCard.style.display = "block";
-                        triggerFlowerShower(40); // Large rain celebration
-                        showFlowerToast("Ponmangalashamsakal! Lamp fully lit! 🌟");
-                    }, 600);
-                }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasStartedLighting) {
+                hasStartedLighting = true;
+                lightWicksSequentially();
             }
         });
-    });
+    }, { threshold: 0.25 });
+
+    observer.observe(lampBox);
+
+    function lightWicksSequentially() {
+        let currentWickIdx = 0;
+        
+        function lightNext() {
+            if (currentWickIdx < wickSpots.length) {
+                const wick = wickSpots[currentWickIdx];
+                wick.classList.add("lit");
+                showFlowerToast("Auspicious flame lit! 🕯️");
+                currentWickIdx++;
+                
+                if (currentWickIdx === wickSpots.length) {
+                    setTimeout(() => {
+                        if (lampBlessingCard) lampBlessingCard.style.display = "block";
+                        triggerFlowerShower(40); // Large celebration shower
+                        showFlowerToast("Ponmangalashamsakal! Lamp fully lit! 🌟");
+                    }, 800);
+                } else {
+                    setTimeout(lightNext, 700);
+                }
+            }
+        }
+        
+        setTimeout(lightNext, 500);
+    }
 }
 
 /* ==========================================
-   FLOWER SHOWER BLESSING ENGINE
+   FLOWER SHOWER BLESSING ENGINE (AUTOMATED)
    ========================================== */
 let toastTimeout;
+let flowerInterval = null;
 function initFlowerShower() {
-    const urliBasket = document.getElementById("urli-basket");
-    if (!urliBasket) return;
-
-    urliBasket.addEventListener("click", () => {
-        triggerFlowerShower(25);
-
-        const data = window.weddingData;
-        const blessingSayings = (data && data.interactiveCeremonies && data.interactiveCeremonies.flowerBlessingSayings) || [
-            "May their life be as fragrant as jasmine! 🌸",
-            "Wishing Zayn & Aara a golden future! 🌟",
-            "Ponmangalashamsakal! May love flourish forever! ❤️",
-            "Blessings of happiness, peace, and abundance! 🌿",
-            "May joy shower upon their union! 🌺"
-        ];
+    // Start continuous gentle falling flowers automatically
+    if (!flowerInterval) {
+        setTimeout(() => {
+            triggerFlowerShower(6);
+        }, 3000);
         
-        const randomSaying = blessingSayings[Math.floor(Math.random() * blessingSayings.length)];
-        showFlowerToast(randomSaying);
-    });
+        flowerInterval = setInterval(() => {
+            triggerFlowerShower(4);
+        }, 5000);
+    }
+
+    // Trigger a slightly larger shower when the flower section comes into view
+    const flowerWidget = document.querySelector(".flower-shower-widget");
+    if (flowerWidget) {
+        let hasTriggeredScrollShower = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasTriggeredScrollShower) {
+                    hasTriggeredScrollShower = true;
+                    triggerFlowerShower(20);
+                    
+                    const data = window.weddingData;
+                    const blessingSayings = (data && data.interactiveCeremonies && data.interactiveCeremonies.flowerBlessingSayings) || [
+                        "May their life be as fragrant as jasmine! 🌸",
+                        "Wishing Zayn & Aara a golden future! 🌟",
+                        "Ponmangalashamsakal! May love flourish forever! ❤️",
+                        "Blessings of happiness, peace, and abundance! 🌿",
+                        "May joy shower upon their union! 🌺"
+                    ];
+                    const randomSaying = blessingSayings[Math.floor(Math.random() * blessingSayings.length)];
+                    showFlowerToast(randomSaying);
+                }
+            });
+        }, { threshold: 0.25 });
+        observer.observe(flowerWidget);
+    }
 }
 
 function showFlowerToast(message) {
@@ -617,144 +655,91 @@ function triggerFlowerShower(count) {
 }
 
 /* ==========================================
-   WEDDING MEMORY TREE REVEALS
+   WEDDING MEMORY TREE REVEALS (AUTOMATED SLIDESHOW)
    ========================================== */
 function initMemoryTree() {
     const treeLeaves = document.querySelectorAll(".tree-leaf-node");
     const memoryRevealBox = document.getElementById("memory-reveal-box");
     const memoryRevealTitle = document.getElementById("memory-reveal-title");
     const memoryRevealDesc = document.getElementById("memory-reveal-desc");
+    
+    if (treeLeaves.length === 0) return;
 
-    treeLeaves.forEach(leaf => {
-        leaf.addEventListener("click", () => {
-            const leafId = leaf.id.replace("leaf-", "");
-            const data = window.weddingData;
-            const fact = data && data.memoryTreeFacts && data.memoryTreeFacts[leafId];
+    let activeLeafIdx = 0;
+    let treeInterval = null;
 
-            if (fact) {
-                treeLeaves.forEach(l => {
-                    const circle = l.querySelector("circle");
-                    if (circle) circle.style.fill = "#FFF";
-                });
-                const leafCircle = leaf.querySelector("circle");
-                if (leafCircle) leafCircle.style.fill = "#FAF5B7";
+    function showLeafFact(index) {
+        const leaf = treeLeaves[index];
+        if (!leaf) return;
 
-                if (memoryRevealTitle) memoryRevealTitle.innerText = fact.title;
-                if (memoryRevealDesc) memoryRevealDesc.innerText = fact.desc;
-                if (memoryRevealBox) memoryRevealBox.style.display = "block";
+        const leafId = leaf.id.replace("leaf-", "");
+        const data = window.weddingData;
+        const fact = data && data.memoryTreeFacts && data.memoryTreeFacts[leafId];
 
-                showFlowerToast("Fact Unlocked! 🍃");
+        if (fact) {
+            treeLeaves.forEach(l => {
+                const circle = l.querySelector("circle");
+                if (circle) circle.style.fill = "#FFF";
+            });
+            const leafCircle = leaf.querySelector("circle");
+            if (leafCircle) leafCircle.style.fill = "#FAF5B7";
+
+            if (memoryRevealBox) {
+                memoryRevealBox.style.opacity = "0";
+                setTimeout(() => {
+                    if (memoryRevealTitle) memoryRevealTitle.innerText = fact.title;
+                    if (memoryRevealDesc) memoryRevealDesc.innerText = fact.desc;
+                    memoryRevealBox.style.display = "block";
+                    memoryRevealBox.style.opacity = "1";
+                }, 300);
             }
-        });
-    });
+        }
+    }
+
+    // Start slideshow when Memory Tree comes into view
+    const treeContainer = document.querySelector(".memory-tree-box");
+    if (treeContainer) {
+        let hasStartedSlideshow = false;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !hasStartedSlideshow) {
+                    hasStartedSlideshow = true;
+                    showLeafFact(0);
+                    
+                    treeInterval = setInterval(() => {
+                        activeLeafIdx = (activeLeafIdx + 1) % treeLeaves.length;
+                        showLeafFact(activeLeafIdx);
+                    }, 4000);
+                }
+            });
+        }, { threshold: 0.25 });
+        observer.observe(treeContainer);
+    }
 }
 
 /* ==========================================
-   COUPLE QUIZ GAME ENGINE
+   COUPLE QUIZ - AUTOMATED / STATIC FACTS DISPLAY
    ========================================== */
-let quizScore = 0;
-let quizAnswers = { 1: null, 2: null, 3: null };
-
 function initQuizGame() {
     const quizContainer = document.getElementById('quizContainer');
     const data = window.weddingData;
     if (!quizContainer || !data || !data.quiz) return;
 
-    quizContainer.innerHTML = data.quiz.map((item, idx) => `
-        <div id="q-${idx + 1}" class="quiz-question-card ${idx === 0 ? 'active' : ''}">
-            <div class="quiz-q-num">${item.qNum}</div>
-            <h4 class="quiz-q-text">${item.qText}</h4>
-            <div class="quiz-options-list">
-                ${item.options.map((opt, optIdx) => `
-                    <button class="quiz-opt-btn" onclick="checkAnswer(${idx + 1}, ${optIdx}, ${opt.correct})">${opt.text}</button>
-                `).join('')}
+    // Render as a beautiful static Q&A list with checkmark indicators
+    quizContainer.innerHTML = data.quiz.map((item, idx) => {
+        const correctAnswer = item.options.find(opt => opt.correct).text;
+        return `
+            <div class="quiz-qa-card" style="margin-bottom: 25px; padding: 20px; background-color: var(--color-bg-primary); border-left: 4px solid var(--color-gold); border-radius: var(--border-radius-sm); box-shadow: var(--shadow-soft); text-align: left;">
+                <div class="quiz-q-num" style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-gold); font-weight: 600; margin-bottom: 8px;">Fact ${idx + 1}</div>
+                <h4 class="quiz-q-text" style="font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-maroon); margin-bottom: 12px; font-weight: 600; line-height: 1.4;">${item.qText}</h4>
+                <div class="quiz-answer-text" style="font-size: 0.95rem; color: var(--color-emerald); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>${correctAnswer}</span>
+                </div>
             </div>
-        </div>
-    `).join('') + `
-        <!-- Result Card -->
-        <div id="quiz-result" class="quiz-result-card">
-            <div id="score-badge" class="quiz-score-badge">0/3</div>
-            <h4 class="quiz-q-text" id="quiz-feedback-title">Great Try!</h4>
-            <p class="lamp-instruction" id="quiz-feedback-desc">You scored 0 out of 3. Restart and try again!</p>
-            <button class="btn-restart-quiz" onclick="restartQuiz()">Play Again</button>
-        </div>
-    `;
+        `;
+    }).join('');
 }
-
-window.checkAnswer = function (questionNum, optionIdx, isCorrect) {
-    const currentCard = document.getElementById(`q-${questionNum}`);
-    if (!currentCard) return;
-
-    const optionButtons = currentCard.querySelectorAll(".quiz-opt-btn");
-
-    quizAnswers[questionNum] = isCorrect;
-
-    optionButtons.forEach((btn, idx) => {
-        btn.setAttribute("disabled", "true");
-        if (idx === optionIdx) {
-            btn.classList.add(isCorrect ? "correct" : "wrong");
-        }
-    });
-
-    if (isCorrect) {
-        quizScore++;
-    }
-
-    setTimeout(() => {
-        currentCard.style.display = "none";
-        if (questionNum < 3) {
-            const nextCard = document.getElementById(`q-${questionNum + 1}`);
-            if (nextCard) nextCard.style.display = "block";
-        } else {
-            showQuizResult();
-        }
-    }, 1200);
-};
-
-function showQuizResult() {
-    const resultCard = document.getElementById("quiz-result");
-    const scoreBadge = document.getElementById("score-badge");
-    const feedbackTitle = document.getElementById("quiz-feedback-title");
-    const feedbackDesc = document.getElementById("quiz-feedback-desc");
-
-    if (scoreBadge) scoreBadge.innerText = `${quizScore}/3`;
-    if (resultCard) resultCard.style.display = "block";
-
-    if (quizScore === 3) {
-        if (feedbackTitle) feedbackTitle.innerText = "Zayn & Aara's Best Friend! 🏆";
-        if (feedbackDesc) feedbackDesc.innerText = "Absolute perfection! You know the couple inside out. Ponmangalashamsakal!";
-        triggerFlowerShower(30);
-    } else if (quizScore === 2) {
-        if (feedbackTitle) feedbackTitle.innerText = "Almost Perfect! 🌟";
-        if (feedbackDesc) feedbackDesc.innerText = "Fantastic score! You know the couple really well. Thank you for playing!";
-    } else {
-        if (feedbackTitle) feedbackTitle.innerText = "Good Try! 🌿";
-        if (feedbackDesc) feedbackDesc.innerText = "You scored " + quizScore + "/3. Restart the quiz to discover their stories again!";
-    }
-}
-
-window.restartQuiz = function () {
-    quizScore = 0;
-    quizAnswers = { 1: null, 2: null, 3: null };
-
-    const quizButtons = document.querySelectorAll(".quiz-opt-btn");
-    quizButtons.forEach(btn => {
-        btn.removeAttribute("disabled");
-        btn.className = "quiz-opt-btn";
-    });
-
-    const result = document.getElementById("quiz-result");
-    if (result) result.style.display = "none";
-
-    const q1 = document.getElementById("q-1");
-    if (q1) q1.style.display = "block";
-
-    const q2 = document.getElementById("q-2");
-    if (q2) q2.style.display = "none";
-
-    const q3 = document.getElementById("q-3");
-    if (q3) q3.style.display = "none";
-};
 
 /* ==========================================
    LIVE COUNTDOWN Muhurtham
